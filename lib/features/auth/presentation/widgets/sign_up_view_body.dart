@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:ionic/core/routing/app_router_name.dart';
 
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/widgets/buttons/custom_filled_button.dart';
@@ -14,7 +16,7 @@ class SignUpViewBody extends StatelessWidget {
     return SingleChildScrollView(
       child: Padding(
         padding: EdgeInsets.only(
-          top: size.height * 0.01,
+          top: size.height * 0.04,
           right: 16,
           left: 16,
           bottom: 16,
@@ -57,7 +59,12 @@ class SignUpViewBody extends StatelessWidget {
                 FormTextField(title: "Confirm Password", hintText: "********"),
 
                 const SizedBox(height: 50),
-                CustomFilledButton(text: "Create Account"),
+                CustomFilledButton(
+                  text: "Create Account",
+                  onPressed: () {
+                    context.push(AppRouterName.emailVerifiedRoute);
+                  },
+                ),
                 const SizedBox(height: 16),
                 Text.rich(
                   textAlign: TextAlign.center,

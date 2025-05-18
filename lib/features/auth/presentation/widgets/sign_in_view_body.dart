@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:ionic/core/constants/app_assets.dart';
+import 'package:ionic/core/routing/app_router_name.dart';
 import 'package:ionic/core/widgets/buttons/custom_filled_button.dart';
 import 'package:ionic/core/widgets/buttons/custom_outline_button.dart';
 import 'package:ionic/core/widgets/buttons/custom_underline_button.dart';
@@ -15,7 +17,7 @@ class SignInViewBody extends StatelessWidget {
     return SingleChildScrollView(
       child: Padding(
         padding: EdgeInsets.only(
-          top: size.height * 0.01,
+          top: size.height * 0.04,
           right: 16,
           left: 16,
           bottom: 16,
@@ -37,11 +39,26 @@ class SignInViewBody extends StatelessWidget {
                 const SizedBox(height: 10),
                 Align(
                   alignment: AlignmentDirectional.centerEnd,
-                  child: CustomUnderlineButton(text: "Forget Password?"),
+                  child: CustomUnderlineButton(
+                    text: "Forget Password?",
+                    onPressed:
+                        () => context.push(AppRouterName.forgetPasswordRoute),
+                  ),
                 ),
                 const SizedBox(height: 50),
                 CustomFilledButton(text: "Sign in"),
-                SizedBox(height: size.height * 0.15),
+                const SizedBox(height: 16),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text("Don't have an account? "),
+                    CustomUnderlineButton(
+                      text: "Sign Up",
+                      onPressed: () => context.push(AppRouterName.signUpRoute),
+                    ),
+                  ],
+                ),
+                SizedBox(height: size.height * 0.06),
                 Text("or Sign in with", style: theme.textTheme.bodySmall),
                 const SizedBox(height: 16),
                 CustomOutlineButton(

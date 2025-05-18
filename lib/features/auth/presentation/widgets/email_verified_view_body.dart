@@ -15,7 +15,7 @@ class EmailVerifiedViewBody extends StatelessWidget {
     return SingleChildScrollView(
       child: Padding(
         padding: EdgeInsets.only(
-          top: size.height * 0.01,
+          top: size.height * 0.04,
           right: 16,
           left: 16,
           bottom: 16,

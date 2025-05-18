@@ -10,7 +10,10 @@ class SignInView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.surface,
-      appBar: AppBar(title: const CustomBackButton()),
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        title: const CustomBackButton(),
+      ),
       body: SignInViewBody(),
     );
   }

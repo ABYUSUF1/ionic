@@ -9,7 +9,10 @@ class SignUpView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.surface,
-      appBar: AppBar(title: CustomBackButton()),
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        title: CustomBackButton(),
+      ),
       body: SignUpViewBody(),
     );
   }
