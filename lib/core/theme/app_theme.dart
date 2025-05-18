@@ -54,6 +54,10 @@ class AppTheme {
         return null;
       }),
     ),
+    dividerTheme: const DividerThemeData(
+      color: AppColors.lightDividerColor,
+      thickness: 2,
+    ),
   );
 
   // Dark Theme
@@ -104,6 +108,10 @@ class AppTheme {
         }
         return null;
       }),
+    ),
+    dividerTheme: const DividerThemeData(
+      color: AppColors.darkDividerColor,
+      thickness: 2,
     ),
   );
 }

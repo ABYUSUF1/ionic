@@ -38,6 +38,8 @@ dependencies:
   get_it: ^8.0.3
   json_annotation: ^4.9.0
   dartz: ^0.10.1
+  iconsax_plus: ^1.0.0
+  lottie: ^3.3.1
 
 
 
@@ -65,6 +67,7 @@ flutter:
     - assets/fonts/
     - assets/icons/
     - assets/lotties/
+    - assets/illustrations/
 
 
 
@@ -87,7 +90,7 @@ flutter_assets:
 
 flutter_native_splash:
   color: "#FFFFFF"
-  color_dark: "#000000"
+  color_dark: "#171923"
   image: assets/logo/ionic_logo.png
   image_dark: assets/logo/ionic_logo.png
   android_gravity: center

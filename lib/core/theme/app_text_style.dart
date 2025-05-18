@@ -6,7 +6,7 @@ final class AppTextStyles {
   static TextTheme appTextTheme(Brightness brightness) {
     return TextTheme(
       headlineLarge: TextStyle(
-        fontSize: 26,
+        fontSize: 30,
         fontFamily: 'Pulp Display',
         color: AppColors.hardTextColor(brightness),
       ),

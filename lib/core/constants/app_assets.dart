@@ -74,13 +74,101 @@ class AppAssets {
   /// assets/icons/share_with_friends.svg
   static const String iconsShareWithFriends = "assets/icons/share_with_friends.svg";
 
+  /// Assets for illustrationsEmptyIllustrationDark
+  /// assets/illustrations/empty_illustration_dark.svg
+  static const String illustrationsEmptyIllustrationDark = "assets/illustrations/empty_illustration_dark.svg";
+
+  /// Assets for illustrationsEmptyIllustrationLight
+  /// assets/illustrations/empty_illustration_light.svg
+  static const String illustrationsEmptyIllustrationLight = "assets/illustrations/empty_illustration_light.svg";
+
+  /// Assets for illustrationsErrorIllustrationDark
+  /// assets/illustrations/error_illustration_dark.svg
+  static const String illustrationsErrorIllustrationDark = "assets/illustrations/error_illustration_dark.svg";
+
+  /// Assets for illustrationsErrorIllustrationLight
+  /// assets/illustrations/error_illustration_light.svg
+  static const String illustrationsErrorIllustrationLight = "assets/illustrations/error_illustration_light.svg";
+
+  /// Assets for illustrationsGpsIllustrationDark
+  /// assets/illustrations/gps_illustration_dark.svg
+  static const String illustrationsGpsIllustrationDark = "assets/illustrations/gps_illustration_dark.svg";
+
+  /// Assets for illustrationsGpsIllustrationLight
+  /// assets/illustrations/gps_illustration_light.svg
+  static const String illustrationsGpsIllustrationLight = "assets/illustrations/gps_illustration_light.svg";
+
+  /// Assets for illustrationsLoginIllustrationDark
+  /// assets/illustrations/login_illustration_dark.svg
+  static const String illustrationsLoginIllustrationDark = "assets/illustrations/login_illustration_dark.svg";
+
+  /// Assets for illustrationsLoginIllustrationLight
+  /// assets/illustrations/login_illustration_light.svg
+  static const String illustrationsLoginIllustrationLight = "assets/illustrations/login_illustration_light.svg";
+
+  /// Assets for illustrationsNoConnectionIllustrationDark
+  /// assets/illustrations/no_connection_illustration_dark.svg
+  static const String illustrationsNoConnectionIllustrationDark = "assets/illustrations/no_connection_illustration_dark.svg";
+
+  /// Assets for illustrationsNoConnectionIllustrationLight
+  /// assets/illustrations/no_connection_illustration_light.svg
+  static const String illustrationsNoConnectionIllustrationLight = "assets/illustrations/no_connection_illustration_light.svg";
+
+  /// Assets for illustrationsNoFavoriteIllustrationDark
+  /// assets/illustrations/no_favorite_illustration_dark.svg
+  static const String illustrationsNoFavoriteIllustrationDark = "assets/illustrations/no_favorite_illustration_dark.svg";
+
+  /// Assets for illustrationsNoFavoriteIllustrationLight
+  /// assets/illustrations/no_favorite_illustration_light.svg
+  static const String illustrationsNoFavoriteIllustrationLight = "assets/illustrations/no_favorite_illustration_light.svg";
+
+  /// Assets for illustrationsNoSearchIllustrationDark
+  /// assets/illustrations/no_search_illustration_dark.svg
+  static const String illustrationsNoSearchIllustrationDark = "assets/illustrations/no_search_illustration_dark.svg";
+
+  /// Assets for illustrationsNoSearchIllustrationLight
+  /// assets/illustrations/no_search_illustration_light.svg
+  static const String illustrationsNoSearchIllustrationLight = "assets/illustrations/no_search_illustration_light.svg";
+
+  /// Assets for illustrationsNotificationIllustrationDark
+  /// assets/illustrations/notification_illustration_dark.svg
+  static const String illustrationsNotificationIllustrationDark = "assets/illustrations/notification_illustration_dark.svg";
+
+  /// Assets for illustrationsNotificationIllustrationLight
+  /// assets/illustrations/notification_illustration_light.svg
+  static const String illustrationsNotificationIllustrationLight = "assets/illustrations/notification_illustration_light.svg";
+
+  /// Assets for illustrationsSendingIllustrationDark
+  /// assets/illustrations/sending_illustration_dark.svg
+  static const String illustrationsSendingIllustrationDark = "assets/illustrations/sending_illustration_dark.svg";
+
+  /// Assets for illustrationsSendingIllustrationLight
+  /// assets/illustrations/sending_illustration_light.svg
+  static const String illustrationsSendingIllustrationLight = "assets/illustrations/sending_illustration_light.svg";
+
+  /// Assets for illustrationsTrackingIllustrationDark
+  /// assets/illustrations/tracking_illustration_dark.svg
+  static const String illustrationsTrackingIllustrationDark = "assets/illustrations/tracking_illustration_dark.svg";
+
+  /// Assets for illustrationsTrackingIllustrationLight
+  /// assets/illustrations/tracking_illustration_light.svg
+  static const String illustrationsTrackingIllustrationLight = "assets/illustrations/tracking_illustration_light.svg";
+
   /// Assets for logoIonicLogo
-  /// assets/logo/ionic_logo.png
-  static const String logoIonicLogo = "assets/logo/ionic_logo.png";
+  /// assets/logo/ionic_logo.svg
+  static const String logoIonicLogo = "assets/logo/ionic_logo.svg";
+
+  /// Assets for logoIonicSplashLogo
+  /// assets/logo/ionic_splash_logo.png
+  static const String logoIonicSplashLogo = "assets/logo/ionic_splash_logo.png";
 
   /// Assets for lottiesBinAnimation
   /// assets/lotties/bin_animation.json
   static const String lottiesBinAnimation = "assets/lotties/bin_animation.json";
+
+  /// Assets for lottiesEmailSendingAnimation
+  /// assets/lotties/email_sending_animation.json
+  static const String lottiesEmailSendingAnimation = "assets/lotties/email_sending_animation.json";
 
   /// Assets for lottiesErrorAnimation
   /// assets/lotties/error_animation.json

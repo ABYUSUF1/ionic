@@ -17,17 +17,6 @@ class SignInView extends StatelessWidget {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         title: const CustomBackButton(),
-        actionsPadding: EdgeInsetsDirectional.only(end: 16),
-        actions: [
-          CustomUnderlineButton(
-            text: "Skip now",
-            color: theme.colorScheme.onSurfaceVariant,
-
-            onPressed: () {
-              context.go(AppRouterName.homeRoute);
-            },
-          ),
-        ],
       ),
       body: SignInViewBody(),
     );

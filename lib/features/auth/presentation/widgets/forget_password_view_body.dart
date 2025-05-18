@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:iconsax_plus/iconsax_plus.dart';
+import 'package:ionic/core/routing/app_router_name.dart';
 import 'package:ionic/core/widgets/buttons/custom_filled_button.dart';
 import 'package:ionic/core/widgets/text_field/form_text_field.dart';
-
-import '../../../../core/widgets/buttons/custom_underline_button.dart';
 
 class ForgetPasswordViewBody extends StatelessWidget {
   const ForgetPasswordViewBody({super.key});
@@ -10,21 +11,17 @@ class ForgetPasswordViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final Size size = MediaQuery.of(context).size;
     return SingleChildScrollView(
       child: Padding(
-        padding: EdgeInsets.only(
-          top: size.height * 0.04,
-          right: 16,
-          left: 16,
-          bottom: 16,
-        ),
+        padding: EdgeInsets.all(16),
+
         child: Center(
           child: ConstrainedBox(
             constraints: const BoxConstraints(maxWidth: 600),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                const SizedBox(height: 20),
                 Text("Forget Password?", style: theme.textTheme.headlineLarge),
                 const SizedBox(height: 5),
                 Text(
@@ -34,32 +31,23 @@ class ForgetPasswordViewBody extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 50),
+
                 FormTextField(
                   title: "E-Mail Address",
                   hintText: "Enter your E-Mail",
+                  prefixIcon: IconsaxPlusLinear.send_1,
                 ),
-                const SizedBox(height: 50),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      "Didn't receive the code?",
-                      style: theme.textTheme.bodyMedium,
-                    ),
-                    CustomUnderlineButton(text: "Resend"),
-                  ],
+                const SizedBox(height: 30),
+
+                CustomFilledButton(
+                  text: "Send",
+                  onPressed: () {
+                    context.push(
+                      AppRouterName.emailSentRoute,
+                      extra: "Password Reset Email Sent",
+                    );
+                  },
                 ),
-                Align(
-                  alignment: AlignmentDirectional.center,
-                  child: Text(
-                    "Resend in 1:30",
-                    style: theme.textTheme.bodyMedium!.copyWith(
-                      color: theme.colorScheme.onSurfaceVariant,
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 50),
-                CustomFilledButton(text: "Send Code"),
               ],
             ),
           ),

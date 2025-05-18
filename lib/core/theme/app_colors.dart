@@ -6,14 +6,14 @@ abstract final class AppColors {
   static const darkScaffoldBackground = Color(0xff171923);
 
   // Primary Color (Buttons, Icons, etc)
-  static const primaryColor = Color(0xff478aff);
+  static const primaryColor = Color(0xff566CEC);
 
   // Surface Colors
   static const lightCardBackground = Color(0xFFFFFFFF);
   static const darkCardBackground = Color(0xff212330);
 
   // On Surface Colors Or BottomSheetBackground, etc.
-  static const lightDialogBackground = Color(0xffF4FAFF);
+  static const lightDialogBackground = Color.fromARGB(255, 241, 246, 252);
   static const darkDialogBackground = Color(0xff303343);
 
   // Text Colors
@@ -34,5 +34,5 @@ abstract final class AppColors {
 
   // Divider Color
   static const lightDividerColor = Color(0xffE2E8F0);
-  static const darkDividerColor = Color(0xff2C2F41);
+  static const darkDividerColor = Color(0xFF35384A);
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:iconsax_plus/iconsax_plus.dart';
 import 'package:ionic/core/routing/app_router_name.dart';
 
 import '../../../../core/theme/app_colors.dart';
@@ -11,23 +12,17 @@ class SignUpViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
     final theme = Theme.of(context);
     return SingleChildScrollView(
       child: Padding(
-        padding: EdgeInsets.only(
-          top: size.height * 0.04,
-          right: 16,
-          left: 16,
-          bottom: 16,
-        ),
+        padding: EdgeInsets.all(16),
         child: Center(
           child: ConstrainedBox(
             constraints: const BoxConstraints(maxWidth: 600),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text("Sign Up", style: theme.textTheme.headlineLarge!),
+                Text("Sign up", style: theme.textTheme.headlineLarge!),
                 const SizedBox(height: 50),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -36,6 +31,7 @@ class SignUpViewBody extends StatelessWidget {
                       child: FormTextField(
                         title: "First Name",
                         hintText: "First Name",
+                        prefixIcon: IconsaxPlusLinear.profile,
                       ),
                     ),
                     const SizedBox(width: 16),
@@ -43,6 +39,7 @@ class SignUpViewBody extends StatelessWidget {
                       child: FormTextField(
                         title: "Last Name",
                         hintText: "Last Name",
+                        prefixIcon: IconsaxPlusLinear.profile,
                       ),
                     ),
                   ],
@@ -52,25 +49,46 @@ class SignUpViewBody extends StatelessWidget {
                 FormTextField(
                   title: "E-Mail Address",
                   hintText: "Enter your E-Mail",
+                  prefixIcon: IconsaxPlusLinear.send_1,
                 ),
                 const SizedBox(height: 16),
-                FormTextField(title: "Password", hintText: "********"),
+                FormTextField(
+                  title: "Phone",
+                  hintText: "Enter your Phone",
+                  prefixIcon: IconsaxPlusLinear.call,
+                ),
                 const SizedBox(height: 16),
-                FormTextField(title: "Confirm Password", hintText: "********"),
+                FormTextField(
+                  title: "Password",
+                  hintText: "********",
+                  prefixIcon: IconsaxPlusLinear.key,
+                ),
+                const SizedBox(height: 16),
+                FormTextField(
+                  title: "Confirm Password",
+                  hintText: "********",
+                  prefixIcon: IconsaxPlusLinear.key,
+                ),
 
                 const SizedBox(height: 50),
                 CustomFilledButton(
                   text: "Create Account",
                   onPressed: () {
-                    context.push(AppRouterName.emailVerifiedRoute);
+                    context.push(
+                      AppRouterName.emailSentRoute,
+                      extra: "Verify E-Mail Address",
+                    );
                   },
                 ),
-                const SizedBox(height: 16),
+                const SizedBox(height: 50),
                 Text.rich(
                   textAlign: TextAlign.center,
                   TextSpan(
                     text: "By continuing, you agree to our ",
-                    style: theme.textTheme.bodyMedium,
+                    style: theme.textTheme.bodyMedium!.copyWith(
+                      color: theme.colorScheme.onSurfaceVariant,
+                    ),
+
                     children: [
                       TextSpan(
                         text: "Terms of service",

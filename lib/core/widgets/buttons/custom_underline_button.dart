@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:ionic/core/theme/app_colors.dart';
 
 class CustomUnderlineButton extends StatelessWidget {
-  final void Function()? onPressed;
   final String text;
-  final Color? color;
+  final void Function()? onPressed;
+  final TextStyle? textStyle;
   const CustomUnderlineButton({
     super.key,
     this.onPressed,
-    this.color,
+    this.textStyle,
     required this.text,
   });
 
@@ -28,16 +28,18 @@ class CustomUnderlineButton extends StatelessWidget {
           decoration: BoxDecoration(
             border: Border(
               bottom: BorderSide(
-                color: color ?? AppColors.primaryColor,
+                color: textStyle?.color ?? AppColors.primaryColor,
                 width: 1.0, // Underline thickness
               ),
             ),
           ),
           child: Text(
             text,
-            style: theme.textTheme.bodyMedium!.copyWith(
-              color: color ?? AppColors.primaryColor,
-            ),
+            style:
+                textStyle ??
+                theme.textTheme.bodyMedium!.copyWith(
+                  color: AppColors.primaryColor,
+                ),
           ),
         ),
       ),
