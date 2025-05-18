@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:ionic/core/constants/app_assets.dart';
 
 import '../../theme/app_colors.dart';
 
-class FormTextField extends StatelessWidget {
+class FormTextField extends StatefulWidget {
   final String title;
   final String hintText;
   final String? Function(String?)? validator;
@@ -17,22 +19,34 @@ class FormTextField extends StatelessWidget {
   });
 
   @override
+  State<FormTextField> createState() => _FormTextFieldState();
+}
+
+class _FormTextFieldState extends State<FormTextField> {
+  bool _obscureText = true;
+
+  bool get isPassword => widget.title.toLowerCase().contains("password");
+
+  @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Padding(
           padding: const EdgeInsetsDirectional.only(start: 10),
-          child: Text(title, style: theme.textTheme.bodyMedium!),
+          child: Text(widget.title, style: theme.textTheme.bodyMedium),
         ),
         const SizedBox(height: 5),
         TextFormField(
-          onTapOutside:
-              (event) => FocusManager.instance.primaryFocus?.unfocus(),
+          obscureText: isPassword ? _obscureText : false,
+          onTapOutside: (_) => FocusManager.instance.primaryFocus?.unfocus(),
           decoration: InputDecoration(
-            contentPadding: EdgeInsets.symmetric(vertical: 14, horizontal: 14),
+            contentPadding: const EdgeInsets.symmetric(
+              vertical: 14,
+              horizontal: 14,
+            ),
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(8),
               borderSide: BorderSide(color: theme.colorScheme.outline),
@@ -43,15 +57,31 @@ class FormTextField extends StatelessWidget {
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(8),
-              borderSide: BorderSide(color: AppColors.primaryColor),
+              borderSide: const BorderSide(color: AppColors.primaryColor),
             ),
-            hintText: hintText,
+            hintText: widget.hintText,
             hintStyle: theme.textTheme.bodyMedium!.copyWith(
               color: theme.colorScheme.onSurfaceVariant,
             ),
-
+            suffixIcon:
+                isPassword
+                    ? IconButton(
+                      onPressed: () {
+                        setState(() {
+                          _obscureText = !_obscureText;
+                        });
+                      },
+                      icon: SvgPicture.asset(
+                        _obscureText
+                            ? AppAssets
+                                .iconsEyeSlash // closed eye
+                            : AppAssets
+                                .iconsEye, // open eye (you should provide this)
+                      ),
+                    )
+                    : null,
             error:
-                errorText != null
+                widget.errorText != null
                     ? Row(
                       children: [
                         Icon(
@@ -61,14 +91,14 @@ class FormTextField extends StatelessWidget {
                         ),
                         const SizedBox(width: 5),
                         Text(
-                          errorText!,
+                          widget.errorText!,
                           style: TextStyle(color: theme.colorScheme.error),
                         ),
                       ],
                     )
                     : null,
           ),
-          validator: validator,
+          validator: widget.validator,
         ),
       ],
     );
