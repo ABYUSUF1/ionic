@@ -1,0 +1,96 @@
+name: ionic
+description: "A new Flutter project."
+# The following line prevents the package from being accidentally published to
+# pub.dev using `flutter pub publish`. This is preferred for private packages.
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.7.2
+
+# Dependencies specify other packages that your package needs in order to work.
+# To automatically upgrade your package dependencies to the latest versions
+# consider running `flutter pub upgrade --major-versions`. Alternatively,
+# dependencies can be manually updated by changing the version numbers below to
+# the latest version available on pub.dev. To see which dependencies have newer
+# versions available, run `flutter pub outdated`.
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.8
+  flutter_bloc: ^9.1.1
+  freezed_annotation: ^2.4.1
+  connectivity_plus: ^6.1.4
+  path_provider: ^2.1.5
+  firebase_core: ^3.13.0
+  firebase_auth: ^5.5.3
+  google_sign_in: ^6.3.0
+  flutter_map: ^8.1.1
+  dio: ^5.8.0+1
+  device_preview: ^1.2.0
+  objectbox: ^4.2.0
+  objectbox_flutter_libs: ^4.2.0
+  go_router: ^15.1.2
+  flutter_native_splash: ^2.4.6
+  flutter_svg: ^2.1.0
+  animate_do: ^4.2.0
+
+
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+    
+  flutter_lints: ^5.0.0
+  build_runner: ^2.4.15
+  freezed: ^2.5.8
+  objectbox_generator: ^4.2.0
+
+  
+
+
+
+flutter:
+  uses-material-design: true
+
+  
+  assets:
+    - assets/
+    - assets/fonts/
+    - assets/icons/
+    - assets/lotties/
+
+
+
+  fonts:
+    - family: Pulp Display
+      fonts:
+        - asset: assets/fonts/PulpDisplay-Regular.ttf
+
+
+
+
+flutter_assets:
+  assets_path: assets/
+  output_path: lib/core/constants/
+  filename: app_assets.dart/
+  field_prefix: null
+  classname: AppAssets
+
+
+
+flutter_native_splash:
+  color: "#FFFFFF"
+  color_dark: "#000000"
+  image: assets/logo/ionic_logo.png
+  image_dark: assets/logo/ionic_logo.png
+  android_gravity: center
+  ios_content_mode: scaleAspectFit
+  ios: true
+  android: true
+  web: false
+  android_12:
+    image: assets/logo/ionic_logo.png
+    image_dark: assets/logo/ionic_logo.png
