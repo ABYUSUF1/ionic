@@ -40,4 +40,15 @@ class AuthFirestoreService {
         .doc(authModel.id)
         .update(authModel.toJson());
   }
+
+  /// Is email Exists -> to check if user already exists (registered)
+  Future<bool> isEmailExists(String email) async {
+    final snapshot =
+        await firestore
+            .collection(FirestoreCollectionNames.users)
+            .where('email', isEqualTo: email)
+            .limit(1)
+            .get();
+    return snapshot.docs.isNotEmpty;
+  }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:iconsax_plus/iconsax_plus.dart';
 import 'package:ionic/core/theme/app_colors.dart';
 import 'package:ionic/core/widgets/snackbar/snack_bar_content.dart';
 
@@ -27,7 +28,8 @@ final class AppSnackbar {
       context: context,
       message: message,
       color: Colors.green,
-      duration: const Duration(minutes: 1),
+      duration: const Duration(seconds: 30),
+      icon: IconsaxPlusLinear.tick_square,
     );
   }
 }
@@ -37,11 +39,12 @@ void _showCustomSnackBar({
   required String message,
   required Color color,
   required Duration duration,
+  IconData? icon,
 }) {
   final messenger = ScaffoldMessenger.of(context);
 
   final snackBar = SnackBar(
-    content: SnackBarContent(message: message, color: color),
+    content: SnackBarContent(message: message, color: color, icon: icon),
     backgroundColor: color.withValues(alpha: 0.2),
     duration: duration,
     behavior: SnackBarBehavior.floating,

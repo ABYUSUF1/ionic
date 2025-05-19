@@ -2,17 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
+import 'package:ionic/features/auth/presentation/widgets/sign_in_widgets/dont_have_account_button.dart';
+import 'package:ionic/features/auth/presentation/widgets/sign_in_widgets/guest_button.dart';
 
-import '../../../../core/constants/app_assets.dart';
-import '../../../../core/routing/app_router_name.dart';
-import '../../../../core/theme/app_colors.dart';
-import '../../../../core/utils/validators.dart';
-import '../../../../core/widgets/buttons/custom_filled_button.dart';
-import '../../../../core/widgets/buttons/custom_underline_button.dart';
-import '../../../../core/widgets/snackbar/app_snackbar.dart';
-import '../../../../core/widgets/text_field/form_text_field.dart';
-import '../../../../core/widgets/text_field/password_text_field.dart';
-import '../manager/sign_in/sign_in_cubit.dart';
+import '../../../../../core/constants/app_assets.dart';
+import '../../../../../core/routing/app_router_name.dart';
+import '../../../../../core/theme/app_colors.dart';
+import '../../../../../core/utils/validators.dart';
+import '../../../../../core/widgets/buttons/custom_filled_button.dart';
+import '../../../../../core/widgets/buttons/custom_underline_button.dart';
+import '../../../../../core/widgets/text_field/form_text_field.dart';
+import '../../../../../core/widgets/text_field/password_text_field.dart';
+import '../../manager/sign_in/sign_in_cubit.dart';
 
 class SignInForm extends StatelessWidget {
   const SignInForm({super.key});
@@ -78,7 +79,11 @@ class SignInForm extends StatelessWidget {
               textStyle: theme.textTheme.bodySmall!.copyWith(
                 color: AppColors.primaryColor,
               ),
-              onPressed: () => context.push(AppRouterName.forgetPasswordRoute),
+              onPressed:
+                  () => context.push(
+                    AppRouterName.forgetPasswordRoute,
+                    extra: cubit.emailController.text.trim(),
+                  ),
             ),
           ),
           const SizedBox(height: 35),
@@ -94,46 +99,12 @@ class SignInForm extends StatelessWidget {
                 ),
               ),
               const SizedBox(width: 16),
-              Expanded(
-                flex: 3,
-                child: CustomFilledButton(
-                  text: "As Guest",
-                  buttonColor: theme.colorScheme.secondary,
-                  textStyle: theme.textTheme.bodyMedium!.copyWith(
-                    color: theme.colorScheme.onSurface,
-                  ),
-                  onPressed: () {
-                    AppSnackbar.showSuccessSnackBar(
-                      context,
-                      "Guest Mode Activated",
-                    );
-                  },
-                ),
-              ),
+              Expanded(flex: 3, child: GuestButton()),
             ],
           ),
           SizedBox(height: size.height * 0.04),
 
-          GestureDetector(
-            onTap: () {
-              context.push(AppRouterName.signUpRoute);
-            },
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  "Don't have an account? ",
-                  style: theme.textTheme.bodyMedium!.copyWith(),
-                ),
-                const SizedBox(width: 4),
-                Text(
-                  "Sign up",
-                  style: TextStyle(color: AppColors.primaryColor),
-                ),
-              ],
-            ),
-          ),
-          const SizedBox(height: 50),
+          DontHaveAccountButton(),
         ],
       ),
     );

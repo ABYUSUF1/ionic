@@ -128,6 +128,20 @@ class AuthRemoteDataSource {
     }
   }
 
+  /// Check if a user with the provided email already exists in the database.
+  Future<bool> isEmailExists(String email) async {
+    try {
+      final isEmailExists = await _authFirestoreService.isEmailExists(email);
+      return isEmailExists;
+    } on FirebaseException catch (e) {
+      debugPrint('Error checking email existence: $e');
+      rethrow;
+    } catch (e) {
+      debugPrint('Unexpected error checking email existence: $e');
+      rethrow;
+    }
+  }
+
   /// Sends an email verification link to the currently logged-in user's email address.
   Future<void> sendEmailVerification() async {
     try {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:ionic/core/widgets/loading/normal_loading.dart';
+import 'package:ionic/core/widgets/loading/small_loading.dart';
 
 import '../../theme/app_colors.dart';
 
@@ -40,7 +40,7 @@ class CustomFilledButton extends StatelessWidget {
       ),
       label:
           isLoading
-              ? NormalLoading(color: Colors.white)
+              ? SmallLoading(color: Colors.white)
               : Text(
                 text,
                 style:

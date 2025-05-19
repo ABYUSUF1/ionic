@@ -4,8 +4,9 @@ import 'package:go_router/go_router.dart';
 import 'package:ionic/core/routing/app_router_name.dart';
 import 'package:ionic/core/widgets/loading/full_screen_loading.dart';
 import 'package:ionic/core/widgets/snackbar/app_snackbar.dart';
+import 'package:ionic/features/auth/presentation/args/email_sent_args.dart';
 import 'package:ionic/features/auth/presentation/manager/sign_in/sign_in_cubit.dart';
-import 'package:ionic/features/auth/presentation/widgets/sign_in_form.dart';
+import 'package:ionic/features/auth/presentation/widgets/sign_in_widgets/sign_in_form.dart';
 
 class SignInViewBody extends StatelessWidget {
   const SignInViewBody({super.key});
@@ -17,7 +18,7 @@ class SignInViewBody extends StatelessWidget {
         state.whenOrNull(
           success: (_) {
             closeFullScreenLoading(context);
-            context.goNamed(AppRouterName.homeRoute);
+            context.pushReplacement(AppRouterName.homeRoute);
           },
           error: (message) {
             closeFullScreenLoading(context);
@@ -25,9 +26,19 @@ class SignInViewBody extends StatelessWidget {
           },
           emailNotVerified: () {
             closeFullScreenLoading(context);
-            context.goNamed(AppRouterName.emailSentRoute);
+            AppSnackbar.showSuccessSnackBar(
+              context,
+              "We sent you an email to verify your account.",
+            );
+            context.push(
+              AppRouterName.emailSentRoute,
+              extra: EmailSentArgs(
+                isPasswordReset: false,
+                email: context.read<SignInCubit>().emailController.text.trim(),
+              ),
+            );
           },
-          loading: () => showFullScreenLoading(context),
+          loading: () => showFullScreenLoading(context, "Signing In..."),
         );
       },
       child: SingleChildScrollView(

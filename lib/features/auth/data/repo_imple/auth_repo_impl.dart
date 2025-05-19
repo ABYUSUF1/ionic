@@ -107,6 +107,14 @@ class AuthRepoImpl implements AuthRepo {
   @override
   Future<Either<Failure, void>> sendPasswordResetEmail(String email) async {
     try {
+      final isEmailExists = await _remoteDataSource.isEmailExists(email);
+
+      if (!isEmailExists) {
+        return const Left(
+          Failure('This email is not registered, sign up first.'),
+        );
+      }
+
       await _remoteDataSource.sendPasswordResetEmail(email);
       return const Right(null);
     } on FirebaseAuthException catch (e) {

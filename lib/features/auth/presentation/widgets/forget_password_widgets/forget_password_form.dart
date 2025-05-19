@@ -1,0 +1,93 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+import 'package:iconsax_plus/iconsax_plus.dart';
+import 'package:ionic/core/utils/validators.dart';
+import 'package:ionic/core/widgets/loading/normal_loading.dart';
+import 'package:ionic/core/widgets/snackbar/app_snackbar.dart';
+import 'package:ionic/features/auth/presentation/args/email_sent_args.dart';
+import 'package:ionic/features/auth/presentation/manager/forget_password/forget_password_cubit.dart';
+
+import '../../../../../core/routing/app_router_name.dart';
+import '../../../../../core/widgets/buttons/custom_filled_button.dart';
+import '../../../../../core/widgets/text_field/form_text_field.dart';
+
+class ForgetPasswordForm extends StatelessWidget {
+  final String? email;
+  const ForgetPasswordForm({super.key, this.email});
+
+  @override
+  Widget build(BuildContext context) {
+    final emailController = context.read<ForgetPasswordCubit>().emailController;
+    emailController.text = email ?? '';
+    final theme = Theme.of(context);
+
+    return BlocListener<ForgetPasswordCubit, ForgetPasswordState>(
+      listener: (context, state) {
+        state.whenOrNull(
+          error: (message) {
+            AppSnackbar.showErrorSnackBar(context, message);
+          },
+          success: () {
+            AppSnackbar.showSuccessSnackBar(
+              context,
+              'Password Reset Email Sent',
+            );
+
+            context.push(
+              AppRouterName.emailSentRoute,
+              extra: EmailSentArgs(
+                isPasswordReset: true,
+                email: emailController.text.trim(),
+              ),
+            );
+          },
+        );
+      },
+      child: Form(
+        key: context.read<ForgetPasswordCubit>().formKey,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SizedBox(height: 20),
+            Text("Forget Password?", style: theme.textTheme.headlineLarge),
+            const SizedBox(height: 5),
+            Text(
+              "No worries! Enter your email address below and we will send you a code to reset password.",
+              style: theme.textTheme.bodyMedium!.copyWith(
+                color: theme.colorScheme.onSurfaceVariant,
+              ),
+            ),
+            const SizedBox(height: 50),
+
+            FormTextField(
+              controller: emailController,
+              title: "E-Mail Address",
+              hintText: "Enter your E-Mail",
+              prefixIcon: IconsaxPlusLinear.send_1,
+              validator: (_) => Validators.validateEmail(emailController.text),
+            ),
+            const SizedBox(height: 30),
+
+            BlocBuilder<ForgetPasswordCubit, ForgetPasswordState>(
+              builder: (context, state) {
+                return state.maybeWhen(
+                  loading: () => Center(child: NormalLoading()),
+                  orElse:
+                      () => CustomFilledButton(
+                        text: "Send",
+                        onPressed: () async {
+                          await context
+                              .read<ForgetPasswordCubit>()
+                              .sendPasswordReset();
+                        },
+                      ),
+                );
+              },
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}

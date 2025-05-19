@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 import 'package:ionic/core/utils/validators.dart';
-import '../../../../core/routing/app_router_name.dart';
-import '../../../../core/theme/app_colors.dart';
-import '../../../../core/widgets/buttons/custom_filled_button.dart';
-import '../../../../core/widgets/text_field/form_text_field.dart';
-import '../../../../core/widgets/text_field/password_text_field.dart';
-import '../manager/sign_up/sign_up_cubit.dart';
+import '../../../../../core/theme/app_colors.dart';
+import '../../../../../core/widgets/buttons/custom_filled_button.dart';
+import '../../../../../core/widgets/text_field/form_text_field.dart';
+import '../../../../../core/widgets/text_field/password_text_field.dart';
+import '../../manager/sign_up/sign_up_cubit.dart';
 
 class SignUpForm extends StatelessWidget {
   const SignUpForm({super.key});
@@ -70,12 +68,13 @@ class SignUpForm extends StatelessWidget {
             hintText: "Enter your Phone",
             prefixIcon: IconsaxPlusLinear.call,
             controller: cubit.phoneNumberController,
+            keyboardType: TextInputType.phone,
             validator:
                 (_) =>
                     Validators.validatePhone(cubit.phoneNumberController.text),
           ),
           const SizedBox(height: 16),
-          FormTextField(
+          PasswordTextField(
             title: "Password",
             hintText: "********",
             prefixIcon: IconsaxPlusLinear.key,
@@ -99,11 +98,8 @@ class SignUpForm extends StatelessWidget {
           const SizedBox(height: 50),
           CustomFilledButton(
             text: "Create Account",
-            onPressed: () {
-              context.push(
-                AppRouterName.emailSentRoute,
-                extra: "Verify E-Mail Address",
-              );
+            onPressed: () async {
+              await cubit.signUpWithEmailAndPassword();
             },
           ),
           const SizedBox(height: 50),

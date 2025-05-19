@@ -1,5 +1,6 @@
 import 'package:go_router/go_router.dart';
 import 'package:ionic/core/routing/app_router_name.dart';
+import 'package:ionic/features/auth/presentation/args/email_sent_args.dart';
 import 'package:ionic/features/auth/presentation/views/email_sent_view.dart';
 import 'package:ionic/features/auth/presentation/views/forget_password_view.dart';
 import 'package:ionic/features/auth/presentation/views/sign_in_view.dart';
@@ -24,14 +25,16 @@ final GoRouter appRouter = GoRouter(
     ),
     GoRoute(
       path: AppRouterName.forgetPasswordRoute,
-      builder: (context, state) => const ForgetPasswordView(),
+      builder: (context, state) {
+        final email = state.extra as String?;
+        return ForgetPasswordView(email: email);
+      },
     ),
     GoRoute(
       path: AppRouterName.emailSentRoute,
       builder: (context, state) {
-        final String title = state.extra as String;
-
-        return EmailSentView(title: title);
+        final data = state.extra as EmailSentArgs;
+        return EmailSentView(emailSentArgs: data);
       },
     ),
   ],

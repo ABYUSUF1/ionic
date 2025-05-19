@@ -4,7 +4,7 @@ import 'package:iconsax_plus/iconsax_plus.dart';
 class SnackBarContent extends StatelessWidget {
   final String message;
   final Color color;
-  final IconData icon;
+  final IconData? icon;
 
   const SnackBarContent({
     super.key,

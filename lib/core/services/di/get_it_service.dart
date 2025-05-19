@@ -1,10 +1,12 @@
 import 'package:get_it/get_it.dart';
+import 'package:ionic/features/auth/presentation/manager/forget_password/forget_password_cubit.dart';
 import 'package:ionic/features/auth/presentation/manager/sign_in/sign_in_cubit.dart';
 
 import '../../../features/auth/data/data_source/remote/auth_firestore_service.dart';
 import '../../../features/auth/data/data_source/remote/auth_remote_data_source.dart';
 import '../../../features/auth/data/repo_imple/auth_repo_impl.dart';
 import '../../../features/auth/domain/repo/auth_repo.dart' show AuthRepo;
+import '../../../features/auth/presentation/manager/email_sent/email_sent_cubit.dart';
 import '../../../features/auth/presentation/manager/sign_up/sign_up_cubit.dart';
 import '../auth/firebase_auth_service.dart';
 
@@ -29,4 +31,6 @@ void setupGetIt() {
   // Register BLoCs/Cubits
   getIt.registerFactory(() => SignInCubit(getIt()));
   getIt.registerFactory(() => SignUpCubit(getIt()));
+  getIt.registerFactory(() => EmailSentCubit(getIt()));
+  getIt.registerFactory(() => ForgetPasswordCubit(getIt()));
 }

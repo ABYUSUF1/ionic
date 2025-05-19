@@ -5,7 +5,7 @@ import 'package:lottie/lottie.dart';
 
 bool _isLoadingVisible = false;
 
-Future<void> showFullScreenLoading(BuildContext context) async {
+Future<void> showFullScreenLoading(BuildContext context, String message) async {
   if (_isLoadingVisible) return;
   _isLoadingVisible = true;
 
@@ -24,7 +24,7 @@ Future<void> showFullScreenLoading(BuildContext context) async {
                 from: 20,
                 duration: const Duration(milliseconds: 500),
                 child: Text(
-                  "Sign in...",
+                  message,
                   style: Theme.of(
                     context,
                   ).textTheme.headlineLarge!.copyWith(color: Colors.white),

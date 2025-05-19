@@ -52,6 +52,9 @@ class FormTextField extends StatelessWidget {
             error:
                 field.hasError
                     ? Row(
+                      crossAxisAlignment:
+                          CrossAxisAlignment
+                              .start, // optional: aligns icon to top
                       children: [
                         Icon(
                           IconsaxPlusLinear.warning_2,
@@ -59,9 +62,11 @@ class FormTextField extends StatelessWidget {
                           size: 20,
                         ),
                         const SizedBox(width: 10),
-                        Text(
-                          field.errorText!,
-                          style: TextStyle(color: theme.colorScheme.error),
+                        Flexible(
+                          child: Text(
+                            field.errorText!,
+                            style: TextStyle(color: theme.colorScheme.error),
+                          ),
                         ),
                       ],
                     )

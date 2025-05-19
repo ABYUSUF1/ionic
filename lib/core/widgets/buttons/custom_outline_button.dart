@@ -29,7 +29,10 @@ class CustomOutlineButton extends StatelessWidget {
       ),
       label: Text(
         text,
-        style: theme.textTheme.bodyMedium!.copyWith(color: color),
+        style: theme.textTheme.bodyMedium!.copyWith(
+          color: color,
+          fontWeight: FontWeight.w600,
+        ),
       ),
       icon:
           svgIcon == null
