@@ -9,14 +9,12 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: CustomOutlineButton(
-          text: "GO TO Auth",
-          onPressed: () {
-            context.push(AppRouterName.signInRoute);
-          },
-        ),
+    return Center(
+      child: CustomOutlineButton(
+        text: "GO TO Auth",
+        onPressed: () {
+          context.push(AppRouterName.signInRoute);
+        },
       ),
     );
   }

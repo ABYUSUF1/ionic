@@ -5,6 +5,9 @@ class AppRouterName {
   static const String forgetPasswordRoute = '/forget-password';
   static const String emailSentRoute = '/email-sent';
 
-  // Home routes
+  // main routes
   static const String homeRoute = '/home'; // initial route
+  static const String profileRoute = '/profile';
+  static const String cartRoute = '/cart';
+  static const String favoriteRoute = '/favorite';
 }

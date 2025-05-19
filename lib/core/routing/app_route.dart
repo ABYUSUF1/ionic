@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:ionic/core/routing/app_router_name.dart';
 import 'package:ionic/features/auth/presentation/args/email_sent_args.dart';
@@ -5,16 +6,18 @@ import 'package:ionic/features/auth/presentation/views/email_sent_view.dart';
 import 'package:ionic/features/auth/presentation/views/forget_password_view.dart';
 import 'package:ionic/features/auth/presentation/views/sign_in_view.dart';
 import 'package:ionic/features/auth/presentation/views/sign_up_view.dart';
+import 'package:ionic/features/cart/presentation/views/cart_view.dart';
+import 'package:ionic/features/favorite/presentation/views/favorite_view.dart';
 import 'package:ionic/features/home/presentation/views/home_view.dart';
+import 'package:ionic/features/profile/presentation/views/profile_view.dart';
+import 'package:ionic/main_bottom_nav_bar.dart';
+
+final _routeNavigatorKey = GlobalKey<NavigatorState>();
 
 final GoRouter appRouter = GoRouter(
   initialLocation: AppRouterName.homeRoute,
   routes: [
-    GoRoute(
-      path: AppRouterName.homeRoute,
-      builder: (context, state) => const HomeView(),
-    ),
-
+    /// --------------------- Auth ---------------------
     GoRoute(
       path: AppRouterName.signInRoute,
       builder: (context, state) => const SignInView(),
@@ -36,6 +39,48 @@ final GoRouter appRouter = GoRouter(
         final data = state.extra as EmailSentArgs;
         return EmailSentView(emailSentArgs: data);
       },
+    ),
+
+    /// --------------------- Home ---------------------
+    StatefulShellRoute.indexedStack(
+      builder:
+          (context, state, navigationShell) =>
+              MainBottomNavBar(navigationShell: navigationShell),
+
+      branches: [
+        StatefulShellBranch(
+          routes: [
+            GoRoute(
+              path: AppRouterName.homeRoute,
+              builder: (context, state) => const HomeView(),
+            ),
+          ],
+        ),
+        StatefulShellBranch(
+          routes: [
+            GoRoute(
+              path: AppRouterName.cartRoute,
+              builder: (context, state) => const CartView(),
+            ),
+          ],
+        ),
+        StatefulShellBranch(
+          routes: [
+            GoRoute(
+              path: AppRouterName.favoriteRoute,
+              builder: (context, state) => const FavoriteView(),
+            ),
+          ],
+        ),
+        StatefulShellBranch(
+          routes: [
+            GoRoute(
+              path: AppRouterName.profileRoute,
+              builder: (context, state) => const ProfileView(),
+            ),
+          ],
+        ),
+      ],
     ),
   ],
 );
