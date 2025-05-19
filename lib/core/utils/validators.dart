@@ -31,8 +31,8 @@ class Validators {
     if (value == null || value.isEmpty) {
       return 'Password is required';
     }
-    if (value.length < 6) {
-      return 'Password must be at least 6 characters';
+    if (value.length < 8) {
+      return 'Password must be at least 8 characters';
     }
     return null;
   }
@@ -43,6 +43,16 @@ class Validators {
     }
     if (value != password) {
       return 'Passwords do not match';
+    }
+    return null;
+  }
+
+  static String? validatePhone(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Phone number is required';
+    }
+    if (value.length < 10) {
+      return 'Phone number must be at least 10 digits';
     }
     return null;
   }

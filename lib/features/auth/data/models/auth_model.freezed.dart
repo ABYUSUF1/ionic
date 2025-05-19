@@ -25,7 +25,8 @@ mixin _$AuthModel {
   String get firstName => throw _privateConstructorUsedError;
   String get lastName => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
-  String get photoUrl => throw _privateConstructorUsedError;
+  String get phoneNumber => throw _privateConstructorUsedError;
+  String? get photoUrl => throw _privateConstructorUsedError;
   bool get isEmailVerified => throw _privateConstructorUsedError;
 
   /// Serializes this AuthModel to a JSON map.
@@ -48,7 +49,8 @@ abstract class $AuthModelCopyWith<$Res> {
     String firstName,
     String lastName,
     String email,
-    String photoUrl,
+    String phoneNumber,
+    String? photoUrl,
     bool isEmailVerified,
   });
 }
@@ -72,7 +74,8 @@ class _$AuthModelCopyWithImpl<$Res, $Val extends AuthModel>
     Object? firstName = null,
     Object? lastName = null,
     Object? email = null,
-    Object? photoUrl = null,
+    Object? phoneNumber = null,
+    Object? photoUrl = freezed,
     Object? isEmailVerified = null,
   }) {
     return _then(
@@ -97,11 +100,16 @@ class _$AuthModelCopyWithImpl<$Res, $Val extends AuthModel>
                     ? _value.email
                     : email // ignore: cast_nullable_to_non_nullable
                         as String,
+            phoneNumber:
+                null == phoneNumber
+                    ? _value.phoneNumber
+                    : phoneNumber // ignore: cast_nullable_to_non_nullable
+                        as String,
             photoUrl:
-                null == photoUrl
+                freezed == photoUrl
                     ? _value.photoUrl
                     : photoUrl // ignore: cast_nullable_to_non_nullable
-                        as String,
+                        as String?,
             isEmailVerified:
                 null == isEmailVerified
                     ? _value.isEmailVerified
@@ -127,7 +135,8 @@ abstract class _$$AuthModelImplCopyWith<$Res>
     String firstName,
     String lastName,
     String email,
-    String photoUrl,
+    String phoneNumber,
+    String? photoUrl,
     bool isEmailVerified,
   });
 }
@@ -150,7 +159,8 @@ class __$$AuthModelImplCopyWithImpl<$Res>
     Object? firstName = null,
     Object? lastName = null,
     Object? email = null,
-    Object? photoUrl = null,
+    Object? phoneNumber = null,
+    Object? photoUrl = freezed,
     Object? isEmailVerified = null,
   }) {
     return _then(
@@ -175,11 +185,16 @@ class __$$AuthModelImplCopyWithImpl<$Res>
                 ? _value.email
                 : email // ignore: cast_nullable_to_non_nullable
                     as String,
+        phoneNumber:
+            null == phoneNumber
+                ? _value.phoneNumber
+                : phoneNumber // ignore: cast_nullable_to_non_nullable
+                    as String,
         photoUrl:
-            null == photoUrl
+            freezed == photoUrl
                 ? _value.photoUrl
                 : photoUrl // ignore: cast_nullable_to_non_nullable
-                    as String,
+                    as String?,
         isEmailVerified:
             null == isEmailVerified
                 ? _value.isEmailVerified
@@ -198,6 +213,7 @@ class _$AuthModelImpl implements _AuthModel {
     required this.firstName,
     required this.lastName,
     required this.email,
+    required this.phoneNumber,
     required this.photoUrl,
     required this.isEmailVerified,
   });
@@ -214,13 +230,15 @@ class _$AuthModelImpl implements _AuthModel {
   @override
   final String email;
   @override
-  final String photoUrl;
+  final String phoneNumber;
+  @override
+  final String? photoUrl;
   @override
   final bool isEmailVerified;
 
   @override
   String toString() {
-    return 'AuthModel(id: $id, firstName: $firstName, lastName: $lastName, email: $email, photoUrl: $photoUrl, isEmailVerified: $isEmailVerified)';
+    return 'AuthModel(id: $id, firstName: $firstName, lastName: $lastName, email: $email, phoneNumber: $phoneNumber, photoUrl: $photoUrl, isEmailVerified: $isEmailVerified)';
   }
 
   @override
@@ -234,6 +252,8 @@ class _$AuthModelImpl implements _AuthModel {
             (identical(other.lastName, lastName) ||
                 other.lastName == lastName) &&
             (identical(other.email, email) || other.email == email) &&
+            (identical(other.phoneNumber, phoneNumber) ||
+                other.phoneNumber == phoneNumber) &&
             (identical(other.photoUrl, photoUrl) ||
                 other.photoUrl == photoUrl) &&
             (identical(other.isEmailVerified, isEmailVerified) ||
@@ -248,6 +268,7 @@ class _$AuthModelImpl implements _AuthModel {
     firstName,
     lastName,
     email,
+    phoneNumber,
     photoUrl,
     isEmailVerified,
   );
@@ -272,7 +293,8 @@ abstract class _AuthModel implements AuthModel {
     required final String firstName,
     required final String lastName,
     required final String email,
-    required final String photoUrl,
+    required final String phoneNumber,
+    required final String? photoUrl,
     required final bool isEmailVerified,
   }) = _$AuthModelImpl;
 
@@ -288,7 +310,9 @@ abstract class _AuthModel implements AuthModel {
   @override
   String get email;
   @override
-  String get photoUrl;
+  String get phoneNumber;
+  @override
+  String? get photoUrl;
   @override
   bool get isEmailVerified;
 

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:ionic/core/theme/widgets_theme/snackbar_theme.dart';
+import 'package:ionic/core/theme/widgets_theme/text_field_theme.dart';
 
 import 'app_colors.dart';
 import 'app_text_style.dart';
@@ -23,16 +25,7 @@ class AppTheme {
       error: AppColors.lightErrorColor,
     ),
     textTheme: AppTextStyles.appTextTheme(Brightness.light),
-    inputDecorationTheme: const InputDecorationTheme(
-      // Style for text fields
-      border: OutlineInputBorder(
-        borderSide: BorderSide(color: AppColors.lightDividerColor),
-      ),
-      focusedBorder: OutlineInputBorder(
-        borderSide: BorderSide(color: AppColors.primaryColor),
-      ),
-      hintStyle: TextStyle(color: AppColors.lightSoftColor),
-    ),
+    inputDecorationTheme: inputDecorationTheme(false),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
         backgroundColor: AppColors.primaryColor,
@@ -58,6 +51,7 @@ class AppTheme {
       color: AppColors.lightDividerColor,
       thickness: 2,
     ),
+    snackBarTheme: snackBarThemeData,
   );
 
   // Dark Theme
@@ -79,15 +73,8 @@ class AppTheme {
       error: AppColors.darkErrorColor,
     ),
     textTheme: AppTextStyles.appTextTheme(Brightness.dark),
-    inputDecorationTheme: const InputDecorationTheme(
-      border: OutlineInputBorder(
-        borderSide: BorderSide(color: AppColors.darkDividerColor),
-      ),
-      focusedBorder: OutlineInputBorder(
-        borderSide: BorderSide(color: AppColors.primaryColor),
-      ),
-      hintStyle: TextStyle(color: AppColors.darkSoftColor),
-    ),
+    inputDecorationTheme: inputDecorationTheme(true),
+
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
         backgroundColor: AppColors.primaryColor,
@@ -113,5 +100,6 @@ class AppTheme {
       color: AppColors.darkDividerColor,
       thickness: 2,
     ),
+    snackBarTheme: snackBarThemeData,
   );
 }

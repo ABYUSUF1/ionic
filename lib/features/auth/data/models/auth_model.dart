@@ -11,7 +11,8 @@ class AuthModel extends AuthEntity with _$AuthModel {
     required String firstName,
     required String lastName,
     required String email,
-    required String photoUrl,
+    required String phoneNumber,
+    required String? photoUrl,
     required bool isEmailVerified,
   }) = _AuthModel;
 

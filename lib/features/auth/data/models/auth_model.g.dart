@@ -12,7 +12,8 @@ _$AuthModelImpl _$$AuthModelImplFromJson(Map<String, dynamic> json) =>
       firstName: json['firstName'] as String,
       lastName: json['lastName'] as String,
       email: json['email'] as String,
-      photoUrl: json['photoUrl'] as String,
+      phoneNumber: json['phoneNumber'] as String,
+      photoUrl: json['photoUrl'] as String?,
       isEmailVerified: json['isEmailVerified'] as bool,
     );
 
@@ -22,6 +23,7 @@ Map<String, dynamic> _$$AuthModelImplToJson(_$AuthModelImpl instance) =>
       'firstName': instance.firstName,
       'lastName': instance.lastName,
       'email': instance.email,
+      'phoneNumber': instance.phoneNumber,
       'photoUrl': instance.photoUrl,
       'isEmailVerified': instance.isEmailVerified,
     };

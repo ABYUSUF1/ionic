@@ -3,15 +3,17 @@ class AuthEntity {
   final String firstName;
   final String lastName;
   final String email;
-  final String photoUrl;
+  final String phoneNumber;
   final bool isEmailVerified;
+  final String? photoUrl;
 
   AuthEntity({
     required this.id,
     required this.firstName,
     required this.lastName,
     required this.email,
-    required this.photoUrl,
+    required this.phoneNumber,
     required this.isEmailVerified,
+    this.photoUrl,
   });
 }

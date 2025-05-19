@@ -32,11 +32,11 @@ class ForgetPasswordViewBody extends StatelessWidget {
                 ),
                 const SizedBox(height: 50),
 
-                FormTextField(
-                  title: "E-Mail Address",
-                  hintText: "Enter your E-Mail",
-                  prefixIcon: IconsaxPlusLinear.send_1,
-                ),
+                // FormTextField(
+                //   title: "E-Mail Address",
+                //   hintText: "Enter your E-Mail",
+                //   prefixIcon: IconsaxPlusLinear.send_1,
+                // ),
                 const SizedBox(height: 30),
 
                 CustomFilledButton(
