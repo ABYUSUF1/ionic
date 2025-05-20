@@ -1,26 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:ionic/features/profile/presentation/widgets/profile_app_bar.dart';
+import 'package:ionic/features/profile/presentation/widgets/profile_my_preference_box.dart';
+
+import '../widgets/log_out_button.dart';
+import '../widgets/profile_info_and_support_box.dart';
+import '../widgets/profile_settings_box.dart';
 
 class ProfileView extends StatelessWidget {
   const ProfileView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-
     return CustomScrollView(
       physics: const BouncingScrollPhysics(),
       slivers: [
         ProfileAppBar(),
-        const SizedBox(height: 16),
-        SliverToBoxAdapter(child: const SizedBox(height: 16)),
-        SliverToBoxAdapter(
-          child: Container(
-            color: theme.colorScheme.surface,
-            padding: const EdgeInsets.all(16),
-            child: Column(children: const [Text('Profile')]),
-          ),
-        ),
+        ProfileMyPreferenceBox(),
+        ProfileSettingsBox(),
+        ProfileInfoAndSupportBox(),
+        LogOutButton(),
       ],
     );
   }

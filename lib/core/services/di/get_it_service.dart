@@ -8,12 +8,16 @@ import '../../../features/auth/data/repo_imple/auth_repo_impl.dart';
 import '../../../features/auth/domain/repo/auth_repo.dart' show AuthRepo;
 import '../../../features/auth/presentation/manager/email_sent/email_sent_cubit.dart';
 import '../../../features/auth/presentation/manager/sign_up/sign_up_cubit.dart';
+import '../../theme/manager/cubit/theme_cubit.dart';
 import '../auth/firebase_auth_service.dart';
+import '../data_source/local/object_box_service.dart';
 
 final GetIt getIt = GetIt.instance;
 
-void setupGetIt() {
+Future<void> setupGetIt() async {
   // Register Services
+  final objectBoxService = await ObjectBoxService.init();
+  getIt.registerSingleton<ObjectBoxService>(objectBoxService);
   getIt.registerLazySingleton(() => FirebaseAuthService());
   getIt.registerLazySingleton(() => AuthFirestoreService());
 
@@ -29,6 +33,8 @@ void setupGetIt() {
   getIt.registerLazySingleton<AuthRepo>(() => AuthRepoImpl(getIt()));
 
   // Register BLoCs/Cubits
+
+  getIt.registerFactory(() => ThemeCubit(getIt()));
   getIt.registerFactory(() => SignInCubit(getIt()));
   getIt.registerFactory(() => SignUpCubit(getIt()));
   getIt.registerFactory(() => EmailSentCubit(getIt()));

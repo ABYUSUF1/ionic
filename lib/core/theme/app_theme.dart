@@ -52,6 +52,7 @@ class AppTheme {
       thickness: 2,
     ),
     snackBarTheme: snackBarThemeData,
+    listTileTheme: ListTileThemeData(contentPadding: EdgeInsets.zero),
   );
 
   // Dark Theme
@@ -101,5 +102,6 @@ class AppTheme {
       thickness: 2,
     ),
     snackBarTheme: snackBarThemeData,
+    listTileTheme: ListTileThemeData(contentPadding: EdgeInsets.zero),
   );
 }

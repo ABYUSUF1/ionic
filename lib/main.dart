@@ -1,16 +1,24 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ionic/core/routing/app_route.dart';
 import 'package:ionic/core/services/di/get_it_service.dart';
 import 'package:ionic/core/theme/app_theme.dart';
 import 'package:ionic/firebase_options.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
+
+import 'core/services/data_source/local/object_box_service.dart';
+import 'core/theme/manager/cubit/theme_cubit.dart';
 
 Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  // FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+  final widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  setupGetIt();
+  await setupGetIt();
+
+  FlutterNativeSplash.remove();
   runApp(
     DevicePreview(
       builder: (context) {
@@ -25,11 +33,18 @@ class IonicApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      debugShowCheckedModeBanner: false,
-      theme: AppTheme.lightTheme,
-      darkTheme: AppTheme.darkTheme,
-      routerConfig: appRouter,
+    return BlocProvider(
+      create: (context) => ThemeCubit(getIt<ObjectBoxService>()),
+      child: BlocBuilder<ThemeCubit, bool>(
+        builder: (context, isDarkMode) {
+          return MaterialApp.router(
+            debugShowCheckedModeBanner: false,
+            theme: isDarkMode ? AppTheme.darkTheme : AppTheme.lightTheme,
+            themeMode: ThemeMode.system,
+            routerConfig: appRouter,
+          );
+        },
+      ),
     );
   }
 }

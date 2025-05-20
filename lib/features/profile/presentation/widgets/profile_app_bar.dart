@@ -10,6 +10,8 @@ class ProfileAppBar extends StatelessWidget {
       pinned: true,
       floating: false,
       expandedHeight: 250,
+      elevation: 5,
+      shadowColor: Colors.black,
       backgroundColor: theme.colorScheme.surface,
       surfaceTintColor: theme.colorScheme.surface,
       flexibleSpace: LayoutBuilder(

@@ -5,12 +5,14 @@ class CustomOutlineButton extends StatelessWidget {
   final String text;
   final Color? color;
   final String? svgIcon;
+  final IconData? icon;
   final void Function()? onPressed;
 
   const CustomOutlineButton({
     super.key,
     required this.text,
     this.svgIcon,
+    this.icon,
     this.color,
     this.onPressed,
   });
@@ -36,7 +38,9 @@ class CustomOutlineButton extends StatelessWidget {
       ),
       icon:
           svgIcon == null
-              ? null
+              ? icon == null
+                  ? null
+                  : Icon(icon, color: color, size: 24)
               : SvgPicture.asset(svgIcon!, width: 24, height: 24),
     );
   }
