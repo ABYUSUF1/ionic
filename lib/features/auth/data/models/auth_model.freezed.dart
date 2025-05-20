@@ -25,9 +25,11 @@ mixin _$AuthModel {
   String get firstName => throw _privateConstructorUsedError;
   String get lastName => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
-  String get phoneNumber => throw _privateConstructorUsedError;
-  String? get photoUrl => throw _privateConstructorUsedError;
   bool get isEmailVerified => throw _privateConstructorUsedError;
+  String? get phoneNumber => throw _privateConstructorUsedError;
+  String? get photoUrl => throw _privateConstructorUsedError;
+  String? get gender => throw _privateConstructorUsedError;
+  DateTime? get birthDate => throw _privateConstructorUsedError;
 
   /// Serializes this AuthModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -49,9 +51,11 @@ abstract class $AuthModelCopyWith<$Res> {
     String firstName,
     String lastName,
     String email,
-    String phoneNumber,
-    String? photoUrl,
     bool isEmailVerified,
+    String? phoneNumber,
+    String? photoUrl,
+    String? gender,
+    DateTime? birthDate,
   });
 }
 
@@ -74,9 +78,11 @@ class _$AuthModelCopyWithImpl<$Res, $Val extends AuthModel>
     Object? firstName = null,
     Object? lastName = null,
     Object? email = null,
-    Object? phoneNumber = null,
-    Object? photoUrl = freezed,
     Object? isEmailVerified = null,
+    Object? phoneNumber = freezed,
+    Object? photoUrl = freezed,
+    Object? gender = freezed,
+    Object? birthDate = freezed,
   }) {
     return _then(
       _value.copyWith(
@@ -100,21 +106,31 @@ class _$AuthModelCopyWithImpl<$Res, $Val extends AuthModel>
                     ? _value.email
                     : email // ignore: cast_nullable_to_non_nullable
                         as String,
-            phoneNumber:
-                null == phoneNumber
-                    ? _value.phoneNumber
-                    : phoneNumber // ignore: cast_nullable_to_non_nullable
-                        as String,
-            photoUrl:
-                freezed == photoUrl
-                    ? _value.photoUrl
-                    : photoUrl // ignore: cast_nullable_to_non_nullable
-                        as String?,
             isEmailVerified:
                 null == isEmailVerified
                     ? _value.isEmailVerified
                     : isEmailVerified // ignore: cast_nullable_to_non_nullable
                         as bool,
+            phoneNumber:
+                freezed == phoneNumber
+                    ? _value.phoneNumber
+                    : phoneNumber // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            photoUrl:
+                freezed == photoUrl
+                    ? _value.photoUrl
+                    : photoUrl // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            gender:
+                freezed == gender
+                    ? _value.gender
+                    : gender // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            birthDate:
+                freezed == birthDate
+                    ? _value.birthDate
+                    : birthDate // ignore: cast_nullable_to_non_nullable
+                        as DateTime?,
           )
           as $Val,
     );
@@ -135,9 +151,11 @@ abstract class _$$AuthModelImplCopyWith<$Res>
     String firstName,
     String lastName,
     String email,
-    String phoneNumber,
-    String? photoUrl,
     bool isEmailVerified,
+    String? phoneNumber,
+    String? photoUrl,
+    String? gender,
+    DateTime? birthDate,
   });
 }
 
@@ -159,9 +177,11 @@ class __$$AuthModelImplCopyWithImpl<$Res>
     Object? firstName = null,
     Object? lastName = null,
     Object? email = null,
-    Object? phoneNumber = null,
-    Object? photoUrl = freezed,
     Object? isEmailVerified = null,
+    Object? phoneNumber = freezed,
+    Object? photoUrl = freezed,
+    Object? gender = freezed,
+    Object? birthDate = freezed,
   }) {
     return _then(
       _$AuthModelImpl(
@@ -185,21 +205,31 @@ class __$$AuthModelImplCopyWithImpl<$Res>
                 ? _value.email
                 : email // ignore: cast_nullable_to_non_nullable
                     as String,
-        phoneNumber:
-            null == phoneNumber
-                ? _value.phoneNumber
-                : phoneNumber // ignore: cast_nullable_to_non_nullable
-                    as String,
-        photoUrl:
-            freezed == photoUrl
-                ? _value.photoUrl
-                : photoUrl // ignore: cast_nullable_to_non_nullable
-                    as String?,
         isEmailVerified:
             null == isEmailVerified
                 ? _value.isEmailVerified
                 : isEmailVerified // ignore: cast_nullable_to_non_nullable
                     as bool,
+        phoneNumber:
+            freezed == phoneNumber
+                ? _value.phoneNumber
+                : phoneNumber // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        photoUrl:
+            freezed == photoUrl
+                ? _value.photoUrl
+                : photoUrl // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        gender:
+            freezed == gender
+                ? _value.gender
+                : gender // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        birthDate:
+            freezed == birthDate
+                ? _value.birthDate
+                : birthDate // ignore: cast_nullable_to_non_nullable
+                    as DateTime?,
       ),
     );
   }
@@ -213,9 +243,11 @@ class _$AuthModelImpl implements _AuthModel {
     required this.firstName,
     required this.lastName,
     required this.email,
+    required this.isEmailVerified,
     required this.phoneNumber,
     required this.photoUrl,
-    required this.isEmailVerified,
+    required this.gender,
+    required this.birthDate,
   });
 
   factory _$AuthModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -230,15 +262,19 @@ class _$AuthModelImpl implements _AuthModel {
   @override
   final String email;
   @override
-  final String phoneNumber;
+  final bool isEmailVerified;
+  @override
+  final String? phoneNumber;
   @override
   final String? photoUrl;
   @override
-  final bool isEmailVerified;
+  final String? gender;
+  @override
+  final DateTime? birthDate;
 
   @override
   String toString() {
-    return 'AuthModel(id: $id, firstName: $firstName, lastName: $lastName, email: $email, phoneNumber: $phoneNumber, photoUrl: $photoUrl, isEmailVerified: $isEmailVerified)';
+    return 'AuthModel(id: $id, firstName: $firstName, lastName: $lastName, email: $email, isEmailVerified: $isEmailVerified, phoneNumber: $phoneNumber, photoUrl: $photoUrl, gender: $gender, birthDate: $birthDate)';
   }
 
   @override
@@ -252,12 +288,15 @@ class _$AuthModelImpl implements _AuthModel {
             (identical(other.lastName, lastName) ||
                 other.lastName == lastName) &&
             (identical(other.email, email) || other.email == email) &&
+            (identical(other.isEmailVerified, isEmailVerified) ||
+                other.isEmailVerified == isEmailVerified) &&
             (identical(other.phoneNumber, phoneNumber) ||
                 other.phoneNumber == phoneNumber) &&
             (identical(other.photoUrl, photoUrl) ||
                 other.photoUrl == photoUrl) &&
-            (identical(other.isEmailVerified, isEmailVerified) ||
-                other.isEmailVerified == isEmailVerified));
+            (identical(other.gender, gender) || other.gender == gender) &&
+            (identical(other.birthDate, birthDate) ||
+                other.birthDate == birthDate));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -268,9 +307,11 @@ class _$AuthModelImpl implements _AuthModel {
     firstName,
     lastName,
     email,
+    isEmailVerified,
     phoneNumber,
     photoUrl,
-    isEmailVerified,
+    gender,
+    birthDate,
   );
 
   /// Create a copy of AuthModel
@@ -293,9 +334,11 @@ abstract class _AuthModel implements AuthModel {
     required final String firstName,
     required final String lastName,
     required final String email,
-    required final String phoneNumber,
-    required final String? photoUrl,
     required final bool isEmailVerified,
+    required final String? phoneNumber,
+    required final String? photoUrl,
+    required final String? gender,
+    required final DateTime? birthDate,
   }) = _$AuthModelImpl;
 
   factory _AuthModel.fromJson(Map<String, dynamic> json) =
@@ -310,11 +353,15 @@ abstract class _AuthModel implements AuthModel {
   @override
   String get email;
   @override
-  String get phoneNumber;
+  bool get isEmailVerified;
+  @override
+  String? get phoneNumber;
   @override
   String? get photoUrl;
   @override
-  bool get isEmailVerified;
+  String? get gender;
+  @override
+  DateTime? get birthDate;
 
   /// Create a copy of AuthModel
   /// with the given fields replaced by the non-null parameter values.

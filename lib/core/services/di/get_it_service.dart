@@ -1,6 +1,10 @@
 import 'package:get_it/get_it.dart';
+import 'package:ionic/features/auth/presentation/manager/auth/auth_cubit.dart';
 import 'package:ionic/features/auth/presentation/manager/forget_password/forget_password_cubit.dart';
 import 'package:ionic/features/auth/presentation/manager/sign_in/sign_in_cubit.dart';
+import 'package:ionic/features/profile/data/repo_impl/edit_profile_repo_impl.dart';
+import 'package:ionic/features/profile/domain/repo/edit_profile_repo.dart';
+import 'package:ionic/features/profile/presentation/manager/cubit/change_full_name_cubit.dart';
 
 import '../../../features/auth/data/data_source/remote/auth_firestore_service.dart';
 import '../../../features/auth/data/data_source/remote/auth_remote_data_source.dart';
@@ -31,6 +35,9 @@ Future<void> setupGetIt() async {
 
   // Register Repositories
   getIt.registerLazySingleton<AuthRepo>(() => AuthRepoImpl(getIt()));
+  getIt.registerLazySingleton<EditProfileRepo>(
+    () => EditProfileRepoImpl(getIt()),
+  );
 
   // Register BLoCs/Cubits
 
@@ -39,4 +46,6 @@ Future<void> setupGetIt() async {
   getIt.registerFactory(() => SignUpCubit(getIt()));
   getIt.registerFactory(() => EmailSentCubit(getIt()));
   getIt.registerFactory(() => ForgetPasswordCubit(getIt()));
+  getIt.registerFactory(() => AuthCubit(getIt()));
+  getIt.registerFactory(() => ChangeFullNameCubit(getIt()));
 }

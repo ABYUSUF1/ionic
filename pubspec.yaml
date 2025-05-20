@@ -42,7 +42,7 @@ dependencies:
   dartz: ^0.10.1
   iconsax_plus: ^1.0.0
   lottie: ^3.3.1
-
+  cached_network_image: ^3.4.1
 
 
 
@@ -70,6 +70,7 @@ flutter:
     - assets/icons/
     - assets/lotties/
     - assets/illustrations/
+    - assets/logo/
 
 
 
@@ -93,13 +94,13 @@ flutter_assets:
 flutter_native_splash:
   color: "#FFFFFF"
   color_dark: "#171923"
-  image: assets/logo/ionic_logo.png
-  image_dark: assets/logo/ionic_logo.png
+  image: assets/logo/ionic_splash_logo.png
+  image_dark: assets/logo/ionic_splash_logo.png
   android_gravity: center
   ios_content_mode: scaleAspectFit
   ios: true
   android: true
   web: false
   android_12:
-    image: assets/logo/ionic_logo.png
-    image_dark: assets/logo/ionic_logo.png
+    image: assets/logo/ionic_splash_logo.png
+    image_dark: assets/logo/ionic_splash_logo.png

@@ -63,17 +63,6 @@ class SignUpForm extends StatelessWidget {
                 (_) => Validators.validateEmail(cubit.emailController.text),
           ),
           const SizedBox(height: 16),
-          FormTextField(
-            title: "Phone Number",
-            hintText: "Enter your Phone",
-            prefixIcon: IconsaxPlusLinear.call,
-            controller: cubit.phoneNumberController,
-            keyboardType: TextInputType.phone,
-            validator:
-                (_) =>
-                    Validators.validatePhone(cubit.phoneNumberController.text),
-          ),
-          const SizedBox(height: 16),
           PasswordTextField(
             title: "Password",
             hintText: "********",

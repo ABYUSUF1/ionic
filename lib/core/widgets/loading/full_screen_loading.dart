@@ -1,5 +1,6 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:ionic/core/constants/app_assets.dart';
 import 'package:lottie/lottie.dart';
 
@@ -48,7 +49,7 @@ Future<void> showFullScreenLoading(BuildContext context, String message) async {
 }
 
 void closeFullScreenLoading(BuildContext context) {
-  if (Navigator.of(context).canPop()) {
-    Navigator.of(context).pop();
+  if (context.canPop()) {
+    context.pop();
   }
 }

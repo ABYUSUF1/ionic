@@ -95,8 +95,8 @@ class AppAssets {
   static const String illustrationsTrackingIllustrationLight = "assets/illustrations/tracking_illustration_light.svg";
 
   /// Assets for logoIonicLogo
-  /// assets/logo/ionic_logo.svg
-  static const String logoIonicLogo = "assets/logo/ionic_logo.svg";
+  /// assets/logo/ionic_logo.png
+  static const String logoIonicLogo = "assets/logo/ionic_logo.png";
 
   /// Assets for logoIonicSplashLogo
   /// assets/logo/ionic_splash_logo.png

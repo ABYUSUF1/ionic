@@ -14,11 +14,10 @@ final class AppSnackbar {
   }
 
   static void showErrorSnackBar(BuildContext context, String message) {
-    final errorColor = Theme.of(context).colorScheme.error;
     _showCustomSnackBar(
       context: context,
       message: message,
-      color: errorColor,
+      color: Colors.red,
       duration: const Duration(minutes: 1),
     );
   }
@@ -44,8 +43,8 @@ void _showCustomSnackBar({
   final messenger = ScaffoldMessenger.of(context);
 
   final snackBar = SnackBar(
-    content: SnackBarContent(message: message, color: color, icon: icon),
-    backgroundColor: color.withValues(alpha: 0.2),
+    content: SnackBarContent(message: message, color: Colors.white, icon: icon),
+    backgroundColor: color,
     duration: duration,
     behavior: SnackBarBehavior.floating,
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),

@@ -15,9 +15,13 @@ class CustomBackButton extends StatelessWidget {
           onPressed: onPressed ?? () => context.pop(),
           style: IconButton.styleFrom(
             backgroundColor: theme.colorScheme.secondary,
-            minimumSize: const Size(50, 50),
+            minimumSize: const Size(40, 40),
           ),
-          icon: const Icon(Icons.arrow_back),
+          icon: Icon(
+            Icons.arrow_back_ios_new_rounded,
+            color: theme.colorScheme.onSurfaceVariant,
+            size: 20,
+          ),
         )
         : const SizedBox.shrink();
   }

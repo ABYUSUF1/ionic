@@ -4,6 +4,8 @@ import 'package:ionic/core/services/auth/firebase_auth_service.dart';
 import 'package:ionic/features/auth/data/data_source/remote/auth_firestore_service.dart';
 import 'package:ionic/features/auth/data/models/auth_model.dart';
 
+import '../../../domain/entity/auth_entity.dart';
+
 class AuthRemoteDataSource {
   final FirebaseAuthService _firebaseAuthService;
   final AuthFirestoreService _authFirestoreService;
@@ -38,7 +40,6 @@ class AuthRemoteDataSource {
     required String password,
     required String firstName,
     required String lastName,
-    required String phoneNumber,
   }) async {
     try {
       final userCredential = await _firebaseAuthService
@@ -55,9 +56,11 @@ class AuthRemoteDataSource {
           firstName: firstName,
           lastName: lastName,
           email: email,
-          photoUrl: null,
           isEmailVerified: user.emailVerified,
-          phoneNumber: phoneNumber,
+          photoUrl: null,
+          phoneNumber: null,
+          gender: null,
+          birthDate: null,
         );
         await _authFirestoreService.addUser(authModel: authModel);
       } else {
@@ -90,9 +93,12 @@ class AuthRemoteDataSource {
           photoUrl: null,
           isEmailVerified: user.emailVerified,
           phoneNumber: user.phoneNumber ?? '',
+          gender: null,
+          birthDate: null,
         );
         await _authFirestoreService.addUser(authModel: authModel);
       }
+      throw Exception('Failed to sign in with Google: user is null');
     } on FirebaseException catch (e) {
       debugPrint('Error signing in with Google: $e');
       rethrow;
@@ -169,44 +175,57 @@ class AuthRemoteDataSource {
   }
 
   /// Returns the currently logged-in user's basic information from Firebase Auth.
-  AuthModel? get currentUserBasicInfo {
+  ///! Bec there data like gender, birthDate we cant get them from firebase auth
+  ///! we have to get them from firestore!
+  ///! so if anyway we will use firestore, we dont to use currentUser from firebase Auth
+  // AuthModel? get currentUser {
+  //   try {
+  //     final user = _firebaseAuthService.currentUser;
+  //     if (user == null) return null;
+  //     return AuthModel(
+  //       id: user.uid,
+  //       firstName: user.displayName?.split(' ').first ?? '',
+  //       lastName:
+  //           user.displayName?.split(' ').skip(1).join(' ') ??
+  //           '', // Handle cases with single name
+  //       email: user.email ?? '',
+  //       isEmailVerified: user.emailVerified,
+  //       photoUrl: user.photoURL,
+  //       phoneNumber: user.phoneNumber,
+  //       gender: null,
+  //       birthDate: null,
+  //     );
+  //   } catch (e) {
+  //     debugPrint('Error getting current user basic info: $e');
+  //     return null; // Or consider throwing, depending on your error handling
+  //   }
+  // }
+
+  // Fetch user details from Firestore based on their ID
+  Future<AuthModel?> getCurrentUser() async {
     try {
-      final user = _firebaseAuthService.currentUser;
-      if (user == null) return null;
-      return AuthModel(
-        id: user.uid,
-        firstName: user.displayName?.split(' ').first ?? '',
-        lastName:
-            user.displayName?.split(' ').skip(1).join(' ') ??
-            '', // Handle cases with single name
-        email: user.email ?? '',
-        photoUrl: user.photoURL ?? '',
-        isEmailVerified: user.emailVerified,
-        phoneNumber: user.phoneNumber ?? '',
+      return await _authFirestoreService.getUser(
+        userId: _firebaseAuthService.currentUser!.uid,
       );
     } catch (e) {
-      debugPrint('Error getting current user basic info: $e');
+      debugPrint('Error fetching user details: $e');
       return null; // Or consider throwing, depending on your error handling
     }
   }
 
-  /// Fetches the currently logged-in user's full data, including information from Firestore.
-  Future<AuthModel?> fetchCurrentUser() async {
-    final user = _firebaseAuthService.currentUser;
-    if (user == null) return null;
+  /// Update user's full name
+  Future<void> updateFullName(AuthModel authModel) async {
     try {
-      final authModel = await _authFirestoreService.getUser(userId: user.uid);
-      if (authModel == null) return null;
-      return authModel.copyWith(
-        isEmailVerified:
-            user.emailVerified, // Ensure email verification status is up-to-date
-      );
+      Future.wait([
+        _firebaseAuthService.updateDisplayName(authModel.displayName),
+        _authFirestoreService.updateUser(authModel: authModel),
+      ]);
     } on FirebaseException catch (e) {
-      debugPrint('Firebase error fetching user data: $e');
+      debugPrint('Error updating full name: $e');
       rethrow;
     } catch (e) {
-      debugPrint('Error fetching current user data from Firestore: $e');
-      return null;
+      debugPrint('Unexpected error updating full name: $e');
+      rethrow;
     }
   }
 }

@@ -10,7 +10,7 @@ class SnackBarContent extends StatelessWidget {
     super.key,
     required this.message,
     required this.color,
-    this.icon = IconsaxPlusLinear.warning_2,
+    this.icon,
   });
 
   @override
@@ -18,7 +18,7 @@ class SnackBarContent extends StatelessWidget {
     final theme = Theme.of(context);
     return Row(
       children: [
-        Icon(icon, color: color),
+        Icon(icon ?? IconsaxPlusLinear.warning_2, color: Colors.white),
         const SizedBox(width: 12),
         Expanded(
           child: Text(

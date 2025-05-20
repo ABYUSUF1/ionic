@@ -75,4 +75,21 @@ class FirebaseAuthService {
   Future<void> signOut() async {
     Future.wait([firebaseAuth.signOut(), googleSignIn.signOut()]);
   }
+
+  /// Update user's name
+  Future<void> updateDisplayName(String fullName) async {
+    await firebaseAuth.currentUser?.updateDisplayName(fullName);
+  }
+
+  /// Update user's profile url
+  Future<void> updateProfileUrl(String profileUrl) async {
+    await firebaseAuth.currentUser?.updatePhotoURL(profileUrl);
+  }
+
+  /// Update phone number
+  Future<void> updatePhoneNumber(String phoneNumber) async {
+    await firebaseAuth.currentUser?.updatePhoneNumber(
+      PhoneAuthProvider.credential(verificationId: '', smsCode: ''),
+    );
+  }
 }

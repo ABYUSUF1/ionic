@@ -11,9 +11,11 @@ class AuthModel extends AuthEntity with _$AuthModel {
     required String firstName,
     required String lastName,
     required String email,
-    required String phoneNumber,
-    required String? photoUrl,
     required bool isEmailVerified,
+    required String? phoneNumber,
+    required String? photoUrl,
+    required String? gender,
+    required DateTime? birthDate,
   }) = _AuthModel;
 
   factory AuthModel.fromJson(Map<String, dynamic> json) =>

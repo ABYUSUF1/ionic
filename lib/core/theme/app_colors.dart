@@ -13,7 +13,7 @@ abstract final class AppColors {
   static const darkCardBackground = Color(0xff212330);
 
   // On Surface Colors Or BottomSheetBackground, etc.
-  static const lightDialogBackground = Color.fromARGB(255, 241, 246, 252);
+  static const lightDialogBackground = Color.fromARGB(255, 236, 241, 247);
   static const darkDialogBackground = Color(0xff303343);
 
   // Text Colors

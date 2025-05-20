@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:ionic/core/routing/app_router_name.dart';
 import 'package:ionic/features/auth/presentation/args/email_sent_args.dart';
@@ -9,13 +8,15 @@ import 'package:ionic/features/auth/presentation/views/sign_up_view.dart';
 import 'package:ionic/features/cart/presentation/views/cart_view.dart';
 import 'package:ionic/features/favorite/presentation/views/favorite_view.dart';
 import 'package:ionic/features/home/presentation/views/home_view.dart';
+import 'package:ionic/features/profile/presentation/views/change_full_name_view.dart';
+import 'package:ionic/features/profile/presentation/views/change_phone_number.dart';
+import 'package:ionic/features/profile/presentation/views/edit_profile_view.dart';
 import 'package:ionic/features/profile/presentation/views/profile_view.dart';
 import 'package:ionic/main_bottom_nav_bar.dart';
 
-final _routeNavigatorKey = GlobalKey<NavigatorState>();
-
 final GoRouter appRouter = GoRouter(
   initialLocation: AppRouterName.homeRoute,
+  debugLogDiagnostics: true,
   routes: [
     /// --------------------- Auth ---------------------
     GoRoute(
@@ -76,7 +77,27 @@ final GoRouter appRouter = GoRouter(
           routes: [
             GoRoute(
               path: AppRouterName.profileRoute,
+              name: AppRouterName.profileRoute,
               builder: (context, state) => const ProfileView(),
+              routes: [
+                GoRoute(
+                  path: AppRouterName.editProfileRoute,
+                  name: AppRouterName.editProfileRoute,
+                  builder: (context, state) => const EditProfileView(),
+                  routes: [
+                    GoRoute(
+                      path: AppRouterName.changeFullNameRoute,
+                      name: AppRouterName.changeFullNameRoute,
+                      builder: (context, state) => const ChangeFullNameView(),
+                    ),
+                    GoRoute(
+                      path: AppRouterName.changePhoneNumberRoute,
+                      name: AppRouterName.changePhoneNumberRoute,
+                      builder: (context, state) => const ChangePhoneNumber(),
+                    ),
+                  ],
+                ),
+              ],
             ),
           ],
         ),

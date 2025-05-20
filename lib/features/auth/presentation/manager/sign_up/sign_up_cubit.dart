@@ -14,7 +14,6 @@ class SignUpCubit extends Cubit<SignUpState> {
   final TextEditingController firstNameController = TextEditingController();
   final TextEditingController lastNameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
-  final TextEditingController phoneNumberController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController confirmPasswordController =
       TextEditingController();
@@ -30,7 +29,6 @@ class SignUpCubit extends Cubit<SignUpState> {
         password: passwordController.text,
         firstName: firstNameController.text,
         lastName: lastNameController.text,
-        phoneNumber: phoneNumberController.text,
       );
       result.fold((failure) => emit(SignUpState.error(failure.errMessage)), (
         authEntity,
@@ -54,5 +52,15 @@ class SignUpCubit extends Cubit<SignUpState> {
       (failure) => emit(SignUpState.error(failure.errMessage)),
       (_) => emit(SignUpState.success(authEntity)),
     );
+  }
+
+  @override
+  Future<void> close() {
+    emailController.dispose();
+    passwordController.dispose();
+    firstNameController.dispose();
+    lastNameController.dispose();
+    confirmPasswordController.dispose();
+    return super.close();
   }
 }

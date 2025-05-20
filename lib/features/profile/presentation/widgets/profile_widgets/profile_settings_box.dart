@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
-import 'package:ionic/features/profile/presentation/widgets/custom_profile_box.dart';
+import 'package:ionic/features/profile/presentation/widgets/profile_widgets/custom_profile_box.dart';
 
-import '../../../../core/theme/dark_mode_switch_button.dart';
+import '../../../../../core/theme/dark_mode_switch_button.dart';
 import 'custom_profile_list_tile.dart';
 
 class ProfileSettingsBox extends StatelessWidget {

@@ -24,7 +24,7 @@ class AuthRepoImpl implements AuthRepo {
         email: email,
         password: password,
       );
-      final user = await _remoteDataSource.fetchCurrentUser();
+      final user = await _remoteDataSource.getCurrentUser();
       if (user != null) {
         return Right(user);
       } else {
@@ -53,7 +53,6 @@ class AuthRepoImpl implements AuthRepo {
     required String password,
     required String firstName,
     required String lastName,
-    required String phoneNumber,
   }) async {
     try {
       await _remoteDataSource.signUpWithEmailAndPassword(
@@ -61,9 +60,8 @@ class AuthRepoImpl implements AuthRepo {
         password: password,
         firstName: firstName,
         lastName: lastName,
-        phoneNumber: phoneNumber,
       );
-      final user = await _remoteDataSource.fetchCurrentUser();
+      final user = await _remoteDataSource.getCurrentUser();
       if (user != null) {
         return Right(user);
       } else {
@@ -167,28 +165,10 @@ class AuthRepoImpl implements AuthRepo {
   }
 
   @override
-  Future<Either<Failure, AuthEntity?>> getCurrentUser() async {
-    try {
-      final user = await _remoteDataSource.fetchCurrentUser();
-      return Right(user);
-    } on FirebaseAuthException catch (e) {
-      return Left(AuthFailure.fromFirebaseAuthException(e));
-    } on PlatformException catch (e) {
-      return Left(PlatformFailure.fromCode(e));
-    } catch (e) {
-      return const Left(
-        Failure(
-          'An unexpected error occurred while fetching current user. Please try again.',
-        ),
-      );
-    }
-  }
-
-  @override
   Future<Either<Failure, AuthEntity>> signInWithGoogle() async {
     try {
       await _remoteDataSource.signInWithGoogle();
-      final user = await _remoteDataSource.fetchCurrentUser();
+      final user = await _remoteDataSource.getCurrentUser();
       if (user != null) {
         return Right(user);
       } else {
@@ -200,6 +180,22 @@ class AuthRepoImpl implements AuthRepo {
       }
     } on FirebaseAuthException catch (e) {
       return Left(AuthFailure.fromFirebaseAuthException(e));
+    } on PlatformException catch (e) {
+      return Left(PlatformFailure.fromCode(e));
+    } catch (e) {
+      return const Left(
+        Failure(
+          'An unexpected error occurred during sign-in with Google. Please try again.',
+        ),
+      );
+    }
+  }
+
+  @override
+  Future<Either<Failure, AuthEntity?>> getCurrentUser() async {
+    try {
+      final user = await _remoteDataSource.getCurrentUser();
+      return Right(user);
     } on PlatformException catch (e) {
       return Left(PlatformFailure.fromCode(e));
     } catch (e) {
