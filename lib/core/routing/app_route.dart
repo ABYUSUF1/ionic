@@ -8,8 +8,6 @@ import 'package:ionic/features/auth/presentation/views/sign_up_view.dart';
 import 'package:ionic/features/cart/presentation/views/cart_view.dart';
 import 'package:ionic/features/favorite/presentation/views/favorite_view.dart';
 import 'package:ionic/features/home/presentation/views/home_view.dart';
-import 'package:ionic/features/profile/presentation/views/change_full_name_view.dart';
-import 'package:ionic/features/profile/presentation/views/change_phone_number.dart';
 import 'package:ionic/features/profile/presentation/views/edit_profile_view.dart';
 import 'package:ionic/features/profile/presentation/views/profile_view.dart';
 import 'package:ionic/main_bottom_nav_bar.dart';
@@ -84,18 +82,6 @@ final GoRouter appRouter = GoRouter(
                   path: AppRouterName.editProfileRoute,
                   name: AppRouterName.editProfileRoute,
                   builder: (context, state) => const EditProfileView(),
-                  routes: [
-                    GoRoute(
-                      path: AppRouterName.changeFullNameRoute,
-                      name: AppRouterName.changeFullNameRoute,
-                      builder: (context, state) => const ChangeFullNameView(),
-                    ),
-                    GoRoute(
-                      path: AppRouterName.changePhoneNumberRoute,
-                      name: AppRouterName.changePhoneNumberRoute,
-                      builder: (context, state) => const ChangePhoneNumber(),
-                    ),
-                  ],
                 ),
               ],
             ),

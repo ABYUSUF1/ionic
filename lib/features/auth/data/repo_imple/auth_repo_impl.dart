@@ -53,6 +53,7 @@ class AuthRepoImpl implements AuthRepo {
     required String password,
     required String firstName,
     required String lastName,
+    required String phoneNumber,
   }) async {
     try {
       await _remoteDataSource.signUpWithEmailAndPassword(
@@ -60,6 +61,7 @@ class AuthRepoImpl implements AuthRepo {
         password: password,
         firstName: firstName,
         lastName: lastName,
+        phoneNumber: phoneNumber,
       );
       final user = await _remoteDataSource.getCurrentUser();
       if (user != null) {

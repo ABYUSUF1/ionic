@@ -13,6 +13,4 @@ class AppRouterName {
 
   // inside profile routes
   static const String editProfileRoute = 'edit-profile';
-  static const String changeFullNameRoute = 'change-full-name';
-  static const String changePhoneNumberRoute = 'change-phone-number';
 }

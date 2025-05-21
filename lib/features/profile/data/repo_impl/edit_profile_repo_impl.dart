@@ -28,11 +28,11 @@ class EditProfileRepoImpl implements EditProfileRepo {
   }
 
   @override
-  Future<Either<Failure, void>> changeFullName({
+  Future<Either<Failure, void>> updateUser({
     required AuthModel authModel,
   }) async {
     try {
-      await _authRemoteDataSource.updateFullName(authModel);
+      await _authRemoteDataSource.updateUser(authModel: authModel);
       return const Right(null);
     } on FirebaseAuthException catch (e) {
       return Left(AuthFailure.fromFirebaseAuthException(e));

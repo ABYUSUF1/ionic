@@ -4,12 +4,15 @@ import 'package:iconsax_plus/iconsax_plus.dart';
 
 class FormTextField extends StatelessWidget {
   final String title;
-  final TextEditingController controller;
+  final TextEditingController? controller;
   final String? Function(String?)? validator;
   final String? hintText;
   final IconData? prefixIcon;
   final Widget? suffix;
   final TextInputType? keyboardType;
+  final VoidCallback? onTap;
+  final bool? readOnly;
+  final void Function(String)? onChanged;
 
   const FormTextField({
     super.key,
@@ -20,6 +23,9 @@ class FormTextField extends StatelessWidget {
     this.prefixIcon,
     this.keyboardType,
     this.suffix,
+    this.onTap,
+    this.readOnly,
+    this.onChanged,
   });
 
   @override
@@ -31,6 +37,12 @@ class FormTextField extends StatelessWidget {
       builder: (field) {
         return TextField(
           controller: controller,
+          onChanged: (value) {
+            field.didChange(value);
+            onChanged?.call(value);
+          },
+          onTap: onTap,
+          readOnly: readOnly ?? false,
           onTapOutside: (_) => FocusManager.instance.primaryFocus?.unfocus(),
           keyboardType: keyboardType,
           style: theme.textTheme.bodyMedium,

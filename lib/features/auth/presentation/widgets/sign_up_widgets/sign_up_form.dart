@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 import 'package:ionic/core/utils/validators.dart';
@@ -61,6 +62,17 @@ class SignUpForm extends StatelessWidget {
             controller: cubit.emailController,
             validator:
                 (_) => Validators.validateEmail(cubit.emailController.text),
+          ),
+          const SizedBox(height: 16),
+          FormTextField(
+            title: "Phone Number",
+            hintText: "Enter your Phone Number",
+            prefixIcon: IconsaxPlusLinear.call,
+            controller: cubit.phoneNumberController,
+            keyboardType: TextInputType.phone,
+            validator:
+                (_) =>
+                    Validators.validatePhone(cubit.phoneNumberController.text),
           ),
           const SizedBox(height: 16),
           PasswordTextField(

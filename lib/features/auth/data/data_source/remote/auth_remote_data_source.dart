@@ -4,8 +4,6 @@ import 'package:ionic/core/services/auth/firebase_auth_service.dart';
 import 'package:ionic/features/auth/data/data_source/remote/auth_firestore_service.dart';
 import 'package:ionic/features/auth/data/models/auth_model.dart';
 
-import '../../../domain/entity/auth_entity.dart';
-
 class AuthRemoteDataSource {
   final FirebaseAuthService _firebaseAuthService;
   final AuthFirestoreService _authFirestoreService;
@@ -40,6 +38,7 @@ class AuthRemoteDataSource {
     required String password,
     required String firstName,
     required String lastName,
+    required String phoneNumber,
   }) async {
     try {
       final userCredential = await _firebaseAuthService
@@ -58,7 +57,7 @@ class AuthRemoteDataSource {
           email: email,
           isEmailVerified: user.emailVerified,
           photoUrl: null,
-          phoneNumber: null,
+          phoneNumber: phoneNumber,
           gender: null,
           birthDate: null,
         );
@@ -90,15 +89,16 @@ class AuthRemoteDataSource {
           firstName: user.displayName?.split(' ').first ?? '',
           lastName: user.displayName?.split(' ').skip(1).join(' ') ?? '',
           email: user.email!,
-          photoUrl: null,
+          photoUrl: user.photoURL ?? '',
           isEmailVerified: user.emailVerified,
           phoneNumber: user.phoneNumber ?? '',
           gender: null,
           birthDate: null,
         );
         await _authFirestoreService.addUser(authModel: authModel);
+      } else {
+        throw Exception('Failed to sign in with Google: user is null');
       }
-      throw Exception('Failed to sign in with Google: user is null');
     } on FirebaseException catch (e) {
       debugPrint('Error signing in with Google: $e');
       rethrow;
@@ -213,18 +213,14 @@ class AuthRemoteDataSource {
     }
   }
 
-  /// Update user's full name
-  Future<void> updateFullName(AuthModel authModel) async {
+  Future<void> updateUser({required AuthModel authModel}) async {
     try {
-      Future.wait([
-        _firebaseAuthService.updateDisplayName(authModel.displayName),
-        _authFirestoreService.updateUser(authModel: authModel),
-      ]);
+      await _authFirestoreService.updateUser(authModel: authModel);
     } on FirebaseException catch (e) {
-      debugPrint('Error updating full name: $e');
+      debugPrint('Error updating user: $e');
       rethrow;
     } catch (e) {
-      debugPrint('Unexpected error updating full name: $e');
+      debugPrint('Unexpected error updating user: $e');
       rethrow;
     }
   }

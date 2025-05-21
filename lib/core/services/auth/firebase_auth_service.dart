@@ -76,20 +76,23 @@ class FirebaseAuthService {
     Future.wait([firebaseAuth.signOut(), googleSignIn.signOut()]);
   }
 
+  //! We will not depend on firebase auth to update user's profile
+  //! bec we still have many fields that firebase auth does not support
+  //! like gender, birth date, etc..   so we will use firestore.
   /// Update user's name
-  Future<void> updateDisplayName(String fullName) async {
-    await firebaseAuth.currentUser?.updateDisplayName(fullName);
-  }
+  // Future<void> updateDisplayName(String fullName) async {
+  //   await firebaseAuth.currentUser?.updateDisplayName(fullName);
+  // }
 
-  /// Update user's profile url
-  Future<void> updateProfileUrl(String profileUrl) async {
-    await firebaseAuth.currentUser?.updatePhotoURL(profileUrl);
-  }
+  // /// Update user's profile url
+  // Future<void> updateProfileUrl(String profileUrl) async {
+  //   await firebaseAuth.currentUser?.updatePhotoURL(profileUrl);
+  // }
 
-  /// Update phone number
-  Future<void> updatePhoneNumber(String phoneNumber) async {
-    await firebaseAuth.currentUser?.updatePhoneNumber(
-      PhoneAuthProvider.credential(verificationId: '', smsCode: ''),
-    );
-  }
+  // /// Update phone number
+  // Future<void> updatePhoneNumber(String phoneNumber) async {
+  //   await firebaseAuth.currentUser?.updatePhoneNumber(
+  //     PhoneAuthProvider.credential(verificationId: '', smsCode: ''),
+  //   );
+  // }
 }

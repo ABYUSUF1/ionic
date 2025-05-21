@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'change_full_name_cubit.dart';
+part of 'edit_profile_cubit.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -16,26 +16,26 @@ final _privateConstructorUsedError = UnsupportedError(
 );
 
 /// @nodoc
-mixin _$ChangeFullNameState {
+mixin _$EditProfileState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(bool canSubmit) initial,
+    required TResult Function(bool canSubmit, AuthEntity? authEntity) initial,
     required TResult Function() loading,
-    required TResult Function() success,
+    required TResult Function(AuthEntity authEntity) success,
     required TResult Function(String message) error,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(bool canSubmit)? initial,
+    TResult? Function(bool canSubmit, AuthEntity? authEntity)? initial,
     TResult? Function()? loading,
-    TResult? Function()? success,
+    TResult? Function(AuthEntity authEntity)? success,
     TResult? Function(String message)? error,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(bool canSubmit)? initial,
+    TResult Function(bool canSubmit, AuthEntity? authEntity)? initial,
     TResult Function()? loading,
-    TResult Function()? success,
+    TResult Function(AuthEntity authEntity)? success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) => throw _privateConstructorUsedError;
@@ -64,24 +64,24 @@ mixin _$ChangeFullNameState {
 }
 
 /// @nodoc
-abstract class $ChangeFullNameStateCopyWith<$Res> {
-  factory $ChangeFullNameStateCopyWith(
-    ChangeFullNameState value,
-    $Res Function(ChangeFullNameState) then,
-  ) = _$ChangeFullNameStateCopyWithImpl<$Res, ChangeFullNameState>;
+abstract class $EditProfileStateCopyWith<$Res> {
+  factory $EditProfileStateCopyWith(
+    EditProfileState value,
+    $Res Function(EditProfileState) then,
+  ) = _$EditProfileStateCopyWithImpl<$Res, EditProfileState>;
 }
 
 /// @nodoc
-class _$ChangeFullNameStateCopyWithImpl<$Res, $Val extends ChangeFullNameState>
-    implements $ChangeFullNameStateCopyWith<$Res> {
-  _$ChangeFullNameStateCopyWithImpl(this._value, this._then);
+class _$EditProfileStateCopyWithImpl<$Res, $Val extends EditProfileState>
+    implements $EditProfileStateCopyWith<$Res> {
+  _$EditProfileStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of ChangeFullNameState
+  /// Create a copy of EditProfileState
   /// with the given fields replaced by the non-null parameter values.
 }
 
@@ -92,23 +92,23 @@ abstract class _$$InitialImplCopyWith<$Res> {
     $Res Function(_$InitialImpl) then,
   ) = __$$InitialImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({bool canSubmit});
+  $Res call({bool canSubmit, AuthEntity? authEntity});
 }
 
 /// @nodoc
 class __$$InitialImplCopyWithImpl<$Res>
-    extends _$ChangeFullNameStateCopyWithImpl<$Res, _$InitialImpl>
+    extends _$EditProfileStateCopyWithImpl<$Res, _$InitialImpl>
     implements _$$InitialImplCopyWith<$Res> {
   __$$InitialImplCopyWithImpl(
     _$InitialImpl _value,
     $Res Function(_$InitialImpl) _then,
   ) : super(_value, _then);
 
-  /// Create a copy of ChangeFullNameState
+  /// Create a copy of EditProfileState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? canSubmit = null}) {
+  $Res call({Object? canSubmit = null, Object? authEntity = freezed}) {
     return _then(
       _$InitialImpl(
         canSubmit:
@@ -116,6 +116,11 @@ class __$$InitialImplCopyWithImpl<$Res>
                 ? _value.canSubmit
                 : canSubmit // ignore: cast_nullable_to_non_nullable
                     as bool,
+        authEntity:
+            freezed == authEntity
+                ? _value.authEntity
+                : authEntity // ignore: cast_nullable_to_non_nullable
+                    as AuthEntity?,
       ),
     );
   }
@@ -124,15 +129,17 @@ class __$$InitialImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$InitialImpl implements _Initial {
-  const _$InitialImpl({this.canSubmit = false});
+  const _$InitialImpl({this.canSubmit = false, this.authEntity});
 
   @override
   @JsonKey()
   final bool canSubmit;
+  @override
+  final AuthEntity? authEntity;
 
   @override
   String toString() {
-    return 'ChangeFullNameState.initial(canSubmit: $canSubmit)';
+    return 'EditProfileState.initial(canSubmit: $canSubmit, authEntity: $authEntity)';
   }
 
   @override
@@ -141,13 +148,15 @@ class _$InitialImpl implements _Initial {
         (other.runtimeType == runtimeType &&
             other is _$InitialImpl &&
             (identical(other.canSubmit, canSubmit) ||
-                other.canSubmit == canSubmit));
+                other.canSubmit == canSubmit) &&
+            (identical(other.authEntity, authEntity) ||
+                other.authEntity == authEntity));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, canSubmit);
+  int get hashCode => Object.hash(runtimeType, canSubmit, authEntity);
 
-  /// Create a copy of ChangeFullNameState
+  /// Create a copy of EditProfileState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
@@ -158,36 +167,36 @@ class _$InitialImpl implements _Initial {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(bool canSubmit) initial,
+    required TResult Function(bool canSubmit, AuthEntity? authEntity) initial,
     required TResult Function() loading,
-    required TResult Function() success,
+    required TResult Function(AuthEntity authEntity) success,
     required TResult Function(String message) error,
   }) {
-    return initial(canSubmit);
+    return initial(canSubmit, authEntity);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(bool canSubmit)? initial,
+    TResult? Function(bool canSubmit, AuthEntity? authEntity)? initial,
     TResult? Function()? loading,
-    TResult? Function()? success,
+    TResult? Function(AuthEntity authEntity)? success,
     TResult? Function(String message)? error,
   }) {
-    return initial?.call(canSubmit);
+    return initial?.call(canSubmit, authEntity);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(bool canSubmit)? initial,
+    TResult Function(bool canSubmit, AuthEntity? authEntity)? initial,
     TResult Function()? loading,
-    TResult Function()? success,
+    TResult Function(AuthEntity authEntity)? success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
     if (initial != null) {
-      return initial(canSubmit);
+      return initial(canSubmit, authEntity);
     }
     return orElse();
   }
@@ -230,12 +239,14 @@ class _$InitialImpl implements _Initial {
   }
 }
 
-abstract class _Initial implements ChangeFullNameState {
-  const factory _Initial({final bool canSubmit}) = _$InitialImpl;
+abstract class _Initial implements EditProfileState {
+  const factory _Initial({final bool canSubmit, final AuthEntity? authEntity}) =
+      _$InitialImpl;
 
   bool get canSubmit;
+  AuthEntity? get authEntity;
 
-  /// Create a copy of ChangeFullNameState
+  /// Create a copy of EditProfileState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$InitialImplCopyWith<_$InitialImpl> get copyWith =>
@@ -252,14 +263,14 @@ abstract class _$$LoadingImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$LoadingImplCopyWithImpl<$Res>
-    extends _$ChangeFullNameStateCopyWithImpl<$Res, _$LoadingImpl>
+    extends _$EditProfileStateCopyWithImpl<$Res, _$LoadingImpl>
     implements _$$LoadingImplCopyWith<$Res> {
   __$$LoadingImplCopyWithImpl(
     _$LoadingImpl _value,
     $Res Function(_$LoadingImpl) _then,
   ) : super(_value, _then);
 
-  /// Create a copy of ChangeFullNameState
+  /// Create a copy of EditProfileState
   /// with the given fields replaced by the non-null parameter values.
 }
 
@@ -270,7 +281,7 @@ class _$LoadingImpl implements _Loading {
 
   @override
   String toString() {
-    return 'ChangeFullNameState.loading()';
+    return 'EditProfileState.loading()';
   }
 
   @override
@@ -285,9 +296,9 @@ class _$LoadingImpl implements _Loading {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(bool canSubmit) initial,
+    required TResult Function(bool canSubmit, AuthEntity? authEntity) initial,
     required TResult Function() loading,
-    required TResult Function() success,
+    required TResult Function(AuthEntity authEntity) success,
     required TResult Function(String message) error,
   }) {
     return loading();
@@ -296,9 +307,9 @@ class _$LoadingImpl implements _Loading {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(bool canSubmit)? initial,
+    TResult? Function(bool canSubmit, AuthEntity? authEntity)? initial,
     TResult? Function()? loading,
-    TResult? Function()? success,
+    TResult? Function(AuthEntity authEntity)? success,
     TResult? Function(String message)? error,
   }) {
     return loading?.call();
@@ -307,9 +318,9 @@ class _$LoadingImpl implements _Loading {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(bool canSubmit)? initial,
+    TResult Function(bool canSubmit, AuthEntity? authEntity)? initial,
     TResult Function()? loading,
-    TResult Function()? success,
+    TResult Function(AuthEntity authEntity)? success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -357,7 +368,7 @@ class _$LoadingImpl implements _Loading {
   }
 }
 
-abstract class _Loading implements ChangeFullNameState {
+abstract class _Loading implements EditProfileState {
   const factory _Loading() = _$LoadingImpl;
 }
 
@@ -367,73 +378,101 @@ abstract class _$$SuccessImplCopyWith<$Res> {
     _$SuccessImpl value,
     $Res Function(_$SuccessImpl) then,
   ) = __$$SuccessImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({AuthEntity authEntity});
 }
 
 /// @nodoc
 class __$$SuccessImplCopyWithImpl<$Res>
-    extends _$ChangeFullNameStateCopyWithImpl<$Res, _$SuccessImpl>
+    extends _$EditProfileStateCopyWithImpl<$Res, _$SuccessImpl>
     implements _$$SuccessImplCopyWith<$Res> {
   __$$SuccessImplCopyWithImpl(
     _$SuccessImpl _value,
     $Res Function(_$SuccessImpl) _then,
   ) : super(_value, _then);
 
-  /// Create a copy of ChangeFullNameState
+  /// Create a copy of EditProfileState
   /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({Object? authEntity = null}) {
+    return _then(
+      _$SuccessImpl(
+        null == authEntity
+            ? _value.authEntity
+            : authEntity // ignore: cast_nullable_to_non_nullable
+                as AuthEntity,
+      ),
+    );
+  }
 }
 
 /// @nodoc
 
 class _$SuccessImpl implements _Success {
-  const _$SuccessImpl();
+  const _$SuccessImpl(this.authEntity);
+
+  @override
+  final AuthEntity authEntity;
 
   @override
   String toString() {
-    return 'ChangeFullNameState.success()';
+    return 'EditProfileState.success(authEntity: $authEntity)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$SuccessImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$SuccessImpl &&
+            (identical(other.authEntity, authEntity) ||
+                other.authEntity == authEntity));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, authEntity);
+
+  /// Create a copy of EditProfileState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
+      __$$SuccessImplCopyWithImpl<_$SuccessImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(bool canSubmit) initial,
+    required TResult Function(bool canSubmit, AuthEntity? authEntity) initial,
     required TResult Function() loading,
-    required TResult Function() success,
+    required TResult Function(AuthEntity authEntity) success,
     required TResult Function(String message) error,
   }) {
-    return success();
+    return success(authEntity);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(bool canSubmit)? initial,
+    TResult? Function(bool canSubmit, AuthEntity? authEntity)? initial,
     TResult? Function()? loading,
-    TResult? Function()? success,
+    TResult? Function(AuthEntity authEntity)? success,
     TResult? Function(String message)? error,
   }) {
-    return success?.call();
+    return success?.call(authEntity);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(bool canSubmit)? initial,
+    TResult Function(bool canSubmit, AuthEntity? authEntity)? initial,
     TResult Function()? loading,
-    TResult Function()? success,
+    TResult Function(AuthEntity authEntity)? success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success();
+      return success(authEntity);
     }
     return orElse();
   }
@@ -476,8 +515,16 @@ class _$SuccessImpl implements _Success {
   }
 }
 
-abstract class _Success implements ChangeFullNameState {
-  const factory _Success() = _$SuccessImpl;
+abstract class _Success implements EditProfileState {
+  const factory _Success(final AuthEntity authEntity) = _$SuccessImpl;
+
+  AuthEntity get authEntity;
+
+  /// Create a copy of EditProfileState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -492,14 +539,14 @@ abstract class _$$ErrorImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$ErrorImplCopyWithImpl<$Res>
-    extends _$ChangeFullNameStateCopyWithImpl<$Res, _$ErrorImpl>
+    extends _$EditProfileStateCopyWithImpl<$Res, _$ErrorImpl>
     implements _$$ErrorImplCopyWith<$Res> {
   __$$ErrorImplCopyWithImpl(
     _$ErrorImpl _value,
     $Res Function(_$ErrorImpl) _then,
   ) : super(_value, _then);
 
-  /// Create a copy of ChangeFullNameState
+  /// Create a copy of EditProfileState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -525,7 +572,7 @@ class _$ErrorImpl implements _Error {
 
   @override
   String toString() {
-    return 'ChangeFullNameState.error(message: $message)';
+    return 'EditProfileState.error(message: $message)';
   }
 
   @override
@@ -539,7 +586,7 @@ class _$ErrorImpl implements _Error {
   @override
   int get hashCode => Object.hash(runtimeType, message);
 
-  /// Create a copy of ChangeFullNameState
+  /// Create a copy of EditProfileState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
@@ -550,9 +597,9 @@ class _$ErrorImpl implements _Error {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(bool canSubmit) initial,
+    required TResult Function(bool canSubmit, AuthEntity? authEntity) initial,
     required TResult Function() loading,
-    required TResult Function() success,
+    required TResult Function(AuthEntity authEntity) success,
     required TResult Function(String message) error,
   }) {
     return error(message);
@@ -561,9 +608,9 @@ class _$ErrorImpl implements _Error {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(bool canSubmit)? initial,
+    TResult? Function(bool canSubmit, AuthEntity? authEntity)? initial,
     TResult? Function()? loading,
-    TResult? Function()? success,
+    TResult? Function(AuthEntity authEntity)? success,
     TResult? Function(String message)? error,
   }) {
     return error?.call(message);
@@ -572,9 +619,9 @@ class _$ErrorImpl implements _Error {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(bool canSubmit)? initial,
+    TResult Function(bool canSubmit, AuthEntity? authEntity)? initial,
     TResult Function()? loading,
-    TResult Function()? success,
+    TResult Function(AuthEntity authEntity)? success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -622,12 +669,12 @@ class _$ErrorImpl implements _Error {
   }
 }
 
-abstract class _Error implements ChangeFullNameState {
+abstract class _Error implements EditProfileState {
   const factory _Error(final String message) = _$ErrorImpl;
 
   String get message;
 
-  /// Create a copy of ChangeFullNameState
+  /// Create a copy of EditProfileState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ErrorImplCopyWith<_$ErrorImpl> get copyWith =>

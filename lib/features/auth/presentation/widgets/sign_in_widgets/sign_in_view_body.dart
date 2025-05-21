@@ -5,6 +5,7 @@ import 'package:ionic/core/routing/app_router_name.dart';
 import 'package:ionic/core/widgets/loading/full_screen_loading.dart';
 import 'package:ionic/core/widgets/snackbar/app_snackbar.dart';
 import 'package:ionic/features/auth/presentation/args/email_sent_args.dart';
+import 'package:ionic/features/auth/presentation/manager/auth/auth_cubit.dart';
 import 'package:ionic/features/auth/presentation/manager/sign_in/sign_in_cubit.dart';
 import 'package:ionic/features/auth/presentation/widgets/sign_in_widgets/sign_in_form.dart';
 
@@ -16,9 +17,17 @@ class SignInViewBody extends StatelessWidget {
     return BlocListener<SignInCubit, SignInState>(
       listener: (context, state) {
         state.whenOrNull(
-          success: (_) {
+          success: (authEntity) {
             closeFullScreenLoading(context);
-            context.pushReplacement(AppRouterName.homeRoute);
+
+            // Maybe we come from another screen profile, checkout, ....
+            // so we back to it again not from begin (home)
+            if (context.canPop()) {
+              context.read<AuthCubit>().updateUserData(authEntity);
+              context.pop();
+            } else {
+              context.push(AppRouterName.homeRoute);
+            }
           },
           error: (message) {
             closeFullScreenLoading(context);

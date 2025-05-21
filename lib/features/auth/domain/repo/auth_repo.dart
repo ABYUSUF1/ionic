@@ -14,6 +14,7 @@ abstract class AuthRepo {
     required String password,
     required String firstName,
     required String lastName,
+    required String phoneNumber,
   });
 
   Future<Either<Failure, void>> signOut();

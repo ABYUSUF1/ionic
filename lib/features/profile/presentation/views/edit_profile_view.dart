@@ -1,57 +1,50 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:ionic/features/auth/domain/entity/auth_entity.dart';
+import 'package:ionic/core/services/di/get_it_service.dart';
+import 'package:ionic/core/widgets/custom_scaffold.dart';
 import 'package:ionic/features/auth/presentation/manager/auth/auth_cubit.dart';
-import 'package:ionic/features/profile/presentation/widgets/edit_profile_widgets/edit_profile_general_info_box.dart';
-import 'package:ionic/features/profile/presentation/widgets/edit_profile_widgets/edit_profile_image.dart';
+import 'package:ionic/features/profile/presentation/manager/cubit/edit_profile_cubit.dart';
 
-import '../../../../core/widgets/buttons/custom_back_button.dart';
-import '../widgets/edit_profile_widgets/delete_account_button.dart';
-import '../widgets/edit_profile_widgets/edit_profile_additional_info_box.dart';
+import '../../../../core/widgets/loading/full_screen_loading.dart';
+import '../../../../core/widgets/snackbar/app_snackbar.dart';
+import '../widgets/edit_profile_widgets/edit_profile_save_button.dart';
+import '../widgets/edit_profile_widgets/edit_profile_view_body.dart';
 
 class EditProfileView extends StatelessWidget {
   const EditProfileView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        title: Row(
-          children: [
-            const CustomBackButton(),
-            const SizedBox(width: 16),
-            Text("Edit Profile", style: theme.textTheme.headlineMedium),
-          ],
-        ),
-      ),
-
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(16),
-          child: BlocBuilder<AuthCubit, AuthState>(
-            builder: (context, state) {
-              final authEntity = context.read<AuthCubit>().cachedAuthEntity!;
-              return Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  EditProfileImage(photoUrl: authEntity.photoUrl),
-                  SizedBox(height: 30),
-                  EditProfileGeneralInfoBox(
-                    fullName: authEntity.displayName,
-                    email: authEntity.formattedEmail,
-                    phoneNumber: authEntity.phoneNumber,
-                  ),
-                  SizedBox(height: 30),
-                  EditProfileAdditionalInfoBox(),
-                  SizedBox(height: 30),
-                  DeleteAccountButton(),
-                ],
+    return BlocProvider(
+      create:
+          (context) =>
+              EditProfileCubit(getIt())
+                ..init(context.read<AuthCubit>().cachedAuthEntity!),
+      child: BlocConsumer<EditProfileCubit, EditProfileState>(
+        listener: (context, state) {
+          state.whenOrNull(
+            loading: () => showFullScreenLoading(context, "Save Changes..."),
+            error: (message) {
+              closeFullScreenLoading(context);
+              AppSnackbar.showErrorSnackBar(context, message);
+            },
+            success: (authEntity) {
+              context.read<AuthCubit>().updateUserData(authEntity);
+              closeFullScreenLoading(context);
+              AppSnackbar.showSuccessSnackBar(
+                context,
+                "Profile Updated Successfully.",
               );
             },
-          ),
-        ),
+          );
+        },
+        builder: (context, state) {
+          return CustomScaffold(
+            body: EditProfileViewBody(),
+            title: "Edit Profile",
+            bottomSheet: EditProfileSaveButton(),
+          );
+        },
       ),
     );
   }
