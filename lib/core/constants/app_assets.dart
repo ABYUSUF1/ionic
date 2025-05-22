@@ -78,6 +78,18 @@ class AppAssets {
   /// assets/illustrations/notification_illustration_light.svg
   static const String illustrationsNotificationIllustrationLight = "assets/illustrations/notification_illustration_light.svg";
 
+  /// Assets for illustrationsOnboardingIllustration1
+  /// assets/illustrations/onboarding_illustration_1.png
+  static const String illustrationsOnboardingIllustration1 = "assets/illustrations/onboarding_illustration_1.png";
+
+  /// Assets for illustrationsOnboardingIllustration2
+  /// assets/illustrations/onboarding_illustration_2.png
+  static const String illustrationsOnboardingIllustration2 = "assets/illustrations/onboarding_illustration_2.png";
+
+  /// Assets for illustrationsOnboardingIllustration3
+  /// assets/illustrations/onboarding_illustration_3.png
+  static const String illustrationsOnboardingIllustration3 = "assets/illustrations/onboarding_illustration_3.png";
+
   /// Assets for illustrationsSendingIllustrationDark
   /// assets/illustrations/sending_illustration_dark.svg
   static const String illustrationsSendingIllustrationDark = "assets/illustrations/sending_illustration_dark.svg";

@@ -1,4 +1,7 @@
 class AppRouterName {
+  // onboarding routes
+  static const String onboardingRoute = '/onboarding';
+
   // Auth routes
   static const String signInRoute = '/sign-in';
   static const String signUpRoute = '/sign-up';

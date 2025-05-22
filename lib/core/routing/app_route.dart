@@ -12,10 +12,18 @@ import 'package:ionic/features/profile/presentation/views/edit_profile_view.dart
 import 'package:ionic/features/profile/presentation/views/profile_view.dart';
 import 'package:ionic/main_bottom_nav_bar.dart';
 
+import '../../features/onboarding/presentation/views/onboarding_view.dart';
+
 final GoRouter appRouter = GoRouter(
-  initialLocation: AppRouterName.homeRoute,
+  initialLocation: AppRouterName.onboardingRoute,
   debugLogDiagnostics: true,
   routes: [
+    // --------------------- Onboarding ---------------------
+    GoRoute(
+      path: AppRouterName.onboardingRoute,
+      builder: (context, state) => const OnboardingView(),
+    ),
+
     /// --------------------- Auth ---------------------
     GoRoute(
       path: AppRouterName.signInRoute,
