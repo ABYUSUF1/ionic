@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -7,6 +8,7 @@ import 'package:ionic/core/widgets/loading/normal_loading.dart';
 import 'package:ionic/core/widgets/snackbar/app_snackbar.dart';
 import 'package:ionic/features/auth/presentation/args/email_sent_args.dart';
 import 'package:ionic/features/auth/presentation/manager/forget_password/forget_password_cubit.dart';
+import 'package:ionic/generated/locale_keys.g.dart';
 
 import '../../../../../core/routing/app_router_name.dart';
 import '../../../../../core/widgets/buttons/custom_filled_button.dart';
@@ -31,7 +33,7 @@ class ForgetPasswordForm extends StatelessWidget {
           success: () {
             AppSnackbar.showSuccessSnackBar(
               context,
-              'Password Reset Email Sent',
+              LocaleKeys.auth_send_password_reset_link.tr(),
             );
 
             context.push(
@@ -50,10 +52,13 @@ class ForgetPasswordForm extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const SizedBox(height: 20),
-            Text("Forget Password?", style: theme.textTheme.headlineLarge),
+            Text(
+              LocaleKeys.auth_forgot_password.tr(),
+              style: theme.textTheme.headlineLarge,
+            ),
             const SizedBox(height: 5),
             Text(
-              "No worries! Enter your email address below and we will send you a code to reset password.",
+              LocaleKeys.auth_forget_password_desc.tr(),
               style: theme.textTheme.bodyMedium!.copyWith(
                 color: theme.colorScheme.onSurfaceVariant,
               ),
@@ -62,8 +67,10 @@ class ForgetPasswordForm extends StatelessWidget {
 
             FormTextField(
               controller: emailController,
-              title: "E-Mail Address",
-              hintText: "Enter your E-Mail",
+              title: LocaleKeys.auth_email.tr(),
+              hintText: LocaleKeys.common_enter_your.tr(
+                args: [LocaleKeys.auth_email.tr()],
+              ),
               prefixIcon: IconsaxPlusLinear.send_1,
               validator: (_) => Validators.validateEmail(emailController.text),
             ),
@@ -75,7 +82,7 @@ class ForgetPasswordForm extends StatelessWidget {
                   loading: () => Center(child: NormalLoading()),
                   orElse:
                       () => CustomFilledButton(
-                        text: "Send",
+                        text: LocaleKeys.common_send.tr(),
                         onPressed: () async {
                           await context
                               .read<ForgetPasswordCubit>()

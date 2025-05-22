@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -8,6 +9,7 @@ import 'package:ionic/features/auth/presentation/args/email_sent_args.dart';
 import 'package:ionic/features/auth/presentation/manager/auth/auth_cubit.dart';
 import 'package:ionic/features/auth/presentation/manager/sign_in/sign_in_cubit.dart';
 import 'package:ionic/features/auth/presentation/widgets/sign_in_widgets/sign_in_form.dart';
+import 'package:ionic/generated/locale_keys.g.dart';
 
 class SignInViewBody extends StatelessWidget {
   const SignInViewBody({super.key});
@@ -37,7 +39,7 @@ class SignInViewBody extends StatelessWidget {
             closeFullScreenLoading(context);
             AppSnackbar.showSuccessSnackBar(
               context,
-              "We sent you an email to verify your account.",
+              LocaleKeys.auth_we_sent_you_an_email_to_verify_your_account.tr(),
             );
             context.push(
               AppRouterName.emailSentRoute,
@@ -47,7 +49,11 @@ class SignInViewBody extends StatelessWidget {
               ),
             );
           },
-          loading: () => showFullScreenLoading(context, "Signing In..."),
+          loading:
+              () => showFullScreenLoading(
+                context,
+                LocaleKeys.auth_signing_in.tr(),
+              ),
         );
       },
       child: SingleChildScrollView(

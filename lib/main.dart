@@ -1,4 +1,5 @@
 import 'package:device_preview/device_preview.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -17,15 +18,20 @@ Future<void> main() async {
   final widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
 
+  await EasyLocalization.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await setupGetIt();
 
   FlutterNativeSplash.remove();
   runApp(
-    DevicePreview(
-      builder: (context) {
-        return IonicApp();
-      },
+    EasyLocalization(
+      supportedLocales: const [Locale('en'), Locale('ar')],
+      path: 'assets/translation',
+      child: DevicePreview(
+        builder: (context) {
+          return IonicApp();
+        },
+      ),
     ),
   );
 }
@@ -46,7 +52,11 @@ class IonicApp extends StatelessWidget {
         builder: (context, isDarkMode) {
           return MaterialApp.router(
             debugShowCheckedModeBanner: false,
-            theme: isDarkMode ? AppTheme.darkTheme : AppTheme.lightTheme,
+
+            localizationsDelegates: context.localizationDelegates,
+            supportedLocales: context.supportedLocales,
+            locale: context.locale,
+            theme: AppTheme.lightTheme,
             themeMode: ThemeMode.system,
             routerConfig: appRouter,
           );

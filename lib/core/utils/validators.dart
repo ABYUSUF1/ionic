@@ -1,70 +1,72 @@
+import 'package:easy_localization/easy_localization.dart';
+import 'package:ionic/generated/locale_keys.g.dart';
+
 class Validators {
   static String? validateEmpty(String? value) {
     if (value == null || value.isEmpty) {
-      return 'Field is required';
+      return LocaleKeys.validators_required.tr();
     }
     return null;
   }
 
   static String? validateName(String? value) {
     if (value == null || value.isEmpty) {
-      return 'Name is required';
+      return LocaleKeys.validators_name_required.tr();
     }
     if (value.length < 3) {
-      return 'Name must be at least 3 characters';
+      return LocaleKeys.validators_name_short.tr();
     }
     return null;
   }
 
   static String? validateEmail(String? value) {
     if (value == null || value.isEmpty) {
-      return 'Email is required';
+      return LocaleKeys.validators_email_required.tr();
     }
     const emailRegex = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$';
     if (!RegExp(emailRegex).hasMatch(value)) {
-      return 'Enter a valid email address';
+      return LocaleKeys.validators_email_invalid.tr();
     }
     return null;
   }
 
   static String? validatePassword(String? value) {
     if (value == null || value.isEmpty) {
-      return 'Password is required';
+      return LocaleKeys.validators_password_required.tr();
     }
     if (value.length < 8) {
-      return 'Password must be at least 8 characters';
+      return LocaleKeys.validators_password_short.tr();
     }
     return null;
   }
 
   static String? validateConfirmPassword(String? value, String? password) {
     if (value == null || value.isEmpty) {
-      return 'Confirm Password is required';
+      return LocaleKeys.validators_confirm_password_required.tr();
     }
     if (value != password) {
-      return 'Passwords do not match';
+      return LocaleKeys.validators_passwords_mismatch.tr();
     }
     return null;
   }
 
   static String? validatePhone(String? value) {
     if (value == null || value.isEmpty) {
-      return 'Phone number is required';
+      return LocaleKeys.validators_phone_required.tr();
     }
     if (value.length < 10) {
-      return 'Phone number must be at least 10 digits';
+      return LocaleKeys.validators_phone_short.tr();
     }
     return null;
   }
 
-  // URL Validation Function
   static String? validateUrl(String? value) {
     if (value == null || value.isEmpty) return null; // Allow empty field
     final Uri? uri = Uri.tryParse(value);
     if (uri == null ||
         !uri.hasScheme ||
         !(uri.scheme == 'http' || uri.scheme == 'https')) {
-      return 'Enter a valid URL (http or https)';
+      return LocaleKeys.validators_url_invalid.tr();
     }
     return null;
   }
@@ -74,7 +76,7 @@ class Validators {
     const pattern = r'^(https?\:\/\/)?(www\.youtube\.com|youtu\.be)\/.+$';
     final regex = RegExp(pattern);
     if (!regex.hasMatch(value)) {
-      return 'Enter a valid YouTube link';
+      return LocaleKeys.validators_youtube_invalid.tr();
     }
     return null;
   }

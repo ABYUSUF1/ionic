@@ -1,0 +1,71 @@
+// DO NOT EDIT. This is code generated via package:easy_localization/generate.dart
+
+// ignore_for_file: constant_identifier_names
+
+abstract class  LocaleKeys {
+  static const common_next = 'common_next';
+  static const common_skip = 'common_skip';
+  static const common_save = 'common_save';
+  static const common_delete = 'common_delete';
+  static const common_send = 'common_send';
+  static const common_cancel = 'common_cancel';
+  static const common_resend = 'common_resend';
+  static const common_enter_your = 'common_enter_your';
+  static const common_and = 'common_and';
+  static const common_or = 'common_or';
+  static const common_sending = 'common_sending';
+  static const validators_required = 'validators_required';
+  static const validators_name_required = 'validators_name_required';
+  static const validators_name_short = 'validators_name_short';
+  static const validators_email_required = 'validators_email_required';
+  static const validators_email_invalid = 'validators_email_invalid';
+  static const validators_password_required = 'validators_password_required';
+  static const validators_password_short = 'validators_password_short';
+  static const validators_confirm_password_required = 'validators_confirm_password_required';
+  static const validators_passwords_mismatch = 'validators_passwords_mismatch';
+  static const validators_phone_required = 'validators_phone_required';
+  static const validators_phone_short = 'validators_phone_short';
+  static const validators_url_invalid = 'validators_url_invalid';
+  static const validators_youtube_invalid = 'validators_youtube_invalid';
+  static const onboarding_title1 = 'onboarding_title1';
+  static const onboarding_desc1 = 'onboarding_desc1';
+  static const onboarding_title2 = 'onboarding_title2';
+  static const onboarding_desc2 = 'onboarding_desc2';
+  static const onboarding_title3 = 'onboarding_title3';
+  static const onboarding_desc3 = 'onboarding_desc3';
+  static const auth_sign_in = 'auth_sign_in';
+  static const auth_sign_out = 'auth_sign_out';
+  static const auth_sign_up = 'auth_sign_up';
+  static const auth_email = 'auth_email';
+  static const auth_password = 'auth_password';
+  static const auth_confirm_password = 'auth_confirm_password';
+  static const auth_first_name = 'auth_first_name';
+  static const auth_last_name = 'auth_last_name';
+  static const auth_phone = 'auth_phone';
+  static const auth_continue_with_google = 'auth_continue_with_google';
+  static const auth_already_have_an_account = 'auth_already_have_an_account';
+  static const auth_dont_have_an_account = 'auth_dont_have_an_account';
+  static const auth_forgot_password = 'auth_forgot_password';
+  static const auth_create_an_account = 'auth_create_an_account';
+  static const auth_as_guest = 'auth_as_guest';
+  static const auth_or_sign_in_with = 'auth_or_sign_in_with';
+  static const auth_send_password_reset_link = 'auth_send_password_reset_link';
+  static const auth_we_sent_you_an_email_to_verify_your_account = 'auth_we_sent_you_an_email_to_verify_your_account';
+  static const auth_we_sent_you_an_email_to_reset_your_password = 'auth_we_sent_you_an_email_to_reset_your_password';
+  static const auth_signing_in = 'auth_signing_in';
+  static const auth_signing_out = 'auth_signing_out';
+  static const auth_creating_account = 'auth_creating_account';
+  static const auth_create_account = 'auth_create_account';
+  static const auth_by_continuing_you_agree_to_our = 'auth_by_continuing_you_agree_to_our';
+  static const auth_terms_of_service = 'auth_terms_of_service';
+  static const auth_privacy_policy = 'auth_privacy_policy';
+  static const auth_forget_password_desc = 'auth_forget_password_desc';
+  static const auth_password_reset = 'auth_password_reset';
+  static const auth_verify_email_address = 'auth_verify_email_address';
+  static const auth_we_have_sent_a_link_to = 'auth_we_have_sent_a_link_to';
+  static const auth_please_check_your_email_for_the_link = 'auth_please_check_your_email_for_the_link';
+  static const auth_back_to_login = 'auth_back_to_login';
+  static const auth_you_can_resend_after = 'auth_you_can_resend_after';
+  static const auth_didnt_receive_the_email = 'auth_didnt_receive_the_email';
+
+}

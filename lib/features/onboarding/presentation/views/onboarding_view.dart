@@ -1,13 +1,16 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:ionic/core/constants/app_assets.dart';
 import 'package:ionic/core/widgets/buttons/custom_filled_button.dart';
 import 'package:ionic/core/widgets/buttons/custom_underline_button.dart';
+import 'package:ionic/generated/locale_keys.g.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../../../../core/routing/app_router_name.dart';
 import '../../../../core/theme/app_colors.dart';
+import '../../../../core/widgets/language_widgets/language_switcher.dart';
 
 class OnboardingView extends StatefulWidget {
   const OnboardingView({super.key});
@@ -22,18 +25,18 @@ class _OnboardingViewState extends State<OnboardingView> {
   final List<Map<String, String>> onboardingData = [
     {
       "image": AppAssets.illustrationsOnboardingIllustration1,
-      "title": "Welcome to Ionic",
-      "desc": "Your shopping cart's about to get a whole lot happier!",
+      "title": LocaleKeys.onboarding_title1,
+      "desc": LocaleKeys.onboarding_desc1,
     },
     {
       "image": AppAssets.illustrationsOnboardingIllustration2,
-      "title": "Easy Payments",
-      "desc": "Use multiple payment options with secure checkout.",
+      "title": LocaleKeys.onboarding_title2,
+      "desc": LocaleKeys.onboarding_desc2,
     },
     {
       "image": AppAssets.illustrationsOnboardingIllustration3,
-      "title": "Fast Delivery",
-      "desc": "Your orders arrive quickly and safely.",
+      "title": LocaleKeys.onboarding_title3,
+      "desc": LocaleKeys.onboarding_desc3,
     },
   ];
 
@@ -42,13 +45,15 @@ class _OnboardingViewState extends State<OnboardingView> {
     final theme = Theme.of(context);
     final size = MediaQuery.sizeOf(context);
     return Scaffold(
+      backgroundColor: theme.colorScheme.surface,
       appBar: AppBar(
+        title: LanguageSwitcher(),
         actions: [
           CustomUnderlineButton(
             onPressed: () {
               context.pushReplacement(AppRouterName.signInRoute);
             },
-            text: "Skip",
+            text: LocaleKeys.common_skip.tr(),
             textStyle: theme.textTheme.bodyLarge!.copyWith(
               color: AppColors.primaryColor,
             ),
@@ -67,6 +72,7 @@ class _OnboardingViewState extends State<OnboardingView> {
                   flex: 2,
                   child: PageView.builder(
                     controller: _controller,
+                    itemCount: onboardingData.length,
                     itemBuilder: (context, index) {
                       return Column(
                         children: [
@@ -80,11 +86,11 @@ class _OnboardingViewState extends State<OnboardingView> {
                             ),
                           ),
                           Text(
-                            onboardingData[index]["title"]!,
+                            onboardingData[index]["title"]!.tr(),
                             style: theme.textTheme.headlineLarge!,
                           ),
                           Text(
-                            onboardingData[index]["desc"]!,
+                            onboardingData[index]["desc"]!.tr(),
                             textAlign: TextAlign.center,
                             style: theme.textTheme.bodyLarge!.copyWith(
                               color: theme.colorScheme.onSurfaceVariant,
@@ -112,7 +118,7 @@ class _OnboardingViewState extends State<OnboardingView> {
                       ),
                       const SizedBox(height: 24),
                       CustomFilledButton(
-                        text: "Next",
+                        text: LocaleKeys.common_next.tr(),
                         onPressed: () {
                           if (_controller.page == 2) {
                             context.pushReplacement(AppRouterName.signInRoute);

@@ -1,7 +1,9 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ionic/core/widgets/buttons/custom_filled_button.dart';
+import 'package:ionic/generated/locale_keys.g.dart';
 
 import '../../../../../core/constants/app_assets.dart';
 import '../../../../../core/theme/app_colors.dart';
@@ -37,7 +39,9 @@ class EmailSentViewBody extends StatelessWidget {
                   height: 250,
                 ),
                 Text(
-                  isPasswordReset ? "Password Reset" : "Verify E-Mail Address",
+                  isPasswordReset
+                      ? LocaleKeys.auth_password_reset.tr()
+                      : LocaleKeys.auth_verify_email_address.tr(),
                   style: theme.textTheme.headlineMedium,
                 ),
                 const SizedBox(height: 5),
@@ -48,18 +52,23 @@ class EmailSentViewBody extends StatelessWidget {
                   ),
                   TextSpan(
                     children: [
-                      TextSpan(text: "We have sent a link to "),
+                      TextSpan(
+                        text: "${LocaleKeys.auth_we_have_sent_a_link_to.tr()} ",
+                      ),
                       TextSpan(
                         text: email,
                         style: TextStyle(color: AppColors.primaryColor),
                       ),
-                      TextSpan(text: "\nPlease check your email for the link."),
+                      TextSpan(
+                        text:
+                            "\n${LocaleKeys.auth_please_check_your_email_for_the_link.tr()}",
+                      ),
                     ],
                   ),
                 ),
                 const SizedBox(height: 25),
                 CustomFilledButton(
-                  text: "Back to Login",
+                  text: LocaleKeys.auth_back_to_login.tr(),
                   onPressed: () {
                     context.read<EmailSentCubit>().handleEmailVerificationPop(
                       context,

@@ -1,9 +1,11 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 import 'package:ionic/features/auth/presentation/widgets/sign_in_widgets/dont_have_account_button.dart';
 import 'package:ionic/features/auth/presentation/widgets/sign_in_widgets/guest_button.dart';
+import 'package:ionic/generated/locale_keys.g.dart';
 
 import '../../../../../core/constants/app_assets.dart';
 import '../../../../../core/routing/app_router_name.dart';
@@ -29,11 +31,14 @@ class SignInForm extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text("Sign in", style: theme.textTheme.headlineLarge!),
+          Text(
+            LocaleKeys.auth_sign_in.tr(),
+            style: theme.textTheme.headlineLarge!,
+          ),
           const SizedBox(height: 50),
 
           CustomFilledButton(
-            text: "Continue with Google",
+            text: LocaleKeys.auth_continue_with_google.tr(),
             buttonColor: theme.colorScheme.secondary,
             textStyle: theme.textTheme.bodyMedium!.copyWith(
               color: theme.colorScheme.onSurface,
@@ -46,15 +51,20 @@ class SignInForm extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Flexible(child: Divider(indent: 60, endIndent: 10)),
-              Text("or Sign in with", style: theme.textTheme.bodySmall),
+              Text(
+                LocaleKeys.auth_or_sign_in_with.tr(),
+                style: theme.textTheme.bodySmall,
+              ),
               Flexible(child: Divider(indent: 10, endIndent: 60)),
             ],
           ),
           const SizedBox(height: 30),
           FormTextField(
             controller: cubit.emailController,
-            title: "E-Mail Address",
-            hintText: "Enter your E-Mail",
+            title: LocaleKeys.auth_email.tr(),
+            hintText: LocaleKeys.common_enter_your.tr(
+              args: [LocaleKeys.auth_email.tr()],
+            ),
             prefixIcon: IconsaxPlusLinear.send_1,
             validator:
                 (_) =>
@@ -63,7 +73,7 @@ class SignInForm extends StatelessWidget {
           const SizedBox(height: 16),
           PasswordTextField(
             controller: cubit.passwordController,
-            title: "Password",
+            title: LocaleKeys.auth_password.tr(),
             hintText: "********",
             prefixIcon: IconsaxPlusLinear.key,
             validator:
@@ -75,7 +85,7 @@ class SignInForm extends StatelessWidget {
           Align(
             alignment: AlignmentDirectional.centerEnd,
             child: CustomUnderlineButton(
-              text: "Forget Password?",
+              text: LocaleKeys.auth_forgot_password.tr(),
               textStyle: theme.textTheme.bodySmall!.copyWith(
                 color: AppColors.primaryColor,
               ),
@@ -92,7 +102,7 @@ class SignInForm extends StatelessWidget {
               Expanded(
                 flex: 4,
                 child: CustomFilledButton(
-                  text: "Sign in",
+                  text: LocaleKeys.auth_sign_in.tr(),
                   onPressed: () async {
                     await cubit.signInWithEmailAndPassword();
                   },

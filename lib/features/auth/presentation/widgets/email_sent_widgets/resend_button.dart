@@ -1,6 +1,8 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ionic/core/widgets/buttons/custom_outline_button.dart';
+import 'package:ionic/generated/locale_keys.g.dart';
 
 import '../../../../../core/theme/app_colors.dart';
 import '../../../../../core/widgets/snackbar/app_snackbar.dart';
@@ -51,16 +53,16 @@ class ResendButton extends StatelessWidget {
 
         final String buttonText =
             isCooldown
-                ? 'You can resend after ${secondsRemaining}s'
+                ? '${LocaleKeys.auth_you_can_resend_after} ${secondsRemaining}s'
                 : isLoading
-                ? 'Sending...'
-                : 'Resend';
+                ? LocaleKeys.common_sending.tr()
+                : LocaleKeys.common_resend.tr();
 
         return Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              "Didn't receive the email?",
+              LocaleKeys.auth_didnt_receive_the_email.tr(),
               style: theme.textTheme.bodyMedium?.copyWith(
                 color: theme.colorScheme.onSurfaceVariant,
               ),

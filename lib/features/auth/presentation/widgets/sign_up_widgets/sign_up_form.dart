@@ -1,5 +1,5 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 import 'package:ionic/core/utils/validators.dart';
@@ -7,6 +7,7 @@ import '../../../../../core/theme/app_colors.dart';
 import '../../../../../core/widgets/buttons/custom_filled_button.dart';
 import '../../../../../core/widgets/text_field/form_text_field.dart';
 import '../../../../../core/widgets/text_field/password_text_field.dart';
+import '../../../../../generated/locale_keys.g.dart';
 import '../../manager/sign_up/sign_up_cubit.dart';
 
 class SignUpForm extends StatelessWidget {
@@ -21,15 +22,20 @@ class SignUpForm extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text("Sign up", style: theme.textTheme.headlineLarge!),
+          Text(
+            LocaleKeys.auth_sign_up.tr(),
+            style: theme.textTheme.headlineLarge!,
+          ),
           const SizedBox(height: 50),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Expanded(
                 child: FormTextField(
-                  title: "First Name",
-                  hintText: "First Name",
+                  title: LocaleKeys.auth_first_name.tr(),
+                  hintText: LocaleKeys.common_enter_your.tr(
+                    args: [LocaleKeys.auth_first_name.tr()],
+                  ),
                   prefixIcon: IconsaxPlusLinear.profile,
                   controller: cubit.firstNameController,
                   validator:
@@ -41,8 +47,10 @@ class SignUpForm extends StatelessWidget {
               const SizedBox(width: 16),
               Expanded(
                 child: FormTextField(
-                  title: "Last Name",
-                  hintText: "Last Name",
+                  title: LocaleKeys.auth_last_name.tr(),
+                  hintText: LocaleKeys.common_enter_your.tr(
+                    args: [LocaleKeys.auth_last_name.tr()],
+                  ),
                   prefixIcon: IconsaxPlusLinear.profile,
                   controller: cubit.lastNameController,
                   validator:
@@ -53,11 +61,12 @@ class SignUpForm extends StatelessWidget {
               ),
             ],
           ),
-
           const SizedBox(height: 16),
           FormTextField(
-            title: "E-Mail Address",
-            hintText: "Enter your E-Mail",
+            title: LocaleKeys.auth_email.tr(),
+            hintText: LocaleKeys.common_enter_your.tr(
+              args: [LocaleKeys.auth_email.tr()],
+            ),
             prefixIcon: IconsaxPlusLinear.send_1,
             controller: cubit.emailController,
             validator:
@@ -65,8 +74,10 @@ class SignUpForm extends StatelessWidget {
           ),
           const SizedBox(height: 16),
           FormTextField(
-            title: "Phone Number",
-            hintText: "Enter your Phone Number",
+            title: LocaleKeys.auth_phone.tr(),
+            hintText: LocaleKeys.common_enter_your.tr(
+              args: [LocaleKeys.auth_phone.tr()],
+            ),
             prefixIcon: IconsaxPlusLinear.call,
             controller: cubit.phoneNumberController,
             keyboardType: TextInputType.phone,
@@ -76,8 +87,10 @@ class SignUpForm extends StatelessWidget {
           ),
           const SizedBox(height: 16),
           PasswordTextField(
-            title: "Password",
-            hintText: "********",
+            title: LocaleKeys.auth_password.tr(),
+            hintText: LocaleKeys.common_enter_your.tr(
+              args: [LocaleKeys.auth_password.tr()],
+            ),
             prefixIcon: IconsaxPlusLinear.key,
             controller: cubit.passwordController,
             validator:
@@ -85,10 +98,11 @@ class SignUpForm extends StatelessWidget {
                     Validators.validatePassword(cubit.passwordController.text),
           ),
           const SizedBox(height: 16),
-
           PasswordTextField(
-            title: "Confirm Password",
-            hintText: "********",
+            title: LocaleKeys.auth_confirm_password.tr(),
+            hintText: LocaleKeys.common_enter_your.tr(
+              args: [LocaleKeys.auth_confirm_password.tr()],
+            ),
             prefixIcon: IconsaxPlusLinear.key,
             controller: cubit.confirmPasswordController,
             validator:
@@ -98,7 +112,7 @@ class SignUpForm extends StatelessWidget {
           ),
           const SizedBox(height: 50),
           CustomFilledButton(
-            text: "Create Account",
+            text: LocaleKeys.auth_create_account.tr(),
             onPressed: () async {
               await cubit.signUpWithEmailAndPassword();
             },
@@ -107,23 +121,22 @@ class SignUpForm extends StatelessWidget {
           Text.rich(
             textAlign: TextAlign.center,
             TextSpan(
-              text: "By continuing, you agree to our ",
+              text: "${LocaleKeys.auth_by_continuing_you_agree_to_our.tr()} ",
               style: theme.textTheme.bodyMedium!.copyWith(
                 color: theme.colorScheme.onSurfaceVariant,
               ),
-
               children: [
                 TextSpan(
-                  text: "Terms of service",
+                  text: LocaleKeys.auth_terms_of_service.tr(),
                   style: theme.textTheme.bodyMedium!.copyWith(
                     color: AppColors.primaryColor,
                     decoration: TextDecoration.underline,
                     decorationColor: AppColors.primaryColor,
                   ),
                 ),
-                TextSpan(text: " and "),
+                TextSpan(text: " ${LocaleKeys.common_and.tr()} "),
                 TextSpan(
-                  text: "Privacy Policy",
+                  text: LocaleKeys.auth_privacy_policy.tr(),
                   style: theme.textTheme.bodyMedium!.copyWith(
                     color: AppColors.primaryColor,
                     decoration: TextDecoration.underline,

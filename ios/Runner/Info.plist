@@ -8,6 +8,13 @@
 		<key>NSPhotoLibraryUsageDescription</key>
 		<string>Need photo library access to select photos</string>
 
+		<!-- Easy Localization -->
+		<key>CFBundleLocalizations</key>
+		<array>
+		<string>en</string>
+		<string>ar</string>
+		</array>
+
 		<key>CFBundleDevelopmentRegion</key>
 		<string>$(DEVELOPMENT_LANGUAGE)</string>
 		<key>CFBundleDisplayName</key>
