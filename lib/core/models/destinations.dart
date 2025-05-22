@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 
+/// for bottom navigation
 class Destinations {
   final String label;
   final IconData icon;

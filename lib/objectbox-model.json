@@ -4,26 +4,36 @@
   "_note3": "If you have VCS merge conflicts, you must resolve them according to ObjectBox docs.",
   "entities": [
     {
-      "id": "1:1228906279899593568",
-      "lastPropertyId": "2:5844570402658066769",
-      "name": "ThemeModel",
+      "id": "1:3607200877144655389",
+      "lastPropertyId": "4:400166141050460618",
+      "name": "AppSettings",
       "properties": [
         {
-          "id": "1:4586471002359113189",
+          "id": "1:2235000903107620588",
           "name": "id",
           "type": 6,
           "flags": 1
         },
         {
-          "id": "2:5844570402658066769",
-          "name": "isDark",
+          "id": "2:3020273363963970824",
+          "name": "isDarkMode",
+          "type": 1
+        },
+        {
+          "id": "3:7531402249801101902",
+          "name": "isFirstTime",
+          "type": 1
+        },
+        {
+          "id": "4:400166141050460618",
+          "name": "isEnableNotification",
           "type": 1
         }
       ],
       "relations": []
     }
   ],
-  "lastEntityId": "1:1228906279899593568",
+  "lastEntityId": "1:3607200877144655389",
   "lastIndexId": "0:0",
   "lastRelationId": "0:0",
   "lastSequenceId": "0:0",

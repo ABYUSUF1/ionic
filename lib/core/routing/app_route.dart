@@ -13,9 +13,15 @@ import 'package:ionic/features/profile/presentation/views/profile_view.dart';
 import 'package:ionic/main_bottom_nav_bar.dart';
 
 import '../../features/onboarding/presentation/views/onboarding_view.dart';
+import '../services/data_source/local/local_app_settings_service.dart';
+import '../services/di/get_it_service.dart';
 
 final GoRouter appRouter = GoRouter(
-  initialLocation: AppRouterName.onboardingRoute,
+  initialLocation:
+      getIt<LocalAppSettingsService>().settings.isFirstTime
+          ? AppRouterName.onboardingRoute
+          : AppRouterName.homeRoute,
+
   debugLogDiagnostics: true,
   routes: [
     // --------------------- Onboarding ---------------------

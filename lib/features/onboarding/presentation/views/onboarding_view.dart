@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:ionic/core/constants/app_assets.dart';
+import 'package:ionic/core/services/data_source/local/local_app_settings_service.dart';
+import 'package:ionic/core/services/di/get_it_service.dart';
 import 'package:ionic/core/widgets/buttons/custom_filled_button.dart';
 import 'package:ionic/core/widgets/buttons/custom_underline_button.dart';
 import 'package:ionic/generated/locale_keys.g.dart';
@@ -51,6 +53,7 @@ class _OnboardingViewState extends State<OnboardingView> {
         actions: [
           CustomUnderlineButton(
             onPressed: () {
+              getIt<LocalAppSettingsService>().updateIsFirstTime(false);
               context.pushReplacement(AppRouterName.signInRoute);
             },
             text: LocaleKeys.common_skip.tr(),
@@ -121,6 +124,9 @@ class _OnboardingViewState extends State<OnboardingView> {
                         text: LocaleKeys.common_next.tr(),
                         onPressed: () {
                           if (_controller.page == 2) {
+                            getIt<LocalAppSettingsService>().updateIsFirstTime(
+                              false,
+                            );
                             context.pushReplacement(AppRouterName.signInRoute);
                           } else {
                             _controller.nextPage(

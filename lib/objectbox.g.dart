@@ -14,26 +14,38 @@ import 'package:objectbox/internal.dart'
 import 'package:objectbox/objectbox.dart' as obx;
 import 'package:objectbox_flutter_libs/objectbox_flutter_libs.dart';
 
-import 'core/theme/model/theme_model.dart';
+import 'core/models/app_settings.dart';
 
 export 'package:objectbox/objectbox.dart'; // so that callers only have to import this file
 
 final _entities = <obx_int.ModelEntity>[
   obx_int.ModelEntity(
-    id: const obx_int.IdUid(1, 1228906279899593568),
-    name: 'ThemeModel',
-    lastPropertyId: const obx_int.IdUid(2, 5844570402658066769),
+    id: const obx_int.IdUid(1, 3607200877144655389),
+    name: 'AppSettings',
+    lastPropertyId: const obx_int.IdUid(4, 400166141050460618),
     flags: 0,
     properties: <obx_int.ModelProperty>[
       obx_int.ModelProperty(
-        id: const obx_int.IdUid(1, 4586471002359113189),
+        id: const obx_int.IdUid(1, 2235000903107620588),
         name: 'id',
         type: 6,
         flags: 1,
       ),
       obx_int.ModelProperty(
-        id: const obx_int.IdUid(2, 5844570402658066769),
-        name: 'isDark',
+        id: const obx_int.IdUid(2, 3020273363963970824),
+        name: 'isDarkMode',
+        type: 1,
+        flags: 0,
+      ),
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(3, 7531402249801101902),
+        name: 'isFirstTime',
+        type: 1,
+        flags: 0,
+      ),
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(4, 400166141050460618),
+        name: 'isEnableNotification',
         type: 1,
         flags: 0,
       ),
@@ -81,7 +93,7 @@ Future<obx.Store> openStore({
 obx_int.ModelDefinition getObjectBoxModel() {
   final model = obx_int.ModelInfo(
     entities: _entities,
-    lastEntityId: const obx_int.IdUid(1, 1228906279899593568),
+    lastEntityId: const obx_int.IdUid(1, 3607200877144655389),
     lastIndexId: const obx_int.IdUid(0, 0),
     lastRelationId: const obx_int.IdUid(0, 0),
     lastSequenceId: const obx_int.IdUid(0, 0),
@@ -95,18 +107,20 @@ obx_int.ModelDefinition getObjectBoxModel() {
   );
 
   final bindings = <Type, obx_int.EntityDefinition>{
-    ThemeModel: obx_int.EntityDefinition<ThemeModel>(
+    AppSettings: obx_int.EntityDefinition<AppSettings>(
       model: _entities[0],
-      toOneRelations: (ThemeModel object) => [],
-      toManyRelations: (ThemeModel object) => {},
-      getId: (ThemeModel object) => object.id,
-      setId: (ThemeModel object, int id) {
+      toOneRelations: (AppSettings object) => [],
+      toManyRelations: (AppSettings object) => {},
+      getId: (AppSettings object) => object.id,
+      setId: (AppSettings object, int id) {
         object.id = id;
       },
-      objectToFB: (ThemeModel object, fb.Builder fbb) {
-        fbb.startTable(3);
+      objectToFB: (AppSettings object, fb.Builder fbb) {
+        fbb.startTable(5);
         fbb.addInt64(0, object.id);
-        fbb.addBool(1, object.isDark);
+        fbb.addBool(1, object.isDarkMode);
+        fbb.addBool(2, object.isFirstTime);
+        fbb.addBool(3, object.isEnableNotification);
         fbb.finish(fbb.endTable());
         return object.id;
       },
@@ -119,13 +133,30 @@ obx_int.ModelDefinition getObjectBoxModel() {
           4,
           0,
         );
-        final isDarkParam = const fb.BoolReader().vTableGet(
+        final isDarkModeParam = const fb.BoolReader().vTableGet(
           buffer,
           rootOffset,
           6,
           false,
         );
-        final object = ThemeModel(id: idParam, isDark: isDarkParam);
+        final isFirstTimeParam = const fb.BoolReader().vTableGet(
+          buffer,
+          rootOffset,
+          8,
+          false,
+        );
+        final isEnableNotificationParam = const fb.BoolReader().vTableGet(
+          buffer,
+          rootOffset,
+          10,
+          false,
+        );
+        final object = AppSettings(
+          id: idParam,
+          isDarkMode: isDarkModeParam,
+          isFirstTime: isFirstTimeParam,
+          isEnableNotification: isEnableNotificationParam,
+        );
 
         return object;
       },
@@ -135,15 +166,25 @@ obx_int.ModelDefinition getObjectBoxModel() {
   return obx_int.ModelDefinition(model, bindings);
 }
 
-/// [ThemeModel] entity fields to define ObjectBox queries.
-class ThemeModel_ {
-  /// See [ThemeModel.id].
-  static final id = obx.QueryIntegerProperty<ThemeModel>(
+/// [AppSettings] entity fields to define ObjectBox queries.
+class AppSettings_ {
+  /// See [AppSettings.id].
+  static final id = obx.QueryIntegerProperty<AppSettings>(
     _entities[0].properties[0],
   );
 
-  /// See [ThemeModel.isDark].
-  static final isDark = obx.QueryBooleanProperty<ThemeModel>(
+  /// See [AppSettings.isDarkMode].
+  static final isDarkMode = obx.QueryBooleanProperty<AppSettings>(
     _entities[0].properties[1],
+  );
+
+  /// See [AppSettings.isFirstTime].
+  static final isFirstTime = obx.QueryBooleanProperty<AppSettings>(
+    _entities[0].properties[2],
+  );
+
+  /// See [AppSettings.isEnableNotification].
+  static final isEnableNotification = obx.QueryBooleanProperty<AppSettings>(
+    _entities[0].properties[3],
   );
 }

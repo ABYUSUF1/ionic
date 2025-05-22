@@ -16,6 +16,7 @@ import '../../../features/auth/presentation/manager/sign_up/sign_up_cubit.dart';
 import '../../../features/profile/presentation/manager/cubit/edit_profile_cubit.dart';
 import '../../theme/manager/cubit/theme_cubit.dart';
 import '../auth/firebase_auth_service.dart';
+import '../data_source/local/local_app_settings_service.dart';
 import '../data_source/local/object_box_service.dart';
 
 final GetIt getIt = GetIt.instance;
@@ -24,6 +25,7 @@ Future<void> setupGetIt() async {
   // Register Services
   final objectBoxService = await ObjectBoxService.init();
   getIt.registerSingleton<ObjectBoxService>(objectBoxService);
+  getIt.registerSingleton(LocalAppSettingsService(objectBoxService));
   getIt.registerLazySingleton(() => FirebaseAuthService());
   getIt.registerLazySingleton(() => AuthFirestoreService());
   getIt.registerLazySingleton(() => ImagePickerService());

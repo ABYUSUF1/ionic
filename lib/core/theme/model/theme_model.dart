@@ -1,10 +1,10 @@
-import 'package:objectbox/objectbox.dart';
+// import 'package:objectbox/objectbox.dart';
 
-@Entity()
-class ThemeModel {
-  int id;
+// @Entity()
+// class ThemeModel {
+//   int id;
 
-  bool isDark;
+//   bool isDark;
 
-  ThemeModel({this.id = 0, required this.isDark});
-}
+//   ThemeModel({this.id = 0, required this.isDark});
+// }

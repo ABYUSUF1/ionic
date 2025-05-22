@@ -4,6 +4,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ionic/core/routing/app_route.dart';
+import 'package:ionic/core/routing/app_router_name.dart';
+import 'package:ionic/core/services/data_source/local/local_app_settings_service.dart';
 import 'package:ionic/core/services/di/get_it_service.dart';
 import 'package:ionic/core/theme/app_theme.dart';
 import 'package:ionic/features/auth/presentation/manager/auth/auth_cubit.dart';
@@ -22,7 +24,10 @@ Future<void> main() async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await setupGetIt();
 
-  FlutterNativeSplash.remove();
+  widgetsBinding.addPostFrameCallback((timeStamp) {
+    FlutterNativeSplash.remove();
+  });
+
   runApp(
     EasyLocalization(
       supportedLocales: const [Locale('en'), Locale('ar')],
@@ -44,7 +49,7 @@ class IonicApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => ThemeCubit(getIt<ObjectBoxService>()),
+          create: (context) => ThemeCubit(getIt<LocalAppSettingsService>()),
         ),
         BlocProvider(create: (context) => AuthCubit(getIt<AuthRepo>())),
       ],
@@ -56,7 +61,7 @@ class IonicApp extends StatelessWidget {
             localizationsDelegates: context.localizationDelegates,
             supportedLocales: context.supportedLocales,
             locale: context.locale,
-            theme: AppTheme.lightTheme,
+            theme: isDarkMode ? AppTheme.darkTheme : AppTheme.lightTheme,
             themeMode: ThemeMode.system,
             routerConfig: appRouter,
           );
