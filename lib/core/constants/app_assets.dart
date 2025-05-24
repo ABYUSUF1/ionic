@@ -110,6 +110,14 @@ class AppAssets {
   /// assets/logo/ionic_logo.png
   static const String logoIonicLogo = "assets/logo/ionic_logo.png";
 
+  /// Assets for logoIonicLogoAr
+  /// assets/logo/ionic_logo_ar.png
+  static const String logoIonicLogoAr = "assets/logo/ionic_logo_ar.png";
+
+  /// Assets for logoIonicLogoIcon
+  /// assets/logo/ionic_logo_icon.png
+  static const String logoIonicLogoIcon = "assets/logo/ionic_logo_icon.png";
+
   /// Assets for logoIonicSplashLogo
   /// assets/logo/ionic_splash_logo.png
   static const String logoIonicSplashLogo = "assets/logo/ionic_splash_logo.png";
@@ -149,5 +157,13 @@ class AppAssets {
   /// Assets for lottiesWifiDisconnectedAnimation
   /// assets/lotties/wifi_disconnected_animation.json
   static const String lottiesWifiDisconnectedAnimation = "assets/lotties/wifi_disconnected_animation.json";
+
+  /// Assets for translationAr
+  /// assets/translation/ar.json
+  static const String translationAr = "assets/translation/ar.json";
+
+  /// Assets for translationEn
+  /// assets/translation/en.json
+  static const String translationEn = "assets/translation/en.json";
 }
 

@@ -14,6 +14,7 @@ abstract class  LocaleKeys {
   static const common_and = 'common_and';
   static const common_or = 'common_or';
   static const common_sending = 'common_sending';
+  static const save_changes = 'save_changes';
   static const validators_required = 'validators_required';
   static const validators_name_required = 'validators_name_required';
   static const validators_name_short = 'validators_name_short';
@@ -67,5 +68,29 @@ abstract class  LocaleKeys {
   static const auth_back_to_login = 'auth_back_to_login';
   static const auth_you_can_resend_after = 'auth_you_can_resend_after';
   static const auth_didnt_receive_the_email = 'auth_didnt_receive_the_email';
+  static const bottom_navigation_home = 'bottom_navigation_home';
+  static const bottom_navigation_categories = 'bottom_navigation_categories';
+  static const bottom_navigation_cart = 'bottom_navigation_cart';
+  static const bottom_navigation_profile = 'bottom_navigation_profile';
+  static const profile_my_preference = 'profile_my_preference';
+  static const profile_my_cart = 'profile_my_cart';
+  static const profile_my_orders = 'profile_my_orders';
+  static const profile_my_addresses = 'profile_my_addresses';
+  static const profile_my_settings = 'profile_my_settings';
+  static const profile_notifications = 'profile_notifications';
+  static const profile_language = 'profile_language';
+  static const profile_dark_mode = 'profile_dark_mode';
+  static const profile_info_and_support = 'profile_info_and_support';
+  static const profile_about_us = 'profile_about_us';
+  static const profile_help_center = 'profile_help_center';
+  static const profile_share_app = 'profile_share_app';
+  static const profile_logout = 'profile_logout';
+  static const edit_profile_title = 'edit_profile_title';
+  static const edit_profile_personal_info = 'edit_profile_personal_info';
+  static const edit_profile_birth_date = 'edit_profile_birth_date';
+  static const edit_profile_gender = 'edit_profile_gender';
+  static const edit_profile_gender_male = 'edit_profile_gender_male';
+  static const edit_profile_gender_female = 'edit_profile_gender_female';
+  static const edit_profile_profile_updated_successfully = 'edit_profile_profile_updated_successfully';
 
 }

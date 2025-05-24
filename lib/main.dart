@@ -4,15 +4,14 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ionic/core/routing/app_route.dart';
-import 'package:ionic/core/routing/app_router_name.dart';
 import 'package:ionic/core/services/data_source/local/local_app_settings_service.dart';
 import 'package:ionic/core/services/di/get_it_service.dart';
 import 'package:ionic/core/theme/app_theme.dart';
 import 'package:ionic/features/auth/presentation/manager/auth/auth_cubit.dart';
 import 'package:ionic/firebase_options.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:ionic/generated/codegen_loader.g.dart';
 
-import 'core/services/data_source/local/object_box_service.dart';
 import 'core/theme/manager/cubit/theme_cubit.dart';
 import 'features/auth/domain/repo/auth_repo.dart';
 
@@ -32,6 +31,8 @@ Future<void> main() async {
     EasyLocalization(
       supportedLocales: const [Locale('en'), Locale('ar')],
       path: 'assets/translation',
+      startLocale: Locale('en'),
+      assetLoader: const CodegenLoader(),
       child: DevicePreview(
         builder: (context) {
           return IonicApp();
@@ -61,6 +62,7 @@ class IonicApp extends StatelessWidget {
             localizationsDelegates: context.localizationDelegates,
             supportedLocales: context.supportedLocales,
             locale: context.locale,
+
             theme: isDarkMode ? AppTheme.darkTheme : AppTheme.lightTheme,
             themeMode: ThemeMode.system,
             routerConfig: appRouter,

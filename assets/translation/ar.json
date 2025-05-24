@@ -10,6 +10,7 @@
     "common_and": "و",
     "common_or": "او",
     "common_sending": "جاري الإرسال...",
+    "save_changes": "حفظ التغييرات....",
     
 
     "validators_required": "هذا الحقل مطلوب",
@@ -68,6 +69,35 @@
     "auth_please_check_your_email_for_the_link": "الرجاء التحقق من بريدك الإلكتروني للحصول على الرابط",
     "auth_back_to_login": "العودة لتسجيل الدخول",
     "auth_you_can_resend_after": "يمكنك إعادة الإرسال بعد",
-    "auth_didnt_receive_the_email": "لم تستلم البريد الإلكتروني؟"
+    "auth_didnt_receive_the_email": "لم تستلم البريد الإلكتروني؟",
+
+    "bottom_navigation_home": "الرئيسية",
+    "bottom_navigation_categories": "الفئات",
+    "bottom_navigation_cart": "عربة التسوق",
+    "bottom_navigation_profile": "الحساب",
+
+
+    "profile_my_preference": "تفضيلاتي",
+    "profile_my_cart": "عربة تسوقي",
+    "profile_my_orders": "طلباتي",
+    "profile_my_addresses": "عناويني",
+    "profile_my_settings": "الاعدادات",
+    "profile_notifications": "الاشعارات",
+    "profile_language": "اللغة",
+    "profile_dark_mode": "وضع الليلي",
+    "profile_info_and_support": "معلومات ودعم",
+    "profile_about_us": "من نحن",
+    "profile_help_center": "مركز المساعدة",
+    "profile_share_app": "مشاركة التطبيق",
+    "profile_logout": "تسجيل الخروج",
+
+
+    "edit_profile_title": "تعديل الملف الشخصي",
+    "edit_profile_personal_info": "معلومات شخصية",
+    "edit_profile_birth_date": "تاريخ الميلاد",
+    "edit_profile_gender": "الجنس",
+    "edit_profile_gender_male": "ذكر",
+    "edit_profile_gender_female": "انثى",
+    "edit_profile_profile_updated_successfully": "تم تحديث الملف الشخصي بنجاح"
 
 }

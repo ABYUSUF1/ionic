@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:ionic/core/widgets/dialog/custom_dialog.dart';
 import 'package:ionic/features/auth/presentation/args/email_sent_args.dart';
 import 'package:ionic/features/auth/presentation/widgets/email_sent_widgets/email_sent_view_body.dart';
 
-import '../../../../core/constants/app_assets.dart';
 import '../../../../core/routing/app_router_name.dart';
 import '../../../../core/services/di/get_it_service.dart';
 import '../../../../core/widgets/buttons/custom_back_button.dart';

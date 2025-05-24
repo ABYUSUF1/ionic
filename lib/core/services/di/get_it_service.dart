@@ -1,6 +1,6 @@
 import 'package:get_it/get_it.dart';
-import 'package:ionic/core/utils/image_picker/cubit/cubit/image_picker_cubit.dart';
-import 'package:ionic/core/utils/image_picker/image_picker_service.dart';
+import 'package:ionic/core/services/image_picker/cubit/cubit/image_picker_cubit.dart';
+import 'package:ionic/core/services/image_picker/image_picker_service.dart';
 import 'package:ionic/features/auth/presentation/manager/auth/auth_cubit.dart';
 import 'package:ionic/features/auth/presentation/manager/forget_password/forget_password_cubit.dart';
 import 'package:ionic/features/auth/presentation/manager/sign_in/sign_in_cubit.dart';

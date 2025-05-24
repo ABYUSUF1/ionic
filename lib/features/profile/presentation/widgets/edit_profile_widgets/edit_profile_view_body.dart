@@ -1,6 +1,8 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
+import 'package:ionic/generated/locale_keys.g.dart';
 
 import '../../../../../core/utils/validators.dart';
 import '../../../../../core/widgets/text_field/form_text_field.dart';
@@ -31,19 +33,19 @@ class EditProfileViewBody extends StatelessWidget {
                   const EditProfileImage(),
                   SizedBox(height: 30),
                   CustomEditProfileBox(
-                    title: "Personal Information",
+                    title: LocaleKeys.edit_profile_personal_info.tr(),
                     child: Column(
                       spacing: 20,
                       children: [
                         FormTextField(
-                          title: "E-Mail Address",
+                          title: LocaleKeys.auth_email.tr(),
                           controller: editProfileCubit.emailController,
                           prefixIcon: IconsaxPlusLinear.send_1,
                           readOnly: true,
                         ),
                         const EditProfileChangeName(),
                         FormTextField(
-                          title: "Phone Number",
+                          title: LocaleKeys.auth_phone.tr(),
                           controller: editProfileCubit.phoneNumberController,
                           prefixIcon: IconsaxPlusLinear.call,
                           onChanged: (_) => editProfileCubit.onPhoneChanged(),

@@ -1,9 +1,11 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 import 'package:ionic/core/widgets/snackbar/app_snackbar.dart';
 import 'package:ionic/features/auth/presentation/manager/auth/auth_cubit.dart';
+import 'package:ionic/generated/locale_keys.g.dart';
 
 import '../../../../../core/routing/app_router_name.dart';
 import 'custom_profile_box.dart';
@@ -15,10 +17,10 @@ class ProfileMyPreferenceBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomProfileBox(
-      title: "My preferences",
+      title: context.tr(LocaleKeys.profile_my_preference),
       children: [
         CustomProfileListTile(
-          title: "Edit Profile",
+          title: LocaleKeys.edit_profile_title.tr(),
           icon: IconsaxPlusLinear.user_edit,
           onTap: () {
             final user = context.read<AuthCubit>().cachedAuthEntity;
@@ -30,17 +32,17 @@ class ProfileMyPreferenceBox extends StatelessWidget {
           },
         ),
         CustomProfileListTile(
-          title: "My Cart",
+          title: context.tr(LocaleKeys.profile_my_cart),
           icon: IconsaxPlusLinear.bag_2,
           onTap: () {},
         ),
         CustomProfileListTile(
-          title: "My Orders",
+          title: LocaleKeys.profile_my_orders.tr(),
           icon: IconsaxPlusLinear.box,
           onTap: () {},
         ),
         CustomProfileListTile(
-          title: "My Addresses",
+          title: LocaleKeys.profile_my_addresses.tr(),
           icon: IconsaxPlusLinear.location,
           onTap: () {},
         ),

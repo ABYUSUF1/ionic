@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 
-import '../../services/di/get_it_service.dart';
+import '../di/get_it_service.dart';
 import 'cubit/cubit/image_picker_cubit.dart';
 import 'image_picker_service.dart';
 

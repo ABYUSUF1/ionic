@@ -10,6 +10,7 @@
     "common_and": "and",
     "common_or": "or",
     "common_sending": "sending...",
+    "common_save_changes": "Save changes...",
     
 
     "validators_required": "Field is required",
@@ -68,6 +69,36 @@
     "auth_please_check_your_email_for_the_link": "Please check your email for the link.",
     "auth_back_to_login": "Back to Login",
     "auth_you_can_resend_after": "You can resend after",
-    "auth_didnt_receive_the_email": "Didn't receive the email?"
+    "auth_didnt_receive_the_email": "Didn't receive the email?",
+
+
+    "bottom_navigation_home": "Home",
+    "bottom_navigation_categories": "Categories",
+    "bottom_navigation_cart": "Cart",
+    "bottom_navigation_profile": "Profile",
+
+
+    "profile_my_preference": "My Preferences",
+    "profile_my_cart": "My Cart",
+    "profile_my_orders": "My Orders",
+    "profile_my_addresses": "My Addresses",
+    "profile_my_settings": "Settings",
+    "profile_notifications": "Notifications",
+    "profile_language": "Language",
+    "profile_dark_mode": "Dark Mode",
+    "profile_info_and_support": "Information and Support",
+    "profile_about_us": "About Us",
+    "profile_help_center": "Help Center",
+    "profile_share_app": "Share App",
+    "profile_logout": "Logout",
+    
+
+    "edit_profile_title": "Edit Profile",
+    "edit_profile_personal_info": "Personal Information",
+    "edit_profile_birth_date": "Birth Date",
+    "edit_profile_gender": "Gender",
+    "edit_profile_gender_male": "Male",
+    "edit_profile_gender_female": "Female",
+    "edit_profile_profile_updated_successfully": "Profile updated successfully"
 
 }

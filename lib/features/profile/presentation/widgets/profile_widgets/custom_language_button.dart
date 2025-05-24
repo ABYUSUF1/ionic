@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
+import 'package:ionic/generated/locale_keys.g.dart';
 
 class CustomLanguageButton extends StatelessWidget {
   const CustomLanguageButton({super.key});
@@ -11,7 +12,10 @@ class CustomLanguageButton extends StatelessWidget {
     final isArabic = context.locale.languageCode == 'ar';
     return ListTile(
       leading: const Icon(IconsaxPlusLinear.translate, size: 28),
-      title: Text("Language", style: Theme.of(context).textTheme.bodyMedium),
+      title: Text(
+        LocaleKeys.profile_language.tr(),
+        style: Theme.of(context).textTheme.bodyMedium,
+      ),
       trailing: Container(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
         decoration: BoxDecoration(

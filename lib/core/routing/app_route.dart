@@ -6,12 +6,12 @@ import 'package:ionic/features/auth/presentation/views/forget_password_view.dart
 import 'package:ionic/features/auth/presentation/views/sign_in_view.dart';
 import 'package:ionic/features/auth/presentation/views/sign_up_view.dart';
 import 'package:ionic/features/cart/presentation/views/cart_view.dart';
-import 'package:ionic/features/favorite/presentation/views/favorite_view.dart';
 import 'package:ionic/features/home/presentation/views/home_view.dart';
 import 'package:ionic/features/profile/presentation/views/edit_profile_view.dart';
 import 'package:ionic/features/profile/presentation/views/profile_view.dart';
 import 'package:ionic/main_bottom_nav_bar.dart';
 
+import '../../features/categories/presentation/views/categories_view.dart';
 import '../../features/onboarding/presentation/views/onboarding_view.dart';
 import '../services/data_source/local/local_app_settings_service.dart';
 import '../services/di/get_it_service.dart';
@@ -72,16 +72,17 @@ final GoRouter appRouter = GoRouter(
         StatefulShellBranch(
           routes: [
             GoRoute(
-              path: AppRouterName.cartRoute,
-              builder: (context, state) => const CartView(),
+              path: AppRouterName.categoriesRoute,
+              name: AppRouterName.categoriesRoute,
+              builder: (context, state) => const CategoriesView(),
             ),
           ],
         ),
         StatefulShellBranch(
           routes: [
             GoRoute(
-              path: AppRouterName.favoriteRoute,
-              builder: (context, state) => const FavoriteView(),
+              path: AppRouterName.cartRoute,
+              builder: (context, state) => const CartView(),
             ),
           ],
         ),

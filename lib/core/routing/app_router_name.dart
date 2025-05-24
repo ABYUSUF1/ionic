@@ -12,8 +12,11 @@ class AppRouterName {
   static const String homeRoute = '/home'; // initial route
   static const String profileRoute = '/profile';
   static const String cartRoute = '/cart';
-  static const String favoriteRoute = '/favorite';
+  static const String categoriesRoute = '/categories';
 
   // inside profile routes
   static const String editProfileRoute = 'edit-profile';
+
+  // favorites route
+  static const String favoriteRoute = '/favorite';
 }

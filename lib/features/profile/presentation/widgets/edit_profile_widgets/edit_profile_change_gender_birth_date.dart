@@ -1,8 +1,10 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 import 'package:ionic/core/theme/app_colors.dart';
 import 'package:ionic/core/widgets/text_field/form_text_field.dart';
+import 'package:ionic/generated/locale_keys.g.dart';
 
 import '../../manager/cubit/edit_profile_cubit.dart';
 
@@ -35,7 +37,7 @@ class EditProfileGenderBirthdate extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             FormTextField(
-              title: "Birthdate",
+              title: LocaleKeys.edit_profile_birth_date.tr(),
               controller: TextEditingController(text: birthdateText),
               onTap: () => _pickDate(context),
               hintText: "DD-MM-YYYY",
@@ -51,15 +53,23 @@ class EditProfileGenderBirthdate extends StatelessWidget {
                 ),
                 const SizedBox(width: 16),
                 Text(
-                  "Gender",
+                  LocaleKeys.edit_profile_gender.tr(),
                   style: theme.textTheme.bodyMedium!.copyWith(
                     color: theme.colorScheme.onSurfaceVariant,
                   ),
                 ),
                 const Spacer(),
-                _buildGenderButton(context, "Male", gender),
+                _buildGenderButton(
+                  context,
+                  LocaleKeys.edit_profile_gender_male.tr(),
+                  gender,
+                ),
                 const SizedBox(width: 16),
-                _buildGenderButton(context, "Female", gender),
+                _buildGenderButton(
+                  context,
+                  LocaleKeys.edit_profile_gender_female.tr(),
+                  gender,
+                ),
               ],
             ),
           ],
