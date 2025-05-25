@@ -10,7 +10,8 @@
     "common_and": "و",
     "common_or": "او",
     "common_sending": "جاري الإرسال...",
-    "save_changes": "حفظ التغييرات....",
+    "common_save_changes": "حفظ التغييرات....",
+    "common_view_all": "عرض الكل",
     
 
     "validators_required": "هذا الحقل مطلوب",
