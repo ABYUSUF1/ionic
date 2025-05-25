@@ -2,6 +2,26 @@
 class AppAssets {
   AppAssets._();
   
+  /// Assets for adsAd1
+  /// assets/ads/ad1.png
+  static const String adsAd1 = "assets/ads/ad1.png";
+
+  /// Assets for adsAd2
+  /// assets/ads/ad2.png
+  static const String adsAd2 = "assets/ads/ad2.png";
+
+  /// Assets for adsAd3
+  /// assets/ads/ad3.png
+  static const String adsAd3 = "assets/ads/ad3.png";
+
+  /// Assets for adsAd4
+  /// assets/ads/ad4.png
+  static const String adsAd4 = "assets/ads/ad4.png";
+
+  /// Assets for adsAd5
+  /// assets/ads/ad5.png
+  static const String adsAd5 = "assets/ads/ad5.png";
+
   /// Assets for fontsPulpDisplayRegular
   /// assets/fonts/PulpDisplay-Regular.ttf
   static const String fontsPulpDisplayRegular = "assets/fonts/PulpDisplay-Regular.ttf";

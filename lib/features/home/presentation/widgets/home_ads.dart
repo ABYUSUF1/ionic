@@ -2,6 +2,8 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
+import '../../../../core/constants/app_assets.dart';
+
 class HomeAds extends StatefulWidget {
   const HomeAds({super.key});
 
@@ -10,29 +12,19 @@ class HomeAds extends StatefulWidget {
 }
 
 class _HomeAdsState extends State<HomeAds> {
-  final PageController pageController = PageController(viewportFraction: .8);
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    return SliverToBoxAdapter(child: AutoLoopingPageView());
-  }
-}
-
-class AutoLoopingPageView extends StatefulWidget {
-  const AutoLoopingPageView({super.key});
-
-  @override
-  State<AutoLoopingPageView> createState() => _AutoLoopingPageViewState();
-}
-
-class _AutoLoopingPageViewState extends State<AutoLoopingPageView> {
   final PageController _controller = PageController(
     viewportFraction: 0.8,
     initialPage: 1000, // Start at high index for infinite scroll illusion
   );
-  final List<Color> _colors = [Colors.blue, Colors.green, Colors.orange];
   Timer? _timer;
+
+  static const List<String> _ads = <String>[
+    AppAssets.adsAd1,
+    AppAssets.adsAd2,
+    AppAssets.adsAd3,
+    AppAssets.adsAd4,
+    AppAssets.adsAd5,
+  ];
 
   @override
   void initState() {
@@ -52,7 +44,6 @@ class _AutoLoopingPageViewState extends State<AutoLoopingPageView> {
   }
 
   Widget _buildPage(int index) {
-    final colorIndex = index % _colors.length;
     return AnimatedBuilder(
       animation: _controller,
       builder: (context, child) {
@@ -73,24 +64,17 @@ class _AutoLoopingPageViewState extends State<AutoLoopingPageView> {
             child: Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8),
-                color: _colors[colorIndex],
+                image: DecorationImage(
+                  image: AssetImage(_ads[index % _ads.length]),
+                  fit: BoxFit.fill,
+                ),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black.withOpacity(0.1),
+                    color: Colors.black.withValues(alpha: .1),
                     blurRadius: 10,
                     spreadRadius: 2,
                   ),
                 ],
-              ),
-              child: Center(
-                child: Text(
-                  'Page ${colorIndex + 1}',
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
               ),
             ),
           ),
@@ -101,12 +85,15 @@ class _AutoLoopingPageViewState extends State<AutoLoopingPageView> {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 150,
-      child: PageView.builder(
-        controller: _controller,
-        scrollDirection: Axis.horizontal,
-        itemBuilder: (context, index) => _buildPage(index),
+    return SliverToBoxAdapter(
+      child: SizedBox(
+        height: 150,
+        child: PageView.builder(
+          controller: _controller,
+          itemCount: 2000, // Large number for infinite scroll effect
+          scrollDirection: Axis.horizontal,
+          itemBuilder: (context, index) => _buildPage(index),
+        ),
       ),
     );
   }

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 
-final messengerKey = GlobalKey<ScaffoldMessengerState>();
+// --- Create a global key for ScaffoldMessengerState ---
+final GlobalKey<ScaffoldMessengerState> scaffoldMessengerKey =
+    GlobalKey<ScaffoldMessengerState>();
 
 void showOfflineBanner(BuildContext context) {
-  messengerKey.currentState!.showSnackBar(
+  scaffoldMessengerKey.currentState!.showSnackBar(
     SnackBar(
       duration: const Duration(days: 365),
       content: Row(
@@ -22,7 +24,7 @@ void showOfflineBanner(BuildContext context) {
 }
 
 void showOnlineSnackBar(BuildContext context) {
-  messengerKey.currentState!
+  scaffoldMessengerKey.currentState!
     ..hideCurrentSnackBar()
     ..showSnackBar(
       SnackBar(

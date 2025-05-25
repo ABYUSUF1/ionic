@@ -28,7 +28,7 @@ class SignInViewBody extends StatelessWidget {
               context.read<AuthCubit>().updateUserData(authEntity);
               context.pop();
             } else {
-              context.push(AppRouterName.homeRoute);
+              context.pushReplacement(AppRouterName.homeRoute);
             }
           },
           error: (message) {

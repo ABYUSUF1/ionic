@@ -31,7 +31,7 @@ class GuestButton extends StatelessWidget {
                   : AppAssets.illustrationsLoginIllustrationDark,
           buttonText: "Skip for now",
           onTap: () {
-            context.pushReplacement(AppRouterName.homeRoute);
+            context.go(AppRouterName.homeRoute);
           },
         );
       },

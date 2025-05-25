@@ -65,6 +65,7 @@ final GoRouter appRouter = GoRouter(
           routes: [
             GoRoute(
               path: AppRouterName.homeRoute,
+              name: AppRouterName.homeRoute,
               builder: (context, state) => const HomeView(),
             ),
           ],

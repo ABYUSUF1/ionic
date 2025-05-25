@@ -25,9 +25,7 @@ Future<void> main() async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await setupGetIt();
 
-  widgetsBinding.addPostFrameCallback((timeStamp) {
-    FlutterNativeSplash.remove();
-  });
+  FlutterNativeSplash.remove();
 
   runApp(
     EasyLocalization(
@@ -59,25 +57,28 @@ class IonicApp extends StatelessWidget {
       ],
       child: BlocBuilder<ThemeCubit, bool>(
         builder: (context, isDarkMode) {
-          return BlocListener<NetworkCubit, bool>(
-            listenWhen: (previous, current) => previous != current,
-            listener: (context, isOnline) {
-              if (!isOnline) {
-                showOfflineBanner(context);
-              } else {
-                showOnlineSnackBar(context);
-              }
+          return MaterialApp.router(
+            scaffoldMessengerKey: scaffoldMessengerKey,
+            debugShowCheckedModeBanner: false,
+            localizationsDelegates: context.localizationDelegates,
+            supportedLocales: context.supportedLocales,
+            locale: context.locale,
+            theme: isDarkMode ? AppTheme.darkTheme : AppTheme.lightTheme,
+            themeMode: ThemeMode.system,
+            routerConfig: appRouter,
+            builder: (context, child) {
+              return BlocListener<NetworkCubit, bool>(
+                listenWhen: (previous, current) => previous != current,
+                listener: (context, isOnline) {
+                  if (isOnline) {
+                    showOnlineSnackBar(scaffoldMessengerKey.currentContext!);
+                  } else {
+                    showOfflineBanner(scaffoldMessengerKey.currentContext!);
+                  }
+                },
+                child: child,
+              );
             },
-            child: MaterialApp.router(
-              scaffoldMessengerKey: messengerKey,
-              debugShowCheckedModeBanner: false,
-              localizationsDelegates: context.localizationDelegates,
-              supportedLocales: context.supportedLocales,
-              locale: context.locale,
-              theme: isDarkMode ? AppTheme.darkTheme : AppTheme.lightTheme,
-              themeMode: ThemeMode.system,
-              routerConfig: appRouter,
-            ),
           );
         },
       ),
