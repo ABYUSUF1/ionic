@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 import 'package:ionic/core/constants/app_assets.dart';
+import 'package:ionic/core/utils/functions/is_arabic.dart';
 
 class HomeAppBar extends StatelessWidget {
   const HomeAppBar({super.key});
@@ -16,7 +17,12 @@ class HomeAppBar extends StatelessWidget {
         children: [
           Row(
             children: [
-              Image.asset(AppAssets.logoIonicLogo, height: 40),
+              Image.asset(
+                isArabic(context)
+                    ? AppAssets.logoIonicLogoAr
+                    : AppAssets.logoIonicLogo,
+                height: 40,
+              ),
               const Spacer(),
               IconButton(
                 icon: const Icon(IconsaxPlusLinear.search_normal_1),

@@ -1,146 +1,119 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ionic/core/services/di/get_it_service.dart';
+import 'package:ionic/core/widgets/loading/skeleton_loading.dart';
+import 'package:ionic/features/home/presentation/manager/cubit/categories_cubit.dart';
 
 import '../../../../core/theme/app_colors.dart';
+import '../../../../core/widgets/scroll_indicator.dart';
+import '../../domain/repo/home_repo.dart';
+import 'home_categories_grid_item.dart';
 
 class HomeCategories extends StatelessWidget {
   const HomeCategories({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final ScrollController scrollController = ScrollController();
-    return SliverToBoxAdapter(
-      child: Column(
-        children: [
-          Container(
-            width: double.infinity,
-            height: 280,
-            margin: EdgeInsets.symmetric(horizontal: 16),
-            alignment: Alignment.bottomCenter,
+    return BlocProvider(
+      create: (_) => CategoriesCubit(getIt<HomeRepo>()),
+      child: SliverToBoxAdapter(
+        child: BlocBuilder<CategoriesCubit, CategoriesState>(
+          builder: (context, state) {
+            final cubit = context.read<CategoriesCubit>();
+            final isLoading = state.maybeWhen(
+              orElse: () => false,
+              loading: (_) => true,
+            );
 
-            child: GridView.builder(
-              controller: scrollController,
-              scrollDirection: Axis.horizontal,
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                mainAxisExtent: 90,
+            final categories = state.when(
+              initial: () => [],
+              loading: (loadingCategories) => loadingCategories,
+              success: (categories) => categories,
+              error: () => [],
+            );
+
+            return Container(
+              padding: const EdgeInsets.only(bottom: 16),
+              decoration: BoxDecoration(
+                color: Theme.of(context).colorScheme.surface,
+                borderRadius: BorderRadius.circular(8),
               ),
-              itemCount: 20,
-              itemBuilder: (context, index) {
-                return InkWell(
-                  onTap: () {},
-                  child: Column(
-                    children: [
-                      ClipOval(
-                        child: Container(
-                          width: 70,
-                          height: 70,
-                          color: theme.colorScheme.secondary,
+              margin: const EdgeInsets.symmetric(horizontal: 16),
+              height: 300,
+              width: double.infinity,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsetsDirectional.only(
+                      start: 16.0,
+                      top: 16,
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "Categories",
+                          textAlign: TextAlign.start,
+                          style: Theme.of(context).textTheme.bodyLarge!
+                              .copyWith(fontFamily: "Pulp Display"),
                         ),
-                      ),
-                      const SizedBox(height: 4),
-                      Expanded(
-                        child: Text(
-                          'Category ${index + 1}\nTest',
-                          textAlign: TextAlign.center,
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
-                          style: theme.textTheme.labelSmall!.copyWith(
-                            fontWeight: FontWeight.w600,
-                            color: theme.colorScheme.onSurface,
-                          ),
+                        TextButton.icon(
+                          onPressed: () {},
+                          label: Text("View All"),
+                          icon: Icon(Icons.arrow_forward_ios_rounded),
+                          iconAlignment: IconAlignment.end,
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                );
-              },
-            ),
-          ),
-          ScrollIndicator(
-            scrollController: scrollController,
-            width: 50,
-            height: 5,
-            indicatorWidth: 20,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              color: Colors.grey[300],
-            ),
-            indicatorDecoration: BoxDecoration(
-              color: AppColors.primaryColor,
-              borderRadius: BorderRadius.circular(10),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
+                  const SizedBox(height: 8),
+                  Expanded(
+                    child: SkeletonLoading(
+                      isLoading: isLoading,
+                      child: GridView.builder(
+                        controller: cubit.scrollController,
+                        scrollDirection: Axis.horizontal,
+                        padding: const EdgeInsets.symmetric(horizontal: 16),
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 2,
+                              mainAxisExtent: 79,
+                            ),
+                        itemCount: isLoading ? 10 : categories.length,
+                        itemBuilder: (context, index) {
+                          final category =
+                              isLoading
+                                  ? categories.isNotEmpty
+                                      ? categories.first
+                                      : null
+                                  : categories[index];
 
-class ScrollIndicator extends StatefulWidget {
-  ///scrollController listview/gridview
-  ///
-  final ScrollController scrollController;
-  final double width, height, indicatorWidth;
-  final Decoration decoration, indicatorDecoration;
-  final AlignmentGeometry alignment;
-  const ScrollIndicator({
-    super.key,
-    required this.scrollController,
-    this.width = 100,
-    this.height = 10,
-    this.indicatorWidth = 20,
-    this.decoration = const BoxDecoration(color: Colors.black26),
-    this.indicatorDecoration = const BoxDecoration(color: Colors.black),
-    this.alignment = Alignment.center,
-  });
+                          if (category == null) return const SizedBox.shrink();
+                          return HomeCategoriesGridItem(category: category);
+                        },
+                      ),
+                    ),
+                  ),
 
-  @override
-  State<ScrollIndicator> createState() => _ScrollIndicatorState();
-}
-
-class _ScrollIndicatorState extends State<ScrollIndicator> {
-  double currentPixels = 0.0;
-  double mainContainer = 0.0;
-  double move = 0.0;
-
-  @override
-  void initState() {
-    widget.scrollController.addListener(() {
-      _scrollListener();
-    });
-    super.initState();
-  }
-
-  void _scrollListener() {
-    setState(() {
-      currentPixels = widget.scrollController.position.pixels;
-      mainContainer =
-          widget.scrollController.position.maxScrollExtent / widget.width;
-      move = (currentPixels / mainContainer);
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Align(
-      alignment: widget.alignment,
-      child: Container(
-        height: widget.height,
-        width: widget.width + widget.indicatorWidth,
-        decoration: widget.decoration,
-        child: Stack(
-          fit: StackFit.expand,
-          children: [
-            Positioned(
-              left: move,
-              child: Container(
-                height: widget.height,
-                width: widget.indicatorWidth,
-                decoration: widget.indicatorDecoration,
+                  ScrollIndicator(
+                    scrollController: cubit.scrollController,
+                    width: 50,
+                    height: 5,
+                    indicatorWidth: 20,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: Theme.of(context).colorScheme.outline,
+                    ),
+                    indicatorDecoration: BoxDecoration(
+                      color: AppColors.primaryColor,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                ],
               ),
-            ),
-          ],
+            );
+          },
         ),
       ),
     );
