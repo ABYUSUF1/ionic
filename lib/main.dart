@@ -6,6 +6,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ionic/core/routing/app_route.dart';
 import 'package:ionic/core/services/data_source/local/local_app_settings_service.dart';
 import 'package:ionic/core/services/di/get_it_service.dart';
+import 'package:ionic/core/services/network/network_cubit.dart';
+import 'package:ionic/core/services/network/network_widget.dart';
 import 'package:ionic/core/theme/app_theme.dart';
 import 'package:ionic/features/auth/presentation/manager/auth/auth_cubit.dart';
 import 'package:ionic/firebase_options.dart';
@@ -31,11 +33,11 @@ Future<void> main() async {
     EasyLocalization(
       supportedLocales: const [Locale('en'), Locale('ar')],
       path: 'assets/translation',
-      startLocale: Locale('en'),
+      startLocale: const Locale('en'),
       assetLoader: const CodegenLoader(),
       child: DevicePreview(
         builder: (context) {
-          return IonicApp();
+          return const IonicApp(); // Use const here as IonicApp is StatelessWidget
         },
       ),
     ),
@@ -49,6 +51,7 @@ class IonicApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
+        BlocProvider(create: (context) => NetworkCubit()),
         BlocProvider(
           create: (context) => ThemeCubit(getIt<LocalAppSettingsService>()),
         ),
@@ -56,16 +59,25 @@ class IonicApp extends StatelessWidget {
       ],
       child: BlocBuilder<ThemeCubit, bool>(
         builder: (context, isDarkMode) {
-          return MaterialApp.router(
-            debugShowCheckedModeBanner: false,
-
-            localizationsDelegates: context.localizationDelegates,
-            supportedLocales: context.supportedLocales,
-            locale: context.locale,
-
-            theme: isDarkMode ? AppTheme.darkTheme : AppTheme.lightTheme,
-            themeMode: ThemeMode.system,
-            routerConfig: appRouter,
+          return BlocListener<NetworkCubit, bool>(
+            listenWhen: (previous, current) => previous != current,
+            listener: (context, isOnline) {
+              if (!isOnline) {
+                showOfflineBanner(context);
+              } else {
+                showOnlineSnackBar(context);
+              }
+            },
+            child: MaterialApp.router(
+              scaffoldMessengerKey: messengerKey,
+              debugShowCheckedModeBanner: false,
+              localizationsDelegates: context.localizationDelegates,
+              supportedLocales: context.supportedLocales,
+              locale: context.locale,
+              theme: isDarkMode ? AppTheme.darkTheme : AppTheme.lightTheme,
+              themeMode: ThemeMode.system,
+              routerConfig: appRouter,
+            ),
           );
         },
       ),

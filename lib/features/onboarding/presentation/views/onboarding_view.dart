@@ -85,7 +85,7 @@ class _OnboardingViewState extends State<OnboardingView> {
                             from: 30,
                             child: Image.asset(
                               onboardingData[index]["image"]!,
-                              height: size.height / 2.5,
+                              height: size.height / 2.6,
                             ),
                           ),
                           Text(
