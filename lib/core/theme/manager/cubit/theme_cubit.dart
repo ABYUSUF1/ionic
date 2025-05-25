@@ -4,7 +4,8 @@ import 'package:ionic/core/services/data_source/local/local_app_settings_service
 class ThemeCubit extends Cubit<bool> {
   final LocalAppSettingsService localAppSettingsService;
 
-  ThemeCubit(this.localAppSettingsService) : super(false);
+  ThemeCubit(this.localAppSettingsService)
+    : super(localAppSettingsService.settings.isDarkMode);
 
   void toggleTheme() {
     final current = localAppSettingsService.settings;

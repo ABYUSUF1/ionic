@@ -10,8 +10,8 @@ class AppSettings {
 
   AppSettings({
     this.id = 0,
-    this.isDarkMode = false,
-    this.isFirstTime = false,
-    this.isEnableNotification = false,
+    required this.isDarkMode,
+    required this.isFirstTime,
+    required this.isEnableNotification,
   });
 }

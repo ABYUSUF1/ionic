@@ -10,7 +10,11 @@ class LocalAppSettingsService {
   AppSettings get settings {
     final all = _objectBoxService.box<AppSettings>().getAll();
     if (all.isEmpty) {
-      final defaultSettings = AppSettings(isFirstTime: true);
+      final defaultSettings = AppSettings(
+        isFirstTime: true,
+        isDarkMode: false,
+        isEnableNotification: true,
+      );
       _objectBoxService.box<AppSettings>().put(defaultSettings);
       return defaultSettings;
     }
