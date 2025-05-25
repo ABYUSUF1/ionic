@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../core/widgets/loading/skeleton_loading.dart';
+import '../../../../../core/widgets/responsive_layout.dart';
 import '../../manager/cubit/categories_cubit.dart';
 import 'home_categories_grid_item.dart';
 
@@ -31,9 +32,9 @@ class HomeCategoriesGrid extends StatelessWidget {
               controller: cubit.scrollController,
               scrollDirection: Axis.horizontal,
               padding: const EdgeInsets.symmetric(horizontal: 8),
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
-                mainAxisExtent: 79,
+                mainAxisExtent: ResponsiveLayout.isMobile(context) ? 79 : 100,
               ),
               itemCount: isLoading ? 10 : categories.length,
               itemBuilder: (context, index) {
