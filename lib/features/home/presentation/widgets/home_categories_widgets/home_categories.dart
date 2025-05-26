@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ionic/core/services/di/get_it_service.dart';
 import 'package:ionic/core/widgets/responsive_layout.dart';
-import 'package:ionic/features/home/presentation/manager/cubit/categories_cubit.dart';
+import 'package:ionic/features/home/presentation/manager/categories/categories_cubit.dart';
 
 import '../../../domain/repo/home_repo.dart';
 import 'home_categories_grid.dart';

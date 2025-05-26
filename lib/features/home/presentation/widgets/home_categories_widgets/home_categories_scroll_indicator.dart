@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../core/theme/app_colors.dart';
 import '../../../../../core/widgets/scroll_indicator.dart';
-import '../../manager/cubit/categories_cubit.dart';
+import '../../manager/categories/categories_cubit.dart';
 
 class HomeCategoriesScrollIndicator extends StatelessWidget {
   const HomeCategoriesScrollIndicator({super.key});

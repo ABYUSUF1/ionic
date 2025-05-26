@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:ionic/core/api/api_client.dart';
 import 'package:ionic/core/api/end_points.dart';
+import 'package:ionic/core/models/product_model/products_model.dart';
 
 import 'package:ionic/core/utils/errors/failure.dart';
 
@@ -24,6 +25,21 @@ class HomeRepoImpl implements HomeRepo {
       return Right(categories);
     } catch (e) {
       return Left(Failure("Failed to fetch categories"));
+    }
+  }
+
+  @override
+  Future<Either<Failure, ProductsModel>> fetchPopularProducts() async {
+    try {
+      final response = await apiClient.get(EndPoints.popularProducts);
+
+      final productModel = ProductsModel.fromJson(response.data);
+
+      return Right(productModel);
+    } catch (e) {
+      print("ERROR ========================================");
+      print(e.toString());
+      return Left(Failure("Failed to fetch popular products"));
     }
   }
 }

@@ -8,7 +8,7 @@ import 'package:ionic/features/auth/presentation/manager/auth/auth_cubit.dart';
 import 'package:ionic/features/auth/presentation/manager/forget_password/forget_password_cubit.dart';
 import 'package:ionic/features/auth/presentation/manager/sign_in/sign_in_cubit.dart';
 import 'package:ionic/features/home/domain/repo/home_repo.dart';
-import 'package:ionic/features/home/presentation/manager/cubit/categories_cubit.dart';
+import 'package:ionic/features/home/presentation/manager/categories/categories_cubit.dart';
 import 'package:ionic/features/profile/data/repo_impl/edit_profile_repo_impl.dart';
 import 'package:ionic/features/profile/domain/repo/edit_profile_repo.dart';
 

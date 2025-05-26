@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../core/widgets/loading/skeleton_loading.dart';
 import '../../../../../core/widgets/responsive_layout.dart';
-import '../../manager/cubit/categories_cubit.dart';
+import '../../manager/categories/categories_cubit.dart';
 import 'home_categories_grid_item.dart';
 
 class HomeCategoriesGrid extends StatelessWidget {
