@@ -19,12 +19,12 @@ class SignInView extends StatelessWidget {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         title: const CustomBackButton(),
-        actionsPadding: EdgeInsetsDirectional.only(end: 16),
-        actions: [LanguageSwitcher()],
+        actionsPadding: const EdgeInsetsDirectional.only(end: 16),
+        actions: const [LanguageSwitcher()],
       ),
       body: BlocProvider(
         create: (context) => SignInCubit(getIt<AuthRepo>()),
-        child: SignInViewBody(),
+        child: const SignInViewBody(),
       ),
     );
   }

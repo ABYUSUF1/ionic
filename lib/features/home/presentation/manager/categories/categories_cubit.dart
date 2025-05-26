@@ -9,7 +9,7 @@ part 'categories_cubit.freezed.dart';
 
 class CategoriesCubit extends Cubit<CategoriesState> {
   final HomeRepo _homeRepo;
-  CategoriesCubit(this._homeRepo) : super(CategoriesState.initial()) {
+  CategoriesCubit(this._homeRepo) : super(const CategoriesState.initial()) {
     fetchCategories();
   }
 
@@ -19,7 +19,7 @@ class CategoriesCubit extends Cubit<CategoriesState> {
     emit(CategoriesState.loading([CategoryEntity.loading()]));
     final result = await _homeRepo.getCategories();
     result.fold(
-      (failure) => emit(CategoriesState.error()),
+      (failure) => emit(const CategoriesState.error()),
       (categories) => emit(CategoriesState.success(categories)),
     );
   }

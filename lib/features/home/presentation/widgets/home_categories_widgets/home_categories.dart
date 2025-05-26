@@ -26,12 +26,12 @@ class HomeCategories extends StatelessWidget {
           margin: const EdgeInsets.symmetric(horizontal: 16),
           height: ResponsiveLayout.isMobile(context) ? 300 : 350,
           width: double.infinity,
-          child: Column(
+          child: const Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               HomeCategoriesUpper(),
-              const SizedBox(height: 8),
-              const HomeCategoriesGrid(),
+              SizedBox(height: 8),
+              HomeCategoriesGrid(),
               HomeCategoriesScrollIndicator(),
             ],
           ),

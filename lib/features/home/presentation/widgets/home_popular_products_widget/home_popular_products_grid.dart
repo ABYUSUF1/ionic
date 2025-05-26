@@ -33,15 +33,16 @@ class HomePopularProductsGrid extends StatelessWidget {
                   ) ??
                   0,
               itemBuilder: (BuildContext context, int index) {
-                final productItem = state.whenOrNull(
-                  success:
-                      (productsEntity) =>
-                          productsEntity.products[index].toProductItem(),
+                final product = state.whenOrNull(
+                  success: (productsEntity) => productsEntity.products[index],
                 );
-                if (productItem == null) {
+                if (product == null) {
                   return const SizedBox.shrink();
                 }
-                return ProductItem(productItem: productItem);
+                return ProductItem(
+                  product: product,
+                  productItem: product.toProductItem(),
+                );
               },
             ),
           );

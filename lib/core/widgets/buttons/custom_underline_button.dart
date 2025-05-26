@@ -22,7 +22,7 @@ class CustomUnderlineButton extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Container(
-          padding: EdgeInsets.only(
+          padding: const EdgeInsets.only(
             bottom: 3, // Space between underline and text
           ),
           decoration: BoxDecoration(

@@ -21,8 +21,8 @@ class ProfileSettingsBox extends StatelessWidget {
           icon: IconsaxPlusLinear.notification,
           onTap: () {},
         ),
-        CustomLanguageButton(),
-        DarkModeSwitchButton(),
+        const CustomLanguageButton(),
+        const DarkModeSwitchButton(),
         CustomProfileListTile(
           title: "Account Privacy",
           icon: IconsaxPlusLinear.lock,

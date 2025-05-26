@@ -10,7 +10,7 @@ class AppTheme {
   static ThemeData get lightTheme => ThemeData(
     useMaterial3: true,
     scaffoldBackgroundColor: AppColors.lightScaffoldBackground,
-    appBarTheme: AppBarTheme(
+    appBarTheme: const AppBarTheme(
       backgroundColor: Colors.transparent,
       elevation: 0, // No shadow
       foregroundColor: AppColors.lightHardColor,
@@ -52,7 +52,7 @@ class AppTheme {
       thickness: 2,
     ),
     snackBarTheme: snackBarThemeData,
-    listTileTheme: ListTileThemeData(contentPadding: EdgeInsets.zero),
+    listTileTheme: const ListTileThemeData(contentPadding: EdgeInsets.zero),
   );
 
   // Dark Theme
@@ -102,6 +102,6 @@ class AppTheme {
       thickness: 2,
     ),
     snackBarTheme: snackBarThemeData,
-    listTileTheme: ListTileThemeData(contentPadding: EdgeInsets.zero),
+    listTileTheme: const ListTileThemeData(contentPadding: EdgeInsets.zero),
   );
 }

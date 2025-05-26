@@ -57,7 +57,7 @@ class EmailSentViewBody extends StatelessWidget {
                       ),
                       TextSpan(
                         text: email,
-                        style: TextStyle(color: AppColors.primaryColor),
+                        style: const TextStyle(color: AppColors.primaryColor),
                       ),
                       TextSpan(
                         text:

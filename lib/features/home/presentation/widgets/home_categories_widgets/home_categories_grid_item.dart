@@ -21,13 +21,14 @@ class HomeCategoriesGridItem extends StatelessWidget {
             child: Container(
               width: size,
               height: size,
-              decoration: BoxDecoration(
-                color: theme.colorScheme.secondary,
-                image: DecorationImage(
-                  image: CachedNetworkImageProvider(category.imageUrl),
-                  fit: BoxFit.cover,
-                ),
-              ),
+              decoration: BoxDecoration(color: theme.colorScheme.secondary),
+              child:
+                  category.imageUrl.isEmpty
+                      ? null
+                      : CachedNetworkImage(
+                        imageUrl: category.imageUrl,
+                        fit: BoxFit.cover,
+                      ),
             ),
           ),
           const SizedBox(height: 4),

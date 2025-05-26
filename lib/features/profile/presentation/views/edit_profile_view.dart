@@ -42,9 +42,9 @@ class EditProfileView extends StatelessWidget {
         },
         builder: (context, state) {
           return CustomScaffold(
-            body: EditProfileViewBody(),
+            body: const EditProfileViewBody(),
             title: LocaleKeys.edit_profile_title.tr(),
-            bottomSheet: EditProfileSaveButton(),
+            bottomSheet: const EditProfileSaveButton(),
           );
         },
       ),

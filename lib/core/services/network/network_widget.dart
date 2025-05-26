@@ -8,7 +8,7 @@ void showOfflineBanner(BuildContext context) {
   scaffoldMessengerKey.currentState!.showSnackBar(
     SnackBar(
       duration: const Duration(days: 365),
-      content: Row(
+      content: const Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
@@ -27,7 +27,7 @@ void showOnlineSnackBar(BuildContext context) {
   scaffoldMessengerKey.currentState!
     ..hideCurrentSnackBar()
     ..showSnackBar(
-      SnackBar(
+      const SnackBar(
         content: Row(
           children: [
             Icon(Icons.wifi, color: Colors.black),

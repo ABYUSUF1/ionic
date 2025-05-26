@@ -16,11 +16,11 @@ class SignUpView extends StatelessWidget {
       backgroundColor: Theme.of(context).colorScheme.surface,
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: CustomBackButton(),
+        title: const CustomBackButton(),
       ),
       body: BlocProvider(
         create: (context) => SignUpCubit(getIt<AuthRepo>()),
-        child: SignUpViewBody(),
+        child: const SignUpViewBody(),
       ),
     );
   }

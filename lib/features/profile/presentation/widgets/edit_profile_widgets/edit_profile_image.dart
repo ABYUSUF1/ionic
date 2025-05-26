@@ -53,7 +53,10 @@ class EditProfileImage extends StatelessWidget {
                   cubit.onPhotoChanged(imageFile);
                 }
               },
-              icon: Icon(IconsaxPlusBold.gallery_edit, color: Colors.white),
+              icon: const Icon(
+                IconsaxPlusBold.gallery_edit,
+                color: Colors.white,
+              ),
             ),
           ),
         ],

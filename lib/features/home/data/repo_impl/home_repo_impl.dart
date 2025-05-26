@@ -24,7 +24,7 @@ class HomeRepoImpl implements HomeRepo {
 
       return Right(categories);
     } catch (e) {
-      return Left(Failure("Failed to fetch categories"));
+      return const Left(Failure("Failed to fetch categories"));
     }
   }
 
@@ -39,7 +39,7 @@ class HomeRepoImpl implements HomeRepo {
     } catch (e) {
       print("ERROR ========================================");
       print(e.toString());
-      return Left(Failure("Failed to fetch popular products"));
+      return const Left(Failure("Failed to fetch popular products"));
     }
   }
 }

@@ -9,7 +9,7 @@ part 'sign_in_cubit.freezed.dart';
 
 class SignInCubit extends Cubit<SignInState> {
   final AuthRepo _authRepo;
-  SignInCubit(this._authRepo) : super(SignInState.initial());
+  SignInCubit(this._authRepo) : super(const SignInState.initial());
 
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
@@ -17,7 +17,7 @@ class SignInCubit extends Cubit<SignInState> {
 
   Future<void> signInWithEmailAndPassword() async {
     if (formKey.currentState!.validate()) {
-      emit(SignInState.loading());
+      emit(const SignInState.loading());
 
       final result = await _authRepo.signInWithEmailAndPassword(
         email: emailController.text,
@@ -40,7 +40,7 @@ class SignInCubit extends Cubit<SignInState> {
   }
 
   Future<void> signInWithGoogle() async {
-    emit(SignInState.loading());
+    emit(const SignInState.loading());
     final result = await _authRepo.signInWithGoogle();
     result.fold(
       (failure) => emit(SignInState.error(failure.errMessage)),
@@ -49,11 +49,11 @@ class SignInCubit extends Cubit<SignInState> {
   }
 
   Future<void> sendEmailVerification() async {
-    emit(SignInState.loading());
+    emit(const SignInState.loading());
     final result = await _authRepo.sendEmailVerification();
     result.fold(
       (failure) => emit(SignInState.error(failure.errMessage)),
-      (_) => emit(SignInState.emailNotVerified()),
+      (_) => emit(const SignInState.emailNotVerified()),
     );
   }
 

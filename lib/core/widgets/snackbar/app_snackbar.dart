@@ -57,8 +57,8 @@ void _showCustomSnackBar({
   messenger.showSnackBar(
     snackBar,
     snackBarAnimationStyle: AnimationStyle(
-      duration: Duration(milliseconds: 800),
-      reverseDuration: Duration(milliseconds: 800),
+      duration: const Duration(milliseconds: 800),
+      reverseDuration: const Duration(milliseconds: 800),
       curve: Curves.easeIn,
       reverseCurve: Curves.easeOut,
     ),

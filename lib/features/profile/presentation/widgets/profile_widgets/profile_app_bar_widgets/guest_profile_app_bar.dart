@@ -28,7 +28,7 @@ class GuestProfileAppBar extends StatelessWidget {
               children: [
                 _buildGuestHeader(theme),
                 const SizedBox(height: 16),
-                ProfileGuestAppBarSignButton(),
+                const ProfileGuestAppBarSignButton(),
               ],
             ),
           ),

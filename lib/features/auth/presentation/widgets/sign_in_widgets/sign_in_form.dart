@@ -50,12 +50,12 @@ class SignInForm extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Flexible(child: Divider(indent: 60, endIndent: 10)),
+              const Flexible(child: Divider(indent: 60, endIndent: 10)),
               Text(
                 LocaleKeys.auth_or_sign_in_with.tr(),
                 style: theme.textTheme.bodySmall,
               ),
-              Flexible(child: Divider(indent: 10, endIndent: 60)),
+              const Flexible(child: Divider(indent: 10, endIndent: 60)),
             ],
           ),
           const SizedBox(height: 30),
@@ -109,12 +109,12 @@ class SignInForm extends StatelessWidget {
                 ),
               ),
               const SizedBox(width: 16),
-              Expanded(flex: 3, child: GuestButton()),
+              const Expanded(flex: 3, child: GuestButton()),
             ],
           ),
           SizedBox(height: size.height * 0.04),
 
-          DontHaveAccountButton(),
+          const DontHaveAccountButton(),
         ],
       ),
     );

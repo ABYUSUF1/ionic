@@ -9,7 +9,7 @@ part 'auth_cubit.freezed.dart';
 
 class AuthCubit extends Cubit<AuthState> {
   final AuthRepo _authRepo;
-  AuthCubit(this._authRepo) : super(AuthState.initial()) {
+  AuthCubit(this._authRepo) : super(const AuthState.initial()) {
     checkAuthStatus();
   }
 
@@ -27,7 +27,7 @@ class AuthCubit extends Cubit<AuthState> {
       return;
     }
 
-    emit(AuthState.loading(''));
+    emit(const AuthState.loading(''));
     final result = await _authRepo.getCurrentUser();
 
     result.fold((failure) => emit(AuthState.error(failure.errMessage)), (
@@ -37,7 +37,7 @@ class AuthCubit extends Cubit<AuthState> {
         emit(AuthState.authenticated(authEntity));
         cachedAuthEntity = authEntity;
       } else {
-        emit(AuthState.unAuthenticated());
+        emit(const AuthState.unAuthenticated());
         cachedAuthEntity = null;
       }
     });
@@ -45,7 +45,7 @@ class AuthCubit extends Cubit<AuthState> {
 
   /// Sign in with google
   Future<void> signInWithGoogle() async {
-    emit(AuthState.loading("Signing with Google..."));
+    emit(const AuthState.loading("Signing with Google..."));
     final result = await _authRepo.signInWithGoogle();
     result.fold((failure) => emit(AuthState.error(failure.errMessage)), (
       authEntity,
@@ -55,7 +55,7 @@ class AuthCubit extends Cubit<AuthState> {
         cachedAuthEntity = authEntity;
       } else {
         // Email is not verified
-        emit(AuthState.unAuthenticated());
+        emit(const AuthState.unAuthenticated());
         cachedAuthEntity = null;
       }
     });
@@ -63,10 +63,10 @@ class AuthCubit extends Cubit<AuthState> {
 
   /// Logout
   Future<void> signOut() async {
-    emit(AuthState.loading("Signing out..."));
+    emit(const AuthState.loading("Signing out..."));
     final result = await _authRepo.signOut();
     result.fold((failure) => emit(AuthState.error(failure.errMessage)), (_) {
-      emit(AuthState.unAuthenticated());
+      emit(const AuthState.unAuthenticated());
       cachedAuthEntity = null;
     });
   }

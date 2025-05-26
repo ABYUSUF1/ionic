@@ -19,4 +19,10 @@ class AppRouterName {
 
   // favorites route
   static const String favoriteRoute = '/favorite';
+
+  // product details route
+  static const String productRoute = '/product/:productId';
+  static String productIdRoute(String productId) {
+    return '/product/$productId';
+  }
 }

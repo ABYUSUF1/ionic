@@ -42,10 +42,33 @@ class Product with _$Product {
 extension ProductExtensions on Product {
   bool get isAvailable => stock != null && stock! > 0;
 
-  String get formattedPrice => '\$${price?.toStringAsFixed(2) ?? '0.00'}';
+  String get formattedPrice => price?.toStringAsFixed(2) ?? '0.00';
 
   String get formattedDiscountPercentage =>
-      '${discountPercentage?.toStringAsFixed(2) ?? '0.00'}%';
+      '- ${discountPercentage?.toStringAsFixed(2) ?? '0.00'}%';
+
+  String get formattedPriceBeforeDiscount {
+    if (discountPercentage != null && discountPercentage! > 0) {
+      final discountedPrice = price! / (1 - discountPercentage! / 100);
+      return discountedPrice.toStringAsFixed(2);
+    }
+    return formattedPrice;
+  }
+
+  String get formattedStock {
+    if (stock == null) return 'N/A';
+    if (stock! > 0) {
+      return stock! > 10 ? '$stock in stock' : 'Only $stock in stock';
+    } else {
+      return 'Out of stock';
+    }
+  }
+
+  String get formattedWeight => weight != null ? '$weight g' : 'N/A';
+  String get formattedDimensions =>
+      dimensions != null
+          ? '${dimensions!.depth} x ${dimensions!.width} x ${dimensions!.height} cm'
+          : 'N/A';
 
   ProductItemEntity toProductItem() {
     return ProductItemEntity(

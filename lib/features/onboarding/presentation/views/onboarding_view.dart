@@ -49,7 +49,7 @@ class _OnboardingViewState extends State<OnboardingView> {
     return Scaffold(
       backgroundColor: theme.colorScheme.surface,
       appBar: AppBar(
-        title: LanguageSwitcher(),
+        title: const LanguageSwitcher(),
         actions: [
           CustomUnderlineButton(
             onPressed: () {
@@ -66,7 +66,7 @@ class _OnboardingViewState extends State<OnboardingView> {
       ),
       body: Center(
         child: ConstrainedBox(
-          constraints: BoxConstraints(maxWidth: 600),
+          constraints: const BoxConstraints(maxWidth: 600),
           child: Padding(
             padding: const EdgeInsets.all(24.0),
             child: Column(

@@ -8,7 +8,8 @@ part 'forget_password_cubit.freezed.dart';
 
 class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
   final AuthRepo _authRepo;
-  ForgetPasswordCubit(this._authRepo) : super(ForgetPasswordState.initial());
+  ForgetPasswordCubit(this._authRepo)
+    : super(const ForgetPasswordState.initial());
 
   final TextEditingController emailController = TextEditingController();
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
@@ -16,7 +17,7 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
   /// Send password reset email
   Future<void> sendPasswordReset() async {
     if (formKey.currentState!.validate()) {
-      emit(ForgetPasswordState.loading());
+      emit(const ForgetPasswordState.loading());
 
       final result = await _authRepo.sendPasswordResetEmail(
         emailController.text.trim(),

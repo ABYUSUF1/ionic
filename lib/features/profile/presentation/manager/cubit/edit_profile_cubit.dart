@@ -11,7 +11,8 @@ part 'edit_profile_cubit.freezed.dart';
 
 class EditProfileCubit extends Cubit<EditProfileState> {
   final EditProfileRepo _editProfileRepo;
-  EditProfileCubit(this._editProfileRepo) : super(EditProfileState.initial());
+  EditProfileCubit(this._editProfileRepo)
+    : super(const EditProfileState.initial());
 
   File? imageFile;
   String? photoUrl;

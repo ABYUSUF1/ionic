@@ -62,7 +62,7 @@ class SignInViewBody extends StatelessWidget {
           child: Center(
             child: ConstrainedBox(
               constraints: const BoxConstraints(maxWidth: 600),
-              child: SignInForm(),
+              child: const SignInForm(),
             ),
           ),
         ),

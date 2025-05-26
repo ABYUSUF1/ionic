@@ -17,7 +17,7 @@ class CustomProfileListTile extends StatelessWidget {
     return ListTile(
       leading: Icon(icon, size: 28),
       title: Text(title, style: theme.textTheme.bodyMedium),
-      trailing: Icon(Icons.arrow_forward_ios_rounded, size: 16),
+      trailing: const Icon(Icons.arrow_forward_ios_rounded, size: 16),
       onTap: onTap,
     );
   }

@@ -10,16 +10,16 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CustomScrollView(
+    return const CustomScrollView(
       slivers: [
         HomeAppBar(),
-        SliverToBoxAdapter(child: const SizedBox(height: 30)),
+        SliverToBoxAdapter(child: SizedBox(height: 30)),
         HomeAds(),
-        SliverToBoxAdapter(child: const SizedBox(height: 30)),
+        SliverToBoxAdapter(child: SizedBox(height: 30)),
         HomeCategories(),
-        SliverToBoxAdapter(child: const SizedBox(height: 30)),
+        SliverToBoxAdapter(child: SizedBox(height: 30)),
         HomePopularProducts(),
-        SliverToBoxAdapter(child: const SizedBox(height: 30)),
+        SliverToBoxAdapter(child: SizedBox(height: 30)),
       ],
     );
   }

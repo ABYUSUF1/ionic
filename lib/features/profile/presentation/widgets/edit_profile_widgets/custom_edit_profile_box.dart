@@ -21,9 +21,9 @@ class CustomEditProfileBox extends StatelessWidget {
             fontFamily: 'Pulp Display',
           ),
         ),
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
         Container(
-          padding: EdgeInsets.all(16),
+          padding: const EdgeInsets.all(16),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8),
             color: theme.colorScheme.surface,

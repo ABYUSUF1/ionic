@@ -22,7 +22,7 @@ class HomeCategoriesUpper extends StatelessWidget {
           TextButton.icon(
             onPressed: () {},
             label: Text(context.tr(LocaleKeys.common_view_all)),
-            icon: Icon(Icons.arrow_forward_ios_rounded),
+            icon: const Icon(Icons.arrow_forward_ios_rounded),
             iconAlignment: IconAlignment.end,
           ),
         ],

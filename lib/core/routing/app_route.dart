@@ -7,12 +7,14 @@ import 'package:ionic/features/auth/presentation/views/sign_in_view.dart';
 import 'package:ionic/features/auth/presentation/views/sign_up_view.dart';
 import 'package:ionic/features/cart/presentation/views/cart_view.dart';
 import 'package:ionic/features/home/presentation/views/home_view.dart';
+import 'package:ionic/features/product/presentation/views/product_view.dart';
 import 'package:ionic/features/profile/presentation/views/edit_profile_view.dart';
 import 'package:ionic/features/profile/presentation/views/profile_view.dart';
 import 'package:ionic/main_bottom_nav_bar.dart';
 
 import '../../features/categories/presentation/views/categories_view.dart';
 import '../../features/onboarding/presentation/views/onboarding_view.dart';
+import '../models/product_model/product.dart';
 import '../services/data_source/local/local_app_settings_service.dart';
 import '../services/di/get_it_service.dart';
 
@@ -23,6 +25,7 @@ final GoRouter appRouter = GoRouter(
           : AppRouterName.homeRoute,
 
   debugLogDiagnostics: true,
+
   routes: [
     // --------------------- Onboarding ---------------------
     GoRoute(
@@ -104,6 +107,32 @@ final GoRouter appRouter = GoRouter(
           ],
         ),
       ],
+    ),
+
+    /// --------------------- Product ---------------------
+    GoRoute(
+      path: AppRouterName.productRoute,
+      name: AppRouterName.productRoute,
+
+      builder: (context, state) {
+        final String productId = state.pathParameters['productId'] ?? '';
+
+        final extra = state.extra;
+        late final Product product;
+
+        if (extra is Product) {
+          product = extra;
+        } else if (extra is Map<String, dynamic>) {
+          // When change device from devicePreview the object convert to Map
+          // and we need to convert it back to Product
+          //? Why this happens? --> I DONT KNOW
+          product = Product.fromJson(extra);
+        } else {
+          throw Exception("Invalid product data");
+        }
+
+        return ProductView(productId: productId, product: product);
+      },
     ),
   ],
 );

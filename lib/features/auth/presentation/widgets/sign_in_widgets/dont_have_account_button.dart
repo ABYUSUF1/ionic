@@ -26,7 +26,7 @@ class DontHaveAccountButton extends StatelessWidget {
           const SizedBox(width: 4),
           Text(
             LocaleKeys.auth_sign_up.tr(),
-            style: TextStyle(color: AppColors.primaryColor),
+            style: const TextStyle(color: AppColors.primaryColor),
           ),
         ],
       ),

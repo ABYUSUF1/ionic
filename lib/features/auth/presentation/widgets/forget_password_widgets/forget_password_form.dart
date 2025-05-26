@@ -79,7 +79,7 @@ class ForgetPasswordForm extends StatelessWidget {
             BlocBuilder<ForgetPasswordCubit, ForgetPasswordState>(
               builder: (context, state) {
                 return state.maybeWhen(
-                  loading: () => Center(child: NormalLoading()),
+                  loading: () => const Center(child: NormalLoading()),
                   orElse:
                       () => CustomFilledButton(
                         text: LocaleKeys.common_send.tr(),

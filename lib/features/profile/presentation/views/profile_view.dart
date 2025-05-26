@@ -11,8 +11,8 @@ class ProfileView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CustomScrollView(
-      physics: const BouncingScrollPhysics(),
+    return const CustomScrollView(
+      physics: BouncingScrollPhysics(),
       slivers: [
         ProfileAppBar(),
         ProfileMyPreferenceBox(),

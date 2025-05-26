@@ -40,7 +40,7 @@ class CustomFilledButton extends StatelessWidget {
       ),
       label:
           isLoading
-              ? SmallLoading(color: Colors.white)
+              ? const SmallLoading(color: Colors.white)
               : Text(
                 text,
                 style:

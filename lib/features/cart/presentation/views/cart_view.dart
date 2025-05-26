@@ -5,6 +5,6 @@ class CartView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(children: [Text("Cart")]);
+    return const Column(children: [Text("Cart")]);
   }
 }

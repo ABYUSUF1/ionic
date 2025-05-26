@@ -9,12 +9,13 @@ part 'popular_products_cubit.freezed.dart';
 
 class PopularProductsCubit extends Cubit<PopularProductsState> {
   final HomeRepo _homeRepo;
-  PopularProductsCubit(this._homeRepo) : super(PopularProductsState.initial()) {
+  PopularProductsCubit(this._homeRepo)
+    : super(const PopularProductsState.initial()) {
     fetchPopularProducts();
   }
 
   Future<void> fetchPopularProducts() async {
-    emit(PopularProductsState.loading());
+    emit(const PopularProductsState.loading());
     final result = await _homeRepo.fetchPopularProducts();
     result.fold(
       (failure) => emit(PopularProductsState.error(failure.errMessage)),

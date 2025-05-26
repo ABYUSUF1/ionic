@@ -22,7 +22,7 @@ Future<void> showCustomDialog({
         backgroundColor: theme.colorScheme.surface,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
         child: ConstrainedBox(
-          constraints: BoxConstraints(maxWidth: 500),
+          constraints: const BoxConstraints(maxWidth: 500),
           child: Padding(
             padding: const EdgeInsets.only(
               right: 16.0,

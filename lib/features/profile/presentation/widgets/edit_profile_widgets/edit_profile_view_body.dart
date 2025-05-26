@@ -31,7 +31,7 @@ class EditProfileViewBody extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const EditProfileImage(),
-                  SizedBox(height: 30),
+                  const SizedBox(height: 30),
                   CustomEditProfileBox(
                     title: LocaleKeys.edit_profile_personal_info.tr(),
                     child: Column(
@@ -54,12 +54,12 @@ class EditProfileViewBody extends StatelessWidget {
                                 editProfileCubit.phoneNumberController.text,
                               ),
                         ),
-                        EditProfileGenderBirthdate(),
+                        const EditProfileGenderBirthdate(),
                       ],
                     ),
                   ),
-                  SizedBox(height: 30),
-                  DeleteAccountButton(),
+                  const SizedBox(height: 30),
+                  const DeleteAccountButton(),
                 ],
               ),
             );
