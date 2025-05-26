@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:ionic/core/entities/product_item_entity.dart';
 
 import 'dimensions.dart';
 import 'meta.dart';
@@ -36,4 +37,25 @@ class Product with _$Product {
 
   factory Product.fromJson(Map<String, dynamic> json) =>
       _$ProductFromJson(json);
+}
+
+extension ProductExtensions on Product {
+  bool get isAvailable => stock != null && stock! > 0;
+
+  String get formattedPrice => '\$${price?.toStringAsFixed(2) ?? '0.00'}';
+
+  String get formattedDiscountPercentage =>
+      '${discountPercentage?.toStringAsFixed(2) ?? '0.00'}%';
+
+  ProductItemEntity toProductItem() {
+    return ProductItemEntity(
+      id: id.toString(),
+      title: title ?? '',
+      imageUrl: thumbnail ?? '',
+      price: price ?? 0.0,
+      rating: rating ?? 0.0,
+      stock: stock ?? 0,
+      reviewsCount: reviews?.length ?? 0,
+    );
+  }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ionic/core/models/product_model/product.dart';
 import 'package:ionic/core/services/di/get_it_service.dart';
 import 'package:ionic/features/home/presentation/manager/popular_products/popular_products_cubit.dart';
 
@@ -32,7 +33,15 @@ class HomePopularProductsGrid extends StatelessWidget {
                   ) ??
                   0,
               itemBuilder: (BuildContext context, int index) {
-                return ProductItem();
+                final productItem = state.whenOrNull(
+                  success:
+                      (productsEntity) =>
+                          productsEntity.products[index].toProductItem(),
+                );
+                if (productItem == null) {
+                  return const SizedBox.shrink();
+                }
+                return ProductItem(productItem: productItem);
               },
             ),
           );

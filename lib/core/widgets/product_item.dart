@@ -1,11 +1,11 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
-
-import '../constants/app_assets.dart';
+import 'package:ionic/core/entities/product_item_entity.dart';
 
 class ProductItem extends StatelessWidget {
-  const ProductItem({super.key});
+  final ProductItemEntity productItem;
+  const ProductItem({super.key, required this.productItem});
 
   @override
   Widget build(BuildContext context) {
@@ -29,13 +29,11 @@ class ProductItem extends StatelessWidget {
               color: theme.colorScheme.secondary,
               borderRadius: BorderRadius.circular(6),
             ),
-            child: SvgPicture.asset(
-              AppAssets.illustrationsLoginIllustrationDark,
-            ),
+            child: CachedNetworkImage(imageUrl: productItem.imageUrl),
           ),
           const SizedBox(height: 10),
           Text(
-            "Apple Iphone 16 Pro Max 256GB Camera asdda",
+            productItem.title,
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
             style: theme.textTheme.bodyMedium!.copyWith(
@@ -44,7 +42,7 @@ class ProductItem extends StatelessWidget {
           ),
           const SizedBox(height: 5),
           Text(
-            "4.6 ⭐ (1.2k)",
+            "${productItem.rating} ⭐ (${productItem.reviewsCount} Reviews)",
             style: theme.textTheme.bodySmall!.copyWith(color: Colors.white70),
           ),
           const SizedBox(height: 5),
@@ -52,7 +50,7 @@ class ProductItem extends StatelessWidget {
             children: [
               Text("EGP "),
               Text(
-                "77,150",
+                "${productItem.price}",
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontFamily: "Pulp Display",
@@ -66,7 +64,9 @@ class ProductItem extends StatelessWidget {
               Icon(IconsaxPlusBold.truck_fast, size: 16),
               const SizedBox(width: 3),
               Text(
-                "Free Delivery",
+                productItem.stock > 0
+                    ? "${productItem.stock} In Stock"
+                    : "Out of Stock",
                 style: theme.textTheme.bodySmall!.copyWith(
                   color: Colors.white70,
                 ),
