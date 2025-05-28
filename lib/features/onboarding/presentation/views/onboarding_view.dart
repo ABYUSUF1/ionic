@@ -97,7 +97,7 @@ class _OnboardingViewState extends State<OnboardingView> {
                             textAlign: TextAlign.center,
                             style: theme.textTheme.bodyLarge!.copyWith(
                               color: theme.colorScheme.onSurfaceVariant,
-                              fontWeight: FontWeight.normal,
+                              fontWeight: FontWeight.bold,
                             ),
                           ),
                         ],

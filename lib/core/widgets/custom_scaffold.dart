@@ -5,11 +5,11 @@ import 'buttons/custom_back_button.dart';
 class CustomScaffold extends StatelessWidget {
   final String title;
   final Widget body;
-  final Widget? bottomSheet;
+  final Widget? bottomNavBar;
   const CustomScaffold({
     super.key,
     required this.body,
-    this.bottomSheet,
+    this.bottomNavBar,
     required this.title,
   });
 
@@ -17,7 +17,7 @@ class CustomScaffold extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return Scaffold(
-      bottomSheet: bottomSheet,
+      bottomNavigationBar: bottomNavBar,
       appBar: AppBar(
         automaticallyImplyLeading: false,
         title: Row(

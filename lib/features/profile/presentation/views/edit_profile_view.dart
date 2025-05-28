@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ionic/core/services/di/get_it_service.dart';
 import 'package:ionic/core/widgets/custom_scaffold.dart';
+import 'package:ionic/core/widgets/responsive_layout.dart';
 import 'package:ionic/features/auth/presentation/manager/auth/auth_cubit.dart';
 import 'package:ionic/features/profile/presentation/manager/cubit/edit_profile_cubit.dart';
 import 'package:ionic/generated/locale_keys.g.dart';
@@ -22,7 +23,7 @@ class EditProfileView extends StatelessWidget {
           (context) =>
               EditProfileCubit(getIt())
                 ..init(context.read<AuthCubit>().cachedAuthEntity!),
-      child: BlocConsumer<EditProfileCubit, EditProfileState>(
+      child: BlocListener<EditProfileCubit, EditProfileState>(
         listener: (context, state) {
           state.whenOrNull(
             loading: () => showFullScreenLoading(context, "Save Changes..."),
@@ -40,13 +41,14 @@ class EditProfileView extends StatelessWidget {
             },
           );
         },
-        builder: (context, state) {
-          return CustomScaffold(
-            body: const EditProfileViewBody(),
-            title: LocaleKeys.edit_profile_title.tr(),
-            bottomSheet: const EditProfileSaveButton(),
-          );
-        },
+        child: CustomScaffold(
+          body: const EditProfileViewBody(),
+          title: LocaleKeys.edit_profile_title.tr(),
+          bottomNavBar:
+              ResponsiveLayout.isMobile(context)
+                  ? const EditProfileSaveButton()
+                  : null,
+        ),
       ),
     );
   }

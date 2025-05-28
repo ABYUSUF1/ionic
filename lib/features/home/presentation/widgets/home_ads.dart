@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:ionic/core/widgets/responsive_layout.dart';
 
 import '../../../../core/constants/app_assets.dart';
 
@@ -87,7 +88,7 @@ class _HomeAdsState extends State<HomeAds> {
   Widget build(BuildContext context) {
     return SliverToBoxAdapter(
       child: SizedBox(
-        height: 150,
+        height: ResponsiveLayout.isMobile(context) ? 150 : 230,
         child: PageView.builder(
           controller: _controller,
           itemCount: 2000, // Large number for infinite scroll effect

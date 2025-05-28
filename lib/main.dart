@@ -11,21 +11,17 @@ import 'package:ionic/core/services/network/network_widget.dart';
 import 'package:ionic/core/theme/app_theme.dart';
 import 'package:ionic/features/auth/presentation/manager/auth/auth_cubit.dart';
 import 'package:ionic/firebase_options.dart';
-import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:ionic/generated/codegen_loader.g.dart';
 
 import 'core/theme/manager/cubit/theme_cubit.dart';
 import 'features/auth/domain/repo/auth_repo.dart';
 
 Future<void> main() async {
-  final widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
-  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+  WidgetsFlutterBinding.ensureInitialized();
 
   await EasyLocalization.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await setupGetIt();
-
-  FlutterNativeSplash.remove();
 
   runApp(
     EasyLocalization(

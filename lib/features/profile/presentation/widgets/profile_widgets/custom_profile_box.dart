@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ionic/core/widgets/responsive_layout.dart';
 
 class CustomProfileBox extends StatelessWidget {
   final String title;
@@ -15,7 +16,13 @@ class CustomProfileBox extends StatelessWidget {
     return SliverToBoxAdapter(
       child: Container(
         padding: const EdgeInsets.all(16),
-        margin: const EdgeInsets.all(16),
+        clipBehavior: Clip.hardEdge,
+        margin: EdgeInsetsDirectional.only(
+          bottom: 8,
+          top: 8,
+          end: ResponsiveLayout.isMobile(context) ? 16 : 0,
+          start: 16,
+        ),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8),
           color: theme.colorScheme.surface,

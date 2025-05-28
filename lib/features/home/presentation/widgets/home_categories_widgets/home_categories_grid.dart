@@ -33,7 +33,7 @@ class HomeCategoriesGrid extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               padding: const EdgeInsets.symmetric(horizontal: 8),
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
+                crossAxisCount: ResponsiveLayout.isMobile(context) ? 2 : 1,
                 mainAxisExtent: ResponsiveLayout.isMobile(context) ? 79 : 100,
               ),
               itemCount: isLoading ? 10 : categories.length,

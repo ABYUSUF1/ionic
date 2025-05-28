@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
+import 'package:ionic/core/widgets/responsive_layout.dart';
 import 'package:ionic/generated/locale_keys.g.dart';
 
 import '../../../../../core/utils/validators.dart';
@@ -13,6 +14,7 @@ import 'delete_account_button.dart';
 import 'edit_profile_change_gender_birth_date.dart';
 import 'edit_profile_change_name.dart';
 import 'edit_profile_image.dart';
+import 'edit_profile_save_button.dart';
 
 class EditProfileViewBody extends StatelessWidget {
   const EditProfileViewBody({super.key});
@@ -60,6 +62,11 @@ class EditProfileViewBody extends StatelessWidget {
                   ),
                   const SizedBox(height: 30),
                   const DeleteAccountButton(),
+
+                  if (!ResponsiveLayout.isMobile(context)) ...[
+                    const SizedBox(height: 30),
+                    const EditProfileSaveButton(),
+                  ],
                 ],
               ),
             );

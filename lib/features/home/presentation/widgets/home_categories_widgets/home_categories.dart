@@ -24,7 +24,7 @@ class HomeCategories extends StatelessWidget {
             borderRadius: BorderRadius.circular(8),
           ),
           margin: const EdgeInsets.symmetric(horizontal: 16),
-          height: ResponsiveLayout.isMobile(context) ? 300 : 350,
+          height: ResponsiveLayout.isMobile(context) ? 300 : 230,
           width: double.infinity,
           child: const Column(
             crossAxisAlignment: CrossAxisAlignment.start,

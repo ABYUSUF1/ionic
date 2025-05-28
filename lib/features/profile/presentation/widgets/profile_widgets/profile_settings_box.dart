@@ -5,6 +5,7 @@ import 'package:ionic/features/profile/presentation/widgets/profile_widgets/cust
 import 'package:ionic/generated/locale_keys.g.dart';
 
 import '../../../../../core/theme/dark_mode_switch_button.dart';
+import '../../manager/tablet_ui_logic/cubit/tablet_ui_logic_cubit.dart';
 import 'custom_language_button.dart';
 import 'custom_profile_list_tile.dart';
 
@@ -19,6 +20,7 @@ class ProfileSettingsBox extends StatelessWidget {
         CustomProfileListTile(
           title: context.tr(LocaleKeys.profile_notifications),
           icon: IconsaxPlusLinear.notification,
+          section: ProfileButtonEnum.notifications,
           onTap: () {},
         ),
         const CustomLanguageButton(),
@@ -26,6 +28,7 @@ class ProfileSettingsBox extends StatelessWidget {
         CustomProfileListTile(
           title: "Account Privacy",
           icon: IconsaxPlusLinear.lock,
+          section: ProfileButtonEnum.accountPrivacy,
           onTap: () {},
         ),
       ],

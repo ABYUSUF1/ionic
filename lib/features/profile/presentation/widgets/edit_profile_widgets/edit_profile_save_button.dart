@@ -12,9 +12,8 @@ class EditProfileSaveButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final cubit = context.read<EditProfileCubit>();
-    final editProfileCubit = context.read<EditProfileCubit>();
-    final canSubmit = cubit.state.maybeWhen(
+    final editProfileCubit = context.watch<EditProfileCubit>();
+    final canSubmit = editProfileCubit.state.maybeWhen(
       initial: (value, _) => value,
       orElse: () => false,
     );
