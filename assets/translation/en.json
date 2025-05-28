@@ -12,6 +12,7 @@
     "common_sending": "sending...",
     "common_save_changes": "Save changes...",
     "common_view_all": "View All",
+    "common_result_for" : "Result for",
     
 
     "validators_required": "Field is required",
@@ -101,5 +102,7 @@
     "edit_profile_gender_male": "Male",
     "edit_profile_gender_female": "Female",
     "edit_profile_profile_updated_successfully": "Profile updated successfully"
+
+
 
 }

@@ -12,6 +12,7 @@
     "common_sending": "جاري الإرسال...",
     "common_save_changes": "حفظ التغييرات....",
     "common_view_all": "عرض الكل",
+    "common_result_for": "نتائج البحث عن",
     
 
     "validators_required": "هذا الحقل مطلوب",
@@ -100,5 +101,7 @@
     "edit_profile_gender_male": "ذكر",
     "edit_profile_gender_female": "انثى",
     "edit_profile_profile_updated_successfully": "تم تحديث الملف الشخصي بنجاح"
+
+
 
 }

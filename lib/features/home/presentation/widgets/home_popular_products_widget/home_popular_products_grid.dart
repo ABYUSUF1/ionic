@@ -42,6 +42,10 @@ class HomePopularProductsGrid extends StatelessWidget {
                 return ProductItem(
                   product: product,
                   productItem: product.toProductItem(),
+                  isLoading: state.maybeWhen(
+                    orElse: () => false,
+                    loading: () => true,
+                  ),
                 );
               },
             ),

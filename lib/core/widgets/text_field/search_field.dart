@@ -6,11 +6,19 @@ class SearchField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return TextField(
+      onTapOutside: (event) => FocusManager.instance.primaryFocus?.unfocus(),
       decoration: InputDecoration(
-        border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
+        constraints: const BoxConstraints(maxHeight: 55),
         prefixIcon: const Icon(Icons.search),
         hintText: hintText ?? "Search",
+        fillColor: theme.colorScheme.secondary,
+        filled: true,
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8),
+          borderSide: BorderSide.none,
+        ),
       ),
     );
   }

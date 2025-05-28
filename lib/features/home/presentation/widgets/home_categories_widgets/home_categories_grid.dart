@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../core/widgets/loading/skeleton_loading.dart';
 import '../../../../../core/widgets/responsive_layout.dart';
-import '../../manager/categories/categories_cubit.dart';
+import '../../manager/categories/home_categories_cubit.dart';
 import 'home_categories_grid_item.dart';
 
 class HomeCategoriesGrid extends StatelessWidget {
@@ -11,9 +11,9 @@ class HomeCategoriesGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<CategoriesCubit, CategoriesState>(
+    return BlocBuilder<HomeCategoriesCubit, HomeCategoriesState>(
       builder: (context, state) {
-        final cubit = context.read<CategoriesCubit>();
+        final cubit = context.read<HomeCategoriesCubit>();
         final isLoading = cubit.state.maybeWhen(
           orElse: () => false,
           loading: (_) => true,

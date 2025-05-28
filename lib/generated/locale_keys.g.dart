@@ -2,7 +2,7 @@
 
 // ignore_for_file: constant_identifier_names
 
-abstract class LocaleKeys {
+abstract class  LocaleKeys {
   static const common_next = 'common_next';
   static const common_skip = 'common_skip';
   static const common_save = 'common_save';
@@ -16,6 +16,7 @@ abstract class LocaleKeys {
   static const common_sending = 'common_sending';
   static const common_save_changes = 'common_save_changes';
   static const common_view_all = 'common_view_all';
+  static const common_result_for = 'common_result_for';
   static const validators_required = 'validators_required';
   static const validators_name_required = 'validators_name_required';
   static const validators_name_short = 'validators_name_short';
@@ -23,8 +24,7 @@ abstract class LocaleKeys {
   static const validators_email_invalid = 'validators_email_invalid';
   static const validators_password_required = 'validators_password_required';
   static const validators_password_short = 'validators_password_short';
-  static const validators_confirm_password_required =
-      'validators_confirm_password_required';
+  static const validators_confirm_password_required = 'validators_confirm_password_required';
   static const validators_passwords_mismatch = 'validators_passwords_mismatch';
   static const validators_phone_required = 'validators_phone_required';
   static const validators_phone_short = 'validators_phone_short';
@@ -53,24 +53,20 @@ abstract class LocaleKeys {
   static const auth_as_guest = 'auth_as_guest';
   static const auth_or_sign_in_with = 'auth_or_sign_in_with';
   static const auth_send_password_reset_link = 'auth_send_password_reset_link';
-  static const auth_we_sent_you_an_email_to_verify_your_account =
-      'auth_we_sent_you_an_email_to_verify_your_account';
-  static const auth_we_sent_you_an_email_to_reset_your_password =
-      'auth_we_sent_you_an_email_to_reset_your_password';
+  static const auth_we_sent_you_an_email_to_verify_your_account = 'auth_we_sent_you_an_email_to_verify_your_account';
+  static const auth_we_sent_you_an_email_to_reset_your_password = 'auth_we_sent_you_an_email_to_reset_your_password';
   static const auth_signing_in = 'auth_signing_in';
   static const auth_signing_out = 'auth_signing_out';
   static const auth_creating_account = 'auth_creating_account';
   static const auth_create_account = 'auth_create_account';
-  static const auth_by_continuing_you_agree_to_our =
-      'auth_by_continuing_you_agree_to_our';
+  static const auth_by_continuing_you_agree_to_our = 'auth_by_continuing_you_agree_to_our';
   static const auth_terms_of_service = 'auth_terms_of_service';
   static const auth_privacy_policy = 'auth_privacy_policy';
   static const auth_forget_password_desc = 'auth_forget_password_desc';
   static const auth_password_reset = 'auth_password_reset';
   static const auth_verify_email_address = 'auth_verify_email_address';
   static const auth_we_have_sent_a_link_to = 'auth_we_have_sent_a_link_to';
-  static const auth_please_check_your_email_for_the_link =
-      'auth_please_check_your_email_for_the_link';
+  static const auth_please_check_your_email_for_the_link = 'auth_please_check_your_email_for_the_link';
   static const auth_back_to_login = 'auth_back_to_login';
   static const auth_you_can_resend_after = 'auth_you_can_resend_after';
   static const auth_didnt_receive_the_email = 'auth_didnt_receive_the_email';
@@ -97,6 +93,6 @@ abstract class LocaleKeys {
   static const edit_profile_gender = 'edit_profile_gender';
   static const edit_profile_gender_male = 'edit_profile_gender_male';
   static const edit_profile_gender_female = 'edit_profile_gender_female';
-  static const edit_profile_profile_updated_successfully =
-      'edit_profile_profile_updated_successfully';
+  static const edit_profile_profile_updated_successfully = 'edit_profile_profile_updated_successfully';
+
 }

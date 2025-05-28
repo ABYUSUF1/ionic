@@ -7,8 +7,10 @@ import 'package:ionic/core/services/image_picker/image_picker_service.dart';
 import 'package:ionic/features/auth/presentation/manager/auth/auth_cubit.dart';
 import 'package:ionic/features/auth/presentation/manager/forget_password/forget_password_cubit.dart';
 import 'package:ionic/features/auth/presentation/manager/sign_in/sign_in_cubit.dart';
+import 'package:ionic/features/categories/data/repo_impl/categories_repo_impl.dart';
+import 'package:ionic/features/categories/domain/repo/categories_repo.dart';
 import 'package:ionic/features/home/domain/repo/home_repo.dart';
-import 'package:ionic/features/home/presentation/manager/categories/categories_cubit.dart';
+import 'package:ionic/features/home/presentation/manager/categories/home_categories_cubit.dart';
 import 'package:ionic/features/profile/data/repo_impl/edit_profile_repo_impl.dart';
 import 'package:ionic/features/profile/domain/repo/edit_profile_repo.dart';
 
@@ -51,6 +53,9 @@ Future<void> setupGetIt() async {
     () => EditProfileRepoImpl(getIt()),
   );
   getIt.registerLazySingleton<HomeRepo>(() => HomeRepoImpl(getIt()));
+  getIt.registerLazySingleton<CategoriesRepo>(
+    () => CategoriesRepoImpl(getIt()),
+  );
 
   // Register BLoCs/Cubits
   getIt.registerFactory(() => ThemeCubit(getIt()));
@@ -61,5 +66,5 @@ Future<void> setupGetIt() async {
   getIt.registerFactory(() => ForgetPasswordCubit(getIt()));
   getIt.registerFactory(() => AuthCubit(getIt()));
   getIt.registerFactory(() => EditProfileCubit(getIt()));
-  getIt.registerFactory(() => CategoriesCubit(getIt()));
+  getIt.registerFactory(() => HomeCategoriesCubit(getIt()));
 }

@@ -37,6 +37,18 @@ class Product with _$Product {
 
   factory Product.fromJson(Map<String, dynamic> json) =>
       _$ProductFromJson(json);
+
+  static Product loading() {
+    return Product(
+      id: -1,
+      title: 'Loading',
+      thumbnail: '',
+      price: 0.0,
+      rating: 0.0,
+      stock: 0,
+      reviews: [],
+    );
+  }
 }
 
 extension ProductExtensions on Product {

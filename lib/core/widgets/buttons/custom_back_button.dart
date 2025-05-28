@@ -19,7 +19,7 @@ class CustomBackButton extends StatelessWidget {
           ),
           icon: Icon(
             Icons.arrow_back_ios_new_rounded,
-            color: theme.colorScheme.onSurfaceVariant,
+            color: Colors.grey,
             size: 20,
           ),
         )

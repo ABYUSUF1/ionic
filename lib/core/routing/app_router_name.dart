@@ -1,4 +1,4 @@
-class AppRouterName {
+final class AppRouterName {
   // onboarding routes
   static const String onboardingRoute = '/onboarding';
 

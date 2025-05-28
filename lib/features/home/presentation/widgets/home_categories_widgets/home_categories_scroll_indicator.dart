@@ -3,14 +3,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../core/theme/app_colors.dart';
 import '../../../../../core/widgets/scroll_indicator.dart';
-import '../../manager/categories/categories_cubit.dart';
+import '../../manager/categories/home_categories_cubit.dart';
 
 class HomeCategoriesScrollIndicator extends StatelessWidget {
   const HomeCategoriesScrollIndicator({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final cubit = context.read<CategoriesCubit>();
+    final cubit = context.read<HomeCategoriesCubit>();
     return ScrollIndicator(
       scrollController: cubit.scrollController,
       width: 50,

@@ -5,95 +5,115 @@ import 'package:iconsax_plus/iconsax_plus.dart';
 import 'package:ionic/core/entities/product_item_entity.dart';
 import 'package:ionic/core/models/product_model/product.dart';
 import 'package:ionic/core/routing/app_router_name.dart';
+import 'package:ionic/core/widgets/loading/skeleton_loading.dart';
 
 class ProductItem extends StatelessWidget {
   final Product? product;
   final ProductItemEntity productItem;
-  const ProductItem({super.key, required this.productItem, this.product});
+  final bool isLoading;
+  const ProductItem({
+    super.key,
+    required this.productItem,
+    this.product,
+    required this.isLoading,
+  });
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    return GestureDetector(
-      onTap: () {
-        context.push(
-          AppRouterName.productIdRoute(productItem.id),
-          extra: product,
-        );
-      },
-      child: Container(
-        padding: const EdgeInsets.all(8),
-        width: 150,
-        height: 380,
-        decoration: BoxDecoration(
-          color: theme.colorScheme.surface,
-          borderRadius: BorderRadius.circular(8),
-          border: Border.all(color: theme.colorScheme.outline, width: 1),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Stack(
-              children: [
-                Container(
-                  width: 150,
-                  height: 200,
-                  decoration: BoxDecoration(
-                    color: theme.colorScheme.secondary,
-                    borderRadius: BorderRadius.circular(6),
+    return SkeletonLoading(
+      isLoading: isLoading,
+      child: GestureDetector(
+        onTap:
+            isLoading
+                ? null
+                : () {
+                  context.push(
+                    AppRouterName.productIdRoute(productItem.id),
+                    extra: product,
+                  );
+                },
+        child: Container(
+          padding: const EdgeInsets.all(8),
+          width: 150,
+          height: 380,
+          decoration: BoxDecoration(
+            color: theme.colorScheme.surface,
+            borderRadius: BorderRadius.circular(8),
+            border: Border.all(color: theme.colorScheme.outline, width: 1),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Stack(
+                children: [
+                  Container(
+                    width: double.infinity,
+                    height: 200,
+                    decoration: BoxDecoration(
+                      color: theme.colorScheme.secondary,
+                      borderRadius: BorderRadius.circular(6),
+                    ),
+                    child:
+                        isLoading
+                            ? null
+                            : CachedNetworkImage(
+                              imageUrl: productItem.imageUrl,
+                            ),
                   ),
-                  child: CachedNetworkImage(imageUrl: productItem.imageUrl),
-                ),
 
-                IconButton(
-                  icon: const Icon(IconsaxPlusBold.heart),
-                  onPressed: () {},
-                ),
-              ],
-            ),
-            const SizedBox(height: 10),
-            Text(
-              productItem.title,
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
-              style: theme.textTheme.bodyMedium!.copyWith(
-                fontFamily: "Pulp Display",
+                  IconButton(
+                    icon: const Icon(IconsaxPlusBold.heart),
+                    onPressed: () {},
+                  ),
+                ],
               ),
-            ),
-            const SizedBox(height: 5),
-            Text(
-              "${productItem.rating} ⭐ (${productItem.reviewsCount} Reviews)",
-              style: theme.textTheme.bodySmall!.copyWith(color: Colors.white70),
-            ),
-            const SizedBox(height: 5),
-            Row(
-              children: [
-                const Text("EGP "),
-                Text(
-                  "${productItem.price}",
-                  style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontFamily: "Pulp Display",
-                  ),
+              const SizedBox(height: 10),
+              Text(
+                productItem.title,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                style: theme.textTheme.bodyMedium!.copyWith(
+                  fontFamily: "Pulp Display",
                 ),
-              ],
-            ),
-            const SizedBox(height: 5),
-            Row(
-              children: [
-                const Icon(IconsaxPlusBold.truck_fast, size: 16),
-                const SizedBox(width: 3),
-                Text(
-                  productItem.stock > 0
-                      ? "${productItem.stock} In Stock"
-                      : "Out of Stock",
-                  style: theme.textTheme.bodySmall!.copyWith(
-                    color: Colors.white70,
-                  ),
+              ),
+              const SizedBox(height: 5),
+              Text(
+                "${productItem.rating} ⭐ (${productItem.reviewsCount} Reviews)",
+                style: theme.textTheme.bodySmall!.copyWith(
+                  color: theme.colorScheme.onSurfaceVariant,
                 ),
-              ],
-            ),
-          ],
+              ),
+              const SizedBox(height: 5),
+              Row(
+                children: [
+                  const Text("EGP "),
+                  Text(
+                    "${productItem.price}",
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontFamily: "Pulp Display",
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 5),
+              Row(
+                children: [
+                  const Icon(IconsaxPlusBold.truck_fast, size: 16),
+                  const SizedBox(width: 3),
+                  Text(
+                    productItem.stock > 0
+                        ? "${productItem.stock} In Stock"
+                        : "Out of Stock",
+                    style: theme.textTheme.bodySmall!.copyWith(
+                      color: theme.colorScheme.onSurfaceVariant,
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

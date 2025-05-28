@@ -6,6 +6,7 @@ import 'package:ionic/features/auth/presentation/views/forget_password_view.dart
 import 'package:ionic/features/auth/presentation/views/sign_in_view.dart';
 import 'package:ionic/features/auth/presentation/views/sign_up_view.dart';
 import 'package:ionic/features/cart/presentation/views/cart_view.dart';
+import 'package:ionic/features/home/data/models/category_model/localized_title.dart';
 import 'package:ionic/features/home/presentation/views/home_view.dart';
 import 'package:ionic/features/product/presentation/views/product_view.dart';
 import 'package:ionic/features/profile/presentation/views/edit_profile_view.dart';
@@ -76,9 +77,8 @@ final GoRouter appRouter = GoRouter(
         StatefulShellBranch(
           routes: [
             GoRoute(
-              path: AppRouterName.categoriesRoute,
-              name: AppRouterName.categoriesRoute,
-              builder: (context, state) => const CategoriesView(),
+              path: AppRouterName.cartRoute,
+              builder: (context, state) => const CartView(),
             ),
           ],
         ),
@@ -132,6 +132,23 @@ final GoRouter appRouter = GoRouter(
         }
 
         return ProductView(productId: productId, product: product);
+      },
+    ),
+
+    /// --------------------- Categories ---------------------
+    GoRoute(
+      path: AppRouterName.categoriesRoute,
+      name: AppRouterName.categoriesRoute,
+      builder: (context, state) {
+        late final LocalizedTitle categoryName;
+        final extra = state.extra;
+        if (extra is! LocalizedTitle) {
+          categoryName = LocalizedTitle.fromJson(extra as Map<String, dynamic>);
+        } else {
+          categoryName = extra;
+        }
+
+        return CategoriesView(categoryName: categoryName);
       },
     ),
   ],

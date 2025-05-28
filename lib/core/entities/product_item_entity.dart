@@ -16,4 +16,16 @@ class ProductItemEntity {
     required this.stock,
     required this.reviewsCount,
   });
+
+  ProductItemEntity loading() {
+    return ProductItemEntity(
+      id: '-1',
+      title: 'Loading',
+      imageUrl: '',
+      price: 0.0,
+      rating: 0.0,
+      stock: 0,
+      reviewsCount: 0,
+    );
+  }
 }

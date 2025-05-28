@@ -4,23 +4,24 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:ionic/features/home/domain/entity/category_entity.dart';
 import 'package:ionic/features/home/domain/repo/home_repo.dart';
 
-part 'categories_state.dart';
-part 'categories_cubit.freezed.dart';
+part 'home_categories_state.dart';
+part 'home_categories_cubit.freezed.dart';
 
-class CategoriesCubit extends Cubit<CategoriesState> {
+class HomeCategoriesCubit extends Cubit<HomeCategoriesState> {
   final HomeRepo _homeRepo;
-  CategoriesCubit(this._homeRepo) : super(const CategoriesState.initial()) {
+  HomeCategoriesCubit(this._homeRepo)
+    : super(const HomeCategoriesState.initial()) {
     fetchCategories();
   }
 
   final scrollController = ScrollController();
 
   Future<void> fetchCategories() async {
-    emit(CategoriesState.loading([CategoryEntity.loading()]));
+    emit(HomeCategoriesState.loading([CategoryEntity.loading()]));
     final result = await _homeRepo.getCategories();
     result.fold(
-      (failure) => emit(const CategoriesState.error()),
-      (categories) => emit(CategoriesState.success(categories)),
+      (failure) => emit(const HomeCategoriesState.error()),
+      (categories) => emit(HomeCategoriesState.success(categories)),
     );
   }
 

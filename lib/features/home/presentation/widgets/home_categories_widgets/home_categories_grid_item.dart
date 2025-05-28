@@ -1,8 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:ionic/core/utils/functions/is_arabic.dart';
 import 'package:ionic/core/widgets/responsive_layout.dart';
 import 'package:ionic/features/home/domain/entity/category_entity.dart';
+
+import '../../../../../core/routing/app_router_name.dart';
 
 class HomeCategoriesGridItem extends StatelessWidget {
   const HomeCategoriesGridItem({super.key, required this.category});
@@ -14,7 +17,12 @@ class HomeCategoriesGridItem extends StatelessWidget {
     final theme = Theme.of(context);
     final double size = ResponsiveLayout.isMobile(context) ? 60 : 80;
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        context.push(
+          AppRouterName.categoriesRoute,
+          extra: category.localizedTitle,
+        );
+      },
       child: Column(
         children: [
           ClipOval(
