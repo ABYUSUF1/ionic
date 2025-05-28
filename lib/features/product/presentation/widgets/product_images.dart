@@ -2,6 +2,8 @@ import 'package:animate_do/animate_do.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../core/widgets/responsive_layout.dart';
+
 class ProductImages extends StatefulWidget {
   final List<String>? images;
 
@@ -17,6 +19,7 @@ class _ProductImagesState extends State<ProductImages> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final isMobile = ResponsiveLayout.isMobile(context);
 
     if (widget.images == null || widget.images!.isEmpty) {
       return const SizedBox(); // or a placeholder
@@ -27,8 +30,8 @@ class _ProductImagesState extends State<ProductImages> {
       children: [
         // Main Selected Image
         Container(
-          width: double.infinity,
-          height: 250,
+          width: isMobile ? double.infinity : double.infinity,
+          height: isMobile ? 300 : 350,
           padding: const EdgeInsets.all(16),
           decoration: BoxDecoration(
             color: theme.colorScheme.secondary,
@@ -49,7 +52,8 @@ class _ProductImagesState extends State<ProductImages> {
 
         // Thumbnail Grid
         SizedBox(
-          height: 100,
+          width: isMobile ? null : double.infinity,
+          height: isMobile ? 100 : 120,
           child: ListView.separated(
             scrollDirection: Axis.horizontal,
             itemCount: widget.images!.length,
@@ -63,7 +67,7 @@ class _ProductImagesState extends State<ProductImages> {
                   });
                 },
                 child: Container(
-                  width: 100,
+                  width: isMobile ? 100 : 120,
                   padding: const EdgeInsets.all(6),
                   decoration: BoxDecoration(
                     color: theme.colorScheme.secondary,

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ionic/core/models/product_model/product.dart';
 import 'package:ionic/core/utils/functions/star_color.dart';
 import 'package:ionic/core/widgets/rating_bar_indicator.dart';
+import 'package:ionic/core/widgets/responsive_layout.dart';
 
 class ProductOverallRating extends StatelessWidget {
   final Product product;
@@ -10,36 +11,20 @@ class ProductOverallRating extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return ResponsiveLayout.isMobile(context)
+        ? _buildMobileLayout(context)
+        : _buildTabletLayout(context);
+  }
+
+  Widget _buildMobileLayout(BuildContext context) {
     final theme = Theme.of(context);
 
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
-      spacing: 16,
       children: [
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              "Overall Rating",
-              style: theme.textTheme.bodyMedium!.copyWith(
-                fontFamily: "Pulp Display",
-              ),
-            ),
-            const SizedBox(height: 8),
-            Text(
-              product.rating!.toString(),
-              style: theme.textTheme.headlineMedium,
-            ),
-            const SizedBox(height: 4),
-            RatingBarIndicator(rating: product.rating!),
-            const SizedBox(height: 4),
-            Text(
-              "Based on ${product.reviews?.length ?? 0} reviews",
-              style: theme.textTheme.bodySmall,
-            ),
-          ],
-        ),
-
+        // Left rating summary
+        _buildRatingSummary(theme),
+        const SizedBox(width: 16),
         // Right rating breakdown
         Expanded(
           child: Column(
@@ -51,6 +36,52 @@ class ProductOverallRating extends StatelessWidget {
               );
             }),
           ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildTabletLayout(BuildContext context) {
+    final theme = Theme.of(context);
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        // Rating summary at top
+        _buildRatingSummary(theme),
+        const SizedBox(height: 16),
+        // Rating breakdown below
+        Column(
+          children: List.generate(5, (index) {
+            int rating = 5 - index; // 5 to 1
+            return Padding(
+              padding: const EdgeInsets.symmetric(vertical: 2),
+              child: _buildRatingRow(rating, context),
+            );
+          }),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildRatingSummary(ThemeData theme) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          "Overall Rating",
+          style: theme.textTheme.bodyMedium!.copyWith(
+            fontFamily: "Pulp Display",
+          ),
+        ),
+        const SizedBox(height: 8),
+        Text(product.rating!.toString(), style: theme.textTheme.headlineMedium),
+        const SizedBox(height: 4),
+        RatingBarIndicator(rating: product.rating!),
+        const SizedBox(height: 4),
+        Text(
+          "Based on ${product.reviews?.length ?? 0} reviews",
+          style: theme.textTheme.bodySmall,
         ),
       ],
     );

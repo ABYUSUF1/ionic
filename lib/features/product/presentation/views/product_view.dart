@@ -1,15 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:ionic/core/models/product_model/product.dart';
-import 'package:ionic/features/product/presentation/widgets/product_rating_count.dart';
-import 'package:ionic/features/product/presentation/widgets/product_tags.dart';
-import 'package:ionic/features/product/presentation/widgets/product_title_and_brand.dart';
-
-import '../widgets/product_additional_info.dart';
+import 'package:ionic/core/widgets/responsive_layout.dart';
 import '../widgets/product_bottom_bar.dart';
-import '../widgets/product_favorite_button.dart';
-import '../widgets/product_images.dart';
-import '../widgets/product_overview.dart';
-import '../widgets/product_price_and_stock.dart';
+import '../widgets/product_mobile_view.dart';
+import '../widgets/product_tablet_view.dart';
 
 class ProductView extends StatelessWidget {
   final String productId;
@@ -18,48 +12,10 @@ class ProductView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print("Product: ${product!.title}");
     final theme = Theme.of(context);
-    return Scaffold(
-      backgroundColor: theme.colorScheme.surface,
-      bottomNavigationBar: const ProductBottomBar(),
-      appBar: AppBar(title: const Text("Product View")),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              ProductTitleAndBrand(product: product!),
-              const SizedBox(height: 16),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  ProductRatingCount(product: product!),
-                  const ProductFavoriteButton(),
-                ],
-              ),
-              const SizedBox(height: 16),
-              ProductImages(images: product?.images ?? []),
-              const SizedBox(height: 16),
-              Text(
-                product?.description ?? "No description available",
-                style: Theme.of(context).textTheme.bodyMedium,
-              ),
-              const SizedBox(height: 16),
-              ProductPriceAndStock(product: product),
-              const SizedBox(height: 16),
-              ProductAdditionalInfo(product: product!),
-              const SizedBox(height: 16),
-              ProductTags(product: product!),
-              const SizedBox(height: 16),
-              const Divider(),
-              const SizedBox(height: 16),
-              ProductOverview(product: product),
-            ],
-          ),
-        ),
-      ),
+    return ResponsiveLayout(
+      tabletChild: ProductTabletView(product: product),
+      mobileChild: ProductMobileView(product: product),
     );
   }
 }
