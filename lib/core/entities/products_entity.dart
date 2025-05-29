@@ -25,6 +25,21 @@ class ProductsEntity {
 extension ProductsEntityExtension on ProductsEntity {
   bool get hasMore => skip + limit < total;
 
+  Set<String> getBrands() =>
+      products.map((e) => e.brand).whereType<String>().toSet();
+
   List<ProductItemEntity> productsToProductItems() =>
       products.map((e) => e.toProductItem()).toList();
+
+  ProductsEntity copyWith({
+    List<Product>? products,
+    int? total,
+    int? skip,
+    int? limit,
+  }) => ProductsEntity(
+    products: products ?? this.products,
+    total: total ?? this.total,
+    skip: skip ?? this.skip,
+    limit: limit ?? this.limit,
+  );
 }

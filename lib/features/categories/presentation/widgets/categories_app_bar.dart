@@ -45,7 +45,10 @@ class CategoriesAppBar extends StatelessWidget implements PreferredSizeWidget {
             ),
             const Row(
               spacing: 16,
-              children: [SearchField(), CategoriesAppBarSettingsButton()],
+              children: [
+                Expanded(child: SearchField()),
+                CategoriesAppBarSettingsButton(),
+              ],
             ),
             Text.rich(
               TextSpan(
