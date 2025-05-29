@@ -1,11 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 import 'package:ionic/core/entities/product_item_entity.dart';
 import 'package:ionic/core/models/product_model/product.dart';
 import 'package:ionic/core/routing/app_router_name.dart';
 import 'package:ionic/core/widgets/loading/skeleton_loading.dart';
+import 'package:ionic/features/favorite/presentation/manager/cubit/favorite_cubit.dart';
 
 class ProductItem extends StatelessWidget {
   final Product? product;
@@ -62,9 +64,25 @@ class ProductItem extends StatelessWidget {
                             ),
                   ),
 
-                  IconButton(
-                    icon: const Icon(IconsaxPlusBold.heart),
-                    onPressed: () {},
+                  BlocBuilder<FavoriteCubit, FavoriteState>(
+                    builder: (context, state) {
+                      final cubit = context.read<FavoriteCubit>();
+                      final isFavorite = cubit.isFavorite(productItem);
+                      return IconButton(
+                        icon: Icon(
+                          isFavorite
+                              ? IconsaxPlusBold.heart
+                              : IconsaxPlusBold.heart,
+                          color:
+                              isFavorite
+                                  ? theme.colorScheme.error
+                                  : theme.colorScheme.onSurfaceVariant,
+                        ),
+                        onPressed: () {
+                          cubit.toggleFavorites(productItem);
+                        },
+                      );
+                    },
                   ),
                 ],
               ),

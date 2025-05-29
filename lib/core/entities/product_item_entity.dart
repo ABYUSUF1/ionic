@@ -1,3 +1,5 @@
+import '../models/product_item_model.dart';
+
 class ProductItemEntity {
   final String id;
   final String title;
@@ -26,6 +28,20 @@ class ProductItemEntity {
       rating: 0.0,
       stock: 0,
       reviewsCount: 0,
+    );
+  }
+}
+
+extension ProductItemEntityExtension on ProductItemEntity {
+  ProductItemModel toProductItemModel() {
+    return ProductItemModel(
+      id: id,
+      title: title,
+      imageUrl: imageUrl,
+      price: price,
+      rating: rating,
+      stock: stock,
+      reviewsCount: reviewsCount,
     );
   }
 }

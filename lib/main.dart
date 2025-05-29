@@ -10,11 +10,13 @@ import 'package:ionic/core/services/network/network_cubit.dart';
 import 'package:ionic/core/services/network/network_widget.dart';
 import 'package:ionic/core/theme/app_theme.dart';
 import 'package:ionic/features/auth/presentation/manager/auth/auth_cubit.dart';
+import 'package:ionic/features/favorite/presentation/manager/cubit/favorite_cubit.dart';
 import 'package:ionic/firebase_options.dart';
 import 'package:ionic/generated/codegen_loader.g.dart';
 
 import 'core/theme/manager/cubit/theme_cubit.dart';
 import 'features/auth/domain/repo/auth_repo.dart';
+import 'features/favorite/domain/repo/favorite_repo.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -49,6 +51,7 @@ class IonicApp extends StatelessWidget {
           create: (context) => ThemeCubit(getIt<LocalAppSettingsService>()),
         ),
         BlocProvider(create: (context) => AuthCubit(getIt<AuthRepo>())),
+        BlocProvider(create: (context) => FavoriteCubit(getIt<FavoriteRepo>())),
       ],
       child: BlocBuilder<ThemeCubit, bool>(
         builder: (context, isDarkMode) {

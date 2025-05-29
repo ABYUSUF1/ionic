@@ -9,6 +9,10 @@ import 'package:ionic/features/auth/presentation/manager/forget_password/forget_
 import 'package:ionic/features/auth/presentation/manager/sign_in/sign_in_cubit.dart';
 import 'package:ionic/features/categories/data/repo_impl/categories_repo_impl.dart';
 import 'package:ionic/features/categories/domain/repo/categories_repo.dart';
+import 'package:ionic/features/favorite/data/data_sources/remote/favorite_remote_data_source.dart';
+import 'package:ionic/features/favorite/data/repo_impl/favorite_repo_impl.dart';
+import 'package:ionic/features/favorite/domain/repo/favorite_repo.dart';
+import 'package:ionic/features/favorite/presentation/manager/cubit/favorite_cubit.dart';
 import 'package:ionic/features/home/domain/repo/home_repo.dart';
 import 'package:ionic/features/home/presentation/manager/categories/home_categories_cubit.dart';
 import 'package:ionic/features/profile/data/repo_impl/edit_profile_repo_impl.dart';
@@ -46,6 +50,7 @@ Future<void> setupGetIt() async {
       authFirestoreService: getIt(),
     ),
   );
+  getIt.registerLazySingleton(() => FavoriteRemoteDataSource());
 
   // Register Repositories
   getIt.registerLazySingleton<AuthRepo>(() => AuthRepoImpl(getIt()));
@@ -56,6 +61,7 @@ Future<void> setupGetIt() async {
   getIt.registerLazySingleton<CategoriesRepo>(
     () => CategoriesRepoImpl(getIt()),
   );
+  getIt.registerLazySingleton<FavoriteRepo>(() => FavoriteRepoImpl(getIt()));
 
   // Register BLoCs/Cubits
   getIt.registerFactory(() => ThemeCubit(getIt()));
@@ -67,4 +73,5 @@ Future<void> setupGetIt() async {
   getIt.registerFactory(() => AuthCubit(getIt()));
   getIt.registerFactory(() => EditProfileCubit(getIt()));
   getIt.registerFactory(() => HomeCategoriesCubit(getIt()));
+  getIt.registerFactory(() => FavoriteCubit(getIt()));
 }

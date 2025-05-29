@@ -13,7 +13,6 @@ class FavoriteView extends StatelessWidget {
   Widget build(BuildContext context) {
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
     // return ProductsGridView(emptyTitle: "No favorite found", emptySubtitle: "Start adding favorite", emptySvgImage: isDarkMode ? AppAssets.illustrationsNoFavoriteIllustrationDark : AppAssets.illustrationsNoFavoriteIllustrationLight, isLoading: true, productsEntity: productsEntity)
-    return
-  
+    return Container();
   }
 }
