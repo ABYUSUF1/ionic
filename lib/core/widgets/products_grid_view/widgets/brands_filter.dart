@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:ionic/features/categories/presentation/manager/cubit/categories_cubit.dart';
+import 'package:ionic/core/entities/products_entity.dart';
+import 'package:ionic/core/widgets/products_grid_view/manager/cubit/products_control_cubit.dart';
 
 class BrandsFilter extends StatelessWidget {
   const BrandsFilter({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<CategoriesCubit, CategoriesState>(
+    return BlocBuilder<ProductsControlCubit, ProductsEntity>(
       builder: (context, state) {
-        final cubit = context.read<CategoriesCubit>();
+        final cubit = context.read<ProductsControlCubit>();
         final allBrands = cubit.allBrands.toList();
         final selectedBrands = cubit.selectedBrands;
 
@@ -43,13 +44,20 @@ class BrandsFilter extends StatelessWidget {
     BuildContext context,
     String brand,
     bool isSelected,
-    CategoriesCubit cubit,
+    ProductsControlCubit cubit,
   ) {
+    final theme = Theme.of(context);
     return FilterChip(
-      label: Text(brand),
+      label: Text(
+        brand,
+        style: theme.textTheme.bodySmall!.copyWith(
+          color: theme.colorScheme.onSurface,
+        ),
+      ),
+      deleteIconColor: theme.colorScheme.onSurface,
       selected: isSelected,
       onSelected: (_) => cubit.toggleBrand(brand),
-      side: BorderSide(color: Theme.of(context).colorScheme.outline),
+      side: BorderSide(color: theme.colorScheme.outline),
     );
   }
 }

@@ -14,6 +14,7 @@ import 'package:ionic/features/profile/presentation/views/profile_view.dart';
 import 'package:ionic/main_bottom_nav_bar.dart';
 
 import '../../features/categories/presentation/views/categories_view.dart';
+import '../../features/favorite/presentation/views/favorite_view.dart';
 import '../../features/onboarding/presentation/views/onboarding_view.dart';
 import '../models/product_model/product.dart';
 import '../services/data_source/local/local_app_settings_service.dart';
@@ -150,6 +151,12 @@ final GoRouter appRouter = GoRouter(
 
         return CategoriesView(categoryName: categoryName);
       },
+    ),
+
+    GoRoute(
+      path: AppRouterName.favoriteRoute,
+      name: AppRouterName.favoriteRoute,
+      builder: (context, state) => const FavoriteView(),
     ),
   ],
 );

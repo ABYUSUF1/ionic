@@ -17,7 +17,7 @@ class ProductItemEntity {
     required this.reviewsCount,
   });
 
-  ProductItemEntity loading() {
+  static ProductItemEntity loading() {
     return ProductItemEntity(
       id: '-1',
       title: 'Loading',

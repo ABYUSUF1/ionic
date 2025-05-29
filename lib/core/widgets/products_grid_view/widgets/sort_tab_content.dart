@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:ionic/features/categories/presentation/manager/cubit/categories_cubit.dart';
+import 'package:ionic/core/entities/products_entity.dart';
+
+import '../manager/cubit/products_control_cubit.dart';
 
 class SortTabContent extends StatelessWidget {
   const SortTabContent({super.key});
@@ -8,9 +10,9 @@ class SortTabContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final cubit = context.read<CategoriesCubit>();
+    final cubit = context.read<ProductsControlCubit>();
 
-    return BlocBuilder<CategoriesCubit, CategoriesState>(
+    return BlocBuilder<ProductsControlCubit, ProductsEntity>(
       builder: (context, state) {
         return ListView(
           padding: const EdgeInsets.all(16),

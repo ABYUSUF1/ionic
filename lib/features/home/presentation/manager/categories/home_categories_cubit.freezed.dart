@@ -64,24 +64,24 @@ mixin _$HomeCategoriesState {
 }
 
 /// @nodoc
-abstract class $CategoriesStateCopyWith<$Res> {
-  factory $CategoriesStateCopyWith(
+abstract class $HomeCategoriesStateCopyWith<$Res> {
+  factory $HomeCategoriesStateCopyWith(
     HomeCategoriesState value,
     $Res Function(HomeCategoriesState) then,
-  ) = _$CategoriesStateCopyWithImpl<$Res, HomeCategoriesState>;
+  ) = _$HomeCategoriesStateCopyWithImpl<$Res, HomeCategoriesState>;
 }
 
 /// @nodoc
-class _$CategoriesStateCopyWithImpl<$Res, $Val extends HomeCategoriesState>
-    implements $CategoriesStateCopyWith<$Res> {
-  _$CategoriesStateCopyWithImpl(this._value, this._then);
+class _$HomeCategoriesStateCopyWithImpl<$Res, $Val extends HomeCategoriesState>
+    implements $HomeCategoriesStateCopyWith<$Res> {
+  _$HomeCategoriesStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of CategoriesState
+  /// Create a copy of HomeCategoriesState
   /// with the given fields replaced by the non-null parameter values.
 }
 
@@ -95,14 +95,14 @@ abstract class _$$InitialImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$InitialImplCopyWithImpl<$Res>
-    extends _$CategoriesStateCopyWithImpl<$Res, _$InitialImpl>
+    extends _$HomeCategoriesStateCopyWithImpl<$Res, _$InitialImpl>
     implements _$$InitialImplCopyWith<$Res> {
   __$$InitialImplCopyWithImpl(
     _$InitialImpl _value,
     $Res Function(_$InitialImpl) _then,
   ) : super(_value, _then);
 
-  /// Create a copy of CategoriesState
+  /// Create a copy of HomeCategoriesState
   /// with the given fields replaced by the non-null parameter values.
 }
 
@@ -113,7 +113,7 @@ class _$InitialImpl implements _Initial {
 
   @override
   String toString() {
-    return 'CategoriesState.initial()';
+    return 'HomeCategoriesState.initial()';
   }
 
   @override
@@ -216,14 +216,14 @@ abstract class _$$LoadingImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$LoadingImplCopyWithImpl<$Res>
-    extends _$CategoriesStateCopyWithImpl<$Res, _$LoadingImpl>
+    extends _$HomeCategoriesStateCopyWithImpl<$Res, _$LoadingImpl>
     implements _$$LoadingImplCopyWith<$Res> {
   __$$LoadingImplCopyWithImpl(
     _$LoadingImpl _value,
     $Res Function(_$LoadingImpl) _then,
   ) : super(_value, _then);
 
-  /// Create a copy of CategoriesState
+  /// Create a copy of HomeCategoriesState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -256,7 +256,7 @@ class _$LoadingImpl implements _Loading {
 
   @override
   String toString() {
-    return 'CategoriesState.loading(loadingCategories: $loadingCategories)';
+    return 'HomeCategoriesState.loading(loadingCategories: $loadingCategories)';
   }
 
   @override
@@ -276,7 +276,7 @@ class _$LoadingImpl implements _Loading {
     const DeepCollectionEquality().hash(_loadingCategories),
   );
 
-  /// Create a copy of CategoriesState
+  /// Create a copy of HomeCategoriesState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
@@ -365,7 +365,7 @@ abstract class _Loading implements HomeCategoriesState {
 
   List<CategoryEntity> get loadingCategories;
 
-  /// Create a copy of CategoriesState
+  /// Create a copy of HomeCategoriesState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$LoadingImplCopyWith<_$LoadingImpl> get copyWith =>
@@ -384,14 +384,14 @@ abstract class _$$SuccessImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$SuccessImplCopyWithImpl<$Res>
-    extends _$CategoriesStateCopyWithImpl<$Res, _$SuccessImpl>
+    extends _$HomeCategoriesStateCopyWithImpl<$Res, _$SuccessImpl>
     implements _$$SuccessImplCopyWith<$Res> {
   __$$SuccessImplCopyWithImpl(
     _$SuccessImpl _value,
     $Res Function(_$SuccessImpl) _then,
   ) : super(_value, _then);
 
-  /// Create a copy of CategoriesState
+  /// Create a copy of HomeCategoriesState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -423,7 +423,7 @@ class _$SuccessImpl implements _Success {
 
   @override
   String toString() {
-    return 'CategoriesState.success(categories: $categories)';
+    return 'HomeCategoriesState.success(categories: $categories)';
   }
 
   @override
@@ -443,7 +443,7 @@ class _$SuccessImpl implements _Success {
     const DeepCollectionEquality().hash(_categories),
   );
 
-  /// Create a copy of CategoriesState
+  /// Create a copy of HomeCategoriesState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
@@ -531,7 +531,7 @@ abstract class _Success implements HomeCategoriesState {
 
   List<CategoryEntity> get categories;
 
-  /// Create a copy of CategoriesState
+  /// Create a copy of HomeCategoriesState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
@@ -548,14 +548,14 @@ abstract class _$$ErrorImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$ErrorImplCopyWithImpl<$Res>
-    extends _$CategoriesStateCopyWithImpl<$Res, _$ErrorImpl>
+    extends _$HomeCategoriesStateCopyWithImpl<$Res, _$ErrorImpl>
     implements _$$ErrorImplCopyWith<$Res> {
   __$$ErrorImplCopyWithImpl(
     _$ErrorImpl _value,
     $Res Function(_$ErrorImpl) _then,
   ) : super(_value, _then);
 
-  /// Create a copy of CategoriesState
+  /// Create a copy of HomeCategoriesState
   /// with the given fields replaced by the non-null parameter values.
 }
 
@@ -566,7 +566,7 @@ class _$ErrorImpl implements _Error {
 
   @override
   String toString() {
-    return 'CategoriesState.error()';
+    return 'HomeCategoriesState.error()';
   }
 
   @override

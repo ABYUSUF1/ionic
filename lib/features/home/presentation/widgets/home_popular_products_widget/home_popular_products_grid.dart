@@ -4,7 +4,7 @@ import 'package:ionic/core/models/product_model/product.dart';
 import 'package:ionic/core/services/di/get_it_service.dart';
 import 'package:ionic/features/home/presentation/manager/popular_products/popular_products_cubit.dart';
 
-import '../../../../../core/widgets/product_item.dart';
+import '../../../../../core/widgets/products_grid_view/widgets/product_item.dart';
 import '../../../domain/repo/home_repo.dart';
 
 class HomePopularProductsGrid extends StatelessWidget {

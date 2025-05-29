@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:ionic/features/categories/presentation/manager/cubit/categories_cubit.dart';
+import 'package:ionic/core/widgets/products_grid_view/manager/cubit/products_control_cubit.dart';
 
 class RatingFilter extends StatefulWidget {
   const RatingFilter({super.key});
@@ -25,13 +25,13 @@ class _RatingFilterState extends State<RatingFilter> {
                 Icons.star,
                 size: 32,
                 color:
-                    index < context.read<CategoriesCubit>().currentRating
+                    index < context.read<ProductsControlCubit>().currentRating
                         ? Colors.amber
                         : theme.colorScheme.onSurfaceVariant,
               ),
               onPressed: () {
                 setState(() {});
-                context.read<CategoriesCubit>().setRating(index + 1);
+                context.read<ProductsControlCubit>().setRating(index + 1);
               },
             );
           }),

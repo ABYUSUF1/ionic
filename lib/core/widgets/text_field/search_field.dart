@@ -10,11 +10,12 @@ class SearchField extends StatelessWidget {
     return TextField(
       onTapOutside: (event) => FocusManager.instance.primaryFocus?.unfocus(),
       decoration: InputDecoration(
-        constraints: const BoxConstraints(maxHeight: 55),
+        constraints: const BoxConstraints(maxHeight: 80),
         prefixIcon: const Icon(Icons.search),
         hintText: hintText ?? "Search",
         fillColor: theme.colorScheme.secondary,
         filled: true,
+        helperText: "You have 2 favorites",
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(8),
           borderSide: BorderSide.none,

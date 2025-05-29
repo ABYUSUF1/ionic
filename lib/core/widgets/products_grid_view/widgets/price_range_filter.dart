@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../manager/cubit/categories_cubit.dart';
+import 'package:ionic/core/widgets/products_grid_view/manager/cubit/products_control_cubit.dart';
 
 class PriceRangeFilter extends StatefulWidget {
   const PriceRangeFilter({super.key});
@@ -16,7 +15,7 @@ class _PriceRangeFilterState extends State<PriceRangeFilter> {
   @override
   void initState() {
     super.initState();
-    final cubit = context.read<CategoriesCubit>();
+    final cubit = context.read<ProductsControlCubit>();
     _currentRange = RangeValues(cubit.minPrice, cubit.maxPrice);
   }
 
@@ -42,7 +41,7 @@ class _PriceRangeFilterState extends State<PriceRangeFilter> {
             });
 
             // Update filter in Cubit
-            context.read<CategoriesCubit>().setPriceRange(
+            context.read<ProductsControlCubit>().setPriceRange(
               value.start,
               value.end,
             );

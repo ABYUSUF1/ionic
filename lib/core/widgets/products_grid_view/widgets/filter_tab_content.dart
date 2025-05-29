@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:ionic/features/categories/presentation/widgets/price_range_filter.dart';
-import 'package:ionic/features/categories/presentation/widgets/rating_filter.dart';
+import 'package:ionic/core/widgets/products_grid_view/widgets/price_range_filter.dart';
+import 'package:ionic/core/widgets/products_grid_view/widgets/rating_filter.dart';
 
 import 'brands_filter.dart';
 

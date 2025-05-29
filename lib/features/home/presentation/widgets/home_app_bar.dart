@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 import 'package:ionic/core/constants/app_assets.dart';
 import 'package:ionic/core/utils/functions/is_arabic.dart';
+
+import '../../../../core/routing/app_router_name.dart';
 
 class HomeAppBar extends StatelessWidget {
   const HomeAppBar({super.key});
@@ -35,7 +38,7 @@ class HomeAppBar extends StatelessWidget {
               IconButton(
                 icon: const Icon(IconsaxPlusLinear.heart),
                 onPressed: () {
-                  // Handle search button press
+                  context.push(AppRouterName.favoriteRoute);
                 },
               ),
             ],

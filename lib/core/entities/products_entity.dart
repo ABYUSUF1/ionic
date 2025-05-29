@@ -37,7 +37,7 @@ extension ProductsEntityExtension on ProductsEntity {
     int? skip,
     int? limit,
   }) => ProductsEntity(
-    products: products ?? this.products,
+    products: products != null ? List<Product>.from(products) : this.products,
     total: total ?? this.total,
     skip: skip ?? this.skip,
     limit: limit ?? this.limit,
