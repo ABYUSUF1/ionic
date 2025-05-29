@@ -91,6 +91,7 @@ extension ProductExtensions on Product {
       rating: rating ?? 0.0,
       stock: stock ?? 0,
       reviewsCount: reviews?.length ?? 0,
+      brand: brand ?? '',
     );
   }
 }

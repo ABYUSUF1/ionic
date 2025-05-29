@@ -13,6 +13,8 @@
     "common_save_changes": "Save changes...",
     "common_view_all": "View All",
     "common_result_for" : "Result for",
+    "common_loading": "Loading...",
+    "common_search_for": "Search for {}",
     
 
     "validators_required": "Field is required",
@@ -101,8 +103,18 @@
     "edit_profile_gender": "Gender",
     "edit_profile_gender_male": "Male",
     "edit_profile_gender_female": "Female",
-    "edit_profile_profile_updated_successfully": "Profile updated successfully"
+    "edit_profile_profile_updated_successfully": "Profile updated successfully",
 
 
+    "favorites_title": "Favorites",
+    "favorites_empty": "No favorites yet",
+    "favorites_empty_desc": "Start adding products to favorites by tapping the heart icon.",
+    "favorites_added_to_favorites": "Added to favorites",
+    "favorites_removed_from_favorites": "Removed from favorites",
+    "favorites_items_in_favorites": {
+        "zero": "No favorites",
+        "one": "1 item in favorites",
+        "other": "{} items in favorites"
+    }
 
 }

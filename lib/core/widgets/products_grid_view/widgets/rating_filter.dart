@@ -25,7 +25,11 @@ class _RatingFilterState extends State<RatingFilter> {
                 Icons.star,
                 size: 32,
                 color:
-                    index < context.read<ProductsControlCubit>().currentRating
+                    index <
+                            context
+                                .read<ProductsControlCubit>()
+                                .state
+                                .currentRating
                         ? Colors.amber
                         : theme.colorScheme.onSurfaceVariant,
               ),

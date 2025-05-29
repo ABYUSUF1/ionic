@@ -40,9 +40,7 @@ class FavoriteCubit extends Cubit<FavoriteState> {
     if (_isToggling) return;
     _isToggling = true;
 
-    final isFav = favorites.contains(productItemEntity);
-
-    if (isFav) {
+    if (isFavorite(productItemEntity)) {
       _favoriteRepo.removeFavorite(productItemEntity.id); // Optimistic removal
       favorites.remove(productItemEntity);
     } else {
@@ -56,6 +54,7 @@ class FavoriteCubit extends Cubit<FavoriteState> {
 
   /// Check if a product is currently favorited
   bool isFavorite(ProductItemEntity productItemEntity) {
-    return favorites.contains(productItemEntity);
+    // Check by id for simplicity
+    return favorites.where((e) => e.id == productItemEntity.id).isNotEmpty;
   }
 }

@@ -14,6 +14,7 @@ _$ProductItemModelImpl _$$ProductItemModelImplFromJson(
   imageUrl: json['imageUrl'] as String,
   price: (json['price'] as num).toDouble(),
   rating: (json['rating'] as num).toDouble(),
+  brand: json['brand'] as String,
   stock: (json['stock'] as num).toInt(),
   reviewsCount: (json['reviewsCount'] as num).toInt(),
 );
@@ -26,6 +27,7 @@ Map<String, dynamic> _$$ProductItemModelImplToJson(
   'imageUrl': instance.imageUrl,
   'price': instance.price,
   'rating': instance.rating,
+  'brand': instance.brand,
   'stock': instance.stock,
   'reviewsCount': instance.reviewsCount,
 };

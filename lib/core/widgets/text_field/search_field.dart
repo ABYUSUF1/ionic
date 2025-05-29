@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 
 class SearchField extends StatelessWidget {
-  final String? hintText;
-  const SearchField({super.key, this.hintText});
+  final String hintText;
+  final Widget helperText;
+  const SearchField({
+    super.key,
+    required this.hintText,
+    required this.helperText,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -12,10 +17,10 @@ class SearchField extends StatelessWidget {
       decoration: InputDecoration(
         constraints: const BoxConstraints(maxHeight: 80),
         prefixIcon: const Icon(Icons.search),
-        hintText: hintText ?? "Search",
+        hintText: hintText,
         fillColor: theme.colorScheme.secondary,
         filled: true,
-        helperText: "You have 2 favorites",
+        helper: helperText,
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(8),
           borderSide: BorderSide.none,

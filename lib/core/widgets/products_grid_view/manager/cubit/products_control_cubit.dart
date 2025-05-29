@@ -1,92 +1,96 @@
 import 'package:bloc/bloc.dart';
-import 'package:ionic/core/entities/products_entity.dart';
+import 'package:ionic/core/entities/product_item_entity.dart';
+
+import 'products_control_state.dart';
 
 enum SortOption { recommended, lowToHigh, highToLow, topRated }
 
-class ProductsControlCubit extends Cubit<ProductsEntity> {
-  ProductsControlCubit(ProductsEntity initialProducts)
-    : super(initialProducts) {
-    originalProducts = initialProducts;
-    allBrands = initialProducts.getBrands();
-    selectedBrands = allBrands;
-  }
-
-  ProductsEntity originalProducts = ProductsEntity.loading();
-
-  // Filters
-  double minPrice = 0;
-  double maxPrice = 2000;
-  Set<String> selectedBrands = {};
-  Set<String> allBrands = {};
-  double currentRating = 1.0;
-
-  SortOption currentSort = SortOption.recommended;
+class ProductsControlCubit extends Cubit<ProductsControlState> {
+  final List<ProductItemEntity> initialProducts;
+  ProductsControlCubit(this.initialProducts)
+    : super(
+        ProductsControlState(
+          originalProductItems: initialProducts,
+          filteredProducts: initialProducts,
+          minPrice: 0,
+          maxPrice: 2000,
+          selectedBrands: initialProducts.map((e) => e.brand).toSet(),
+          allBrands: initialProducts.map((e) => e.brand).toSet(),
+          currentRating: 1.0,
+          currentSort: SortOption.recommended,
+        ),
+      );
 
   /// Filters logic .................................................
 
   void setPriceRange(double newMinPrice, double newMaxPrice) {
-    minPrice = newMinPrice;
-    maxPrice = newMaxPrice;
+    state.minPrice = newMinPrice;
+    state.maxPrice = newMaxPrice;
     filterProducts();
   }
 
   void toggleBrand(String brand) {
-    final newSelectedBrands = Set<String>.from(selectedBrands); // Create a copy
+    final newSelectedBrands = Set<String>.from(
+      state.selectedBrands,
+    ); // Create a copy
     if (newSelectedBrands.contains(brand)) {
       newSelectedBrands.remove(brand); // Deselect
     } else {
       newSelectedBrands.add(brand); // Select
     }
-    selectedBrands = newSelectedBrands; // Update state
+    state.selectedBrands = newSelectedBrands; // Update state
     filterProducts();
   }
 
   void setRating(double rating) {
-    currentRating = rating;
+    state.currentRating = rating;
     filterProducts();
   }
 
   void filterProducts() {
     // First apply filters
     var filteredProducts =
-        originalProducts.products.where((product) {
+        state.originalProductItems.where((product) {
           final matchesPrice =
-              product.price! >= minPrice && product.price! <= maxPrice;
+              product.price >= state.minPrice &&
+              product.price <= state.maxPrice;
           final matchesBrand =
-              selectedBrands.isEmpty || selectedBrands.contains(product.brand);
-          final matchesRating =
-              product.rating != null && product.rating! >= currentRating;
+              state.selectedBrands.isEmpty ||
+              state.selectedBrands.contains(product.brand);
+          final matchesRating = product.rating >= state.currentRating;
           return matchesPrice && matchesBrand && matchesRating;
         }).toList();
 
     // Then apply sorting
-    switch (currentSort) {
+    switch (state.currentSort) {
       case SortOption.recommended:
         break;
       case SortOption.lowToHigh:
-        filteredProducts.sort((a, b) => a.price!.compareTo(b.price!));
+        filteredProducts.sort((a, b) => a.price.compareTo(b.price));
         break;
       case SortOption.highToLow:
-        filteredProducts.sort((a, b) => b.price!.compareTo(a.price!));
+        filteredProducts.sort((a, b) => b.price.compareTo(a.price));
         break;
       case SortOption.topRated:
-        filteredProducts.sort(
-          (a, b) => (b.rating ?? 0).compareTo(a.rating ?? 0),
-        );
+        filteredProducts.sort((a, b) => (b.rating).compareTo(a.rating));
         break;
     }
 
     emit(
       state.copyWith(
-        products: filteredProducts,
-        total: filteredProducts.length,
+        filteredProducts: filteredProducts,
+        minPrice: state.minPrice,
+        maxPrice: state.maxPrice,
+        selectedBrands: state.selectedBrands,
+        currentRating: state.currentRating,
+        currentSort: state.currentSort,
       ),
     );
   }
 
   /// Sort
   void setSortOption(SortOption option) {
-    currentSort = option;
+    state.currentSort = option;
     filterProducts(); // This will trigger a re-sort
   }
 }

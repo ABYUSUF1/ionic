@@ -29,6 +29,8 @@ class CodegenLoader extends AssetLoader{
   "common_save_changes": "حفظ التغييرات....",
   "common_view_all": "عرض الكل",
   "common_result_for": "نتائج البحث عن",
+  "common_loading": "جاري التحميل...",
+  "common_search_for": "ابحث عن {}",
   "validators_required": "هذا الحقل مطلوب",
   "validators_name_required": "الاسم مطلوب",
   "validators_name_short": "يجب أن يكون الاسم 3 أحرف على الأقل",
@@ -105,7 +107,19 @@ class CodegenLoader extends AssetLoader{
   "edit_profile_gender": "الجنس",
   "edit_profile_gender_male": "ذكر",
   "edit_profile_gender_female": "انثى",
-  "edit_profile_profile_updated_successfully": "تم تحديث الملف الشخصي بنجاح"
+  "edit_profile_profile_updated_successfully": "تم تحديث الملف الشخصي بنجاح",
+  "favorites_title": "المفضلة",
+  "favorites_empty": "لا يوجد منتجات في المفضلة",
+  "favorites_empty_desc": "ابدأ بإضافة المنتجات إلى المفضلة من خلال النقر على أيقونة القلب.",
+  "favorites_added_to_favorites": "تمت الاضافة الى المفضلة",
+  "favorites_items_in_favorites": {
+    "zero": "لا يوجد منتجات",
+    "one": "منتج واحد في المفضلة",
+    "two": "منتجان في المفضلة",
+    "few": "{} منتجات في المفضلة",
+    "many": "{} منتج في المفضلة",
+    "other": "{} منتج في المفضلة"
+  }
 };
 static const Map<String,dynamic> _en = {
   "common_next": "Next",
@@ -122,6 +136,8 @@ static const Map<String,dynamic> _en = {
   "common_save_changes": "Save changes...",
   "common_view_all": "View All",
   "common_result_for": "Result for",
+  "common_loading": "Loading...",
+  "common_search_for": "Search for {}",
   "validators_required": "Field is required",
   "validators_name_required": "Name is required",
   "validators_name_short": "Name must be at least 3 characters",
@@ -198,7 +214,17 @@ static const Map<String,dynamic> _en = {
   "edit_profile_gender": "Gender",
   "edit_profile_gender_male": "Male",
   "edit_profile_gender_female": "Female",
-  "edit_profile_profile_updated_successfully": "Profile updated successfully"
+  "edit_profile_profile_updated_successfully": "Profile updated successfully",
+  "favorites_title": "Favorites",
+  "favorites_empty": "No favorites yet",
+  "favorites_empty_desc": "Start adding products to favorites by tapping the heart icon.",
+  "favorites_added_to_favorites": "Added to favorites",
+  "favorites_removed_from_favorites": "Removed from favorites",
+  "favorites_items_in_favorites": {
+    "zero": "No favorites",
+    "one": "1 item in favorites",
+    "other": "{} items in favorites"
+  }
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"ar": _ar, "en": _en};
 }

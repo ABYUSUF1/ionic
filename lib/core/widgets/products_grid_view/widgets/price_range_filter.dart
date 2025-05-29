@@ -15,8 +15,8 @@ class _PriceRangeFilterState extends State<PriceRangeFilter> {
   @override
   void initState() {
     super.initState();
-    final cubit = context.read<ProductsControlCubit>();
-    _currentRange = RangeValues(cubit.minPrice, cubit.maxPrice);
+    final state = context.read<ProductsControlCubit>().state;
+    _currentRange = RangeValues(state.minPrice, state.maxPrice);
   }
 
   @override

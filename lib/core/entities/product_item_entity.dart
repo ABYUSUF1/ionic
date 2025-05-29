@@ -6,6 +6,7 @@ class ProductItemEntity {
   final String imageUrl;
   final double price;
   final double rating;
+  final String brand;
   final int stock;
   final int reviewsCount;
 
@@ -17,6 +18,7 @@ class ProductItemEntity {
     required this.rating,
     required this.stock,
     required this.reviewsCount,
+    required this.brand,
   });
 
   static ProductItemEntity loading() {
@@ -26,6 +28,7 @@ class ProductItemEntity {
       imageUrl: '',
       price: 0.0,
       rating: 0.0,
+      brand: "Brand",
       stock: 0,
       reviewsCount: 0,
     );
@@ -42,6 +45,7 @@ extension ProductItemEntityExtension on ProductItemEntity {
       rating: rating,
       stock: stock,
       reviewsCount: reviewsCount,
+      brand: brand,
     );
   }
 }

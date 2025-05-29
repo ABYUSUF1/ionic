@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:ionic/core/entities/products_entity.dart';
+import 'package:ionic/core/widgets/products_grid_view/manager/cubit/products_control_state.dart';
 
 import '../manager/cubit/products_control_cubit.dart';
 
@@ -12,7 +12,7 @@ class SortTabContent extends StatelessWidget {
     final theme = Theme.of(context);
     final cubit = context.read<ProductsControlCubit>();
 
-    return BlocBuilder<ProductsControlCubit, ProductsEntity>(
+    return BlocBuilder<ProductsControlCubit, ProductsControlState>(
       builder: (context, state) {
         return ListView(
           padding: const EdgeInsets.all(16),
@@ -22,7 +22,7 @@ class SortTabContent extends StatelessWidget {
             RadioListTile<SortOption>(
               title: const Text("Recommended"),
               value: SortOption.recommended,
-              groupValue: cubit.currentSort,
+              groupValue: cubit.state.currentSort,
               onChanged: (value) {
                 if (value != null) cubit.setSortOption(value);
               },
@@ -30,7 +30,7 @@ class SortTabContent extends StatelessWidget {
             RadioListTile<SortOption>(
               title: const Text("Price: Low to High"),
               value: SortOption.lowToHigh,
-              groupValue: cubit.currentSort,
+              groupValue: cubit.state.currentSort,
               onChanged: (value) {
                 if (value != null) cubit.setSortOption(value);
               },
@@ -38,7 +38,7 @@ class SortTabContent extends StatelessWidget {
             RadioListTile<SortOption>(
               title: const Text("Price: High to Low"),
               value: SortOption.highToLow,
-              groupValue: cubit.currentSort,
+              groupValue: cubit.state.currentSort,
               onChanged: (value) {
                 if (value != null) cubit.setSortOption(value);
               },
@@ -46,7 +46,7 @@ class SortTabContent extends StatelessWidget {
             RadioListTile<SortOption>(
               title: const Text("Top Rated"),
               value: SortOption.topRated,
-              groupValue: cubit.currentSort,
+              groupValue: cubit.state.currentSort,
               onChanged: (value) {
                 if (value != null) cubit.setSortOption(value);
               },

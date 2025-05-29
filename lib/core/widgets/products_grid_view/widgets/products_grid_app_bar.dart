@@ -7,7 +7,13 @@ import '../../text_field/search_field.dart';
 
 class ProductsGridAppBar extends StatelessWidget
     implements PreferredSizeWidget {
-  const ProductsGridAppBar({super.key});
+  final Widget helperText;
+  final String hintText;
+  const ProductsGridAppBar({
+    super.key,
+    required this.helperText,
+    required this.hintText,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -28,12 +34,17 @@ class ProductsGridAppBar extends StatelessWidget
                 ],
               ),
               const SizedBox(height: 16),
-              const Row(
+              Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 spacing: 16,
                 children: [
-                  Expanded(child: SearchField()),
-                  ProductsControlIconButton(),
+                  Expanded(
+                    child: SearchField(
+                      helperText: helperText,
+                      hintText: hintText,
+                    ),
+                  ),
+                  const ProductsControlIconButton(),
                 ],
               ),
             ],

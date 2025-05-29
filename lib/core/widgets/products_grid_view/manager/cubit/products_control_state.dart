@@ -1,28 +1,30 @@
-import '../../../../models/product_model/product.dart';
+import 'package:ionic/core/entities/product_item_entity.dart';
+
 import 'products_control_cubit.dart';
 
 class ProductsControlState {
-  final List<Product> originalProducts;
-  final List<Product> filteredProducts;
-  final double minPrice;
-  final double maxPrice;
-  final Set<String> selectedBrands;
-  final double currentRating;
-  final SortOption currentSort;
+  final List<ProductItemEntity> originalProductItems;
+  List<ProductItemEntity> filteredProducts;
+  double minPrice;
+  double maxPrice;
+  Set<String> selectedBrands;
+  final Set<String> allBrands;
+  double currentRating;
+  SortOption currentSort;
 
   ProductsControlState({
-    required this.originalProducts,
+    required this.originalProductItems,
     required this.filteredProducts,
     required this.minPrice,
     required this.maxPrice,
     required this.selectedBrands,
+    required this.allBrands,
     required this.currentRating,
     required this.currentSort,
   });
 
   ProductsControlState copyWith({
-    List<Product>? originalProducts,
-    List<Product>? filteredProducts,
+    List<ProductItemEntity>? filteredProducts,
     double? minPrice,
     double? maxPrice,
     Set<String>? selectedBrands,
@@ -30,10 +32,11 @@ class ProductsControlState {
     SortOption? currentSort,
   }) {
     return ProductsControlState(
-      originalProducts: originalProducts ?? this.originalProducts,
+      originalProductItems: originalProductItems,
       filteredProducts: filteredProducts ?? this.filteredProducts,
       minPrice: minPrice ?? this.minPrice,
       maxPrice: maxPrice ?? this.maxPrice,
+      allBrands: allBrands,
       selectedBrands: selectedBrands ?? this.selectedBrands,
       currentRating: currentRating ?? this.currentRating,
       currentSort: currentSort ?? this.currentSort,

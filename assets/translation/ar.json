@@ -13,6 +13,8 @@
     "common_save_changes": "حفظ التغييرات....",
     "common_view_all": "عرض الكل",
     "common_result_for": "نتائج البحث عن",
+    "common_loading": "جاري التحميل...",
+    "common_search_for": "ابحث عن {}",
     
 
     "validators_required": "هذا الحقل مطلوب",
@@ -100,7 +102,21 @@
     "edit_profile_gender": "الجنس",
     "edit_profile_gender_male": "ذكر",
     "edit_profile_gender_female": "انثى",
-    "edit_profile_profile_updated_successfully": "تم تحديث الملف الشخصي بنجاح"
+    "edit_profile_profile_updated_successfully": "تم تحديث الملف الشخصي بنجاح",
+
+    "favorites_title": "المفضلة",
+    "favorites_empty": "لا يوجد منتجات في المفضلة",
+    "favorites_empty_desc": "ابدأ بإضافة المنتجات إلى المفضلة من خلال النقر على أيقونة القلب.",
+    "favorites_added_to_favorites": "تمت الاضافة الى المفضلة",
+    "favorites_items_in_favorites": {
+        "zero": "لا يوجد منتجات",
+        "one": "منتج واحد في المفضلة",
+        "two": "منتجان في المفضلة",
+        "few": "{} منتجات في المفضلة",
+        "many": "{} منتج في المفضلة",
+        "other": "{} منتج في المفضلة"
+    }
+
 
 
 

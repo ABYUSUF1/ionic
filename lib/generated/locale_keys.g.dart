@@ -17,6 +17,8 @@ abstract class  LocaleKeys {
   static const common_save_changes = 'common_save_changes';
   static const common_view_all = 'common_view_all';
   static const common_result_for = 'common_result_for';
+  static const common_loading = 'common_loading';
+  static const common_search_for = 'common_search_for';
   static const validators_required = 'validators_required';
   static const validators_name_required = 'validators_name_required';
   static const validators_name_short = 'validators_name_short';
@@ -94,5 +96,10 @@ abstract class  LocaleKeys {
   static const edit_profile_gender_male = 'edit_profile_gender_male';
   static const edit_profile_gender_female = 'edit_profile_gender_female';
   static const edit_profile_profile_updated_successfully = 'edit_profile_profile_updated_successfully';
+  static const favorites_title = 'favorites_title';
+  static const favorites_empty = 'favorites_empty';
+  static const favorites_empty_desc = 'favorites_empty_desc';
+  static const favorites_added_to_favorites = 'favorites_added_to_favorites';
+  static const favorites_items_in_favorites = 'favorites_items_in_favorites';
 
 }

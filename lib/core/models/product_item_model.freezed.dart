@@ -26,6 +26,7 @@ mixin _$ProductItemModel {
   String get imageUrl => throw _privateConstructorUsedError;
   double get price => throw _privateConstructorUsedError;
   double get rating => throw _privateConstructorUsedError;
+  String get brand => throw _privateConstructorUsedError;
   int get stock => throw _privateConstructorUsedError;
   int get reviewsCount => throw _privateConstructorUsedError;
 
@@ -52,6 +53,7 @@ abstract class $ProductItemModelCopyWith<$Res> {
     String imageUrl,
     double price,
     double rating,
+    String brand,
     int stock,
     int reviewsCount,
   });
@@ -77,6 +79,7 @@ class _$ProductItemModelCopyWithImpl<$Res, $Val extends ProductItemModel>
     Object? imageUrl = null,
     Object? price = null,
     Object? rating = null,
+    Object? brand = null,
     Object? stock = null,
     Object? reviewsCount = null,
   }) {
@@ -107,6 +110,11 @@ class _$ProductItemModelCopyWithImpl<$Res, $Val extends ProductItemModel>
                     ? _value.rating
                     : rating // ignore: cast_nullable_to_non_nullable
                         as double,
+            brand:
+                null == brand
+                    ? _value.brand
+                    : brand // ignore: cast_nullable_to_non_nullable
+                        as String,
             stock:
                 null == stock
                     ? _value.stock
@@ -138,6 +146,7 @@ abstract class _$$ProductItemModelImplCopyWith<$Res>
     String imageUrl,
     double price,
     double rating,
+    String brand,
     int stock,
     int reviewsCount,
   });
@@ -162,6 +171,7 @@ class __$$ProductItemModelImplCopyWithImpl<$Res>
     Object? imageUrl = null,
     Object? price = null,
     Object? rating = null,
+    Object? brand = null,
     Object? stock = null,
     Object? reviewsCount = null,
   }) {
@@ -192,6 +202,11 @@ class __$$ProductItemModelImplCopyWithImpl<$Res>
                 ? _value.rating
                 : rating // ignore: cast_nullable_to_non_nullable
                     as double,
+        brand:
+            null == brand
+                ? _value.brand
+                : brand // ignore: cast_nullable_to_non_nullable
+                    as String,
         stock:
             null == stock
                 ? _value.stock
@@ -216,6 +231,7 @@ class _$ProductItemModelImpl implements _ProductItemModel {
     required this.imageUrl,
     required this.price,
     required this.rating,
+    required this.brand,
     required this.stock,
     required this.reviewsCount,
   });
@@ -234,13 +250,15 @@ class _$ProductItemModelImpl implements _ProductItemModel {
   @override
   final double rating;
   @override
+  final String brand;
+  @override
   final int stock;
   @override
   final int reviewsCount;
 
   @override
   String toString() {
-    return 'ProductItemModel(id: $id, title: $title, imageUrl: $imageUrl, price: $price, rating: $rating, stock: $stock, reviewsCount: $reviewsCount)';
+    return 'ProductItemModel(id: $id, title: $title, imageUrl: $imageUrl, price: $price, rating: $rating, brand: $brand, stock: $stock, reviewsCount: $reviewsCount)';
   }
 
   @override
@@ -254,6 +272,7 @@ class _$ProductItemModelImpl implements _ProductItemModel {
                 other.imageUrl == imageUrl) &&
             (identical(other.price, price) || other.price == price) &&
             (identical(other.rating, rating) || other.rating == rating) &&
+            (identical(other.brand, brand) || other.brand == brand) &&
             (identical(other.stock, stock) || other.stock == stock) &&
             (identical(other.reviewsCount, reviewsCount) ||
                 other.reviewsCount == reviewsCount));
@@ -268,6 +287,7 @@ class _$ProductItemModelImpl implements _ProductItemModel {
     imageUrl,
     price,
     rating,
+    brand,
     stock,
     reviewsCount,
   );
@@ -296,6 +316,7 @@ abstract class _ProductItemModel implements ProductItemModel {
     required final String imageUrl,
     required final double price,
     required final double rating,
+    required final String brand,
     required final int stock,
     required final int reviewsCount,
   }) = _$ProductItemModelImpl;
@@ -313,6 +334,8 @@ abstract class _ProductItemModel implements ProductItemModel {
   double get price;
   @override
   double get rating;
+  @override
+  String get brand;
   @override
   int get stock;
   @override

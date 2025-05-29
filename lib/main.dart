@@ -61,7 +61,10 @@ class IonicApp extends StatelessWidget {
             localizationsDelegates: context.localizationDelegates,
             supportedLocales: context.supportedLocales,
             locale: context.locale,
-            theme: isDarkMode ? AppTheme.darkTheme : AppTheme.lightTheme,
+            theme:
+                isDarkMode
+                    ? AppTheme.darkTheme(context)
+                    : AppTheme.lightTheme(context),
             themeMode: ThemeMode.system,
             routerConfig: appRouter,
             builder: (context, child) {

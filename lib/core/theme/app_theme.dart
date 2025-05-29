@@ -7,7 +7,7 @@ import 'app_text_style.dart';
 
 class AppTheme {
   // Light Theme
-  static ThemeData get lightTheme => ThemeData(
+  static ThemeData lightTheme(BuildContext context) => ThemeData(
     useMaterial3: true,
     scaffoldBackgroundColor: AppColors.lightScaffoldBackground,
     appBarTheme: const AppBarTheme(
@@ -24,7 +24,7 @@ class AppTheme {
       secondary: AppColors.lightDialogBackground,
       error: AppColors.lightErrorColor,
     ),
-    textTheme: AppTextStyles.appTextTheme(Brightness.light),
+    textTheme: AppTextStyles.appTextTheme(Brightness.light, context),
     inputDecorationTheme: inputDecorationTheme(false),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
@@ -56,7 +56,7 @@ class AppTheme {
   );
 
   // Dark Theme
-  static ThemeData get darkTheme => ThemeData(
+  static ThemeData darkTheme(BuildContext context) => ThemeData(
     useMaterial3: true,
     scaffoldBackgroundColor: AppColors.darkScaffoldBackground,
     appBarTheme: const AppBarTheme(
@@ -73,7 +73,7 @@ class AppTheme {
       outline: AppColors.darkDividerColor,
       error: AppColors.darkErrorColor,
     ),
-    textTheme: AppTextStyles.appTextTheme(Brightness.dark),
+    textTheme: AppTextStyles.appTextTheme(Brightness.dark, context),
     inputDecorationTheme: inputDecorationTheme(true),
 
     elevatedButtonTheme: ElevatedButtonThemeData(

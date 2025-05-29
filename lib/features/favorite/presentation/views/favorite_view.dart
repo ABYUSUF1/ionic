@@ -1,18 +1,69 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ionic/core/constants/app_assets.dart';
-import 'package:ionic/core/widgets/buttons/custom_back_button.dart';
-import 'package:ionic/core/widgets/text_field/search_field.dart';
+import 'package:ionic/features/favorite/presentation/manager/cubit/favorite_cubit.dart';
 
+import '../../../../core/entities/product_item_entity.dart';
+import '../../../../core/theme/app_colors.dart';
+import '../../../../core/utils/functions/localized_number.dart';
 import '../../../../core/widgets/products_grid_view/views/products_grid_view.dart';
+import '../../../../generated/locale_keys.g.dart';
 
 class FavoriteView extends StatelessWidget {
   const FavoriteView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
-    // return ProductsGridView(emptyTitle: "No favorite found", emptySubtitle: "Start adding favorite", emptySvgImage: isDarkMode ? AppAssets.illustrationsNoFavoriteIllustrationDark : AppAssets.illustrationsNoFavoriteIllustrationLight, isLoading: true, productsEntity: productsEntity)
-    return Container();
+    final theme = Theme.of(context);
+    final isDarkMode = theme.brightness == Brightness.dark;
+    return BlocBuilder<FavoriteCubit, FavoriteState>(
+      builder: (context, state) {
+        List<ProductItemEntity> productsItem = state.maybeWhen(
+          orElse: () => [],
+          success: (productsItems) {
+            return productsItems;
+          },
+        );
+        return ProductsGridView(
+          emptyTitle: "No favorite found",
+          emptySubtitle: "Start adding favorite",
+          emptySvgImage:
+              isDarkMode
+                  ? AppAssets.illustrationsNoFavoriteIllustrationDark
+                  : AppAssets.illustrationsNoFavoriteIllustrationLight,
+          isLoading: state.maybeWhen(orElse: () => false, loading: () => true),
+          productItems: productsItem,
+          products: null,
+          searchHintText: context.tr(
+            LocaleKeys.common_search_for,
+            args: [LocaleKeys.favorites_title.tr()],
+          ),
+          searchHelperText: Text.rich(
+            TextSpan(
+              children: [
+                TextSpan(
+                  text: "${productsItem.length} ",
+                  style: theme.textTheme.bodySmall!.copyWith(
+                    color: AppColors.primaryColor,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                TextSpan(
+                  text: context.tr(
+                    LocaleKeys.favorites_items_in_favorites.plural(
+                      productsItem.length,
+                    ),
+                  ),
+                  style: theme.textTheme.bodySmall!.copyWith(
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
   }
 }

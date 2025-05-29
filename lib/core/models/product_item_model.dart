@@ -12,6 +12,7 @@ class ProductItemModel extends ProductItemEntity with _$ProductItemModel {
     required String imageUrl,
     required double price,
     required double rating,
+    required String brand,
     required int stock,
     required int reviewsCount,
   }) = _ProductItemModel;

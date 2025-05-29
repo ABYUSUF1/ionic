@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:ionic/core/entities/products_entity.dart';
 import 'package:ionic/core/widgets/products_grid_view/manager/cubit/products_control_cubit.dart';
+import 'package:ionic/core/widgets/products_grid_view/manager/cubit/products_control_state.dart';
 
 class BrandsFilter extends StatelessWidget {
   const BrandsFilter({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ProductsControlCubit, ProductsEntity>(
+    return BlocBuilder<ProductsControlCubit, ProductsControlState>(
       builder: (context, state) {
         final cubit = context.read<ProductsControlCubit>();
-        final allBrands = cubit.allBrands.toList();
-        final selectedBrands = cubit.selectedBrands;
+        final allBrands = cubit.state.allBrands.toList();
+        final selectedBrands = cubit.state.selectedBrands;
 
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,

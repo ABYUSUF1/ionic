@@ -86,6 +86,11 @@ flutter:
     - family: Pulp Display
       fonts:
         - asset: assets/fonts/PulpDisplay-Regular.ttf
+    
+    - family: Tajawal
+      fonts:
+        - asset: assets/fonts/Tajawal-Regular.ttf
+        - asset: assets/fonts/Tajawal-Bold.ttf
 
 
 

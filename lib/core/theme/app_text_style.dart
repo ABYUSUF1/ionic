@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:ionic/core/constants/app_font.dart';
 
 import 'app_colors.dart';
 
 final class AppTextStyles {
-  static TextTheme appTextTheme(Brightness brightness) {
+  static TextTheme appTextTheme(Brightness brightness, BuildContext context) {
     return TextTheme(
       headlineLarge: TextStyle(
         fontSize: 30,
-        fontFamily: 'Pulp Display',
+        fontFamily: appFont(context),
         color: AppColors.hardTextColor(brightness),
       ),
       headlineMedium: TextStyle(
         fontSize: 22,
-        fontFamily: 'Pulp Display',
+        fontFamily: appFont(context),
         color: AppColors.hardTextColor(brightness),
       ),
       titleLarge: TextStyle(
