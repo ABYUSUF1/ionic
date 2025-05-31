@@ -88,6 +88,7 @@ class CodegenLoader extends AssetLoader{
   "bottom_navigation_categories": "الفئات",
   "bottom_navigation_cart": "عربة التسوق",
   "bottom_navigation_profile": "الحساب",
+  "home_popular_products": "المنتجات المحبوبة",
   "profile_my_preference": "تفضيلاتي",
   "profile_my_cart": "عربة تسوقي",
   "profile_my_orders": "طلباتي",
@@ -112,14 +113,61 @@ class CodegenLoader extends AssetLoader{
   "favorites_empty": "لا يوجد منتجات في المفضلة",
   "favorites_empty_desc": "ابدأ بإضافة المنتجات إلى المفضلة من خلال النقر على أيقونة القلب.",
   "favorites_added_to_favorites": "تمت الاضافة الى المفضلة",
+  "favorites_removed_from_favorites": "تم الحذف من المفضلة",
   "favorites_items_in_favorites": {
     "zero": "لا يوجد منتجات",
     "one": "منتج واحد في المفضلة",
     "two": "منتجان في المفضلة",
-    "few": "{} منتجات في المفضلة",
-    "many": "{} منتج في المفضلة",
-    "other": "{} منتج في المفضلة"
-  }
+    "few": "منتجات في المفضلة",
+    "many": "منتج في المفضلة",
+    "other": "منتج في المفضلة"
+  },
+  "product_details": "تفاصيل المنتج",
+  "product_in_stock": "{} في المخزون",
+  "product_only_stock": "فقط {} في المخزون",
+  "product_out_of_stock": "غير متوفر",
+  "product_not_available": "غير متاح",
+  "product_warranty_month": "ضمان لمدة شهر واحد",
+  "product_warranty_months": "ضمان لمدة {} أشهر",
+  "product_warranty_year": "ضمان لمدة سنة واحدة",
+  "product_warranty_years": "ضمان لمدة {} سنوات",
+  "product_warranty_lifetime": "ضمان مدى الحياة",
+  "product_warranty_none": "بدون ضمان",
+  "product_shipping_in_days": "يُشحن خلال {} أيام",
+  "product_shipping_in_day": "يُشحن خلال {} يوم",
+  "product_shipping_in_business_days": "يُشحن خلال {} أيام عمل",
+  "product_shipping_in_business_day": "يُشحن خلال {} يوم عمل",
+  "product_shipping_in_weeks": "يُشحن خلال {} أسابيع",
+  "product_shipping_in_week": "يُشحن خلال {} أسبوع",
+  "product_shipping_in_months": "يُشحن خلال {} أشهر",
+  "product_shipping_in_month": "يُشحن خلال {} شهر",
+  "product_shipping_range_business_days": "يُشحن خلال {}-{} أيام عمل",
+  "product_shipping_overnight": "يُشحن خلال ليلة واحدة",
+  "product_return_policy": {
+    "none": "لا سياسة للإرجاع",
+    "days": "سياسة إرجاع لمدة {} يوم",
+    "days_plural": "سياسة إرجاع لمدة {} أيام"
+  },
+  "product_overview": "نظرة عامة",
+  "product_overall_rating": "تقييم عام",
+  "product_reviews": "التقييمات",
+  "product_reviews_count": {
+    "zero": "لا توجد مراجعات",
+    "one": "مراجعة واحدة",
+    "other": "{} مراجعات"
+  },
+  "product_based_on_reviews": "بناء علي {} تقيمات",
+  "cart_add_to_cart": "أضف إلى السلة",
+  "cart_remove_from_cart": "إزالة من السلة",
+  "cart_items_in_cart": {
+    "zero": "لا توجد عناصر في السلة",
+    "one": "عنصر واحد في السلة",
+    "two": "عنصران في السلة",
+    "few": "{} عناصر في السلة",
+    "many": "{} عنصراً في السلة",
+    "other": "{} عنصر في السلة"
+  },
+  "cart_qty": "الكمية: {}"
 };
 static const Map<String,dynamic> _en = {
   "common_next": "Next",
@@ -195,6 +243,7 @@ static const Map<String,dynamic> _en = {
   "bottom_navigation_categories": "Categories",
   "bottom_navigation_cart": "Cart",
   "bottom_navigation_profile": "Profile",
+  "home_popular_products": "Popular Products",
   "profile_my_preference": "My Preferences",
   "profile_my_cart": "My Cart",
   "profile_my_orders": "My Orders",
@@ -222,9 +271,52 @@ static const Map<String,dynamic> _en = {
   "favorites_removed_from_favorites": "Removed from favorites",
   "favorites_items_in_favorites": {
     "zero": "No favorites",
-    "one": "1 item in favorites",
-    "other": "{} items in favorites"
-  }
+    "one": "item in favorites",
+    "other": "items in favorites"
+  },
+  "product_details": "Product Details",
+  "product_in_stock": "{} in stock",
+  "product_only_stock": "Only {} in stock",
+  "product_out_of_stock": "Out of stock",
+  "product_not_available": "N/A",
+  "product_warranty_month": "{} month warranty",
+  "product_warranty_months": "{} months warranty",
+  "product_warranty_year": "{} year warranty",
+  "product_warranty_years": "{} years warranty",
+  "product_warranty_lifetime": "Lifetime warranty",
+  "product_warranty_none": "No warranty",
+  "product_shipping_in_days": "Ships in {} days",
+  "product_shipping_in_day": "Ships in {} day",
+  "product_shipping_in_business_days": "Ships in {} business days",
+  "product_shipping_in_business_day": "Ships in {} business day",
+  "product_shipping_in_weeks": "Ships in {} weeks",
+  "product_shipping_in_week": "Ships in {} week",
+  "product_shipping_in_months": "Ships in {} months",
+  "product_shipping_in_month": "Ships in {} month",
+  "product_shipping_range_business_days": "Ships in {}-{} business days",
+  "product_shipping_overnight": "Ships overnight",
+  "product_return_policy": {
+    "none": "No return policy",
+    "days": "{} day return policy",
+    "days_plural": "{} days return policy"
+  },
+  "product_overview": "Overview",
+  "product_overall_rating": "Overall rating",
+  "product_reviews": "Reviews",
+  "product_reviews_count": {
+    "zero": "No reviews",
+    "one": "1 review",
+    "other": "{} reviews"
+  },
+  "product_based_on_reviews": "Based on {} reviews",
+  "cart_add_to_cart": "Add to cart",
+  "cart_remove_from_cart": "Remove from cart",
+  "cart_items_in_cart": {
+    "zero": "No items in cart",
+    "one": "1 item in cart",
+    "other": "{} items in cart"
+  },
+  "cart_qty": "QTY: {}"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"ar": _ar, "en": _en};
 }

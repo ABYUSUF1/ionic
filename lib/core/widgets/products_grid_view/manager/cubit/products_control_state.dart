@@ -3,12 +3,12 @@ import 'package:ionic/core/entities/product_item_entity.dart';
 import 'products_control_cubit.dart';
 
 class ProductsControlState {
-  final List<ProductItemEntity> originalProductItems;
+  List<ProductItemEntity> originalProductItems;
   List<ProductItemEntity> filteredProducts;
   double minPrice;
   double maxPrice;
   Set<String> selectedBrands;
-  final Set<String> allBrands;
+  Set<String> allBrands;
   double currentRating;
   SortOption currentSort;
 
@@ -24,19 +24,21 @@ class ProductsControlState {
   });
 
   ProductsControlState copyWith({
+    List<ProductItemEntity>? originalProductItems,
     List<ProductItemEntity>? filteredProducts,
     double? minPrice,
     double? maxPrice,
+    Set<String>? allBrands,
     Set<String>? selectedBrands,
     double? currentRating,
     SortOption? currentSort,
   }) {
     return ProductsControlState(
-      originalProductItems: originalProductItems,
+      originalProductItems: originalProductItems ?? this.originalProductItems,
       filteredProducts: filteredProducts ?? this.filteredProducts,
       minPrice: minPrice ?? this.minPrice,
       maxPrice: maxPrice ?? this.maxPrice,
-      allBrands: allBrands,
+      allBrands: allBrands ?? this.allBrands,
       selectedBrands: selectedBrands ?? this.selectedBrands,
       currentRating: currentRating ?? this.currentRating,
       currentSort: currentSort ?? this.currentSort,

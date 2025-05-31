@@ -1,4 +1,6 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:ionic/generated/locale_keys.g.dart';
 
 class DropDownQuantityButton extends StatefulWidget {
   const DropDownQuantityButton({super.key});
@@ -12,11 +14,12 @@ class _DropDownQuantityButtonState extends State<DropDownQuantityButton> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
       height: 55,
       decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.secondary,
+        color: theme.colorScheme.secondary,
         borderRadius: BorderRadius.circular(8),
       ),
 
@@ -33,11 +36,13 @@ class _DropDownQuantityButtonState extends State<DropDownQuantityButton> {
           10,
           (index) => DropdownMenuItem<int>(
             value: index + 1,
-            child: Text('Qty: ${index + 1}'),
+            child: Text(
+              context.tr(LocaleKeys.cart_qty, args: [(index + 1).toString()]),
+            ),
           ),
         ),
         underline: Container(), // optional: remove underline
-        style: Theme.of(context).textTheme.bodyMedium,
+        style: theme.textTheme.bodyMedium,
         borderRadius: BorderRadius.circular(8),
       ),
     );

@@ -6,23 +6,32 @@ import 'products_control_state.dart';
 enum SortOption { recommended, lowToHigh, highToLow, topRated }
 
 class ProductsControlCubit extends Cubit<ProductsControlState> {
-  final List<ProductItemEntity> initialProducts;
-  ProductsControlCubit(this.initialProducts)
+  ProductsControlCubit()
     : super(
         ProductsControlState(
-          originalProductItems: initialProducts,
-          filteredProducts: initialProducts,
+          originalProductItems: [],
+          filteredProducts: [],
           minPrice: 0,
           maxPrice: 2000,
-          selectedBrands: initialProducts.map((e) => e.brand).toSet(),
-          allBrands: initialProducts.map((e) => e.brand).toSet(),
-          currentRating: 1.0,
+          allBrands: {},
+          selectedBrands: {},
+          currentRating: 0,
           currentSort: SortOption.recommended,
         ),
       );
 
-  /// Filters logic .................................................
+  // Must be called whenever source product list changes (e.g., favorites change)
+  void updateProducts(List<ProductItemEntity> products) {
+    emit(
+      state.copyWith(
+        originalProductItems: products,
+        selectedBrands: products.map((e) => e.brand).toSet(),
+      ),
+    );
+    filterProducts();
+  }
 
+  /// Filters logic .................................................
   void setPriceRange(double newMinPrice, double newMaxPrice) {
     state.minPrice = newMinPrice;
     state.maxPrice = newMaxPrice;

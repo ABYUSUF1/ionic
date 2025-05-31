@@ -82,6 +82,9 @@
     "bottom_navigation_profile": "Profile",
 
 
+    "home_popular_products": "Popular Products",
+
+
     "profile_my_preference": "My Preferences",
     "profile_my_cart": "My Cart",
     "profile_my_orders": "My Orders",
@@ -113,8 +116,61 @@
     "favorites_removed_from_favorites": "Removed from favorites",
     "favorites_items_in_favorites": {
         "zero": "No favorites",
-        "one": "1 item in favorites",
-        "other": "{} items in favorites"
-    }
+        "one": "item in favorites",
+        "other": "items in favorites"
+    },
+
+    
+    "product_details": "Product Details",
+    "product_in_stock": "{} in stock",
+    "product_only_stock": "Only {} in stock",
+    "product_out_of_stock": "Out of stock",
+    "product_not_available": "N/A",
+    "product_warranty_month": "{} month warranty",
+    "product_warranty_months": "{} months warranty",
+    "product_warranty_year": "{} year warranty",
+    "product_warranty_years": "{} years warranty",
+    "product_warranty_lifetime": "Lifetime warranty",
+    "product_warranty_none": "No warranty",
+    "product_shipping_in_days": "Ships in {} days",
+    "product_shipping_in_day": "Ships in {} day",
+    "product_shipping_in_business_days": "Ships in {} business days",
+    "product_shipping_in_business_day": "Ships in {} business day",
+    "product_shipping_in_weeks": "Ships in {} weeks",
+    "product_shipping_in_week": "Ships in {} week",
+    "product_shipping_in_months": "Ships in {} months",
+    "product_shipping_in_month": "Ships in {} month",
+    "product_shipping_range_business_days": "Ships in {}-{} business days",
+    "product_shipping_overnight": "Ships overnight",
+    "product_return_policy": {
+        "none": "No return policy",
+        "days": "{} day return policy",
+        "days_plural": "{} days return policy"
+    },
+    "product_overview" : "Overview",
+    "product_overall_rating": "Overall rating",
+    "product_reviews": "Reviews",
+    "product_reviews_count": {
+        "zero": "No reviews",
+        "one": "1 review",
+        "other": "{} reviews"
+    },
+    "product_based_on_reviews": "Based on {} reviews",
+
+
+
+    
+    "cart_add_to_cart": "Add to cart",
+    "cart_remove_from_cart": "Remove from cart",
+    "cart_items_in_cart": {
+      "zero": "No items in cart",
+      "one": "1 item in cart",
+      "other": "{} items in cart"
+    },
+    "cart_qty": "QTY: {}"
+
+
+    
+
 
 }

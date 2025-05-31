@@ -2,6 +2,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:ionic/generated/locale_keys.g.dart';
 
+import '../../../../../core/constants/app_font.dart';
+
 class HomeCategoriesUpper extends StatelessWidget {
   const HomeCategoriesUpper({super.key});
 
@@ -17,7 +19,7 @@ class HomeCategoriesUpper extends StatelessWidget {
             textAlign: TextAlign.start,
             style: Theme.of(
               context,
-            ).textTheme.bodyLarge!.copyWith(fontFamily: "Pulp Display"),
+            ).textTheme.bodyLarge!.copyWith(fontFamily: appFont(context)),
           ),
           TextButton.icon(
             onPressed: () {},

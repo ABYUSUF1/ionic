@@ -13,11 +13,11 @@ class ProductAdditionalInfo extends StatelessWidget {
       children: [
         _CustomListTile(
           leadingIcon: Icons.verified_user_outlined,
-          title: product.warrantyInformation.toString(),
+          title: product.formattedWarranty(context),
         ),
         _CustomListTile(
           leadingIcon: IconsaxPlusLinear.truck_time,
-          title: product.shippingInformation.toString(),
+          title: product.formattedShipping(context),
         ),
         _CustomListTile(
           leadingIcon: Icons.confirmation_number_outlined,
@@ -25,7 +25,7 @@ class ProductAdditionalInfo extends StatelessWidget {
         ),
         _CustomListTile(
           leadingIcon: IconsaxPlusLinear.undo,
-          title: product.returnPolicy.toString(),
+          title: product.formattedReturnPolicy(context),
         ),
       ],
     );

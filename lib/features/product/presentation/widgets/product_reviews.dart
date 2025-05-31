@@ -1,7 +1,10 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:ionic/core/models/product_model/review.dart';
 
+import '../../../../core/constants/app_font.dart';
 import '../../../../core/widgets/rating_bar_indicator.dart';
+import '../../../../generated/locale_keys.g.dart';
 
 class ProductReviews extends StatelessWidget {
   final List<Review> reviews;
@@ -14,9 +17,9 @@ class ProductReviews extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          "Reviews",
+          context.tr(LocaleKeys.product_reviews),
           style: theme.textTheme.bodyMedium!.copyWith(
-            fontFamily: "Pulp Display",
+            fontFamily: appFont(context),
           ),
         ),
         const SizedBox(height: 8),
@@ -31,7 +34,7 @@ class ProductReviews extends StatelessWidget {
               title: Text(
                 review.reviewerName ?? 'Unknown Reviewer',
                 style: theme.textTheme.bodyMedium!.copyWith(
-                  fontFamily: "Pulp Display",
+                  fontFamily: appFont(context),
                 ),
               ),
               subtitle: Column(

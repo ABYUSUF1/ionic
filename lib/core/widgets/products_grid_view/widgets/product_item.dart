@@ -1,13 +1,14 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 import 'package:ionic/core/entities/product_item_entity.dart';
 import 'package:ionic/core/models/product_model/product.dart';
 import 'package:ionic/core/routing/app_router_name.dart';
 import 'package:ionic/core/widgets/loading/skeleton_loading.dart';
-import 'package:ionic/features/favorite/presentation/manager/cubit/favorite_cubit.dart';
+
+import '../../../constants/app_font.dart';
+import 'favorite_button.dart';
 
 class ProductItem extends StatelessWidget {
   final Product? product;
@@ -63,27 +64,7 @@ class ProductItem extends StatelessWidget {
                               imageUrl: productItem.imageUrl,
                             ),
                   ),
-
-                  BlocBuilder<FavoriteCubit, FavoriteState>(
-                    builder: (context, state) {
-                      final cubit = context.read<FavoriteCubit>();
-                      final isFavorite = cubit.isFavorite(productItem);
-                      return IconButton(
-                        icon: Icon(
-                          isFavorite
-                              ? IconsaxPlusBold.heart
-                              : IconsaxPlusBold.heart,
-                          color:
-                              isFavorite
-                                  ? theme.colorScheme.error
-                                  : theme.colorScheme.onSurfaceVariant,
-                        ),
-                        onPressed: () {
-                          cubit.toggleFavorites(productItem);
-                        },
-                      );
-                    },
-                  ),
+                  FavoriteButton(productItem: productItem),
                 ],
               ),
               const SizedBox(height: 10),
@@ -92,12 +73,12 @@ class ProductItem extends StatelessWidget {
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
                 style: theme.textTheme.bodyMedium!.copyWith(
-                  fontFamily: "Pulp Display",
+                  fontFamily: appFont(context),
                 ),
               ),
               const SizedBox(height: 5),
               Text(
-                "${productItem.rating} ⭐ (${productItem.reviewsCount} Reviews)",
+                "${productItem.rating} ⭐ (${productItem.formattedReviewsCount(context)}) ",
                 style: theme.textTheme.bodySmall!.copyWith(
                   color: theme.colorScheme.onSurfaceVariant,
                 ),
@@ -108,9 +89,9 @@ class ProductItem extends StatelessWidget {
                   const Text("EGP "),
                   Text(
                     "${productItem.price}",
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      fontFamily: "Pulp Display",
+                      fontFamily: appFont(context),
                     ),
                   ),
                 ],
@@ -119,11 +100,9 @@ class ProductItem extends StatelessWidget {
               Row(
                 children: [
                   const Icon(IconsaxPlusBold.truck_fast, size: 16),
-                  const SizedBox(width: 3),
+                  const SizedBox(width: 4),
                   Text(
-                    productItem.stock > 0
-                        ? "${productItem.stock} In Stock"
-                        : "Out of Stock",
+                    productItem.formattedStock(context),
                     style: theme.textTheme.bodySmall!.copyWith(
                       color: theme.colorScheme.onSurfaceVariant,
                     ),

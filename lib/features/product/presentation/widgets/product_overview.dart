@@ -1,7 +1,9 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:ionic/core/models/product_model/product.dart';
 import 'package:ionic/core/widgets/responsive_layout.dart';
 
+import '../../../../generated/locale_keys.g.dart';
 import 'product_overall_rating.dart';
 import 'product_reviews.dart';
 
@@ -15,7 +17,10 @@ class ProductOverview extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text("Overview", style: theme.textTheme.headlineMedium),
+        Text(
+          context.tr(LocaleKeys.product_overview),
+          style: theme.textTheme.headlineMedium,
+        ),
         const SizedBox(height: 8),
         Container(
           padding: const EdgeInsets.all(16),

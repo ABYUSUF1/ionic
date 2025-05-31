@@ -34,7 +34,7 @@ Future<void> showCustomDialog({
               mainAxisSize: MainAxisSize.min,
               children: [
                 ZoomIn(
-                  duration: const Duration(milliseconds: 500),
+                  duration: const Duration(milliseconds: 300),
                   child: SvgPicture.asset(svgPic, width: 150, height: 150),
                 ),
                 const SizedBox(height: 50),
@@ -50,7 +50,6 @@ Future<void> showCustomDialog({
                 const SizedBox(height: 50),
                 Row(
                   children: [
-                    const Spacer(),
                     TextButton(
                       onPressed: () {
                         context.pop(context);
@@ -65,7 +64,7 @@ Future<void> showCustomDialog({
                     ),
                     const SizedBox(width: 16),
                     Expanded(
-                      flex: 3,
+                      flex: 2,
                       child: CustomFilledButton(
                         text: buttonText,
                         onPressed: onTap,

@@ -8,18 +8,14 @@ class ProductRatingCount extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Row(
       children: [
-        Text(
-          "${product.rating ?? '-'} ",
-          style: Theme.of(context).textTheme.bodyMedium,
-        ),
+        Text("${product.rating ?? '-'} ", style: theme.textTheme.bodyMedium),
         Icon(Icons.star_rate_rounded, color: starColor(product.rating ?? 0)),
         Text(
-          " (${product.reviews?.length ?? 0}) reviews",
-          style: Theme.of(
-            context,
-          ).textTheme.bodyMedium!.copyWith(color: Colors.grey),
+          "(${product.formattedReviewsCount(context)})",
+          style: theme.textTheme.bodyMedium!.copyWith(color: Colors.grey),
         ),
       ],
     );

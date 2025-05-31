@@ -81,6 +81,9 @@
     "bottom_navigation_profile": "الحساب",
 
 
+    "home_popular_products": "المنتجات المحبوبة",
+
+
     "profile_my_preference": "تفضيلاتي",
     "profile_my_cart": "عربة تسوقي",
     "profile_my_orders": "طلباتي",
@@ -108,16 +111,65 @@
     "favorites_empty": "لا يوجد منتجات في المفضلة",
     "favorites_empty_desc": "ابدأ بإضافة المنتجات إلى المفضلة من خلال النقر على أيقونة القلب.",
     "favorites_added_to_favorites": "تمت الاضافة الى المفضلة",
+    "favorites_removed_from_favorites": "تم الحذف من المفضلة",
     "favorites_items_in_favorites": {
         "zero": "لا يوجد منتجات",
         "one": "منتج واحد في المفضلة",
         "two": "منتجان في المفضلة",
-        "few": "{} منتجات في المفضلة",
-        "many": "{} منتج في المفضلة",
-        "other": "{} منتج في المفضلة"
-    }
+        "few": "منتجات في المفضلة",
+        "many": "منتج في المفضلة",
+        "other": "منتج في المفضلة"
+    },
+
+    
+    "product_details": "تفاصيل المنتج",
+    "product_in_stock": "{} في المخزون",
+    "product_only_stock": "فقط {} في المخزون",
+    "product_out_of_stock": "غير متوفر",
+    "product_not_available": "غير متاح",
+    "product_warranty_month": "ضمان لمدة شهر واحد",
+    "product_warranty_months": "ضمان لمدة {} أشهر",
+    "product_warranty_year": "ضمان لمدة سنة واحدة",
+    "product_warranty_years": "ضمان لمدة {} سنوات",
+    "product_warranty_lifetime": "ضمان مدى الحياة",
+    "product_warranty_none": "بدون ضمان",
+    "product_shipping_in_days": "يُشحن خلال {} أيام",
+    "product_shipping_in_day": "يُشحن خلال {} يوم",
+    "product_shipping_in_business_days": "يُشحن خلال {} أيام عمل",
+    "product_shipping_in_business_day": "يُشحن خلال {} يوم عمل",
+    "product_shipping_in_weeks": "يُشحن خلال {} أسابيع",
+    "product_shipping_in_week": "يُشحن خلال {} أسبوع",
+    "product_shipping_in_months": "يُشحن خلال {} أشهر",
+    "product_shipping_in_month": "يُشحن خلال {} شهر",
+    "product_shipping_range_business_days": "يُشحن خلال {}-{} أيام عمل",
+    "product_shipping_overnight": "يُشحن خلال ليلة واحدة",
+    "product_return_policy": {
+        "none": "لا سياسة للإرجاع",
+        "days": "سياسة إرجاع لمدة {} يوم",
+        "days_plural": "سياسة إرجاع لمدة {} أيام"
+    },
+    "product_overview" : "نظرة عامة",
+    "product_overall_rating": "تقييم عام",
+    "product_reviews": "التقييمات",
+    "product_reviews_count": {
+      "zero": "لا توجد مراجعات",
+      "one": "مراجعة واحدة",
+      "other": "{} مراجعات"
+    },
+    "product_based_on_reviews": "بناء علي {} تقيمات",
 
 
+    "cart_add_to_cart": "أضف إلى السلة",
+    "cart_remove_from_cart": "إزالة من السلة",
+    "cart_items_in_cart": {
+      "zero": "لا توجد عناصر في السلة",
+      "one": "عنصر واحد في السلة",
+      "two": "عنصران في السلة",
+      "few": "{} عناصر في السلة",
+      "many": "{} عنصراً في السلة",
+      "other": "{} عنصر في السلة"
+    },
+    "cart_qty": "الكمية: {}"
 
 
-}
+}   

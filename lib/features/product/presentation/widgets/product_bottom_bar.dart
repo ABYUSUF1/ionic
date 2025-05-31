@@ -1,8 +1,10 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:ionic/core/widgets/buttons/custom_filled_button.dart';
 import 'package:ionic/core/widgets/responsive_layout.dart';
 
 import '../../../../core/widgets/drop_down_quantity_button.dart';
+import '../../../../generated/locale_keys.g.dart';
 
 class ProductBottomBar extends StatelessWidget {
   const ProductBottomBar({super.key});
@@ -20,7 +22,10 @@ class ProductBottomBar extends StatelessWidget {
             const DropDownQuantityButton(),
             const SizedBox(width: 16),
             Expanded(
-              child: CustomFilledButton(text: "Add to Cart", onPressed: () {}),
+              child: CustomFilledButton(
+                text: context.tr(LocaleKeys.cart_add_to_cart),
+                onPressed: () {},
+              ),
             ),
           ],
         ),

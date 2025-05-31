@@ -9,6 +9,7 @@ import 'package:ionic/core/widgets/products_grid_view/views/products_grid_view.d
 import 'package:ionic/features/categories/domain/repo/categories_repo.dart';
 import 'package:ionic/features/categories/presentation/manager/cubit/categories_cubit.dart';
 import '../../../../core/utils/functions/is_arabic.dart';
+import '../../../../core/widgets/products_grid_view/manager/cubit/products_control_cubit.dart';
 import '../../../../generated/locale_keys.g.dart';
 import '../../../home/data/models/category_model/localized_title.dart';
 
@@ -19,16 +20,22 @@ class CategoriesView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    return BlocProvider(
-      create:
-          (context) =>
-              CategoriesCubit(getIt<CategoriesRepo>())
-                ..getCategories(categoryName: categoryName.toSlug()),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create:
+              (context) =>
+                  CategoriesCubit(getIt<CategoriesRepo>())
+                    ..getCategories(categoryName: categoryName.toSlug()),
+        ),
+      ],
       child: BlocBuilder<CategoriesCubit, CategoriesState>(
         builder: (context, state) {
           ProductsEntity productsEntity = state.maybeWhen(
             orElse: () => ProductsEntity.loading(),
-            success: (productsEntity) => productsEntity,
+            success: (productsEntity) {
+              return productsEntity;
+            },
           );
           return ProductsGridView(
             emptyTitle: "No products found",

@@ -1,5 +1,8 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../../core/constants/app_font.dart';
+import '../../../../../generated/locale_keys.g.dart';
 import 'home_popular_products_grid.dart';
 
 class HomePopularProducts extends StatelessWidget {
@@ -24,9 +27,9 @@ class HomePopularProducts extends StatelessWidget {
             Padding(
               padding: const EdgeInsetsDirectional.only(top: 16.0, start: 16),
               child: Text(
-                "Popular Products",
+                context.tr(LocaleKeys.home_popular_products),
                 style: theme.textTheme.bodyLarge!.copyWith(
-                  fontFamily: "Pulp Display",
+                  fontFamily: appFont(context),
                 ),
               ),
             ),

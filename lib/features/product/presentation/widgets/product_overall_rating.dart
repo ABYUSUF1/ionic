@@ -1,8 +1,12 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:ionic/core/models/product_model/product.dart';
 import 'package:ionic/core/utils/functions/star_color.dart';
 import 'package:ionic/core/widgets/rating_bar_indicator.dart';
 import 'package:ionic/core/widgets/responsive_layout.dart';
+
+import '../../../../core/constants/app_font.dart';
+import '../../../../generated/locale_keys.g.dart';
 
 class ProductOverallRating extends StatelessWidget {
   final Product product;
@@ -23,7 +27,7 @@ class ProductOverallRating extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         // Left rating summary
-        _buildRatingSummary(theme),
+        _buildRatingSummary(theme, context),
         const SizedBox(width: 16),
         // Right rating breakdown
         Expanded(
@@ -48,7 +52,7 @@ class ProductOverallRating extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         // Rating summary at top
-        _buildRatingSummary(theme),
+        _buildRatingSummary(theme, context),
         const SizedBox(height: 16),
         // Rating breakdown below
         Column(
@@ -64,14 +68,14 @@ class ProductOverallRating extends StatelessWidget {
     );
   }
 
-  Widget _buildRatingSummary(ThemeData theme) {
+  Widget _buildRatingSummary(ThemeData theme, BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          "Overall Rating",
+          context.tr(LocaleKeys.product_overall_rating),
           style: theme.textTheme.bodyMedium!.copyWith(
-            fontFamily: "Pulp Display",
+            fontFamily: appFont(context),
           ),
         ),
         const SizedBox(height: 8),
@@ -80,7 +84,10 @@ class ProductOverallRating extends StatelessWidget {
         RatingBarIndicator(rating: product.rating!),
         const SizedBox(height: 4),
         Text(
-          "Based on ${product.reviews?.length ?? 0} reviews",
+          context.tr(
+            LocaleKeys.product_based_on_reviews,
+            args: [(product.reviews?.length ?? 0).toString()],
+          ),
           style: theme.textTheme.bodySmall,
         ),
       ],

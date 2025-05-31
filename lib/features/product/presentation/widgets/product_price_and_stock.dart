@@ -56,7 +56,7 @@ class ProductPriceAndStock extends StatelessWidget {
             ),
             const SizedBox(width: 5),
             Text(
-              product!.formattedStock,
+              product!.formattedStock(context),
               style: theme.textTheme.bodyMedium!.copyWith(),
             ),
           ],

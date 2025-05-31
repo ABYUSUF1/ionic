@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:ionic/features/home/data/models/category_model/localized_title.dart';
 
+import '../../../../core/constants/app_font.dart';
 import '../../../../core/models/product_model/product.dart';
+import '../../../../core/routing/app_router_name.dart';
 import '../../../../core/theme/app_colors.dart';
 
 class ProductTitleAndBrand extends StatelessWidget {
@@ -22,15 +26,34 @@ class ProductTitleAndBrand extends StatelessWidget {
               ),
             ),
             const SizedBox(width: 16),
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-              decoration: BoxDecoration(
-                color: theme.colorScheme.secondary,
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: Text(
-                product.category ?? "Unknown Category",
-                style: theme.textTheme.bodySmall,
+            GestureDetector(
+              onTap:
+                  product.category == null
+                      ? null
+                      : () {
+                        context.push(
+                          AppRouterName.categoriesRoute,
+                          extra: LocalizedTitle(
+                            en: product.category!,
+                            ar: product.category!,
+                          ),
+                        );
+                      },
+              child: Container(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 4,
+                ),
+                decoration: BoxDecoration(
+                  color: theme.colorScheme.secondary,
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: Text(
+                  product.category != null
+                      ? "from ${product.category}"
+                      : "Unknown Category",
+                  style: theme.textTheme.bodySmall,
+                ),
               ),
             ),
           ],
@@ -39,7 +62,7 @@ class ProductTitleAndBrand extends StatelessWidget {
         Text(
           product.title ?? "Unknown Product",
           style: theme.textTheme.bodyLarge!.copyWith(
-            fontFamily: "Pulp Display",
+            fontFamily: appFont(context),
           ),
         ),
       ],

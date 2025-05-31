@@ -1,6 +1,8 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/models/product_model/product.dart';
+import '../../../../generated/locale_keys.g.dart';
 import 'product_additional_info.dart';
 import 'product_bottom_bar.dart';
 import 'product_favorite_button.dart';
@@ -22,7 +24,7 @@ class ProductMobileView extends StatelessWidget {
     return Scaffold(
       backgroundColor: theme.colorScheme.surface,
       bottomNavigationBar: const ProductBottomBar(),
-      appBar: AppBar(title: const Text("Product View")),
+      appBar: AppBar(title: Text(context.tr(LocaleKeys.product_details))),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(16.0),

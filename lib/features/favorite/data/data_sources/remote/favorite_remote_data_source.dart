@@ -1,11 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:ionic/core/models/product_item_model.dart';
 import 'package:ionic/core/services/data_source/remote/firestore_collection_names.dart';
+import 'package:ionic/core/utils/mixin/auth_guard_mixin.dart';
 
-class FavoriteRemoteDataSource {
+class FavoriteRemoteDataSource with AuthGuardMixin {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-  final String userId = FirebaseAuth.instance.currentUser!.uid;
 
   Future<void> addFavorite(ProductItemModel productItemModel) async {
     await _firestore

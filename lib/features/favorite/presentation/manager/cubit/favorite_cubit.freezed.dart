@@ -23,6 +23,7 @@ mixin _$FavoriteState {
     required TResult Function() loading,
     required TResult Function(List<ProductItemEntity> products) success,
     required TResult Function(String errMessage) error,
+    required TResult Function(String message) requiredLogin,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
@@ -30,6 +31,7 @@ mixin _$FavoriteState {
     TResult? Function()? loading,
     TResult? Function(List<ProductItemEntity> products)? success,
     TResult? Function(String errMessage)? error,
+    TResult? Function(String message)? requiredLogin,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
@@ -37,6 +39,7 @@ mixin _$FavoriteState {
     TResult Function()? loading,
     TResult Function(List<ProductItemEntity> products)? success,
     TResult Function(String errMessage)? error,
+    TResult Function(String message)? requiredLogin,
     required TResult orElse(),
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -45,6 +48,7 @@ mixin _$FavoriteState {
     required TResult Function(_Loading value) loading,
     required TResult Function(_Success value) success,
     required TResult Function(_Error value) error,
+    required TResult Function(_RequiredLogin value) requiredLogin,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
@@ -52,6 +56,7 @@ mixin _$FavoriteState {
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Success value)? success,
     TResult? Function(_Error value)? error,
+    TResult? Function(_RequiredLogin value)? requiredLogin,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
@@ -59,6 +64,7 @@ mixin _$FavoriteState {
     TResult Function(_Loading value)? loading,
     TResult Function(_Success value)? success,
     TResult Function(_Error value)? error,
+    TResult Function(_RequiredLogin value)? requiredLogin,
     required TResult orElse(),
   }) => throw _privateConstructorUsedError;
 }
@@ -132,6 +138,7 @@ class _$InitialImpl implements _Initial {
     required TResult Function() loading,
     required TResult Function(List<ProductItemEntity> products) success,
     required TResult Function(String errMessage) error,
+    required TResult Function(String message) requiredLogin,
   }) {
     return initial();
   }
@@ -143,6 +150,7 @@ class _$InitialImpl implements _Initial {
     TResult? Function()? loading,
     TResult? Function(List<ProductItemEntity> products)? success,
     TResult? Function(String errMessage)? error,
+    TResult? Function(String message)? requiredLogin,
   }) {
     return initial?.call();
   }
@@ -154,6 +162,7 @@ class _$InitialImpl implements _Initial {
     TResult Function()? loading,
     TResult Function(List<ProductItemEntity> products)? success,
     TResult Function(String errMessage)? error,
+    TResult Function(String message)? requiredLogin,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -169,6 +178,7 @@ class _$InitialImpl implements _Initial {
     required TResult Function(_Loading value) loading,
     required TResult Function(_Success value) success,
     required TResult Function(_Error value) error,
+    required TResult Function(_RequiredLogin value) requiredLogin,
   }) {
     return initial(this);
   }
@@ -180,6 +190,7 @@ class _$InitialImpl implements _Initial {
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Success value)? success,
     TResult? Function(_Error value)? error,
+    TResult? Function(_RequiredLogin value)? requiredLogin,
   }) {
     return initial?.call(this);
   }
@@ -191,6 +202,7 @@ class _$InitialImpl implements _Initial {
     TResult Function(_Loading value)? loading,
     TResult Function(_Success value)? success,
     TResult Function(_Error value)? error,
+    TResult Function(_RequiredLogin value)? requiredLogin,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -251,6 +263,7 @@ class _$LoadingImpl implements _Loading {
     required TResult Function() loading,
     required TResult Function(List<ProductItemEntity> products) success,
     required TResult Function(String errMessage) error,
+    required TResult Function(String message) requiredLogin,
   }) {
     return loading();
   }
@@ -262,6 +275,7 @@ class _$LoadingImpl implements _Loading {
     TResult? Function()? loading,
     TResult? Function(List<ProductItemEntity> products)? success,
     TResult? Function(String errMessage)? error,
+    TResult? Function(String message)? requiredLogin,
   }) {
     return loading?.call();
   }
@@ -273,6 +287,7 @@ class _$LoadingImpl implements _Loading {
     TResult Function()? loading,
     TResult Function(List<ProductItemEntity> products)? success,
     TResult Function(String errMessage)? error,
+    TResult Function(String message)? requiredLogin,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -288,6 +303,7 @@ class _$LoadingImpl implements _Loading {
     required TResult Function(_Loading value) loading,
     required TResult Function(_Success value) success,
     required TResult Function(_Error value) error,
+    required TResult Function(_RequiredLogin value) requiredLogin,
   }) {
     return loading(this);
   }
@@ -299,6 +315,7 @@ class _$LoadingImpl implements _Loading {
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Success value)? success,
     TResult? Function(_Error value)? error,
+    TResult? Function(_RequiredLogin value)? requiredLogin,
   }) {
     return loading?.call(this);
   }
@@ -310,6 +327,7 @@ class _$LoadingImpl implements _Loading {
     TResult Function(_Loading value)? loading,
     TResult Function(_Success value)? success,
     TResult Function(_Error value)? error,
+    TResult Function(_RequiredLogin value)? requiredLogin,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -404,6 +422,7 @@ class _$SuccessImpl implements _Success {
     required TResult Function() loading,
     required TResult Function(List<ProductItemEntity> products) success,
     required TResult Function(String errMessage) error,
+    required TResult Function(String message) requiredLogin,
   }) {
     return success(products);
   }
@@ -415,6 +434,7 @@ class _$SuccessImpl implements _Success {
     TResult? Function()? loading,
     TResult? Function(List<ProductItemEntity> products)? success,
     TResult? Function(String errMessage)? error,
+    TResult? Function(String message)? requiredLogin,
   }) {
     return success?.call(products);
   }
@@ -426,6 +446,7 @@ class _$SuccessImpl implements _Success {
     TResult Function()? loading,
     TResult Function(List<ProductItemEntity> products)? success,
     TResult Function(String errMessage)? error,
+    TResult Function(String message)? requiredLogin,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -441,6 +462,7 @@ class _$SuccessImpl implements _Success {
     required TResult Function(_Loading value) loading,
     required TResult Function(_Success value) success,
     required TResult Function(_Error value) error,
+    required TResult Function(_RequiredLogin value) requiredLogin,
   }) {
     return success(this);
   }
@@ -452,6 +474,7 @@ class _$SuccessImpl implements _Success {
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Success value)? success,
     TResult? Function(_Error value)? error,
+    TResult? Function(_RequiredLogin value)? requiredLogin,
   }) {
     return success?.call(this);
   }
@@ -463,6 +486,7 @@ class _$SuccessImpl implements _Success {
     TResult Function(_Loading value)? loading,
     TResult Function(_Success value)? success,
     TResult Function(_Error value)? error,
+    TResult Function(_RequiredLogin value)? requiredLogin,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -560,6 +584,7 @@ class _$ErrorImpl implements _Error {
     required TResult Function() loading,
     required TResult Function(List<ProductItemEntity> products) success,
     required TResult Function(String errMessage) error,
+    required TResult Function(String message) requiredLogin,
   }) {
     return error(errMessage);
   }
@@ -571,6 +596,7 @@ class _$ErrorImpl implements _Error {
     TResult? Function()? loading,
     TResult? Function(List<ProductItemEntity> products)? success,
     TResult? Function(String errMessage)? error,
+    TResult? Function(String message)? requiredLogin,
   }) {
     return error?.call(errMessage);
   }
@@ -582,6 +608,7 @@ class _$ErrorImpl implements _Error {
     TResult Function()? loading,
     TResult Function(List<ProductItemEntity> products)? success,
     TResult Function(String errMessage)? error,
+    TResult Function(String message)? requiredLogin,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -597,6 +624,7 @@ class _$ErrorImpl implements _Error {
     required TResult Function(_Loading value) loading,
     required TResult Function(_Success value) success,
     required TResult Function(_Error value) error,
+    required TResult Function(_RequiredLogin value) requiredLogin,
   }) {
     return error(this);
   }
@@ -608,6 +636,7 @@ class _$ErrorImpl implements _Error {
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Success value)? success,
     TResult? Function(_Error value)? error,
+    TResult? Function(_RequiredLogin value)? requiredLogin,
   }) {
     return error?.call(this);
   }
@@ -619,6 +648,7 @@ class _$ErrorImpl implements _Error {
     TResult Function(_Loading value)? loading,
     TResult Function(_Success value)? success,
     TResult Function(_Error value)? error,
+    TResult Function(_RequiredLogin value)? requiredLogin,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -637,5 +667,165 @@ abstract class _Error implements FavoriteState {
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ErrorImplCopyWith<_$ErrorImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$RequiredLoginImplCopyWith<$Res> {
+  factory _$$RequiredLoginImplCopyWith(
+    _$RequiredLoginImpl value,
+    $Res Function(_$RequiredLoginImpl) then,
+  ) = __$$RequiredLoginImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String message});
+}
+
+/// @nodoc
+class __$$RequiredLoginImplCopyWithImpl<$Res>
+    extends _$FavoriteStateCopyWithImpl<$Res, _$RequiredLoginImpl>
+    implements _$$RequiredLoginImplCopyWith<$Res> {
+  __$$RequiredLoginImplCopyWithImpl(
+    _$RequiredLoginImpl _value,
+    $Res Function(_$RequiredLoginImpl) _then,
+  ) : super(_value, _then);
+
+  /// Create a copy of FavoriteState
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({Object? message = null}) {
+    return _then(
+      _$RequiredLoginImpl(
+        null == message
+            ? _value.message
+            : message // ignore: cast_nullable_to_non_nullable
+                as String,
+      ),
+    );
+  }
+}
+
+/// @nodoc
+
+class _$RequiredLoginImpl implements _RequiredLogin {
+  const _$RequiredLoginImpl(this.message);
+
+  @override
+  final String message;
+
+  @override
+  String toString() {
+    return 'FavoriteState.requiredLogin(message: $message)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$RequiredLoginImpl &&
+            (identical(other.message, message) || other.message == message));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, message);
+
+  /// Create a copy of FavoriteState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$RequiredLoginImplCopyWith<_$RequiredLoginImpl> get copyWith =>
+      __$$RequiredLoginImplCopyWithImpl<_$RequiredLoginImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(List<ProductItemEntity> products) success,
+    required TResult Function(String errMessage) error,
+    required TResult Function(String message) requiredLogin,
+  }) {
+    return requiredLogin(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(List<ProductItemEntity> products)? success,
+    TResult? Function(String errMessage)? error,
+    TResult? Function(String message)? requiredLogin,
+  }) {
+    return requiredLogin?.call(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(List<ProductItemEntity> products)? success,
+    TResult Function(String errMessage)? error,
+    TResult Function(String message)? requiredLogin,
+    required TResult orElse(),
+  }) {
+    if (requiredLogin != null) {
+      return requiredLogin(message);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Success value) success,
+    required TResult Function(_Error value) error,
+    required TResult Function(_RequiredLogin value) requiredLogin,
+  }) {
+    return requiredLogin(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Success value)? success,
+    TResult? Function(_Error value)? error,
+    TResult? Function(_RequiredLogin value)? requiredLogin,
+  }) {
+    return requiredLogin?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Success value)? success,
+    TResult Function(_Error value)? error,
+    TResult Function(_RequiredLogin value)? requiredLogin,
+    required TResult orElse(),
+  }) {
+    if (requiredLogin != null) {
+      return requiredLogin(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _RequiredLogin implements FavoriteState {
+  const factory _RequiredLogin(final String message) = _$RequiredLoginImpl;
+
+  String get message;
+
+  /// Create a copy of FavoriteState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$RequiredLoginImplCopyWith<_$RequiredLoginImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

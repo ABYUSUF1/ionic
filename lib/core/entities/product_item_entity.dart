@@ -1,3 +1,7 @@
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/widgets.dart';
+
+import '../../generated/locale_keys.g.dart';
 import '../models/product_item_model.dart';
 
 class ProductItemEntity {
@@ -47,5 +51,23 @@ extension ProductItemEntityExtension on ProductItemEntity {
       reviewsCount: reviewsCount,
       brand: brand,
     );
+  }
+
+  String formattedReviewsCount(BuildContext context) {
+    return context.plural(
+      LocaleKeys.product_reviews_count,
+      reviewsCount,
+      args: [reviewsCount.toString()],
+    );
+  }
+
+  String formattedStock(BuildContext context) {
+    if (stock > 0) {
+      return stock > 10
+          ? context.tr(LocaleKeys.product_in_stock, args: [stock.toString()])
+          : context.tr(LocaleKeys.product_only_stock, args: [stock.toString()]);
+    } else {
+      return context.tr(LocaleKeys.product_out_of_stock);
+    }
   }
 }

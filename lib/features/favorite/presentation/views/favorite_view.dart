@@ -6,7 +6,6 @@ import 'package:ionic/features/favorite/presentation/manager/cubit/favorite_cubi
 
 import '../../../../core/entities/product_item_entity.dart';
 import '../../../../core/theme/app_colors.dart';
-import '../../../../core/utils/functions/localized_number.dart';
 import '../../../../core/widgets/products_grid_view/views/products_grid_view.dart';
 import '../../../../generated/locale_keys.g.dart';
 
@@ -17,6 +16,7 @@ class FavoriteView extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final isDarkMode = theme.brightness == Brightness.dark;
+
     return BlocBuilder<FavoriteCubit, FavoriteState>(
       builder: (context, state) {
         List<ProductItemEntity> productsItem = state.maybeWhen(
