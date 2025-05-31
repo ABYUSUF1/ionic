@@ -37,8 +37,6 @@ class HomeRepoImpl implements HomeRepo {
 
       return Right(productModel);
     } catch (e) {
-      print("ERROR ========================================");
-      print(e.toString());
       return const Left(Failure("Failed to fetch popular products"));
     }
   }

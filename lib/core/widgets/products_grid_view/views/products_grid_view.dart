@@ -32,9 +32,6 @@ class ProductsGridView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(
-      '------------------------------------------------------------------1',
-    );
     return isLoading
         ? Scaffold(
           appBar: ProductsGridAppBar(
@@ -52,9 +49,6 @@ class ProductsGridView extends StatelessWidget {
               (context) => ProductsControlCubit()..updateProducts(productItems),
           child: BlocBuilder<ProductsControlCubit, ProductsControlState>(
             builder: (context, state) {
-              print(
-                '------------------------------------------------------------------2',
-              );
               if (state.originalProductItems.length != productItems.length) {
                 context.read<ProductsControlCubit>().updateProducts(
                   productItems,

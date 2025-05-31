@@ -42,7 +42,10 @@ class ProductTabletView extends StatelessWidget {
                             const ProductBottomBar(),
                           ],
                         ),
-                        const ProductFavoriteButton(),
+
+                        ProductFavoriteButton(
+                          productItemEntity: product!.toProductItem(),
+                        ),
                       ],
                     ),
                   ),

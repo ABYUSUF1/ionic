@@ -9,7 +9,6 @@ import 'package:ionic/core/widgets/products_grid_view/views/products_grid_view.d
 import 'package:ionic/features/categories/domain/repo/categories_repo.dart';
 import 'package:ionic/features/categories/presentation/manager/cubit/categories_cubit.dart';
 import '../../../../core/utils/functions/is_arabic.dart';
-import '../../../../core/widgets/products_grid_view/manager/cubit/products_control_cubit.dart';
 import '../../../../generated/locale_keys.g.dart';
 import '../../../home/data/models/category_model/localized_title.dart';
 

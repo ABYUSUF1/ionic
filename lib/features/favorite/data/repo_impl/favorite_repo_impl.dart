@@ -18,7 +18,6 @@ class FavoriteRepoImpl implements FavoriteRepo {
       await _remote.addFavorite(productItemEntity.toProductItemModel());
       return const Right(null);
     } catch (e) {
-      print(e.toString());
       return const Left(Failure("Failed to add favorite"));
     }
   }

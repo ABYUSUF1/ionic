@@ -37,7 +37,9 @@ class ProductMobileView extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   ProductRatingCount(product: product!),
-                  const ProductFavoriteButton(),
+                  ProductFavoriteButton(
+                    productItemEntity: product!.toProductItem(),
+                  ),
                 ],
               ),
               const SizedBox(height: 16),
