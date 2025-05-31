@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:bloc/bloc.dart';
 import 'package:ionic/core/entities/product_item_entity.dart';
 
@@ -101,5 +103,38 @@ class ProductsControlCubit extends Cubit<ProductsControlState> {
   void setSortOption(SortOption option) {
     state.currentSort = option;
     filterProducts(); // This will trigger a re-sort
+  }
+
+  /// Search with debouncing
+  Timer? _searchDebounce;
+
+  void searchProducts(String query) {
+    // Cancel previous timer if it exists
+    _searchDebounce?.cancel();
+
+    // Start a new timer
+    _searchDebounce = Timer(const Duration(milliseconds: 300), () {
+      final filteredProducts =
+          state.originalProductItems.where((product) {
+            return product.title.toLowerCase().contains(query.toLowerCase());
+          }).toList();
+
+      emit(
+        state.copyWith(
+          filteredProducts: filteredProducts,
+          minPrice: state.minPrice,
+          maxPrice: state.maxPrice,
+          selectedBrands: state.selectedBrands,
+          currentRating: state.currentRating,
+          currentSort: state.currentSort,
+        ),
+      );
+    });
+  }
+
+  @override
+  Future<void> close() {
+    _searchDebounce?.cancel();
+    return super.close();
   }
 }

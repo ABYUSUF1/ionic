@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ionic/core/widgets/products_grid_view/widgets/products_control_icon_button.dart';
 
 import '../../../constants/app_assets.dart';
 import '../../buttons/custom_back_button.dart';
 import '../../text_field/search_field.dart';
+import '../manager/cubit/products_control_cubit.dart';
 
 class ProductsGridAppBar extends StatelessWidget
     implements PreferredSizeWidget {
@@ -42,6 +44,11 @@ class ProductsGridAppBar extends StatelessWidget
                     child: SearchField(
                       helperText: helperText,
                       hintText: hintText,
+                      onChanged: (value) {
+                        context.read<ProductsControlCubit>().searchProducts(
+                          value,
+                        );
+                      },
                     ),
                   ),
                   const ProductsControlIconButton(),
