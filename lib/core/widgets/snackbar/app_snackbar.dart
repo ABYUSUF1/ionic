@@ -9,7 +9,7 @@ final class AppSnackbar {
       context: context,
       message: message,
       color: AppColors.primaryColor,
-      duration: const Duration(seconds: 30),
+      duration: const Duration(seconds: 10),
     );
   }
 
@@ -27,7 +27,7 @@ final class AppSnackbar {
       context: context,
       message: message,
       color: Colors.green,
-      duration: const Duration(seconds: 30),
+      duration: const Duration(seconds: 10),
       icon: IconsaxPlusLinear.tick_square,
     );
   }

@@ -1,6 +1,8 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ionic/features/product/presentation/manager/cubit/product_cubit.dart';
 
 import '../../../../core/widgets/responsive_layout.dart';
 
@@ -21,9 +23,10 @@ class _ProductImagesState extends State<ProductImages> {
     final theme = Theme.of(context);
     final isMobile = ResponsiveLayout.isMobile(context);
 
-    if (widget.images == null || widget.images!.isEmpty) {
-      return const SizedBox(); // or a placeholder
-    }
+    final bool isLoading = context.read<ProductCubit>().state.maybeWhen(
+      orElse: () => false,
+      loading: () => true,
+    );
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -41,10 +44,13 @@ class _ProductImagesState extends State<ProductImages> {
             from: 20,
             duration: const Duration(milliseconds: 300),
             key: ValueKey(selectedIndex),
-            child: CachedNetworkImage(
-              imageUrl: widget.images![selectedIndex],
-              fit: BoxFit.contain,
-            ),
+            child:
+                isLoading
+                    ? const SizedBox.shrink()
+                    : CachedNetworkImage(
+                      imageUrl: widget.images![selectedIndex],
+                      fit: BoxFit.contain,
+                    ),
           ),
         ),
 

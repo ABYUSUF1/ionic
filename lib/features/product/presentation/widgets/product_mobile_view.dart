@@ -16,7 +16,7 @@ import 'product_title_and_brand.dart';
 class ProductMobileView extends StatelessWidget {
   const ProductMobileView({super.key, required this.product});
 
-  final Product? product;
+  final Product product;
 
   @override
   Widget build(BuildContext context) {
@@ -31,30 +31,30 @@ class ProductMobileView extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              ProductTitleAndBrand(product: product!),
+              ProductTitleAndBrand(product: product),
               const SizedBox(height: 16),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  ProductRatingCount(product: product!),
+                  ProductRatingCount(product: product),
                   ProductFavoriteButton(
-                    productItemEntity: product!.toProductItem(),
+                    productItemEntity: product.toProductItem(),
                   ),
                 ],
               ),
               const SizedBox(height: 16),
-              ProductImages(images: product!.images),
+              ProductImages(images: product.images),
               const SizedBox(height: 16),
               Text(
-                product?.description ?? "No description available",
+                product.description ?? "No description available",
                 style: Theme.of(context).textTheme.bodyMedium,
               ),
               const SizedBox(height: 16),
               ProductPriceAndStock(product: product),
               const SizedBox(height: 16),
-              ProductAdditionalInfo(product: product!),
+              ProductAdditionalInfo(product: product),
               const SizedBox(height: 16),
-              ProductTags(product: product!),
+              ProductTags(product: product),
               const SizedBox(height: 16),
               const Divider(),
               const SizedBox(height: 16),

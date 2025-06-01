@@ -50,6 +50,19 @@ class Product with _$Product {
       rating: 0.0,
       stock: 0,
       reviews: [],
+      brand: 'loading',
+      images: [],
+      tags: ["loading", "loading", "loading"],
+      description: "loading description here .....",
+      category: "loading",
+      discountPercentage: 0.0,
+      sku: "loading",
+      weight: 0,
+      shippingInformation: "loading",
+      warrantyInformation: "loading",
+      availabilityStatus: "loading",
+      minimumOrderQuantity: 0,
+      returnPolicy: "loading",
     );
   }
 }
@@ -124,27 +137,29 @@ extension ProductExtensions on Product {
   }
 
   String formattedShipping(BuildContext context) {
-    final lower = shippingInformation!.toLowerCase().trim();
+    final lower = shippingInformation?.toLowerCase().trim();
 
     if (lower == 'ships overnight') {
       return context.tr(LocaleKeys.product_shipping_overnight);
     }
 
-    final dayMatch = RegExp(r'ships in (\d+) day\b').firstMatch(lower);
-    final daysMatch = RegExp(r'ships in (\d+) days\b').firstMatch(lower);
+    final dayMatch = RegExp(r'ships in (\d+) day\b').firstMatch(lower ?? '');
+    final daysMatch = RegExp(r'ships in (\d+) days\b').firstMatch(lower ?? '');
     final businessMatch = RegExp(
       r'ships in (\d+)-(\d+) business days',
-    ).firstMatch(lower);
+    ).firstMatch(lower ?? '');
     final businessSingle = RegExp(
       r'ships in (\d+) business day',
-    ).firstMatch(lower);
+    ).firstMatch(lower ?? '');
     final businessPlural = RegExp(
       r'ships in (\d+) business days',
-    ).firstMatch(lower);
-    final weekMatch = RegExp(r'ships in (\d+) week').firstMatch(lower);
-    final weeksMatch = RegExp(r'ships in (\d+) weeks').firstMatch(lower);
-    final monthMatch = RegExp(r'ships in (\d+) month').firstMatch(lower);
-    final monthsMatch = RegExp(r'ships in (\d+) months').firstMatch(lower);
+    ).firstMatch(lower ?? '');
+    final weekMatch = RegExp(r'ships in (\d+) week').firstMatch(lower ?? '');
+    final weeksMatch = RegExp(r'ships in (\d+) weeks').firstMatch(lower ?? '');
+    final monthMatch = RegExp(r'ships in (\d+) month').firstMatch(lower ?? '');
+    final monthsMatch = RegExp(
+      r'ships in (\d+) months',
+    ).firstMatch(lower ?? '');
 
     if (dayMatch != null) {
       return context.tr(

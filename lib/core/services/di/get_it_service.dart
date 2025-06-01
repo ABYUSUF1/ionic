@@ -15,6 +15,9 @@ import 'package:ionic/features/favorite/domain/repo/favorite_repo.dart';
 import 'package:ionic/features/favorite/presentation/manager/cubit/favorite_cubit.dart';
 import 'package:ionic/features/home/domain/repo/home_repo.dart';
 import 'package:ionic/features/home/presentation/manager/categories/home_categories_cubit.dart';
+import 'package:ionic/features/product/data/repo_impl/product_repo_impl.dart';
+import 'package:ionic/features/product/domain/repo/product_repo.dart';
+import 'package:ionic/features/product/presentation/manager/cubit/product_cubit.dart';
 import 'package:ionic/features/profile/data/repo_impl/edit_profile_repo_impl.dart';
 import 'package:ionic/features/profile/domain/repo/edit_profile_repo.dart';
 import 'package:ionic/features/search/data/repo_impl/search_repo_impl.dart';
@@ -68,6 +71,7 @@ Future<void> setupGetIt() async {
   getIt.registerLazySingleton<SearchRepo>(
     () => SearchRepoImpl(getIt(), getIt()),
   );
+  getIt.registerLazySingleton<ProductRepo>(() => ProductRepoImpl(getIt()));
 
   // Register BLoCs/Cubits
   getIt.registerFactory(() => ThemeCubit(getIt()));
@@ -81,4 +85,5 @@ Future<void> setupGetIt() async {
   getIt.registerFactory(() => HomeCategoriesCubit(getIt()));
   getIt.registerFactory(() => FavoriteCubit(getIt()));
   getIt.registerFactory(() => SearchCubit(getIt()));
+  getIt.registerFactory(() => ProductCubit(getIt()));
 }
