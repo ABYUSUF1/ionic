@@ -8,7 +8,8 @@ abstract class EndPoints {
 
   static String getProductById(String productId) => 'products/$productId';
 
-  static String searchProducts(String? query) => 'products/search?q=$query';
+  static String searchProducts(String query, int limit, int skip) =>
+      'products/search?q=$query&limit=$limit&skip=$skip';
 
   static const String addProduct = 'products/add';
 }

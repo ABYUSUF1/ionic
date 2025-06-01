@@ -2,9 +2,14 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/widgets.dart';
 
 import '../../generated/locale_keys.g.dart';
+import 'package:objectbox/objectbox.dart';
 import '../models/product_item_model.dart';
 
+@Entity()
 class ProductItemEntity {
+  @Id()
+  int obxId = 0;
+
   final String id;
   final String title;
   final String imageUrl;
@@ -15,6 +20,7 @@ class ProductItemEntity {
   final int reviewsCount;
 
   ProductItemEntity({
+    this.obxId = 0,
     required this.id,
     required this.title,
     required this.imageUrl,

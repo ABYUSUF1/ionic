@@ -31,9 +31,63 @@
         }
       ],
       "relations": []
+    },
+    {
+      "id": "2:6004888736176740058",
+      "lastPropertyId": "9:493140872050341460",
+      "name": "ProductItemEntity",
+      "properties": [
+        {
+          "id": "1:6549981377943383646",
+          "name": "obxId",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:3698640012311869439",
+          "name": "id",
+          "type": 9
+        },
+        {
+          "id": "3:3857355228079323238",
+          "name": "title",
+          "type": 9
+        },
+        {
+          "id": "4:734511456478015182",
+          "name": "imageUrl",
+          "type": 9
+        },
+        {
+          "id": "5:5381042808446140363",
+          "name": "price",
+          "type": 8
+        },
+        {
+          "id": "6:5730435310936841953",
+          "name": "rating",
+          "type": 8
+        },
+        {
+          "id": "7:4833571906203877201",
+          "name": "brand",
+          "type": 9
+        },
+        {
+          "id": "8:7527000995949110117",
+          "name": "stock",
+          "type": 6
+        },
+        {
+          "id": "9:493140872050341460",
+          "name": "reviewsCount",
+          "type": 6
+        }
+      ],
+      "relations": []
     }
   ],
-  "lastEntityId": "1:3607200877144655389",
+  "lastEntityId": "2:6004888736176740058",
   "lastIndexId": "0:0",
   "lastRelationId": "0:0",
   "lastSequenceId": "0:0",

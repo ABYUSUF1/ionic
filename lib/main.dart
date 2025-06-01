@@ -3,8 +3,10 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ionic/core/entities/product_item_entity.dart';
 import 'package:ionic/core/routing/app_route.dart';
 import 'package:ionic/core/services/data_source/local/local_app_settings_service.dart';
+import 'package:ionic/core/services/data_source/local/object_box_service.dart';
 import 'package:ionic/core/services/di/get_it_service.dart';
 import 'package:ionic/core/services/network/network_cubit.dart';
 import 'package:ionic/core/services/network/network_widget.dart';
@@ -25,6 +27,8 @@ Future<void> main() async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await setupGetIt();
 
+  // getIt<ObjectBoxService>().box<ProductItemEntity>().removeAll();
+
   runApp(
     EasyLocalization(
       supportedLocales: const [Locale('en'), Locale('ar')],
@@ -32,7 +36,7 @@ Future<void> main() async {
       assetLoader: const CodegenLoader(),
       child: DevicePreview(
         builder: (context) {
-          return const IonicApp(); // Use const here as IonicApp is StatelessWidget
+          return const IonicApp();
         },
       ),
     ),

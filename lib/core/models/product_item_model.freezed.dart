@@ -307,6 +307,9 @@ class _$ProductItemModelImpl implements _ProductItemModel {
   Map<String, dynamic> toJson() {
     return _$$ProductItemModelImplToJson(this);
   }
+
+  @override
+  int obxId = 0;
 }
 
 abstract class _ProductItemModel implements ProductItemModel {

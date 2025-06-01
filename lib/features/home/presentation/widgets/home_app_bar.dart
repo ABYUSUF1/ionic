@@ -34,7 +34,7 @@ class HomeAppBar extends StatelessWidget {
               IconButton(
                 icon: const Icon(IconsaxPlusLinear.search_normal_1),
                 onPressed: () {
-                  // Handle notification button press
+                  context.push(AppRouterName.searchRoute);
                 },
               ),
 

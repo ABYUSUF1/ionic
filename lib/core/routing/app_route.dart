@@ -16,6 +16,7 @@ import 'package:ionic/main_bottom_nav_bar.dart';
 import '../../features/categories/presentation/views/categories_view.dart';
 import '../../features/favorite/presentation/views/favorite_view.dart';
 import '../../features/onboarding/presentation/views/onboarding_view.dart';
+import '../../features/search/presentation/views/search_view.dart';
 import '../models/product_model/product.dart';
 import '../services/data_source/local/local_app_settings_service.dart';
 import '../services/di/get_it_service.dart';
@@ -119,7 +120,7 @@ final GoRouter appRouter = GoRouter(
         final String productId = state.pathParameters['productId'] ?? '';
 
         final extra = state.extra;
-        late final Product product;
+        Product? product;
 
         if (extra is Product) {
           product = extra;
@@ -129,7 +130,7 @@ final GoRouter appRouter = GoRouter(
           //? Why this happens? --> I DONT KNOW
           product = Product.fromJson(extra);
         } else {
-          throw Exception("Invalid product data");
+          product = null;
         }
 
         return ProductView(productId: productId, product: product);
@@ -153,10 +154,18 @@ final GoRouter appRouter = GoRouter(
       },
     ),
 
+    /// --------------------- Favorite ---------------------
     GoRoute(
       path: AppRouterName.favoriteRoute,
       name: AppRouterName.favoriteRoute,
       builder: (context, state) => const FavoriteView(),
+    ),
+
+    /// --------------------- Search ---------------------
+    GoRoute(
+      path: AppRouterName.searchRoute,
+      name: AppRouterName.searchRoute,
+      builder: (context, state) => const SearchView(),
     ),
   ],
 );

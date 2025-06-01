@@ -25,4 +25,7 @@ final class AppRouterName {
   static String productIdRoute(String productId) {
     return '/product/$productId';
   }
+
+  // search route
+  static const String searchRoute = '/search';
 }
