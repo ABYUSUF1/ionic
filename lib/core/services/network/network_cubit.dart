@@ -1,19 +1,31 @@
-import 'dart:async';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 
-class NetworkCubit extends Cubit<bool> {
-  late final StreamSubscription<InternetStatus> _subscription;
+enum NetworkStatus { connected, disconnected }
 
-  NetworkCubit() : super(true) {
-    _subscription = InternetConnection().onStatusChange.listen((status) {
-      emit(status == InternetStatus.connected);
+class NetworkCubit extends Cubit<NetworkStatus> {
+  final Connectivity connectivity;
+
+  NetworkCubit(this.connectivity) : super(NetworkStatus.disconnected) {
+    // Immediately check network status
+    _checkInitialNetwork();
+
+    // Listen to real-time changes
+    connectivity.onConnectivityChanged.listen((status) {
+      if (status.contains(ConnectivityResult.none)) {
+        emit(NetworkStatus.disconnected);
+      } else {
+        emit(NetworkStatus.connected);
+      }
     });
   }
 
-  @override
-  Future<void> close() {
-    _subscription.cancel();
-    return super.close();
+  Future<void> _checkInitialNetwork() async {
+    final status = await connectivity.checkConnectivity();
+    if (status.contains(ConnectivityResult.none)) {
+      emit(NetworkStatus.disconnected);
+    } else {
+      emit(NetworkStatus.connected);
+    }
   }
 }

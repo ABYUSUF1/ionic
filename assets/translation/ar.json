@@ -17,6 +17,10 @@
     "common_search_for": "ابحث عن {}",
     
 
+    "network_no_internet": "لا يوجد اتصال بالإنترنت",
+    "network_no_internet_desc": "يرجى التحقق من اتصالك بالإنترنت للمتابعة في التسوق",
+
+
     "validators_required": "هذا الحقل مطلوب",
     "validators_name_required": "الاسم مطلوب",
     "validators_name_short": "يجب أن يكون الاسم 3 أحرف على الأقل",
@@ -157,6 +161,15 @@
       "other": "{} مراجعات"
     },
     "product_based_on_reviews": "بناء علي {} تقيمات",
+
+    
+    "search_recent_searches": "عمليات البحث الأخيرة",
+    "search_no_recent_searches": "لا توجد عمليات بحث حديثة",
+    "search_results_searches": {
+        "zero": "لم يتم العثور على نتائج",
+        "one": "تم العثور على نتيجة واحدة",
+        "other": "تم العثور على {} نتيجة"
+    },
 
 
     "cart_add_to_cart": "أضف إلى السلة",

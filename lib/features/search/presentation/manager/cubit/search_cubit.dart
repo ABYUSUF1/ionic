@@ -27,22 +27,20 @@ class SearchCubit extends Cubit<SearchState> {
   );
 
   List<ProductItemEntity> recentSearches = [];
+  bool _isLoadingMore = false;
 
   void onSearchChange(String query, {bool isLoadMore = false}) {
-    if (isLoadMore &&
-        _productsEntity.products.length >= _productsEntity.total) {
-      return;
-    }
-
-    if (!isLoadMore) {
+    if (isLoadMore) {
+      if (_isLoadingMore ||
+          _productsEntity.products.length >= _productsEntity.total) {
+        return;
+      }
+    } else {
       _productsEntity = _productsEntity.copyWith(products: [], skip: 0);
       emit(const SearchState.loading());
     }
 
-    if (_debounceSearch?.isActive ?? false) {
-      _debounceSearch?.cancel();
-    }
-
+    _debounceSearch?.cancel();
     _debounceSearch = Timer(
       const Duration(milliseconds: 500),
       () => _search(query, isLoadMore: isLoadMore),
@@ -55,30 +53,40 @@ class SearchCubit extends Cubit<SearchState> {
       return;
     }
 
-    if (isLoadMore) {
-      emit(SearchState.resultSearches(_productsEntity, isPaginating: true));
-    }
+    try {
+      if (isLoadMore) {
+        _isLoadingMore = true;
+        emit(SearchState.resultSearches(_productsEntity, isPaginating: true));
+      }
 
-    final result = await _searchRepo.search(
-      query,
-      _productsEntity.limit,
-      _productsEntity.skip,
-    );
-
-    result.fold((failure) => emit(SearchState.error(failure.errMessage)), (
-      newData,
-    ) {
-      final updatedProducts = List<Product>.from(_productsEntity.products)
-        ..addAll(newData.products);
-
-      _productsEntity = _productsEntity.copyWith(
-        products: updatedProducts,
-        total: newData.total,
-        skip: _productsEntity.skip + _productsEntity.limit,
+      final result = await _searchRepo.search(
+        query,
+        _productsEntity.limit,
+        _productsEntity.skip,
       );
 
-      emit(SearchState.resultSearches(_productsEntity));
-    });
+      result.fold((failure) => emit(SearchState.error(failure.errMessage)), (
+        newData,
+      ) {
+        final updatedProducts = List<Product>.from(_productsEntity.products)
+          ..addAll(
+            newData.products.where(
+              (newProduct) =>
+                  !_productsEntity.products.any((p) => p.id == newProduct.id),
+            ),
+          );
+
+        _productsEntity = _productsEntity.copyWith(
+          products: updatedProducts,
+          total: newData.total,
+          skip: _productsEntity.skip + _productsEntity.limit,
+        );
+
+        emit(SearchState.resultSearches(_productsEntity));
+      });
+    } finally {
+      if (isLoadMore) _isLoadingMore = false;
+    }
   }
 
   void clearSearch() {

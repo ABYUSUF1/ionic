@@ -31,6 +31,8 @@ class CodegenLoader extends AssetLoader{
   "common_result_for": "نتائج البحث عن",
   "common_loading": "جاري التحميل...",
   "common_search_for": "ابحث عن {}",
+  "network_no_internet": "لا يوجد اتصال بالإنترنت",
+  "network_no_internet_desc": "يرجى التحقق من اتصالك بالإنترنت للمتابعة في التسوق",
   "validators_required": "هذا الحقل مطلوب",
   "validators_name_required": "الاسم مطلوب",
   "validators_name_short": "يجب أن يكون الاسم 3 أحرف على الأقل",
@@ -157,6 +159,13 @@ class CodegenLoader extends AssetLoader{
     "other": "{} مراجعات"
   },
   "product_based_on_reviews": "بناء علي {} تقيمات",
+  "search_recent_searches": "عمليات البحث الأخيرة",
+  "search_no_recent_searches": "لا توجد عمليات بحث حديثة",
+  "search_results_searches": {
+    "zero": "لم يتم العثور على نتائج",
+    "one": "تم العثور على نتيجة واحدة",
+    "other": "تم العثور على {} نتيجة"
+  },
   "cart_add_to_cart": "أضف إلى السلة",
   "cart_remove_from_cart": "إزالة من السلة",
   "cart_items_in_cart": {
@@ -186,6 +195,8 @@ static const Map<String,dynamic> _en = {
   "common_result_for": "Result for",
   "common_loading": "Loading...",
   "common_search_for": "Search for {}",
+  "network_no_internet": "No internet connection",
+  "network_no_internet_desc": "Please check your internet connection to continue shopping",
   "validators_required": "Field is required",
   "validators_name_required": "Name is required",
   "validators_name_short": "Name must be at least 3 characters",
@@ -309,6 +320,13 @@ static const Map<String,dynamic> _en = {
     "other": "{} reviews"
   },
   "product_based_on_reviews": "Based on {} reviews",
+  "search_recent_searches": "Recent Searches",
+  "search_no_recent_searches": "No recent searches yet",
+  "search_results_searches": {
+    "zero": "No results found",
+    "one": "1 result found",
+    "other": "{} results found"
+  },
   "cart_add_to_cart": "Add to cart",
   "cart_remove_from_cart": "Remove from cart",
   "cart_items_in_cart": {

@@ -19,6 +19,8 @@ abstract class  LocaleKeys {
   static const common_result_for = 'common_result_for';
   static const common_loading = 'common_loading';
   static const common_search_for = 'common_search_for';
+  static const network_no_internet = 'network_no_internet';
+  static const network_no_internet_desc = 'network_no_internet_desc';
   static const validators_required = 'validators_required';
   static const validators_name_required = 'validators_name_required';
   static const validators_name_short = 'validators_name_short';
@@ -133,6 +135,9 @@ abstract class  LocaleKeys {
   static const product_reviews = 'product_reviews';
   static const product_reviews_count = 'product_reviews_count';
   static const product_based_on_reviews = 'product_based_on_reviews';
+  static const search_recent_searches = 'search_recent_searches';
+  static const search_no_recent_searches = 'search_no_recent_searches';
+  static const search_results_searches = 'search_results_searches';
   static const cart_add_to_cart = 'cart_add_to_cart';
   static const cart_remove_from_cart = 'cart_remove_from_cart';
   static const cart_items_in_cart = 'cart_items_in_cart';

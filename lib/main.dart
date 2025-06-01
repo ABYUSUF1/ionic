@@ -1,16 +1,17 @@
+import 'dart:async';
+
 import 'package:device_preview/device_preview.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:ionic/core/entities/product_item_entity.dart';
 import 'package:ionic/core/routing/app_route.dart';
 import 'package:ionic/core/services/data_source/local/local_app_settings_service.dart';
-import 'package:ionic/core/services/data_source/local/object_box_service.dart';
 import 'package:ionic/core/services/di/get_it_service.dart';
 import 'package:ionic/core/services/network/network_cubit.dart';
 import 'package:ionic/core/services/network/network_widget.dart';
 import 'package:ionic/core/theme/app_theme.dart';
+import 'package:ionic/core/widgets/offline_view.dart';
 import 'package:ionic/features/auth/presentation/manager/auth/auth_cubit.dart';
 import 'package:ionic/features/favorite/presentation/manager/cubit/favorite_cubit.dart';
 import 'package:ionic/firebase_options.dart';
@@ -26,8 +27,6 @@ Future<void> main() async {
   await EasyLocalization.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await setupGetIt();
-
-  // getIt<ObjectBoxService>().box<ProductItemEntity>().removeAll();
 
   runApp(
     EasyLocalization(
@@ -50,7 +49,7 @@ class IonicApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (context) => NetworkCubit()),
+        BlocProvider(create: (context) => NetworkCubit(getIt())),
         BlocProvider(
           create: (context) => ThemeCubit(getIt<LocalAppSettingsService>()),
         ),
@@ -72,16 +71,20 @@ class IonicApp extends StatelessWidget {
             themeMode: ThemeMode.system,
             routerConfig: appRouter,
             builder: (context, child) {
-              return BlocListener<NetworkCubit, bool>(
-                listenWhen: (previous, current) => previous != current,
-                listener: (context, isOnline) {
-                  if (isOnline) {
-                    showOnlineSnackBar(scaffoldMessengerKey.currentContext!);
-                  } else {
-                    showOfflineBanner(scaffoldMessengerKey.currentContext!);
+              return BlocBuilder<NetworkCubit, NetworkStatus>(
+                builder: (context, state) {
+                  if (state == NetworkStatus.disconnected) {
+                    return const OfflineScreen();
                   }
+                  return BlocListener<NetworkCubit, NetworkStatus>(
+                    listener: (context, state) {
+                      if (state == NetworkStatus.connected) {
+                        showOnlineSnackBar(context);
+                      }
+                    },
+                    child: child!,
+                  );
                 },
-                child: child,
               );
             },
           );

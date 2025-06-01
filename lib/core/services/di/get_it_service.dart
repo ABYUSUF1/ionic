@@ -1,9 +1,11 @@
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:ionic/core/api/api_client.dart';
 import 'package:ionic/core/api/dio_api_client.dart';
 import 'package:ionic/core/services/image_picker/cubit/cubit/image_picker_cubit.dart';
 import 'package:ionic/core/services/image_picker/image_picker_service.dart';
+import 'package:ionic/core/services/network/network_cubit.dart';
 import 'package:ionic/features/auth/presentation/manager/auth/auth_cubit.dart';
 import 'package:ionic/features/auth/presentation/manager/forget_password/forget_password_cubit.dart';
 import 'package:ionic/features/auth/presentation/manager/sign_in/sign_in_cubit.dart';
@@ -41,6 +43,7 @@ final GetIt getIt = GetIt.instance;
 
 Future<void> setupGetIt() async {
   // Register Services
+  getIt.registerSingleton<Connectivity>(Connectivity());
   final objectBoxService = await ObjectBoxService.init();
   getIt.registerSingleton<ObjectBoxService>(objectBoxService);
   getIt.registerSingleton(LocalAppSettingsService(objectBoxService));
@@ -74,6 +77,7 @@ Future<void> setupGetIt() async {
   getIt.registerLazySingleton<ProductRepo>(() => ProductRepoImpl(getIt()));
 
   // Register BLoCs/Cubits
+  getIt.registerFactory(() => NetworkCubit(getIt()));
   getIt.registerFactory(() => ThemeCubit(getIt()));
   getIt.registerFactory(() => ImagePickerCubit(getIt()));
   getIt.registerFactory(() => SignInCubit(getIt()));

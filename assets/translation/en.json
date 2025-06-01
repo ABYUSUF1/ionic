@@ -15,6 +15,10 @@
     "common_result_for" : "Result for",
     "common_loading": "Loading...",
     "common_search_for": "Search for {}",
+
+
+    "network_no_internet": "No internet connection",
+    "network_no_internet_desc": "Please check your internet connection to continue shopping",
     
 
     "validators_required": "Field is required",
@@ -158,6 +162,13 @@
     "product_based_on_reviews": "Based on {} reviews",
 
 
+    "search_recent_searches": "Recent Searches",
+    "search_no_recent_searches": "No recent searches yet",
+    "search_results_searches": {
+      "zero": "No results found",
+      "one": "1 result found",
+      "other": "{} results found"
+    },
 
     
     "cart_add_to_cart": "Add to cart",

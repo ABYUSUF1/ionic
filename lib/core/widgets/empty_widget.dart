@@ -18,12 +18,17 @@ class EmptyWidget extends StatelessWidget {
     return Center(
       child: Column(
         children: [
-          SvgPicture.asset(svgImage),
+          SvgPicture.asset(svgImage, width: 250, height: 250),
 
-          Text(title, style: theme.textTheme.headlineMedium),
+          Text(
+            title,
+            style: theme.textTheme.headlineMedium,
+            textAlign: TextAlign.center,
+          ),
           const SizedBox(height: 5),
           Text(
             subtitle,
+            textAlign: TextAlign.center,
             style: theme.textTheme.bodyMedium!.copyWith(
               color: theme.colorScheme.onSurfaceVariant,
             ),

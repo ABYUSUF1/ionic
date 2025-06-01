@@ -35,11 +35,16 @@ class _HomeAdsState extends State<HomeAds> {
 
   void _startAutoScroll() {
     _timer = Timer.periodic(const Duration(seconds: 3), (_) {
-      if (_controller.hasClients) {
-        _controller.nextPage(
-          duration: const Duration(milliseconds: 500),
-          curve: Curves.easeInOut,
-        );
+      if (!mounted) return;
+      try {
+        if (_controller.hasClients) {
+          _controller.nextPage(
+            duration: const Duration(milliseconds: 500),
+            curve: Curves.easeInOut,
+          );
+        }
+      } catch (e, stackTrace) {
+        debugPrint("Error in auto scroll: $e\n$stackTrace");
       }
     });
   }
