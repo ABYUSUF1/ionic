@@ -15,7 +15,7 @@ class AddressDetailsView extends StatelessWidget {
       bottomNavigationBar: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
-          child: CustomFilledButton(text: "Confirm", onPressed: () {}),
+          child: CustomFilledButton(text: "Save Address", onPressed: () {}),
         ),
       ),
       body: const Padding(

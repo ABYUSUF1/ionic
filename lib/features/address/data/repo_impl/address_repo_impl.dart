@@ -17,21 +17,47 @@ class AddressRepoImpl implements AddressRepo {
   AddressRepoImpl(this._location, this._remote);
 
   @override
-  Future<Either<Failure, void>> addUserAddress(AddressEntity addressEntity) {
-    // TODO: implement addUserAddress
-    throw UnimplementedError();
+  Future<Either<Failure, void>> addUserAddress(
+    AddressEntity addressEntity,
+  ) async {
+    try {
+      await _remote.addAddress(addressEntity.toModel());
+      return const Right(null);
+    } catch (e) {
+      return const Left(Failure("Failed to add address"));
+    }
   }
 
   @override
-  Future<Either<Failure, void>> deleteAddress(String addressId) {
-    // TODO: implement deleteAddress
-    throw UnimplementedError();
+  Future<Either<Failure, void>> deleteAddress(String addressId) async {
+    try {
+      await _remote.deleteAddress(addressId);
+      return const Right(null);
+    } catch (e) {
+      return const Left(Failure("Failed to delete address"));
+    }
   }
 
   @override
-  Future<Either<Failure, List<AddressEntity>>> fetchAddresses() {
-    // TODO: implement fetchAddresses
-    throw UnimplementedError();
+  Future<Either<Failure, List<AddressEntity>>> fetchAddresses() async {
+    try {
+      final response = await _remote.getAddresses();
+      return Right(response);
+    } catch (e) {
+      return const Left(Failure("Failed to fetch addresses"));
+    }
+  }
+
+  @override
+  Future<Either<Failure, void>> updateAddress(
+    AddressEntity addressEntity,
+  ) async {
+    try {
+      await _remote.updateAddress(addressEntity.toModel());
+      return const Right(null);
+    } catch (e) {
+      return const Left(Failure("Failed to update address"));
+    }
   }
 
   @override
@@ -97,14 +123,7 @@ class AddressRepoImpl implements AddressRepo {
 
       return Right(LatLng(lat, lng));
     } catch (e) {
-      print(e.toString());
       return Left(Failure(e.toString()));
     }
-  }
-
-  @override
-  Future<Either<Failure, void>> updateAddress(AddressEntity addressEntity) {
-    // TODO: implement updateAddress
-    throw UnimplementedError();
   }
 }
