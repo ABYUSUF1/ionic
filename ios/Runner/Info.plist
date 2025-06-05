@@ -15,6 +15,10 @@
 		<string>ar</string>
 		</array>
 
+		<!-- Address (Flutter Map) -->
+		<key>NSLocationWhenInUseUsageDescription</key>
+		<string>This app needs access to your location to pick your address.</string>
+
 		<key>CFBundleDevelopmentRegion</key>
 		<string>$(DEVELOPMENT_LANGUAGE)</string>
 		<key>CFBundleDisplayName</key>

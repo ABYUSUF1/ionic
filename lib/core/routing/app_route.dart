@@ -1,5 +1,8 @@
 import 'package:go_router/go_router.dart';
 import 'package:ionic/core/routing/app_router_name.dart';
+import 'package:ionic/features/address/presentation/views/address_details_page.dart';
+import 'package:ionic/features/address/presentation/views/default_address_view.dart';
+import 'package:ionic/features/address/presentation/views/locate_on_map_view.dart';
 import 'package:ionic/features/auth/presentation/args/email_sent_args.dart';
 import 'package:ionic/features/auth/presentation/views/email_sent_view.dart';
 import 'package:ionic/features/auth/presentation/views/forget_password_view.dart';
@@ -166,6 +169,23 @@ final GoRouter appRouter = GoRouter(
       path: AppRouterName.searchRoute,
       name: AppRouterName.searchRoute,
       builder: (context, state) => const SearchView(),
+    ),
+
+    /// --------------------- Address ---------------------
+    GoRoute(
+      path: AppRouterName.defaultAddressRoute,
+      name: AppRouterName.defaultAddressRoute,
+      builder: (context, state) => const DefaultAddressView(),
+    ),
+    GoRoute(
+      path: AppRouterName.locateOnMapRoute,
+      name: AppRouterName.locateOnMapRoute,
+      builder: (context, state) => const LocateOnMapView(),
+    ),
+    GoRoute(
+      path: AppRouterName.addressDetailsRoute,
+      name: AppRouterName.addressDetailsRoute,
+      builder: (context, state) => const AddressDetailsView(),
     ),
   ],
 );

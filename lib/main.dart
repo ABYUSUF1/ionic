@@ -55,6 +55,7 @@ class IonicApp extends StatelessWidget {
         ),
         BlocProvider(create: (context) => AuthCubit(getIt<AuthRepo>())),
         BlocProvider(create: (context) => FavoriteCubit(getIt<FavoriteRepo>())),
+        // BlocProvider(create: (context) => AddressCubit(getIt<AddressRepo>())),
       ],
       child: BlocBuilder<ThemeCubit, bool>(
         builder: (context, isDarkMode) {

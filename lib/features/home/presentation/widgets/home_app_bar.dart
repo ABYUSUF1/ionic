@@ -84,7 +84,7 @@ class HomeAppBar extends StatelessWidget {
           ),
           ListTile(
             onTap: () {
-              /* Handle address selection */
+              context.push(AppRouterName.defaultAddressRoute);
             },
             leading: Icon(
               IconsaxPlusLinear.location,

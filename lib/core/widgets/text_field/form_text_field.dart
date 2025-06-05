@@ -13,6 +13,7 @@ class FormTextField extends StatelessWidget {
   final VoidCallback? onTap;
   final bool? readOnly;
   final void Function(String)? onChanged;
+  final int? maxLines;
 
   const FormTextField({
     super.key,
@@ -26,6 +27,7 @@ class FormTextField extends StatelessWidget {
     this.onTap,
     this.readOnly,
     this.onChanged,
+    this.maxLines,
   });
 
   @override
@@ -37,6 +39,7 @@ class FormTextField extends StatelessWidget {
       builder: (field) {
         return TextField(
           controller: controller,
+          maxLines: maxLines ?? 1,
           onChanged: (value) {
             field.didChange(value);
             onChanged?.call(value);

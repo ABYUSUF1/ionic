@@ -6,6 +6,9 @@ import 'package:ionic/core/api/dio_api_client.dart';
 import 'package:ionic/core/services/image_picker/cubit/cubit/image_picker_cubit.dart';
 import 'package:ionic/core/services/image_picker/image_picker_service.dart';
 import 'package:ionic/core/services/network/network_cubit.dart';
+import 'package:ionic/features/address/data/data_source/address_remote_data_source.dart';
+import 'package:ionic/features/address/domain/repo/address_repo.dart';
+import 'package:ionic/features/address/presentation/manager/add_or_edit_address/locate_on_map_cubit.dart';
 import 'package:ionic/features/auth/presentation/manager/auth/auth_cubit.dart';
 import 'package:ionic/features/auth/presentation/manager/forget_password/forget_password_cubit.dart';
 import 'package:ionic/features/auth/presentation/manager/sign_in/sign_in_cubit.dart';
@@ -25,7 +28,9 @@ import 'package:ionic/features/profile/domain/repo/edit_profile_repo.dart';
 import 'package:ionic/features/search/data/repo_impl/search_repo_impl.dart';
 import 'package:ionic/features/search/domain/repo/search_repo.dart';
 import 'package:ionic/features/search/presentation/manager/cubit/search_cubit.dart';
+import 'package:location/location.dart';
 
+import '../../../features/address/data/repo_impl/address_repo_impl.dart';
 import '../../../features/auth/data/data_source/remote/auth_firestore_service.dart';
 import '../../../features/auth/data/data_source/remote/auth_remote_data_source.dart';
 import '../../../features/auth/data/repo_imple/auth_repo_impl.dart';
@@ -51,6 +56,7 @@ Future<void> setupGetIt() async {
   getIt.registerLazySingleton(() => AuthFirestoreService());
   getIt.registerLazySingleton(() => ImagePickerService());
   getIt.registerLazySingleton<ApiClient>(() => DioApiClient(Dio()));
+  getIt.registerLazySingleton<Location>(() => Location());
 
   // Register Data Sources
   getIt.registerLazySingleton(
@@ -60,6 +66,7 @@ Future<void> setupGetIt() async {
     ),
   );
   getIt.registerLazySingleton(() => FavoriteRemoteDataSource());
+  getIt.registerLazySingleton(() => AddressRemoteDataSource());
 
   // Register Repositories
   getIt.registerLazySingleton<AuthRepo>(() => AuthRepoImpl(getIt()));
@@ -75,6 +82,9 @@ Future<void> setupGetIt() async {
     () => SearchRepoImpl(getIt(), getIt()),
   );
   getIt.registerLazySingleton<ProductRepo>(() => ProductRepoImpl(getIt()));
+  getIt.registerLazySingleton<AddressRepo>(
+    () => AddressRepoImpl(getIt(), getIt()),
+  );
 
   // Register BLoCs/Cubits
   getIt.registerFactory(() => NetworkCubit(getIt()));
@@ -90,4 +100,5 @@ Future<void> setupGetIt() async {
   getIt.registerFactory(() => FavoriteCubit(getIt()));
   getIt.registerFactory(() => SearchCubit(getIt()));
   getIt.registerFactory(() => ProductCubit(getIt()));
+  getIt.registerFactory(() => LocateOnMapCubit(getIt()));
 }

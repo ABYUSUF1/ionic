@@ -28,4 +28,9 @@ final class AppRouterName {
 
   // search route
   static const String searchRoute = '/search';
+
+  // Addresses Route
+  static const String defaultAddressRoute = '/default-address';
+  static const String locateOnMapRoute = '/locate-on-map';
+  static const String addressDetailsRoute = '/address-details';
 }
