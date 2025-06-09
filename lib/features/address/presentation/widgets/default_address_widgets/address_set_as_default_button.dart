@@ -1,9 +1,11 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:ionic/core/widgets/dialog/custom_dialog.dart';
 import 'package:ionic/features/address/domain/entity/address_entity.dart';
 import 'package:ionic/features/address/presentation/manager/default_address/default_address_cubit.dart';
+import 'package:ionic/generated/locale_keys.g.dart';
 
 import '../../../../../core/constants/app_assets.dart';
 
@@ -23,7 +25,7 @@ class AddressSetAsDefaultButton extends StatelessWidget {
       child:
           addressEntity.isDefault
               ? Text(
-                "Already Default",
+                context.tr(LocaleKeys.address_set_as_default),
                 style: theme.textTheme.bodySmall!.copyWith(
                   fontWeight: FontWeight.bold,
                 ),
@@ -32,14 +34,15 @@ class AddressSetAsDefaultButton extends StatelessWidget {
                 onPressed: () {
                   showCustomDialog(
                     context: context,
-                    title: "Set as default",
-                    subTitle:
-                        "Are you sure you want to set this address as default?",
+                    title: context.tr(LocaleKeys.address_set_as_default),
+                    subTitle: context.tr(
+                      LocaleKeys.address_set_as_default_desc,
+                    ),
                     svgPic:
                         isDark
                             ? AppAssets.illustrationsGpsIllustrationDark
                             : AppAssets.illustrationsGpsIllustrationLight,
-                    buttonText: "Set as default",
+                    buttonText: context.tr(LocaleKeys.address_set_as_default),
                     onTap: () {
                       context.read<DefaultAddressCubit>().setDefaultAddress(
                         addressEntity,
@@ -48,7 +51,7 @@ class AddressSetAsDefaultButton extends StatelessWidget {
                     },
                   );
                 },
-                child: const Text("Set as default"),
+                child: Text(context.tr(LocaleKeys.address_set_as_default)),
               ),
     );
   }

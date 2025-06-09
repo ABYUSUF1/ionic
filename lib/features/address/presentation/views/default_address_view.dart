@@ -1,7 +1,9 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ionic/features/address/presentation/widgets/default_address_widgets/default_address_bottom_bar.dart';
 import 'package:ionic/features/auth/presentation/manager/auth/auth_cubit.dart';
+import 'package:ionic/generated/locale_keys.g.dart';
 
 import '../../../../core/constants/app_assets.dart';
 import '../../../../core/widgets/empty_widget.dart';
@@ -13,14 +15,20 @@ class DefaultAddressView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
+    final theme = Theme.of(context);
+    final isDarkMode = theme.brightness == Brightness.dark;
     return BlocBuilder<AuthCubit, AuthState>(
       builder: (context, state) {
         return state.maybeWhen(
           authenticated: (authEntity) {
             context.read<DefaultAddressCubit>().fetchAddresses();
             return Scaffold(
-              appBar: AppBar(title: const Text("Default Address")),
+              appBar: AppBar(
+                title: Text(
+                  context.tr(LocaleKeys.address_default_address),
+                  style: theme.textTheme.headlineMedium,
+                ),
+              ),
               bottomNavigationBar: const DefaultAddressBottomBar(),
               body: const DefaultAddressViewBody(),
             );
@@ -32,8 +40,10 @@ class DefaultAddressView extends StatelessWidget {
                       isDarkMode
                           ? AppAssets.illustrationsLoginIllustrationDark
                           : AppAssets.illustrationsLoginIllustrationLight,
-                  title: "Sign in required",
-                  subtitle: "Sign in to save address and place an order",
+                  title: context.tr(LocaleKeys.address_sign_in_required),
+                  subtitle: context.tr(
+                    LocaleKeys.address_sign_in_required_desc,
+                  ),
                 ),
               ),
         );

@@ -1,9 +1,12 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ionic/features/address/domain/entity/address_entity.dart';
 import 'package:ionic/features/address/presentation/manager/save_address/save_address_cubit.dart';
+import 'package:ionic/generated/locale_keys.g.dart';
 
-class AddressAdditionalInformation extends StatelessWidget {
-  const AddressAdditionalInformation({super.key});
+class AddressType extends StatelessWidget {
+  const AddressType({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,13 +20,18 @@ class AddressAdditionalInformation extends StatelessWidget {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text("Address Type (Optional)", style: theme.textTheme.titleLarge),
+            Text(
+              context.tr(LocaleKeys.address_type),
+              style: theme.textTheme.headlineMedium,
+            ),
             const SizedBox(height: 16),
             Row(
               children: [
-                _customChip(context, selectedOption, theme, 'Home'),
+                _customChip(context, selectedOption, theme, AddressEnum.home),
                 const SizedBox(width: 12),
-                _customChip(context, selectedOption, theme, 'Work'),
+                _customChip(context, selectedOption, theme, AddressEnum.work),
+                const SizedBox(width: 12),
+                _customChip(context, selectedOption, theme, AddressEnum.other),
               ],
             ),
           ],
@@ -34,14 +42,22 @@ class AddressAdditionalInformation extends StatelessWidget {
 
   Widget _customChip(
     BuildContext context,
-    String selectedOption,
+    AddressEnum selectedOption,
     ThemeData theme,
-    String type,
+    AddressEnum type,
   ) {
     return ChoiceChip(
-      label: Text(type),
+      label: Text(type.label),
       selected: selectedOption == type,
       side: BorderSide.none,
+      labelStyle: TextStyle(
+        fontWeight: FontWeight.bold,
+        color:
+            selectedOption == type
+                ? Colors.white
+                : theme.colorScheme.onSurfaceVariant,
+      ),
+      checkmarkColor: Colors.white,
       selectedColor: theme.colorScheme.primary,
       backgroundColor: theme.colorScheme.secondary,
       onSelected: (_) {

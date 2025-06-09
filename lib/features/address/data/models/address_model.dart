@@ -12,7 +12,7 @@ class AddressModel with _$AddressModel {
     required String fullName,
     required String address,
     required String phoneNumber,
-    required String type,
+    required AddressEnum type,
     required bool isDefault,
   }) = _AddressModel;
 

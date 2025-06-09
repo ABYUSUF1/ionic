@@ -15,6 +15,10 @@
     "common_result_for": "نتائج البحث عن",
     "common_loading": "جاري التحميل...",
     "common_search_for": "ابحث عن {}",
+    "common_edit": "تعديل",
+    "common_something_went_wrong": "حدث خطأ ما",
+    "common_default": "افتراضي",
+
     
 
     "network_no_internet": "لا يوجد اتصال بالإنترنت",
@@ -170,6 +174,43 @@
         "one": "تم العثور على نتيجة واحدة",
         "other": "تم العثور على {} نتيجة"
     },
+
+
+    "address_default_address": "العنوان الافتراضي",
+    "address_sign_in_required": "تسجيل الدخول مطلوب",
+    "address_sign_in_required_desc": "يرجى تسجيل الدخول للوصول إلى عناوينك والمتابعة.",
+    "address_no_addresses": "لا توجد عناوين",
+    "address_no_addresses_desc": "أضف عنوان توصيل لتتمكن من تقديم الطلب واستلام منتجاتك.",
+    "address_delete_address": "حذف العنوان",
+    "address_delete_address_desc": "هل أنت متأكد أنك تريد إزالة هذا العنوان؟",
+    "address_name": "الاسم الكامل",
+    "address_address": "العنوان",
+    "address_phone": "رقم الهاتف",
+    "address_add_new_address": "إضافة عنوان جديد",
+    "address_items_in_addresses": {
+      "zero": "لا توجد عناوين",
+      "one": "عنوان واحد",
+      "other": "{} عناوين"
+    },
+    "address_locate_on_map": "تحديد على الخريطة",
+    "address_locate_me": "تحديد موقعي",
+    "address_confirm_location": "تأكيد الموقع",
+    "address_save_address": "حفظ العنوان",
+    "address_edit_address": "تعديل العنوان",
+    "address_update_address": "تحديث العنوان",
+    "address_saving_address": "جارٍ حفظ العنوان...",
+    "address_updating_address": "جارٍ تحديث العنوان...",
+    "address_type": "نوع العنوان",
+    "address_type_home": "المنزل",
+    "address_type_work": "العمل",
+    "address_type_other": "آخر",
+    "address_this_address_will_be_auto": "سيتم تعيين هذا العنوان كافتراضي تلقائيًا لأنه العنوان الوحيد لديك.",
+    "address_set_as_default": "تعيين كافتراضي",
+    "address_set_as_default_desc" : "هل تريد تعيين هذا العنوان كافتراضي؟",
+    "address_already_default": "العنوان الافتراضي بالفعل",
+    "address_set_as_default_address": "تعيين كعنوان افتراضي",
+    "address_cannot_update_default_while_editing" : "لا يمكن تغيير حالة العنوان كافتراضي أثناء التعديل.",
+    "address_theres_nothing_to_update": "لا يوجد ما يتم حفظه — لم يتم تعديل البيانات.",
 
 
     "cart_add_to_cart": "أضف إلى السلة",

@@ -1,7 +1,9 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ionic/features/address/domain/entity/address_entity.dart';
 import 'package:ionic/features/auth/presentation/manager/auth/auth_cubit.dart';
+import 'package:ionic/generated/locale_keys.g.dart';
 
 import '../../../../core/constants/app_assets.dart';
 import '../../../../core/services/di/get_it_service.dart';
@@ -28,8 +30,10 @@ class SaveAddressView extends StatelessWidget {
                       isDarkMode
                           ? AppAssets.illustrationsLoginIllustrationDark
                           : AppAssets.illustrationsLoginIllustrationLight,
-                  title: "Sign in required",
-                  subtitle: "Sign in to save address and place an order",
+                  title: context.tr(LocaleKeys.address_sign_in_required),
+                  subtitle: context.tr(
+                    LocaleKeys.address_sign_in_required_desc,
+                  ),
                 ),
               ),
           authenticated:

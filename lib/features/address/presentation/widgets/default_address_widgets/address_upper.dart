@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -7,6 +8,7 @@ import 'package:ionic/core/routing/app_router_name.dart';
 import 'package:ionic/core/widgets/dialog/custom_dialog.dart';
 import 'package:ionic/features/address/domain/entity/address_entity.dart';
 import 'package:ionic/features/address/presentation/manager/default_address/default_address_cubit.dart';
+import 'package:ionic/generated/locale_keys.g.dart';
 
 import '../../../../../core/theme/app_colors.dart';
 
@@ -24,7 +26,7 @@ class AddressUpper extends StatelessWidget {
           const Icon(IconsaxPlusLinear.location, size: 18),
           const SizedBox(width: 4),
           Text(
-            addressEntity.type,
+            addressEntity.type.label,
             style: theme.textTheme.bodySmall!.copyWith(
               color: theme.colorScheme.onSurface,
             ),
@@ -38,7 +40,7 @@ class AddressUpper extends StatelessWidget {
                   borderRadius: BorderRadius.circular(30),
                 ),
                 child: Text(
-                  "Default",
+                  context.tr(LocaleKeys.common_default),
                   style: theme.textTheme.labelSmall!.copyWith(
                     color: theme.colorScheme.onSurface,
                   ),
@@ -47,7 +49,7 @@ class AddressUpper extends StatelessWidget {
               : const SizedBox.shrink(),
           const Spacer(),
           TextButton.icon(
-            label: const Text("Edit"),
+            label: Text(context.tr(LocaleKeys.common_edit)),
             icon: const Icon(IconsaxPlusLinear.edit_2),
             onPressed: () {
               context.push(
@@ -57,16 +59,16 @@ class AddressUpper extends StatelessWidget {
             },
           ),
           TextButton.icon(
-            label: const Text("Delete"),
+            label: Text(context.tr(LocaleKeys.common_delete)),
             icon: const Icon(IconsaxPlusLinear.trash),
             onPressed: () {
               //TODO: delete address svg
               showCustomDialog(
                 context: context,
-                title: "Delete Address",
-                subTitle: "Are you sure you want to delete this address?",
+                title: context.tr(LocaleKeys.address_delete_address),
+                subTitle: context.tr(LocaleKeys.address_delete_address_desc),
                 svgPic: AppAssets.illustrationsErrorIllustrationDark,
-                buttonText: "Delete",
+                buttonText: context.tr(LocaleKeys.common_delete),
                 onTap: () async {
                   context.pop();
                   await context.read<DefaultAddressCubit>().deleteAddress(

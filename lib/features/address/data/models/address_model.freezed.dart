@@ -25,7 +25,7 @@ mixin _$AddressModel {
   String get fullName => throw _privateConstructorUsedError;
   String get address => throw _privateConstructorUsedError;
   String get phoneNumber => throw _privateConstructorUsedError;
-  String get type => throw _privateConstructorUsedError;
+  AddressEnum get type => throw _privateConstructorUsedError;
   bool get isDefault => throw _privateConstructorUsedError;
 
   /// Serializes this AddressModel to a JSON map.
@@ -50,7 +50,7 @@ abstract class $AddressModelCopyWith<$Res> {
     String fullName,
     String address,
     String phoneNumber,
-    String type,
+    AddressEnum type,
     bool isDefault,
   });
 }
@@ -103,7 +103,7 @@ class _$AddressModelCopyWithImpl<$Res, $Val extends AddressModel>
                 null == type
                     ? _value.type
                     : type // ignore: cast_nullable_to_non_nullable
-                        as String,
+                        as AddressEnum,
             isDefault:
                 null == isDefault
                     ? _value.isDefault
@@ -129,7 +129,7 @@ abstract class _$$AddressModelImplCopyWith<$Res>
     String fullName,
     String address,
     String phoneNumber,
-    String type,
+    AddressEnum type,
     bool isDefault,
   });
 }
@@ -181,7 +181,7 @@ class __$$AddressModelImplCopyWithImpl<$Res>
             null == type
                 ? _value.type
                 : type // ignore: cast_nullable_to_non_nullable
-                    as String,
+                    as AddressEnum,
         isDefault:
             null == isDefault
                 ? _value.isDefault
@@ -216,7 +216,7 @@ class _$AddressModelImpl implements _AddressModel {
   @override
   final String phoneNumber;
   @override
-  final String type;
+  final AddressEnum type;
   @override
   final bool isDefault;
 
@@ -273,7 +273,7 @@ abstract class _AddressModel implements AddressModel {
     required final String fullName,
     required final String address,
     required final String phoneNumber,
-    required final String type,
+    required final AddressEnum type,
     required final bool isDefault,
   }) = _$AddressModelImpl;
 
@@ -289,7 +289,7 @@ abstract class _AddressModel implements AddressModel {
   @override
   String get phoneNumber;
   @override
-  String get type;
+  AddressEnum get type;
   @override
   bool get isDefault;
 

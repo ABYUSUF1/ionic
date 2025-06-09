@@ -7,6 +7,7 @@ import 'package:ionic/features/profile/presentation/views/edit_profile_view.dart
 import 'package:ionic/features/profile/presentation/widgets/profile_widgets/profile_app_bar_widgets/profile_app_bar.dart';
 import 'package:ionic/features/profile/presentation/widgets/profile_widgets/profile_my_preference_box.dart';
 
+import '../../../address/presentation/views/default_address_view.dart';
 import '../widgets/profile_widgets/log_out_button.dart';
 import '../widgets/profile_widgets/profile_info_and_support_box.dart';
 import '../widgets/profile_widgets/profile_settings_box.dart';
@@ -50,7 +51,7 @@ class ProfileTabletView extends StatelessWidget {
                     child = const Text("Orders View");
                     break;
                   case ProfileButtonEnum.myAddresses:
-                    child = const Text("address View");
+                    child = const DefaultAddressView();
                     break;
                   case ProfileButtonEnum.notifications:
                     child = const Text("Notifications View");

@@ -1,4 +1,5 @@
 import 'package:animate_do/animate_do.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_map/flutter_map.dart';
@@ -7,6 +8,7 @@ import 'package:iconsax_plus/iconsax_plus.dart';
 import 'package:latlong2/latlong.dart';
 
 import '../../../../../core/widgets/buttons/custom_filled_button.dart';
+import '../../../../../generated/locale_keys.g.dart';
 import '../../manager/locate_on_map/locate_on_map_cubit.dart';
 
 class CustomMap extends StatelessWidget {
@@ -61,7 +63,7 @@ class CustomMap extends StatelessWidget {
                 height: 55,
                 width: 150,
                 child: CustomFilledButton(
-                  text: "Locate Me",
+                  text: context.tr(LocaleKeys.address_locate_me),
                   icon: IconsaxPlusBold.gps,
                   onPressed: () async {
                     await cubit.getLocationAndAddress();

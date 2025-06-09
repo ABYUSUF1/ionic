@@ -99,7 +99,7 @@ class DefaultAddressCubit extends Cubit<DefaultAddressState>
     });
 
     addresses = updatedAddresses;
-    defaultAddress = updatedAddresses.first;
+    defaultAddress = selectedAddressEntity;
 
     _repo.setDefaultAddress(selectedAddressEntity);
     emit(DefaultAddressState.success(updatedAddresses));

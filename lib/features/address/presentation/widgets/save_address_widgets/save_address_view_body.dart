@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 
-import 'address_additional_info.dart';
+import 'address_type.dart';
 import 'address_details.dart';
 import 'address_personal_info.dart';
 import 'is_default_checkbox.dart';
@@ -17,7 +17,7 @@ class SaveAddressViewBody extends StatelessWidget {
         children: [
           AddressDetails(),
           AddressPersonalInformation(),
-          AddressAdditionalInformation(),
+          AddressType(),
           IsDefaultCheckbox(),
         ],
       ),

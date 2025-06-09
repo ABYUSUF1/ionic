@@ -1,8 +1,10 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ionic/core/services/di/get_it_service.dart';
 import 'package:ionic/features/address/domain/repo/address_repo.dart';
 import 'package:ionic/features/address/presentation/manager/locate_on_map/locate_on_map_cubit.dart';
+import 'package:ionic/generated/locale_keys.g.dart';
 
 import '../widgets/locate_on_map_widgets/custom_map.dart';
 import '../widgets/locate_on_map_widgets/locate_on_map_confirm_button.dart';
@@ -23,7 +25,12 @@ class LocateOnMapView extends StatelessWidget {
             orElse: () => "",
           );
           return Scaffold(
-            appBar: AppBar(title: const Text("Locate on Map")),
+            appBar: AppBar(
+              title: Text(
+                context.tr(LocaleKeys.address_locate_on_map),
+                style: theme.textTheme.headlineMedium,
+              ),
+            ),
             bottomNavigationBar: const SafeArea(
               child: LocateOnMapConfirmButton(),
             ),

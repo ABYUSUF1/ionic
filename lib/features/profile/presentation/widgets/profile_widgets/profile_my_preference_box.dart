@@ -44,7 +44,9 @@ class ProfileMyPreferenceBox extends StatelessWidget {
           icon: IconsaxPlusLinear.location,
           section: ProfileButtonEnum.myAddresses,
           requireAuth: true,
-          onTap: () {},
+          onTap: () {
+            context.pushNamed(AppRouterName.defaultAddressRoute);
+          },
         ),
       ],
     );

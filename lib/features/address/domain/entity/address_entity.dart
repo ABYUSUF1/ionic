@@ -1,11 +1,29 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:ionic/features/address/data/models/address_model.dart';
+
+import '../../../../generated/locale_keys.g.dart';
+
+enum AddressEnum { home, work, other }
+
+extension AddressEnumLabel on AddressEnum {
+  String get label {
+    switch (this) {
+      case AddressEnum.home:
+        return LocaleKeys.address_type_home.tr();
+      case AddressEnum.work:
+        return LocaleKeys.address_type_work.tr();
+      case AddressEnum.other:
+        return LocaleKeys.address_type_other.tr();
+    }
+  }
+}
 
 class AddressEntity {
   final String id;
   final String fullName;
   final String address;
   final String phoneNumber;
-  final String type;
+  final AddressEnum type;
   final bool isDefault;
 
   AddressEntity({
@@ -22,7 +40,7 @@ class AddressEntity {
     fullName: '',
     address: '',
     phoneNumber: '',
-    type: '',
+    type: AddressEnum.home,
     isDefault: false,
   );
 
@@ -31,7 +49,7 @@ class AddressEntity {
     fullName: 'Loading Loading',
     address: 'Loading address details Loading ...',
     phoneNumber: 'Loading',
-    type: 'Loading',
+    type: AddressEnum.home,
     isDefault: false,
   );
 }
@@ -51,7 +69,7 @@ extension AddressEntityExtension on AddressEntity {
     String? fullName,
     String? address,
     String? phoneNumber,
-    String? type,
+    AddressEnum? type,
     bool? isDefault,
   }) {
     return AddressEntity(

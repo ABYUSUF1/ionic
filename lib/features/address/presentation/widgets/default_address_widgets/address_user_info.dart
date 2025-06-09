@@ -1,5 +1,7 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:ionic/features/address/domain/entity/address_entity.dart';
+import 'package:ionic/generated/locale_keys.g.dart';
 
 class AddressUserInfo extends StatelessWidget {
   final AddressEntity addressEntity;
@@ -14,9 +16,21 @@ class AddressUserInfo extends StatelessWidget {
         spacing: 16,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          customInfo(theme, "Name", addressEntity.fullName),
-          customInfo(theme, "Address", addressEntity.address),
-          customInfo(theme, "Phone", addressEntity.phoneNumber),
+          customInfo(
+            theme,
+            context.tr(LocaleKeys.address_name),
+            addressEntity.fullName,
+          ),
+          customInfo(
+            theme,
+            context.tr(LocaleKeys.address_address),
+            addressEntity.address,
+          ),
+          customInfo(
+            theme,
+            context.tr(LocaleKeys.address_phone),
+            addressEntity.phoneNumber,
+          ),
         ],
       ),
     );

@@ -1,6 +1,8 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ionic/core/utils/validators.dart';
+import 'package:ionic/generated/locale_keys.g.dart';
 
 import '../../../../../core/widgets/text_field/form_text_field.dart';
 import '../../manager/save_address/save_address_cubit.dart';
@@ -26,7 +28,7 @@ class AddressPersonalInformation extends StatelessWidget {
             children: [
               Expanded(
                 child: FormTextField(
-                  title: "First name",
+                  title: context.tr(LocaleKeys.auth_first_name),
                   controller: cubit.firstNameController,
                   validator:
                       (_) => Validators.validateName(
@@ -36,7 +38,7 @@ class AddressPersonalInformation extends StatelessWidget {
               ),
               Expanded(
                 child: FormTextField(
-                  title: "Last name",
+                  title: context.tr(LocaleKeys.auth_last_name),
                   controller: cubit.lastNameController,
                   validator:
                       (_) => Validators.validateName(
@@ -47,7 +49,7 @@ class AddressPersonalInformation extends StatelessWidget {
             ],
           ),
           FormTextField(
-            title: "Phone number",
+            title: context.tr(LocaleKeys.auth_phone),
             controller: cubit.phoneNumberController,
             validator:
                 (_) =>

@@ -1,9 +1,11 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ionic/core/constants/app_assets.dart';
 import 'package:ionic/core/widgets/empty_widget.dart';
 import 'package:ionic/features/address/domain/entity/address_entity.dart';
 import 'package:ionic/features/address/presentation/manager/default_address/default_address_cubit.dart';
+import 'package:ionic/generated/locale_keys.g.dart';
 
 import 'default_addresses_list.dart';
 
@@ -23,9 +25,8 @@ class DefaultAddressViewBody extends StatelessWidget {
                     isDark
                         ? AppAssets.illustrationsGpsIllustrationDark
                         : AppAssets.illustrationsGpsIllustrationLight,
-                title: "No addresses found",
-                subtitle:
-                    "Please add an address so you can place an order and receive your products with delivery",
+                title: context.tr(LocaleKeys.address_no_addresses),
+                subtitle: context.tr(LocaleKeys.address_no_addresses_desc),
               ),
           error:
               (errMessage) => EmptyWidget(
@@ -33,7 +34,7 @@ class DefaultAddressViewBody extends StatelessWidget {
                     isDark
                         ? AppAssets.illustrationsErrorIllustrationDark
                         : AppAssets.illustrationsErrorIllustrationLight,
-                title: "Something went wrong",
+                title: context.tr(LocaleKeys.common_something_went_wrong),
                 subtitle: errMessage,
               ),
           orElse: () {

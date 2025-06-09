@@ -1,8 +1,10 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:ionic/core/widgets/loading/full_screen_loading.dart';
 import 'package:ionic/features/address/presentation/manager/default_address/default_address_cubit.dart';
+import 'package:ionic/generated/locale_keys.g.dart';
 
 import '../../../../../core/widgets/buttons/custom_filled_button.dart';
 import '../../manager/save_address/save_address_cubit.dart';
@@ -14,11 +16,19 @@ class SaveAddressForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cubit = context.read<SaveAddressCubit>();
-    final isEdit = cubit.addressEntity.id.isNotEmpty;
+
+    final theme = Theme.of(context);
     return Form(
       key: cubit.formKey,
       child: Scaffold(
-        appBar: AppBar(title: Text(isEdit ? "Edit Address" : "Save Address")),
+        appBar: AppBar(
+          title: Text(
+            cubit.isEdit
+                ? context.tr(LocaleKeys.address_update_address)
+                : context.tr(LocaleKeys.address_save_address),
+            style: theme.textTheme.headlineMedium,
+          ),
+        ),
         bottomNavigationBar: SafeArea(
           child: Padding(
             padding: const EdgeInsets.all(16.0),
@@ -51,7 +61,10 @@ class SaveAddressForm extends StatelessWidget {
                   loading: (_) => true,
                 );
                 return CustomFilledButton(
-                  text: isEdit ? "Update Address" : "Save Address",
+                  text:
+                      cubit.isEdit
+                          ? context.tr(LocaleKeys.address_update_address)
+                          : context.tr(LocaleKeys.address_save_address),
                   onPressed:
                       isLoading
                           ? null

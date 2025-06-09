@@ -12,7 +12,7 @@ _$AddressModelImpl _$$AddressModelImplFromJson(Map<String, dynamic> json) =>
       fullName: json['fullName'] as String,
       address: json['address'] as String,
       phoneNumber: json['phoneNumber'] as String,
-      type: json['type'] as String,
+      type: $enumDecode(_$AddressEnumEnumMap, json['type']),
       isDefault: json['isDefault'] as bool,
     );
 
@@ -22,6 +22,12 @@ Map<String, dynamic> _$$AddressModelImplToJson(_$AddressModelImpl instance) =>
       'fullName': instance.fullName,
       'address': instance.address,
       'phoneNumber': instance.phoneNumber,
-      'type': instance.type,
+      'type': _$AddressEnumEnumMap[instance.type]!,
       'isDefault': instance.isDefault,
     };
+
+const _$AddressEnumEnumMap = {
+  AddressEnum.home: 'home',
+  AddressEnum.work: 'work',
+  AddressEnum.other: 'other',
+};
