@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ionic/features/address/presentation/manager/save_address/save_address_cubit.dart';
 
 class AddressAdditionalInformation extends StatelessWidget {
   const AddressAdditionalInformation({super.key});
@@ -7,9 +9,10 @@ class AddressAdditionalInformation extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
-    return StatefulBuilder(
-      builder: (context, setState) {
-        String selectedOption = 'Home'; // default is 'home'
+    return BlocBuilder<SaveAddressCubit, SaveAddressState>(
+      builder: (context, state) {
+        final cubit = context.read<SaveAddressCubit>();
+        final selectedOption = cubit.selectedAddressType;
 
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -18,9 +21,9 @@ class AddressAdditionalInformation extends StatelessWidget {
             const SizedBox(height: 16),
             Row(
               children: [
-                _customChip(selectedOption, theme, setState, 'Home'),
+                _customChip(context, selectedOption, theme, 'Home'),
                 const SizedBox(width: 12),
-                _customChip(selectedOption, theme, setState, 'Work'),
+                _customChip(context, selectedOption, theme, 'Work'),
               ],
             ),
           ],
@@ -29,10 +32,10 @@ class AddressAdditionalInformation extends StatelessWidget {
     );
   }
 
-  ChoiceChip _customChip(
+  Widget _customChip(
+    BuildContext context,
     String selectedOption,
     ThemeData theme,
-    StateSetter setState,
     String type,
   ) {
     return ChoiceChip(
@@ -41,7 +44,9 @@ class AddressAdditionalInformation extends StatelessWidget {
       side: BorderSide.none,
       selectedColor: theme.colorScheme.primary,
       backgroundColor: theme.colorScheme.secondary,
-      onSelected: (_) => setState(() => selectedOption = type),
+      onSelected: (_) {
+        context.read<SaveAddressCubit>().onAddressTypeChanged(type);
+      },
     );
   }
 }

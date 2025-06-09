@@ -12,7 +12,7 @@ abstract class AddressRepo {
   );
 
   Future<Either<Failure, void>> addUserAddress(AddressEntity addressEntity);
-  Future<Either<Failure, void>> updateAddress(AddressEntity addressEntity);
+  Future<Either<Failure, void>> setDefaultAddress(AddressEntity addressEntity);
   Future<Either<Failure, void>> deleteAddress(String addressId);
   Future<Either<Failure, List<AddressEntity>>> fetchAddresses();
 }

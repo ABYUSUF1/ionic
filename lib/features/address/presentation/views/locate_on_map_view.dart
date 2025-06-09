@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ionic/core/services/di/get_it_service.dart';
 import 'package:ionic/features/address/domain/repo/address_repo.dart';
-import 'package:ionic/features/address/presentation/manager/add_or_edit_address/locate_on_map_cubit.dart';
+import 'package:ionic/features/address/presentation/manager/locate_on_map/locate_on_map_cubit.dart';
 
 import '../widgets/locate_on_map_widgets/custom_map.dart';
 import '../widgets/locate_on_map_widgets/locate_on_map_confirm_button.dart';

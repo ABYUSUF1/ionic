@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:geocoding/geocoding.dart';
+import 'package:ionic/features/address/data/models/address_model.dart';
 import 'package:location/location.dart' as loc;
 import 'package:ionic/core/utils/errors/failure.dart';
 
@@ -42,21 +43,9 @@ class AddressRepoImpl implements AddressRepo {
   Future<Either<Failure, List<AddressEntity>>> fetchAddresses() async {
     try {
       final response = await _remote.getAddresses();
-      return Right(response);
+      return Right(response.map((e) => e.toEntity()).toList());
     } catch (e) {
       return const Left(Failure("Failed to fetch addresses"));
-    }
-  }
-
-  @override
-  Future<Either<Failure, void>> updateAddress(
-    AddressEntity addressEntity,
-  ) async {
-    try {
-      await _remote.updateAddress(addressEntity.toModel());
-      return const Right(null);
-    } catch (e) {
-      return const Left(Failure("Failed to update address"));
     }
   }
 
@@ -124,6 +113,18 @@ class AddressRepoImpl implements AddressRepo {
       return Right(LatLng(lat, lng));
     } catch (e) {
       return Left(Failure(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, void>> setDefaultAddress(
+    AddressEntity addressEntity,
+  ) async {
+    try {
+      await _remote.setDefaultAddress(addressEntity.id);
+      return const Right(null);
+    } catch (e) {
+      return const Left(Failure("Failed to set default address"));
     }
   }
 }

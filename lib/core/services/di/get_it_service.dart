@@ -8,7 +8,7 @@ import 'package:ionic/core/services/image_picker/image_picker_service.dart';
 import 'package:ionic/core/services/network/network_cubit.dart';
 import 'package:ionic/features/address/data/data_source/address_remote_data_source.dart';
 import 'package:ionic/features/address/domain/repo/address_repo.dart';
-import 'package:ionic/features/address/presentation/manager/add_or_edit_address/locate_on_map_cubit.dart';
+import 'package:ionic/features/address/presentation/manager/locate_on_map/locate_on_map_cubit.dart';
 import 'package:ionic/features/auth/presentation/manager/auth/auth_cubit.dart';
 import 'package:ionic/features/auth/presentation/manager/forget_password/forget_password_cubit.dart';
 import 'package:ionic/features/auth/presentation/manager/sign_in/sign_in_cubit.dart';

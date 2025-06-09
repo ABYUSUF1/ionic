@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:ionic/features/address/domain/entity/address_entity.dart';
 
 class AddressUserInfo extends StatelessWidget {
-  const AddressUserInfo({super.key});
+  final AddressEntity addressEntity;
+  const AddressUserInfo({super.key, required this.addressEntity});
 
   @override
   Widget build(BuildContext context) {
@@ -12,9 +14,9 @@ class AddressUserInfo extends StatelessWidget {
         spacing: 16,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          customInfo(theme, "Name", "John Doe"),
-          customInfo(theme, "Address", "123 Street, City, Country"),
-          customInfo(theme, "Phone", "123-456-7890"),
+          customInfo(theme, "Name", addressEntity.fullName),
+          customInfo(theme, "Address", addressEntity.address),
+          customInfo(theme, "Phone", addressEntity.phoneNumber),
         ],
       ),
     );

@@ -1,30 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:ionic/features/address/presentation/widgets/default_address_widgets/default_address_bottom_bar.dart';
+import 'package:ionic/features/address/domain/entity/address_entity.dart';
 import 'package:ionic/features/auth/presentation/manager/auth/auth_cubit.dart';
 
 import '../../../../core/constants/app_assets.dart';
+import '../../../../core/services/di/get_it_service.dart';
 import '../../../../core/widgets/empty_widget.dart';
-import '../manager/default_address/default_address_cubit.dart';
-import '../widgets/default_address_widgets/default_address_view_body.dart';
+import '../../domain/repo/address_repo.dart';
+import '../manager/save_address/save_address_cubit.dart';
+import '../widgets/save_address_widgets/save_address_form.dart';
 
-class DefaultAddressView extends StatelessWidget {
-  const DefaultAddressView({super.key});
+class SaveAddressView extends StatelessWidget {
+  final AddressEntity addressEntity;
+  const SaveAddressView({super.key, required this.addressEntity});
 
   @override
   Widget build(BuildContext context) {
-    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
+    final theme = Theme.of(context);
+    final isDarkMode = theme.brightness == Brightness.dark;
     return BlocBuilder<AuthCubit, AuthState>(
       builder: (context, state) {
         return state.maybeWhen(
-          authenticated: (authEntity) {
-            context.read<DefaultAddressCubit>().fetchAddresses();
-            return Scaffold(
-              appBar: AppBar(title: const Text("Default Address")),
-              bottomNavigationBar: const DefaultAddressBottomBar(),
-              body: const DefaultAddressViewBody(),
-            );
-          },
           orElse:
               () => Scaffold(
                 body: EmptyWidget(
@@ -35,6 +31,14 @@ class DefaultAddressView extends StatelessWidget {
                   title: "Sign in required",
                   subtitle: "Sign in to save address and place an order",
                 ),
+              ),
+          authenticated:
+              (authEntity) => BlocProvider(
+                create:
+                    (context) =>
+                        SaveAddressCubit(getIt<AddressRepo>())
+                          ..init(addressEntity),
+                child: const SaveAddressForm(),
               ),
         );
       },

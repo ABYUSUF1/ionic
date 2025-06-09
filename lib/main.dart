@@ -18,6 +18,8 @@ import 'package:ionic/firebase_options.dart';
 import 'package:ionic/generated/codegen_loader.g.dart';
 
 import 'core/theme/manager/cubit/theme_cubit.dart';
+import 'features/address/domain/repo/address_repo.dart';
+import 'features/address/presentation/manager/default_address/default_address_cubit.dart';
 import 'features/auth/domain/repo/auth_repo.dart';
 import 'features/favorite/domain/repo/favorite_repo.dart';
 
@@ -55,7 +57,9 @@ class IonicApp extends StatelessWidget {
         ),
         BlocProvider(create: (context) => AuthCubit(getIt<AuthRepo>())),
         BlocProvider(create: (context) => FavoriteCubit(getIt<FavoriteRepo>())),
-        // BlocProvider(create: (context) => AddressCubit(getIt<AddressRepo>())),
+        BlocProvider(
+          create: (context) => DefaultAddressCubit(getIt<AddressRepo>()),
+        ),
       ],
       child: BlocBuilder<ThemeCubit, bool>(
         builder: (context, isDarkMode) {

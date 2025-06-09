@@ -1,6 +1,6 @@
 import 'package:ionic/features/address/data/models/address_model.dart';
 
-abstract class AddressEntity {
+class AddressEntity {
   final String id;
   final String fullName;
   final String address;
@@ -16,6 +16,24 @@ abstract class AddressEntity {
     required this.isDefault,
     required this.fullName,
   });
+
+  static AddressEntity empty() => AddressEntity(
+    id: '',
+    fullName: '',
+    address: '',
+    phoneNumber: '',
+    type: '',
+    isDefault: false,
+  );
+
+  static AddressEntity loading() => AddressEntity(
+    id: '',
+    fullName: 'Loading Loading',
+    address: 'Loading address details Loading ...',
+    phoneNumber: 'Loading',
+    type: 'Loading',
+    isDefault: false,
+  );
 }
 
 extension AddressEntityExtension on AddressEntity {
@@ -27,4 +45,25 @@ extension AddressEntityExtension on AddressEntity {
     type: type,
     isDefault: isDefault,
   );
+
+  AddressEntity copyWith({
+    String? id,
+    String? fullName,
+    String? address,
+    String? phoneNumber,
+    String? type,
+    bool? isDefault,
+  }) {
+    return AddressEntity(
+      id: id ?? this.id,
+      fullName: fullName ?? this.fullName,
+      address: address ?? this.address,
+      phoneNumber: phoneNumber ?? this.phoneNumber,
+      type: type ?? this.type,
+      isDefault: isDefault ?? this.isDefault,
+    );
+  }
+
+  String get firstName => fullName.split(' ')[0];
+  String get lastName => fullName.split(' ')[1];
 }

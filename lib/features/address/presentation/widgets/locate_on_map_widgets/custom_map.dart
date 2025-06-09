@@ -7,7 +7,7 @@ import 'package:iconsax_plus/iconsax_plus.dart';
 import 'package:latlong2/latlong.dart';
 
 import '../../../../../core/widgets/buttons/custom_filled_button.dart';
-import '../../manager/add_or_edit_address/locate_on_map_cubit.dart';
+import '../../manager/locate_on_map/locate_on_map_cubit.dart';
 
 class CustomMap extends StatelessWidget {
   const CustomMap({super.key});

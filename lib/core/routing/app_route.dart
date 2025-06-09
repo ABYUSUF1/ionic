@@ -1,6 +1,8 @@
 import 'package:go_router/go_router.dart';
 import 'package:ionic/core/routing/app_router_name.dart';
-import 'package:ionic/features/address/presentation/views/address_details_page.dart';
+import 'package:ionic/features/address/data/models/address_model.dart';
+import 'package:ionic/features/address/domain/entity/address_entity.dart';
+import 'package:ionic/features/address/presentation/views/save_address.dart';
 import 'package:ionic/features/address/presentation/views/default_address_view.dart';
 import 'package:ionic/features/address/presentation/views/locate_on_map_view.dart';
 import 'package:ionic/features/auth/presentation/args/email_sent_args.dart';
@@ -183,9 +185,21 @@ final GoRouter appRouter = GoRouter(
       builder: (context, state) => const LocateOnMapView(),
     ),
     GoRoute(
-      path: AppRouterName.addressDetailsRoute,
-      name: AppRouterName.addressDetailsRoute,
-      builder: (context, state) => const AddressDetailsView(),
+      path: AppRouterName.saveAddressRoute,
+      name: AppRouterName.saveAddressRoute,
+      builder: (context, state) {
+        late final AddressEntity addressEntity;
+        final extra = state.extra;
+        if (extra is! AddressEntity) {
+          AddressModel model = AddressModel.fromJson(
+            extra as Map<String, dynamic>,
+          );
+          addressEntity = model.toEntity();
+        } else {
+          addressEntity = extra;
+        }
+        return SaveAddressView(addressEntity: addressEntity);
+      },
     ),
   ],
 );

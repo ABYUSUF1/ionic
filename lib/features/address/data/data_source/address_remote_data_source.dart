@@ -12,16 +12,8 @@ class AddressRemoteDataSource with AuthGuardMixin {
         .collection(FirestoreCollectionNames.users)
         .doc(userId)
         .collection(FirestoreCollectionNames.addresses)
-        .add(addressModel.toJson());
-  }
-
-  Future<void> updateAddress(AddressModel addressModel) async {
-    await firestore
-        .collection(FirestoreCollectionNames.users)
-        .doc(userId)
-        .collection(FirestoreCollectionNames.addresses)
         .doc(addressModel.id)
-        .update(addressModel.toJson());
+        .set(addressModel.toJson());
   }
 
   Future<void> deleteAddress(String addressId) async {
@@ -39,10 +31,32 @@ class AddressRemoteDataSource with AuthGuardMixin {
             .collection(FirestoreCollectionNames.users)
             .doc(userId)
             .collection(FirestoreCollectionNames.addresses)
+            // Sort: default address comes before non-default addresses
+            .orderBy('isDefault', descending: true)
             .get();
 
     return snapshot.docs
         .map((doc) => AddressModel.fromJson(doc.data()))
         .toList();
+  }
+
+  Future<void> setDefaultAddress(String selectedAddressId) async {
+    final addressCollection = firestore
+        .collection(FirestoreCollectionNames.users)
+        .doc(userId)
+        .collection(FirestoreCollectionNames.addresses)
+        // Sort: default address comes before non-default addresses
+        .orderBy('isDefault', descending: true);
+
+    final snapshot = await addressCollection.get();
+
+    final batch = firestore.batch();
+
+    for (final doc in snapshot.docs) {
+      final isSelected = doc.id == selectedAddressId;
+      batch.update(doc.reference, {'isDefault': isSelected});
+    }
+
+    await batch.commit();
   }
 }
