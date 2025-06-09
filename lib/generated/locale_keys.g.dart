@@ -22,6 +22,7 @@ abstract class  LocaleKeys {
   static const common_edit = 'common_edit';
   static const common_something_went_wrong = 'common_something_went_wrong';
   static const common_default = 'common_default';
+  static const common_you_have = 'common_you_have';
   static const network_no_internet = 'network_no_internet';
   static const network_no_internet_desc = 'network_no_internet_desc';
   static const validators_required = 'validators_required';

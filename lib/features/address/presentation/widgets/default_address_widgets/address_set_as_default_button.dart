@@ -25,7 +25,7 @@ class AddressSetAsDefaultButton extends StatelessWidget {
       child:
           addressEntity.isDefault
               ? Text(
-                context.tr(LocaleKeys.address_set_as_default),
+                context.tr(LocaleKeys.address_already_default),
                 style: theme.textTheme.bodySmall!.copyWith(
                   fontWeight: FontWeight.bold,
                 ),
