@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 
 import '../../../../core/models/product_model/product.dart';
+import '../../../../core/utils/functions/product_formatted.dart';
 
 class ProductAdditionalInfo extends StatelessWidget {
   final Product product;
@@ -13,11 +14,11 @@ class ProductAdditionalInfo extends StatelessWidget {
       children: [
         _CustomListTile(
           leadingIcon: Icons.verified_user_outlined,
-          title: product.formattedWarranty(context),
+          title: formattedWarranty(context, product.warrantyInformation),
         ),
         _CustomListTile(
           leadingIcon: IconsaxPlusLinear.truck_time,
-          title: product.formattedShipping(context),
+          title: formattedShipping(context, product.shippingInformation),
         ),
         _CustomListTile(
           leadingIcon: Icons.confirmation_number_outlined,
@@ -25,7 +26,7 @@ class ProductAdditionalInfo extends StatelessWidget {
         ),
         _CustomListTile(
           leadingIcon: IconsaxPlusLinear.undo,
-          title: product.formattedReturnPolicy(context),
+          title: formattedReturnPolicy(context, product.returnPolicy),
         ),
       ],
     );

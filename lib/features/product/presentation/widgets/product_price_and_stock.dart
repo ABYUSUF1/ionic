@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
+import 'package:ionic/core/utils/functions/product_formatted.dart';
 
 import '../../../../core/models/product_model/product.dart';
 import '../../../../core/theme/app_colors.dart';
@@ -22,7 +23,7 @@ class ProductPriceAndStock extends StatelessWidget {
               children: [
                 const Text("EGP "),
                 Text(
-                  product!.formattedPrice,
+                  formattedPrice(product!.price),
                   style: theme.textTheme.headlineMedium!.copyWith(
                     fontWeight: FontWeight.bold,
                   ),
@@ -30,7 +31,11 @@ class ProductPriceAndStock extends StatelessWidget {
               ],
             ),
             Text(
-              product!.formattedPriceBeforeDiscount,
+              formattedPriceBeforeDiscount(
+                    product!.price,
+                    product!.discountPercentage,
+                  ) ??
+                  '',
               style: theme.textTheme.headlineMedium!.copyWith(
                 color: Colors.grey,
                 decoration: TextDecoration.lineThrough,
@@ -56,7 +61,7 @@ class ProductPriceAndStock extends StatelessWidget {
             ),
             const SizedBox(width: 5),
             Text(
-              product!.formattedStock(context),
+              formattedStock(context, product!.stock),
               style: theme.textTheme.bodyMedium!.copyWith(),
             ),
           ],

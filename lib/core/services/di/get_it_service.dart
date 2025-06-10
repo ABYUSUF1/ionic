@@ -12,6 +12,10 @@ import 'package:ionic/features/address/presentation/manager/locate_on_map/locate
 import 'package:ionic/features/auth/presentation/manager/auth/auth_cubit.dart';
 import 'package:ionic/features/auth/presentation/manager/forget_password/forget_password_cubit.dart';
 import 'package:ionic/features/auth/presentation/manager/sign_in/sign_in_cubit.dart';
+import 'package:ionic/features/cart/data/data_source/cart_remote_data_source.dart';
+import 'package:ionic/features/cart/data/repo_impl/cart_repo_impl.dart';
+import 'package:ionic/features/cart/domain/repo/cart_repo.dart';
+import 'package:ionic/features/cart/presentation/manager/cubit/cart_cubit.dart';
 import 'package:ionic/features/categories/data/repo_impl/categories_repo_impl.dart';
 import 'package:ionic/features/categories/domain/repo/categories_repo.dart';
 import 'package:ionic/features/favorite/data/data_sources/remote/favorite_remote_data_source.dart';
@@ -67,6 +71,7 @@ Future<void> setupGetIt() async {
   );
   getIt.registerLazySingleton(() => FavoriteRemoteDataSource());
   getIt.registerLazySingleton(() => AddressRemoteDataSource());
+  getIt.registerLazySingleton(() => CartRemoteDataSource());
 
   // Register Repositories
   getIt.registerLazySingleton<AuthRepo>(() => AuthRepoImpl(getIt()));
@@ -85,6 +90,7 @@ Future<void> setupGetIt() async {
   getIt.registerLazySingleton<AddressRepo>(
     () => AddressRepoImpl(getIt(), getIt()),
   );
+  getIt.registerLazySingleton<CartRepo>(() => CartRepoImpl(getIt()));
 
   // Register BLoCs/Cubits
   getIt.registerFactory(() => NetworkCubit(getIt()));
@@ -101,4 +107,5 @@ Future<void> setupGetIt() async {
   getIt.registerFactory(() => SearchCubit(getIt()));
   getIt.registerFactory(() => ProductCubit(getIt()));
   getIt.registerFactory(() => LocateOnMapCubit(getIt()));
+  getIt.registerFactory(() => CartCubit(getIt()));
 }

@@ -17,16 +17,30 @@ class HomeAppBarAddressButton extends StatelessWidget {
         context.push(AppRouterName.defaultAddressRoute);
       },
       leading: Icon(
-        IconsaxPlusLinear.location,
+        IconsaxPlusBold.location,
         size: 24,
-        color: theme.colorScheme.onSurfaceVariant,
+        color: theme.colorScheme.onSurface,
       ),
       title: BlocBuilder<DefaultAddressCubit, DefaultAddressState>(
         builder: (context, state) {
-          return Text(
-            context.read<DefaultAddressCubit>().defaultAddress?.address ??
-                "No address",
-            style: theme.textTheme.bodyLarge,
+          final address =
+              context.read<DefaultAddressCubit>().defaultAddress?.address;
+          return Text.rich(
+            TextSpan(
+              children: [
+                if (address != null)
+                  TextSpan(
+                    text: "Deliver to ",
+                    style: theme.textTheme.bodyMedium,
+                  ),
+                TextSpan(
+                  text: address ?? "No address",
+                  style: theme.textTheme.bodyLarge!.copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+            ),
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
           );
@@ -35,7 +49,7 @@ class HomeAppBarAddressButton extends StatelessWidget {
       trailing: Icon(
         IconsaxPlusLinear.arrow_down,
         size: 24,
-        color: theme.colorScheme.onSurfaceVariant,
+        color: theme.colorScheme.onSurface,
       ),
       contentPadding: EdgeInsets.zero,
     );

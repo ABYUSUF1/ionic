@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:ionic/core/models/product_model/product.dart';
 import 'package:ionic/core/utils/functions/star_color.dart';
 
+import '../../../../core/utils/functions/product_formatted.dart';
+
 class ProductRatingCount extends StatelessWidget {
   final Product product;
   const ProductRatingCount({super.key, required this.product});
@@ -14,7 +16,7 @@ class ProductRatingCount extends StatelessWidget {
         Text("${product.rating ?? '-'} ", style: theme.textTheme.bodyMedium),
         Icon(Icons.star_rate_rounded, color: starColor(product.rating ?? 0)),
         Text(
-          "(${product.formattedReviewsCount(context)})",
+          "(${formattedReviewsCount(context, product.reviews?.length)})",
           style: theme.textTheme.bodyMedium!.copyWith(color: Colors.grey),
         ),
       ],

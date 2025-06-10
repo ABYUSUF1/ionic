@@ -20,3 +20,8 @@ class ProductItemModel extends ProductItemEntity with _$ProductItemModel {
   factory ProductItemModel.fromJson(Map<String, dynamic> json) =>
       _$ProductItemModelFromJson(json);
 }
+
+//! IMPORTANT NOTE
+/// Every time you run build-runner, you will meet error in freezed file
+/// bec i use object box in this project
+/// so just make obxId = 0 when you implement it inside freezed file

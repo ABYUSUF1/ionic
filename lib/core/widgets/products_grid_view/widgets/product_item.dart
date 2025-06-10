@@ -8,6 +8,7 @@ import 'package:ionic/core/routing/app_router_name.dart';
 import 'package:ionic/core/widgets/loading/skeleton_loading.dart';
 
 import '../../../constants/app_font.dart';
+import '../../../utils/functions/product_formatted.dart';
 import 'favorite_button.dart';
 
 class ProductItem extends StatelessWidget {
@@ -78,7 +79,7 @@ class ProductItem extends StatelessWidget {
               ),
               const SizedBox(height: 5),
               Text(
-                "${productItem.rating} ⭐ (${productItem.formattedReviewsCount(context)}) ",
+                "${productItem.rating} ⭐ (${formattedReviewsCount(context, productItem.reviewsCount)}) ",
                 style: theme.textTheme.bodySmall!.copyWith(
                   color: theme.colorScheme.onSurfaceVariant,
                 ),
@@ -102,7 +103,7 @@ class ProductItem extends StatelessWidget {
                   const Icon(IconsaxPlusBold.truck_fast, size: 16),
                   const SizedBox(width: 4),
                   Text(
-                    productItem.formattedStock(context),
+                    formattedStock(context, productItem.stock),
                     style: theme.textTheme.bodySmall!.copyWith(
                       color: theme.colorScheme.onSurfaceVariant,
                     ),
