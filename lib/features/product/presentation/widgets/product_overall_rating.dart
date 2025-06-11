@@ -32,6 +32,7 @@ class ProductOverallRating extends StatelessWidget {
         // Right rating breakdown
         Expanded(
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: List.generate(5, (index) {
               int rating = 5 - index; // 5 to 1
               return Padding(
@@ -130,7 +131,7 @@ class ProductOverallRating extends StatelessWidget {
         ),
         const SizedBox(width: 8),
         SizedBox(
-          width: 36,
+          width: 40,
           child: Text("${(percentage * 100).toStringAsFixed(0)}%"),
         ),
       ],

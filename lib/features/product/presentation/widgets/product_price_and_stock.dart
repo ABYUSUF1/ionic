@@ -24,9 +24,7 @@ class ProductPriceAndStock extends StatelessWidget {
                 const Text("EGP "),
                 Text(
                   formattedPrice(product!.price),
-                  style: theme.textTheme.headlineMedium!.copyWith(
-                    fontWeight: FontWeight.bold,
-                  ),
+                  style: theme.textTheme.headlineLarge,
                 ),
               ],
             ),
@@ -45,9 +43,8 @@ class ProductPriceAndStock extends StatelessWidget {
             if (product!.discountPercentage != null)
               Text(
                 '-${product!.discountPercentage}%',
-                style: theme.textTheme.bodyMedium!.copyWith(
+                style: theme.textTheme.headlineMedium!.copyWith(
                   color: Colors.green,
-                  fontWeight: FontWeight.bold,
                 ),
               ),
           ],

@@ -19,15 +19,16 @@ class ProductTitleAndBrand extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Row(
+        Wrap(
+          runSpacing: 16,
+          spacing: 16,
           children: [
             Text(
               product.brand ?? context.tr(LocaleKeys.product_brand_unknown),
-              style: theme.textTheme.headlineMedium!.copyWith(
+              style: theme.textTheme.bodyLarge!.copyWith(
                 color: AppColors.primaryColor,
               ),
             ),
-            const SizedBox(width: 16),
             GestureDetector(
               onTap:
                   product.category == null
@@ -60,10 +61,10 @@ class ProductTitleAndBrand extends StatelessWidget {
             ),
           ],
         ),
-        const SizedBox(height: 5),
+        const SizedBox(height: 16),
         Text(
           product.title ?? "Unknown Product",
-          style: theme.textTheme.bodyLarge!.copyWith(
+          style: theme.textTheme.headlineMedium!.copyWith(
             fontFamily: appFont(context),
           ),
         ),

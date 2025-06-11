@@ -42,7 +42,7 @@ class AddressUpper extends StatelessWidget {
                 child: Text(
                   context.tr(LocaleKeys.common_default),
                   style: theme.textTheme.labelSmall!.copyWith(
-                    color: theme.colorScheme.onSurface,
+                    color: Colors.white,
                   ),
                 ),
               )

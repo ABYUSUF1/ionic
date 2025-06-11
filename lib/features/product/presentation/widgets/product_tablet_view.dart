@@ -19,7 +19,9 @@ class ProductTabletView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Scaffold(
+      backgroundColor: theme.colorScheme.surface,
       appBar: AppBar(title: Text(context.tr(LocaleKeys.product_details))),
       body: SingleChildScrollView(
         child: Padding(
@@ -43,8 +45,12 @@ class ProductTabletView extends StatelessWidget {
                           ],
                         ),
 
-                        ProductFavoriteButton(
-                          productItemEntity: product!.toProductItem(),
+                        Positioned(
+                          top: 16,
+                          right: 16,
+                          child: ProductFavoriteButton(
+                            productItemEntity: product!.toProductItem(),
+                          ),
                         ),
                       ],
                     ),
@@ -67,7 +73,7 @@ class ProductTabletView extends StatelessWidget {
                             child: Text(
                               product?.description ??
                                   "No description available",
-                              style: Theme.of(context).textTheme.bodyMedium,
+                              style: theme.textTheme.bodyMedium,
                               softWrap: true, // Enable text wrapping
                               overflow: TextOverflow.visible,
                             ),
