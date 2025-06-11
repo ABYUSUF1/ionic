@@ -148,7 +148,7 @@ String formattedReturnPolicy(BuildContext context, String? returnPolicy) {
   final lower = returnPolicy!.toLowerCase().trim();
 
   if (lower == 'no return policy') {
-    return context.tr(LocaleKeys.product_return_policy_none);
+    return context.plural(LocaleKeys.product_return_policy_days, 0);
   }
 
   final match = RegExp(r'(\d+)\s+days?\s+return policy').firstMatch(lower);
@@ -160,8 +160,9 @@ String formattedReturnPolicy(BuildContext context, String? returnPolicy) {
         args: [days.toString()],
       );
     } else {
-      return context.tr(
-        LocaleKeys.product_return_policy_days_plural,
+      return context.plural(
+        LocaleKeys.product_return_policy_days,
+        days,
         args: [days.toString()],
       );
     }
@@ -186,4 +187,36 @@ String formattedDimensions(Dimensions? dimensions) =>
         ? '${dimensions.depth} x ${dimensions.width} x ${dimensions.height} cm'
         : 'N/A';
 
-bool isFreeDelivery(double price) => price > 200 ? true : false;
+bool isFreeDelivery(double price) => price > 200.0 ? true : false;
+
+int deliveryDays(String? shippingInformation) {
+  if (shippingInformation == null) return 5;
+
+  final lower = shippingInformation.toLowerCase();
+
+  if (lower.contains('overnight')) return 1;
+
+  final patterns = [
+    RegExp(r'ships in (\d+) day\b'),
+    RegExp(r'ships in (\d+) days\b'),
+    RegExp(r'ships in (\d+)-(\d+) business days'),
+    RegExp(r'ships in (\d+) business day\b'),
+    RegExp(r'ships in (\d+) business days\b'),
+    RegExp(r'ships in (\d+) week\b'),
+    RegExp(r'ships in (\d+) weeks\b'),
+    RegExp(r'ships in (\d+) month\b'),
+    RegExp(r'ships in (\d+) months\b'),
+  ];
+
+  for (final pattern in patterns) {
+    final match = pattern.firstMatch(lower);
+    if (match != null) {
+      final group1 = int.tryParse(match.group(1)!);
+      if (group1 != null) {
+        return group1 > 7 ? 7 : group1;
+      }
+    }
+  }
+
+  return 5; // Default fallback
+}

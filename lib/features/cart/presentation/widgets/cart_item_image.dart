@@ -1,12 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-
-import '../../../../core/entities/product_item_entity.dart';
+import 'package:ionic/features/cart/domain/entity/cart_entity.dart';
 
 class CartItemImage extends StatelessWidget {
   const CartItemImage({super.key, required this.product});
 
-  final ProductItemEntity product;
+  final CartEntity product;
 
   @override
   Widget build(BuildContext context) {
@@ -18,11 +17,14 @@ class CartItemImage extends StatelessWidget {
           borderRadius: BorderRadius.circular(8),
           color: theme.colorScheme.secondary,
         ),
-        child: CachedNetworkImage(
-          imageUrl: product.imageUrl,
-          height: double.infinity,
-          // fit: BoxFit.cover,
-        ),
+        child:
+            product.imageUrl.isEmpty
+                ? null
+                : CachedNetworkImage(
+                  imageUrl: product.imageUrl,
+                  height: 200,
+                  // fit: BoxFit.cover,
+                ),
       ),
     );
   }

@@ -1,6 +1,8 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:ionic/core/entities/product_item_entity.dart';
+import 'package:ionic/core/utils/functions/product_formatted.dart';
 
+import '../../../features/cart/domain/entity/cart_entity.dart';
 import 'dimensions.dart';
 import 'meta.dart';
 import 'review.dart';
@@ -75,6 +77,21 @@ extension ProductExtension on Product {
       stock: stock ?? 0,
       reviewsCount: reviews?.length ?? 0,
       brand: brand ?? '',
+    );
+  }
+
+  // to Cart Entity
+  CartEntity toCartEntity() {
+    return CartEntity(
+      productId: id?.toString() ?? '',
+      title: title ?? '',
+      imageUrl: thumbnail ?? '',
+      brand: brand ?? '',
+      price: price ?? 0.0,
+      discount: discountPercentage ?? 0.0,
+      returnPolicy: returnPolicy ?? '',
+      deliveryDays: deliveryDays(shippingInformation),
+      quantity: 1,
     );
   }
 }

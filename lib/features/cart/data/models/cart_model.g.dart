@@ -8,15 +8,26 @@ part of 'cart_model.dart';
 
 _$CartModelImpl _$$CartModelImplFromJson(Map<String, dynamic> json) =>
     _$CartModelImpl(
-      cartId: json['cartId'] as String,
-      cartProducts:
-          (json['cartProducts'] as List<dynamic>)
-              .map((e) => CartProduct.fromJson(e as Map<String, dynamic>))
-              .toList(),
+      productId: json['productId'] as String,
+      title: json['title'] as String,
+      imageUrl: json['imageUrl'] as String,
+      brand: json['brand'] as String,
+      price: (json['price'] as num).toDouble(),
+      discount: (json['discount'] as num).toDouble(),
+      returnPolicy: json['returnPolicy'] as String,
+      deliveryDays: (json['deliveryDays'] as num).toInt(),
+      quantity: (json['quantity'] as num).toInt(),
     );
 
 Map<String, dynamic> _$$CartModelImplToJson(_$CartModelImpl instance) =>
     <String, dynamic>{
-      'cartId': instance.cartId,
-      'cartProducts': instance.cartProducts,
+      'productId': instance.productId,
+      'title': instance.title,
+      'imageUrl': instance.imageUrl,
+      'brand': instance.brand,
+      'price': instance.price,
+      'discount': instance.discount,
+      'returnPolicy': instance.returnPolicy,
+      'deliveryDays': instance.deliveryDays,
+      'quantity': instance.quantity,
     };

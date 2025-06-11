@@ -19,7 +19,7 @@
     "common_something_went_wrong": "حدث خطأ ما",
     "common_default": "افتراضي",
     "common_you_have" : "لديك",
-    
+    "common_tomorrow": "غدا",
 
     "network_no_internet": "لا يوجد اتصال بالإنترنت",
     "network_no_internet_desc": "يرجى التحقق من اتصالك بالإنترنت للمتابعة في التسوق",
@@ -151,10 +151,13 @@
     "product_shipping_in_month": "يُشحن خلال {} شهر",
     "product_shipping_range_business_days": "يُشحن خلال {}-{} أيام عمل",
     "product_shipping_overnight": "يُشحن خلال ليلة واحدة",
-    "product_return_policy": {
-        "none": "لا سياسة للإرجاع",
-        "days": "سياسة إرجاع لمدة {} يوم",
-        "days_plural": "سياسة إرجاع لمدة {} أيام"
+    "product_return_policy_days": {
+      "zero": "لا سياسة للإرجاع",
+      "one": "سياسة إرجاع لمدة يوم واحد",
+      "two": "سياسة إرجاع لمدة يومين",
+      "few": "سياسة إرجاع لمدة {} أيام",
+      "many": "سياسة إرجاع لمدة {} يوماً",
+      "other": "سياسة إرجاع لمدة {} يوم"
     },
     "product_overview" : "نظرة عامة",
     "product_overall_rating": "تقييم عام",
@@ -165,6 +168,8 @@
       "other": "{} مراجعات"
     },
     "product_based_on_reviews": "بناء علي {} تقيمات",
+    "product_brand_unknown": "ماركة غير معروفة",
+    "product_free_delivery": "توصيل مجاني",
 
     
     "search_recent_searches": "عمليات البحث الأخيرة",
@@ -211,19 +216,25 @@
     "address_set_as_default_address": "تعيين كعنوان افتراضي",
     "address_cannot_update_default_while_editing" : "لا يمكن تغيير حالة العنوان كافتراضي أثناء التعديل.",
     "address_theres_nothing_to_update": "لا يوجد ما يتم حفظه — لم يتم تعديل البيانات.",
-
+    "address_deliver_to": "توصيل الى",
+    "address_add_delivery_location": "أضف موقع التوصيل",
 
     "cart_add_to_cart": "أضف إلى السلة",
     "cart_remove_from_cart": "إزالة من السلة",
     "cart_items_in_cart": {
-      "zero": "لا توجد عناصر في السلة",
-      "one": "عنصر واحد في السلة",
-      "two": "عنصران في السلة",
-      "few": "{} عناصر في السلة",
-      "many": "{} عنصراً في السلة",
-      "other": "{} عنصر في السلة"
+      "zero": "لا توجد منتجات",
+      "one": "منتج واحد",
+      "two": "منتجان",
+      "few": "{} منتجات",
+      "many": "{} منتجاً",
+      "other": "{} منتج"
     },
-    "cart_qty": "الكمية: {}"
+    "cart_qty": "الكمية: {}",
+    "cart_already_in_cart": "بالفعل في سلة التسوق",
+    "cart_empty_title": "سلة التسوق فارغة.",
+    "cart_empty_desc": "ماذا تنتظر؟ ابدأ التسوق الآن!",
 
+    "delivery_arrives_by": "تصل بحلول"
 
-}   
+  }   
+    

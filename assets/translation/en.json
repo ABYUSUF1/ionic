@@ -19,7 +19,7 @@
     "common_something_went_wrong": "Something went wrong",
     "common_default" : "Default",
     "common_you_have" : "You have",
-
+    "common_tomorrow": "Tomorrow",
 
 
 
@@ -152,10 +152,10 @@
     "product_shipping_in_month": "Ships in {} month",
     "product_shipping_range_business_days": "Ships in {}-{} business days",
     "product_shipping_overnight": "Ships overnight",
-    "product_return_policy": {
-        "none": "No return policy",
-        "days": "{} day return policy",
-        "days_plural": "{} days return policy"
+    "product_return_policy_days": {
+        "zero": "No return policy",
+        "one": "Return policy for 1 day",
+        "other": "{} days return policy"
     },
     "product_overview" : "Overview",
     "product_overall_rating": "Overall rating",
@@ -166,6 +166,9 @@
         "other": "{} reviews"
     },
     "product_based_on_reviews": "Based on {} reviews",
+    "product_brand_unknown": "Unknown Brand",
+    "product_free_delivery": "Free Delivery",
+    
 
 
     "search_recent_searches": "Recent Searches",
@@ -211,21 +214,23 @@
     "address_set_as_default_address" : "Set as Default Address",
     "address_cannot_update_default_while_editing" : "You can't change the default status of an address while editing it.",
     "address_theres_nothing_to_update": "There's nothing to update — no changes detected.",
-
+    "address_deliver_to" : "Deliver to",
+    "address_add_delivery_location" : "Add delivery location",
 
 
     "cart_add_to_cart": "Add to cart",
     "cart_remove_from_cart": "Remove from cart",
     "cart_items_in_cart": {
-      "zero": "No items in cart",
-      "one": "1 item in cart",
-      "other": "{} items in cart"
+      "zero": "No items",
+      "one": "1 item",
+      "other": "{} items"
     },
-    "cart_qty": "QTY: {}"
-
-
-
+    "cart_qty": "QTY: {}",
+    "cart_already_in_cart": "Already in cart",
+    "cart_empty_title" : "Your cart is empty.",
+    "cart_empty_desc" : "What are you waiting for? Start shopping now!",
     
 
+    "delivery_arrives_by": "Arrives by"
 
 }

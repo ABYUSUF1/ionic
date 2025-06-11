@@ -1,44 +1,73 @@
-import 'package:ionic/features/cart/data/models/cart_product.dart';
-
-import '../../data/models/cart_model.dart';
+import 'package:ionic/features/cart/data/models/cart_model.dart';
 
 class CartEntity {
-  final String cartId;
-  final List<CartProduct> cartProducts;
+  final String productId;
+  final String title;
+  final String imageUrl;
+  final String brand;
+  final double price;
+  final double discount;
+  final String returnPolicy;
+  final int deliveryDays;
+  final int quantity;
 
-  CartEntity({required this.cartId, required this.cartProducts});
+  const CartEntity({
+    required this.productId,
+    required this.title,
+    required this.imageUrl,
+    required this.brand,
+    required this.price,
+    required this.discount,
+    required this.returnPolicy,
+    required this.deliveryDays,
+    required this.quantity,
+  });
 
-  double get totalPrice {
-    double total = 0;
-    for (var product in cartProducts) {
-      total += product.price * product.quantity;
-    }
-    return total;
-  }
+  CartModel toModel() => CartModel(
+    productId: productId,
+    title: title,
+    imageUrl: imageUrl,
+    brand: brand,
+    price: price,
+    discount: discount,
+    returnPolicy: returnPolicy,
+    deliveryDays: deliveryDays,
+    quantity: quantity,
+  );
 
-  int get totalQuantity {
-    int quantity = 0;
-    for (var product in cartProducts) {
-      quantity += product.quantity;
-    }
-    return quantity;
-  }
-
-  double get totalDiscountedPrice {
-    double total = 0;
-    for (var product in cartProducts) {
-      total += (product.discount) * product.quantity;
-    }
-    return total;
-  }
-
-  CartEntity copyWith({List<CartProduct>? cartProducts}) {
+  // copy with
+  CartEntity copyWith({
+    String? title,
+    String? imageUrl,
+    String? brand,
+    double? price,
+    double? discount,
+    String? returnPolicy,
+    int? quantity,
+  }) {
     return CartEntity(
-      cartId: cartId,
-      cartProducts: cartProducts ?? this.cartProducts,
+      productId: productId,
+      title: title ?? this.title,
+      imageUrl: imageUrl ?? this.imageUrl,
+      brand: brand ?? this.brand,
+      price: price ?? this.price,
+      discount: discount ?? this.discount,
+      returnPolicy: returnPolicy ?? this.returnPolicy,
+      deliveryDays: deliveryDays,
+      quantity: quantity ?? this.quantity,
     );
   }
 
-  // to model
-  CartModel toModel() => CartModel(cartId: cartId, cartProducts: cartProducts);
+  // Loading
+  static CartEntity loading() => const CartEntity(
+    productId: '',
+    title: 'Loading Title ...',
+    imageUrl: '',
+    brand: 'Loading',
+    price: 0,
+    discount: 0,
+    returnPolicy: 'Loading return policy .....',
+    deliveryDays: 0,
+    quantity: 0,
+  );
 }

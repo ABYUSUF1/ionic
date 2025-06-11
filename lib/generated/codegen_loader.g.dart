@@ -35,6 +35,7 @@ class CodegenLoader extends AssetLoader{
   "common_something_went_wrong": "حدث خطأ ما",
   "common_default": "افتراضي",
   "common_you_have": "لديك",
+  "common_tomorrow": "غدا",
   "network_no_internet": "لا يوجد اتصال بالإنترنت",
   "network_no_internet_desc": "يرجى التحقق من اتصالك بالإنترنت للمتابعة في التسوق",
   "validators_required": "هذا الحقل مطلوب",
@@ -149,10 +150,13 @@ class CodegenLoader extends AssetLoader{
   "product_shipping_in_month": "يُشحن خلال {} شهر",
   "product_shipping_range_business_days": "يُشحن خلال {}-{} أيام عمل",
   "product_shipping_overnight": "يُشحن خلال ليلة واحدة",
-  "product_return_policy": {
-    "none": "لا سياسة للإرجاع",
-    "days": "سياسة إرجاع لمدة {} يوم",
-    "days_plural": "سياسة إرجاع لمدة {} أيام"
+  "product_return_policy_days": {
+    "zero": "لا سياسة للإرجاع",
+    "one": "سياسة إرجاع لمدة يوم واحد",
+    "two": "سياسة إرجاع لمدة يومين",
+    "few": "سياسة إرجاع لمدة {} أيام",
+    "many": "سياسة إرجاع لمدة {} يوماً",
+    "other": "سياسة إرجاع لمدة {} يوم"
   },
   "product_overview": "نظرة عامة",
   "product_overall_rating": "تقييم عام",
@@ -163,6 +167,8 @@ class CodegenLoader extends AssetLoader{
     "other": "{} مراجعات"
   },
   "product_based_on_reviews": "بناء علي {} تقيمات",
+  "product_brand_unknown": "ماركة غير معروفة",
+  "product_free_delivery": "توصيل مجاني",
   "search_recent_searches": "عمليات البحث الأخيرة",
   "search_no_recent_searches": "لا توجد عمليات بحث حديثة",
   "search_results_searches": {
@@ -205,17 +211,23 @@ class CodegenLoader extends AssetLoader{
   "address_set_as_default_address": "تعيين كعنوان افتراضي",
   "address_cannot_update_default_while_editing": "لا يمكن تغيير حالة العنوان كافتراضي أثناء التعديل.",
   "address_theres_nothing_to_update": "لا يوجد ما يتم حفظه — لم يتم تعديل البيانات.",
+  "address_deliver_to": "توصيل الى",
+  "address_add_delivery_location": "أضف موقع التوصيل",
   "cart_add_to_cart": "أضف إلى السلة",
   "cart_remove_from_cart": "إزالة من السلة",
   "cart_items_in_cart": {
-    "zero": "لا توجد عناصر في السلة",
-    "one": "عنصر واحد في السلة",
-    "two": "عنصران في السلة",
-    "few": "{} عناصر في السلة",
-    "many": "{} عنصراً في السلة",
-    "other": "{} عنصر في السلة"
+    "zero": "لا توجد منتجات",
+    "one": "منتج واحد",
+    "two": "منتجان",
+    "few": "{} منتجات",
+    "many": "{} منتجاً",
+    "other": "{} منتج"
   },
-  "cart_qty": "الكمية: {}"
+  "cart_qty": "الكمية: {}",
+  "cart_already_in_cart": "بالفعل في سلة التسوق",
+  "cart_empty_title": "سلة التسوق فارغة.",
+  "cart_empty_desc": "ماذا تنتظر؟ ابدأ التسوق الآن!",
+  "delivery_arrives_by": "تصل بحلول"
 };
 static const Map<String,dynamic> _en = {
   "common_next": "Next",
@@ -238,6 +250,7 @@ static const Map<String,dynamic> _en = {
   "common_something_went_wrong": "Something went wrong",
   "common_default": "Default",
   "common_you_have": "You have",
+  "common_tomorrow": "Tomorrow",
   "network_no_internet": "No internet connection",
   "network_no_internet_desc": "Please check your internet connection to continue shopping",
   "validators_required": "Field is required",
@@ -349,10 +362,10 @@ static const Map<String,dynamic> _en = {
   "product_shipping_in_month": "Ships in {} month",
   "product_shipping_range_business_days": "Ships in {}-{} business days",
   "product_shipping_overnight": "Ships overnight",
-  "product_return_policy": {
-    "none": "No return policy",
-    "days": "{} day return policy",
-    "days_plural": "{} days return policy"
+  "product_return_policy_days": {
+    "zero": "No return policy",
+    "one": "Return policy for 1 day",
+    "other": "{} days return policy"
   },
   "product_overview": "Overview",
   "product_overall_rating": "Overall rating",
@@ -363,6 +376,8 @@ static const Map<String,dynamic> _en = {
     "other": "{} reviews"
   },
   "product_based_on_reviews": "Based on {} reviews",
+  "product_brand_unknown": "Unknown Brand",
+  "product_free_delivery": "Free Delivery",
   "search_recent_searches": "Recent Searches",
   "search_no_recent_searches": "No recent searches yet",
   "search_results_searches": {
@@ -405,14 +420,20 @@ static const Map<String,dynamic> _en = {
   "address_set_as_default_address": "Set as Default Address",
   "address_cannot_update_default_while_editing": "You can't change the default status of an address while editing it.",
   "address_theres_nothing_to_update": "There's nothing to update — no changes detected.",
+  "address_deliver_to": "Deliver to",
+  "address_add_delivery_location": "Add delivery location",
   "cart_add_to_cart": "Add to cart",
   "cart_remove_from_cart": "Remove from cart",
   "cart_items_in_cart": {
-    "zero": "No items in cart",
-    "one": "1 item in cart",
-    "other": "{} items in cart"
+    "zero": "No items",
+    "one": "1 item",
+    "other": "{} items"
   },
-  "cart_qty": "QTY: {}"
+  "cart_qty": "QTY: {}",
+  "cart_already_in_cart": "Already in cart",
+  "cart_empty_title": "Your cart is empty.",
+  "cart_empty_desc": "What are you waiting for? Start shopping now!",
+  "delivery_arrives_by": "Arrives by"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"ar": _ar, "en": _en};
 }

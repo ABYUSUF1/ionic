@@ -37,9 +37,16 @@ class ProductBottomBar extends StatelessWidget {
                 );
                 return Expanded(
                   child: CustomFilledButton(
+                    textStyle: theme.textTheme.bodyMedium!.copyWith(
+                      fontWeight: FontWeight.bold,
+                      color:
+                          isProductInCart
+                              ? theme.colorScheme.onSurfaceVariant
+                              : Colors.white,
+                    ),
                     text:
                         isProductInCart
-                            ? "Already in cart"
+                            ? context.tr(LocaleKeys.cart_already_in_cart)
                             : context.tr(LocaleKeys.cart_add_to_cart),
                     buttonColor:
                         isProductInCart
@@ -49,7 +56,7 @@ class ProductBottomBar extends StatelessWidget {
                         isProductInCart
                             ? null
                             : () {
-                              cubit.addToCart(product.toProductItem());
+                              cubit.addToCart(product.toCartEntity());
                             },
                   ),
                 );

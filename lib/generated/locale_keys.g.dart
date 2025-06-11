@@ -23,6 +23,7 @@ abstract class  LocaleKeys {
   static const common_something_went_wrong = 'common_something_went_wrong';
   static const common_default = 'common_default';
   static const common_you_have = 'common_you_have';
+  static const common_tomorrow = 'common_tomorrow';
   static const network_no_internet = 'network_no_internet';
   static const network_no_internet_desc = 'network_no_internet_desc';
   static const validators_required = 'validators_required';
@@ -130,15 +131,14 @@ abstract class  LocaleKeys {
   static const product_shipping_in_month = 'product_shipping_in_month';
   static const product_shipping_range_business_days = 'product_shipping_range_business_days';
   static const product_shipping_overnight = 'product_shipping_overnight';
-  static const product_return_policy_none = 'product_return_policy.none';
-  static const product_return_policy_days = 'product_return_policy.days';
-  static const product_return_policy_days_plural = 'product_return_policy.days_plural';
-  static const product_return_policy = 'product_return_policy';
+  static const product_return_policy_days = 'product_return_policy_days';
   static const product_overview = 'product_overview';
   static const product_overall_rating = 'product_overall_rating';
   static const product_reviews = 'product_reviews';
   static const product_reviews_count = 'product_reviews_count';
   static const product_based_on_reviews = 'product_based_on_reviews';
+  static const product_brand_unknown = 'product_brand_unknown';
+  static const product_free_delivery = 'product_free_delivery';
   static const search_recent_searches = 'search_recent_searches';
   static const search_no_recent_searches = 'search_no_recent_searches';
   static const search_results_searches = 'search_results_searches';
@@ -173,9 +173,15 @@ abstract class  LocaleKeys {
   static const address_set_as_default_address = 'address_set_as_default_address';
   static const address_cannot_update_default_while_editing = 'address_cannot_update_default_while_editing';
   static const address_theres_nothing_to_update = 'address_theres_nothing_to_update';
+  static const address_deliver_to = 'address_deliver_to';
+  static const address_add_delivery_location = 'address_add_delivery_location';
   static const cart_add_to_cart = 'cart_add_to_cart';
   static const cart_remove_from_cart = 'cart_remove_from_cart';
   static const cart_items_in_cart = 'cart_items_in_cart';
   static const cart_qty = 'cart_qty';
+  static const cart_already_in_cart = 'cart_already_in_cart';
+  static const cart_empty_title = 'cart_empty_title';
+  static const cart_empty_desc = 'cart_empty_desc';
+  static const delivery_arrives_by = 'delivery_arrives_by';
 
 }

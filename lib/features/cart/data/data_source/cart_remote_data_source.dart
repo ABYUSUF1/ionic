@@ -7,7 +7,7 @@ import '../models/cart_model.dart';
 class CartRemoteDataSource with AuthGuardMixin {
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
 
-  Future<CartModel> fetchCart() async {
+  Future<List<CartModel>> fetchCart() async {
     final snapshot =
         await firestore
             .collection(FirestoreCollectionNames.users)
@@ -15,7 +15,7 @@ class CartRemoteDataSource with AuthGuardMixin {
             .collection(FirestoreCollectionNames.cart)
             .get();
 
-    return CartModel.fromJson(snapshot.docs.first.data());
+    return snapshot.docs.map((doc) => CartModel.fromJson(doc.data())).toList();
   }
 
   Future<void> addToCart(CartModel cartModel) async {
@@ -23,24 +23,16 @@ class CartRemoteDataSource with AuthGuardMixin {
         .collection(FirestoreCollectionNames.users)
         .doc(userId)
         .collection(FirestoreCollectionNames.cart)
-        .add(cartModel.toJson());
+        .doc(cartModel.productId)
+        .set(cartModel.toJson());
   }
 
-  Future<void> removeFromCart(String cartId) async {
+  Future<void> removeFromCart(String productId) async {
     await firestore
         .collection(FirestoreCollectionNames.users)
         .doc(userId)
         .collection(FirestoreCollectionNames.cart)
-        .doc(cartId)
+        .doc(productId)
         .delete();
-  }
-
-  Future<void> updateCart(CartModel cartModel) async {
-    await firestore
-        .collection(FirestoreCollectionNames.users)
-        .doc(userId)
-        .collection(FirestoreCollectionNames.cart)
-        .doc(cartModel.cartId)
-        .update(cartModel.toJson());
   }
 }

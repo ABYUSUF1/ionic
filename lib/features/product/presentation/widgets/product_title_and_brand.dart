@@ -1,6 +1,8 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:ionic/features/home/data/models/category_model/localized_title.dart';
+import 'package:ionic/generated/locale_keys.g.dart';
 
 import '../../../../core/constants/app_font.dart';
 import '../../../../core/models/product_model/product.dart';
@@ -20,7 +22,7 @@ class ProductTitleAndBrand extends StatelessWidget {
         Row(
           children: [
             Text(
-              product.brand ?? "Unknown Brand",
+              product.brand ?? context.tr(LocaleKeys.product_brand_unknown),
               style: theme.textTheme.headlineMedium!.copyWith(
                 color: AppColors.primaryColor,
               ),
