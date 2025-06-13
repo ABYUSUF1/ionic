@@ -18,7 +18,6 @@ class CartRepoImpl implements CartRepo {
       await _remote.addToCart(cartEntity.toModel());
       return const Right(null);
     } catch (e) {
-      print(e.toString());
       return const Left(Failure("Failed to add to cart"));
     }
   }

@@ -33,4 +33,10 @@ final class AppRouterName {
   static const String defaultAddressRoute = '/default-address';
   static const String locateOnMapRoute = '/locate-on-map';
   static const String saveAddressRoute = '/save-address';
+
+  // checkout routes
+  static const String checkoutRoute = '/checkout';
+
+  /// orders routes
+  static const String ordersRoute = '/orders';
 }

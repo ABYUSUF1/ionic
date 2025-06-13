@@ -196,5 +196,13 @@ abstract class  LocaleKeys {
   static const cart_delivery_fee_desc = 'cart_delivery_fee_desc';
   static const cart_invalid_coupon = 'cart_invalid_coupon';
   static const delivery_arrives_by = 'delivery_arrives_by';
+  static const checkout_title = 'checkout_title';
+  static const checkout_payment_method = 'checkout_payment_method';
+  static const checkout_shipment = 'checkout_shipment';
+  static const checkout_place_order = 'checkout_place_order';
+  static const checkout_delivery_instructions = 'checkout_delivery_instructions';
+  static const checkout_leave_at_door = 'checkout_leave_at_door';
+  static const checkout_hand_it_to_me = 'checkout_hand_it_to_me';
+  static const call_on_arrival = 'call_on_arrival';
 
 }

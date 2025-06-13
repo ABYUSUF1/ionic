@@ -248,7 +248,17 @@
     "cart_invalid_coupon": "رمز الكوبون غير صالح، يجب أن يكون مكونًا من 4 أحرف",
 
 
-    "delivery_arrives_by": "تصل بحلول"
+    "delivery_arrives_by": "تصل بحلول",
+
+    
+    "checkout_title": "إتمام الشراء",
+    "checkout_payment_method": "طريقة الدفع",
+    "checkout_shipment": "الشحن",
+    "checkout_place_order": "تأكيد الطلب",
+    "checkout_delivery_instructions": "تعليمات التوصيل",
+    "checkout_leave_at_door": "اتركها عند الباب",
+    "checkout_hand_it_to_me": "سلمني إياها مباشرة",
+    "call_on_arrival": "اتصل عند الوصول"
 
   }   
     

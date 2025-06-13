@@ -19,6 +19,7 @@ import 'package:ionic/features/profile/presentation/views/profile_view.dart';
 import 'package:ionic/main_bottom_nav_bar.dart';
 
 import '../../features/categories/presentation/views/categories_view.dart';
+import '../../features/checkout/presentation/views/checkout_view.dart';
 import '../../features/favorite/presentation/views/favorite_view.dart';
 import '../../features/onboarding/presentation/views/onboarding_view.dart';
 import '../../features/search/presentation/views/search_view.dart';
@@ -200,6 +201,13 @@ final GoRouter appRouter = GoRouter(
         }
         return SaveAddressView(addressEntity: addressEntity);
       },
+    ),
+
+    /// --------------------- Checkout ---------------------
+    GoRoute(
+      path: AppRouterName.checkoutRoute,
+      name: AppRouterName.checkoutRoute,
+      builder: (context, state) => const CheckoutView(),
     ),
   ],
 );

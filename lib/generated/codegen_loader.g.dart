@@ -240,7 +240,15 @@ class CodegenLoader extends AssetLoader{
   "cart_coupon_applied": "تم تطبيق الكوبون بنجاح! 🎉",
   "cart_delivery_fee_desc": "توصيل مجاني للطلبات التي تتجاوز ٢٠٠ جنيه",
   "cart_invalid_coupon": "رمز الكوبون غير صالح، يجب أن يكون مكونًا من 4 أحرف",
-  "delivery_arrives_by": "تصل بحلول"
+  "delivery_arrives_by": "تصل بحلول",
+  "checkout_title": "إتمام الشراء",
+  "checkout_payment_method": "طريقة الدفع",
+  "checkout_shipment": "الشحن",
+  "checkout_place_order": "تأكيد الطلب",
+  "checkout_delivery_instructions": "تعليمات التوصيل",
+  "checkout_leave_at_door": "اتركها عند الباب",
+  "checkout_hand_it_to_me": "سلمني إياها مباشرة",
+  "call_on_arrival": "اتصل عند الوصول"
 };
 static const Map<String,dynamic> _en = {
   "common_next": "Next",
@@ -459,7 +467,15 @@ static const Map<String,dynamic> _en = {
   "cart_coupon_applied": "Coupon applied successfully! 🎉",
   "cart_delivery_fee_desc": "Free Delivery on orders over EGP 200",
   "cart_invalid_coupon": "Invalid Coupon Code, It should be 4 characters long",
-  "delivery_arrives_by": "Arrives by"
+  "delivery_arrives_by": "Arrives by",
+  "checkout_title": "Checkout",
+  "checkout_payment_method": "Payment Method",
+  "checkout_shipment": "Shipment",
+  "checkout_place_order": "Place Order",
+  "checkout_delivery_instructions": "Delivery Instructions",
+  "checkout_leave_at_door": "Leave at door",
+  "checkout_hand_it_to_me": "Hand it to me",
+  "call_on_arrival": "Call on arrival"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"ar": _ar, "en": _en};
 }

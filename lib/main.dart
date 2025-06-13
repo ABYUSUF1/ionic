@@ -18,7 +18,6 @@ import 'package:ionic/features/cart/presentation/manager/cubit/cart_cubit.dart';
 import 'package:ionic/features/favorite/presentation/manager/cubit/favorite_cubit.dart';
 import 'package:ionic/firebase_options.dart';
 import 'package:ionic/generated/codegen_loader.g.dart';
-
 import 'core/theme/manager/cubit/theme_cubit.dart';
 import 'features/address/domain/repo/address_repo.dart';
 import 'features/address/presentation/manager/default_address/default_address_cubit.dart';

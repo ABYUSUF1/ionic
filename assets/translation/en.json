@@ -244,6 +244,16 @@
     "cart_invalid_coupon" : "Invalid Coupon Code, It should be 4 characters long",
     
 
-    "delivery_arrives_by": "Arrives by"
+    "delivery_arrives_by": "Arrives by",
+
+
+    "checkout_title" : "Checkout",
+    "checkout_payment_method" : "Payment Method",
+    "checkout_shipment" : "Shipment",
+    "checkout_place_order" : "Place Order",
+    "checkout_delivery_instructions" : "Delivery Instructions",
+    "checkout_leave_at_door" : "Leave at door",
+    "checkout_hand_it_to_me" : "Hand it to me",
+    "call_on_arrival" : "Call on arrival"
 
 }

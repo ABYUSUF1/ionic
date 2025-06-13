@@ -6,21 +6,27 @@ import 'cart_coupon_code.dart';
 
 class OrderSummary extends StatelessWidget {
   final CartOrderSummary cartOrderSummary;
-  const OrderSummary({super.key, required this.cartOrderSummary});
+  final bool showCouponCode;
+  const OrderSummary({
+    super.key,
+    required this.cartOrderSummary,
+    this.showCouponCode = true,
+  });
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return Container(
       width: double.infinity,
-      height: 368,
+      height: showCouponCode ? 368 : 307,
       decoration: BoxDecoration(
         color: theme.colorScheme.surface,
         borderRadius: BorderRadius.circular(8),
       ),
-      margin: const EdgeInsets.only(top: 16),
+      margin: EdgeInsets.only(top: showCouponCode ? 16 : 0),
       padding: const EdgeInsets.all(16),
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         spacing: 16,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -28,7 +34,7 @@ class OrderSummary extends StatelessWidget {
             context.tr(LocaleKeys.cart_order_summary),
             style: theme.textTheme.headlineMedium,
           ),
-          const CartCouponCode(),
+          showCouponCode ? const CartCouponCode() : const SizedBox(),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -78,11 +84,17 @@ class OrderSummary extends StatelessWidget {
             children: [
               Text(
                 context.tr(LocaleKeys.cart_total),
-                style: theme.textTheme.headlineLarge,
+                style:
+                    showCouponCode
+                        ? theme.textTheme.headlineLarge
+                        : theme.textTheme.titleLarge,
               ),
               Text(
                 "EGP ${cartOrderSummary.totalPrice}",
-                style: theme.textTheme.headlineLarge,
+                style:
+                    showCouponCode
+                        ? theme.textTheme.headlineLarge
+                        : theme.textTheme.titleLarge,
               ),
             ],
           ),
