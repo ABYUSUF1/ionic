@@ -36,6 +36,9 @@ Future<void> main() async {
     EasyLocalization(
       supportedLocales: const [Locale('en'), Locale('ar')],
       path: 'assets/translation',
+      fallbackLocale: const Locale('en'),
+      useOnlyLangCode: true,
+      ignorePluralRules: false,
       assetLoader: const CodegenLoader(),
       child: DevicePreview(
         builder: (context) {

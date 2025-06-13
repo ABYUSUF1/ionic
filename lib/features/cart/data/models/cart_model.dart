@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:ionic/core/models/product_item_model.dart';
 
 import '../../domain/entity/cart_entity.dart';
 
@@ -7,15 +8,15 @@ part 'cart_model.g.dart';
 
 @freezed
 class CartModel with _$CartModel {
+  // Use `explicitToJson: true` to ensure nested objects like `ProductItemModel`
+  // are properly serialized using their own `toJson()` methods when calling
+  // `CartModel.toJson()`. This prevents missing serialization of nested fields.
+
+  /// you should also use invalid_annotation_target: ignore to ignore this error
+  @JsonSerializable(explicitToJson: true)
   const factory CartModel({
-    required String productId,
-    required String title,
-    required String imageUrl,
-    required String brand,
-    required double price,
-    required double discount,
+    required ProductItemModel productItemModel,
     required String returnPolicy,
-    required int deliveryDays,
     required int quantity,
   }) = _CartModel;
 
@@ -25,14 +26,8 @@ class CartModel with _$CartModel {
 
 extension CartModelExtension on CartModel {
   CartEntity toEntity() => CartEntity(
-    productId: productId,
-    title: title,
-    imageUrl: imageUrl,
-    brand: brand,
-    price: price,
-    discount: discount,
+    productItemEntity: productItemModel.toProductItemEntity(),
     returnPolicy: returnPolicy,
-    deliveryDays: deliveryDays,
     quantity: quantity,
   );
 }

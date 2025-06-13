@@ -20,14 +20,18 @@ class CartItemPrice extends StatelessWidget {
           children: [
             const Text("EGP "),
             Text(
-              formattedPrice(product.price),
+              formattedPrice(product.productItemEntity.price),
               style: theme.textTheme.headlineMedium,
             ),
           ],
         ),
-        if (product.discount > 0) ...[
+        if (product.productItemEntity.discount > 0) ...[
           Text(
-            formattedPriceBeforeDiscount(product.price, product.discount) ?? '',
+            formattedPriceBeforeDiscount(
+                  product.productItemEntity.price,
+                  product.productItemEntity.discount,
+                ) ??
+                '',
             style: theme.textTheme.bodyMedium!.copyWith(
               color: theme.colorScheme.onSurfaceVariant,
               decoration: TextDecoration.lineThrough,
@@ -35,7 +39,7 @@ class CartItemPrice extends StatelessWidget {
             ),
           ),
           Text(
-            '-${product.discount}%',
+            '-${product.productItemEntity.discount}%',
             style: theme.textTheme.bodyMedium!.copyWith(
               color: Colors.green,
               fontWeight: FontWeight.bold,

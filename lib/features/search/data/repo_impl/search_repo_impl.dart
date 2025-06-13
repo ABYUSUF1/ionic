@@ -38,7 +38,7 @@ class SearchRepoImpl implements SearchRepo {
     // Find existing by product.id (not obxId)
     final existing =
         box
-            .query(ProductItemEntity_.id.equals(productItem.id))
+            .query(ProductItemEntity_.productId.equals(productItem.productId))
             .build()
             .findFirst();
 

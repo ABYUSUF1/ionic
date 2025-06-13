@@ -229,6 +229,19 @@
     "cart_already_in_cart": "Already in cart",
     "cart_empty_title" : "Your cart is empty.",
     "cart_empty_desc" : "What are you waiting for? Start shopping now!",
+    "cart_checkout" : "Checkout",
+    "cart_order_summary" : "Order Summary",
+    "cart_total": "Total",
+    "cart_subtotal": "Subtotal",
+    "cart_delivery_fee": "Delivery Fee",
+    "cart_coupon_discount": "Coupon Discount",
+    "cart_apply_coupon": "Apply",
+    "cart_remove_coupon": "Remove",
+    "cart_coupon_code": "Coupon Code",
+    "cart_coupon_removed" : "Coupon Removed",
+    "cart_coupon_applied" : "Coupon applied successfully! 🎉",
+    "cart_delivery_fee_desc": "Free Delivery on orders over EGP 200",
+    "cart_invalid_coupon" : "Invalid Coupon Code, It should be 4 characters long",
     
 
     "delivery_arrives_by": "Arrives by"

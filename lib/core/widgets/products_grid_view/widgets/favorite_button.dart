@@ -49,7 +49,7 @@ class FavoriteButton extends StatelessWidget {
               (_) => BlocBuilder<FavoriteCubit, FavoriteState>(
                 builder: (context, state) {
                   final cubit = context.read<FavoriteCubit>();
-                  final isFavorite = cubit.isFavorite(productItem);
+                  final isFavorite = cubit.isFavorite(productItem.productId);
                   return IconButton(
                     icon: Icon(
                       isFavorite

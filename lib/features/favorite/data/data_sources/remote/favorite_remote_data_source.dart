@@ -11,7 +11,7 @@ class FavoriteRemoteDataSource with AuthGuardMixin {
         .collection(FirestoreCollectionNames.users)
         .doc(userId)
         .collection(FirestoreCollectionNames.favorites)
-        .doc(productItemModel.id)
+        .doc(productItemModel.productId)
         .set(productItemModel.toJson());
   }
 

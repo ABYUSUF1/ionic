@@ -21,14 +21,8 @@ CartModel _$CartModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$CartModel {
-  String get productId => throw _privateConstructorUsedError;
-  String get title => throw _privateConstructorUsedError;
-  String get imageUrl => throw _privateConstructorUsedError;
-  String get brand => throw _privateConstructorUsedError;
-  double get price => throw _privateConstructorUsedError;
-  double get discount => throw _privateConstructorUsedError;
+  ProductItemModel get productItemModel => throw _privateConstructorUsedError;
   String get returnPolicy => throw _privateConstructorUsedError;
-  int get deliveryDays => throw _privateConstructorUsedError;
   int get quantity => throw _privateConstructorUsedError;
 
   /// Serializes this CartModel to a JSON map.
@@ -47,16 +41,12 @@ abstract class $CartModelCopyWith<$Res> {
       _$CartModelCopyWithImpl<$Res, CartModel>;
   @useResult
   $Res call({
-    String productId,
-    String title,
-    String imageUrl,
-    String brand,
-    double price,
-    double discount,
+    ProductItemModel productItemModel,
     String returnPolicy,
-    int deliveryDays,
     int quantity,
   });
+
+  $ProductItemModelCopyWith<$Res> get productItemModel;
 }
 
 /// @nodoc
@@ -74,58 +64,22 @@ class _$CartModelCopyWithImpl<$Res, $Val extends CartModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? productId = null,
-    Object? title = null,
-    Object? imageUrl = null,
-    Object? brand = null,
-    Object? price = null,
-    Object? discount = null,
+    Object? productItemModel = null,
     Object? returnPolicy = null,
-    Object? deliveryDays = null,
     Object? quantity = null,
   }) {
     return _then(
       _value.copyWith(
-            productId:
-                null == productId
-                    ? _value.productId
-                    : productId // ignore: cast_nullable_to_non_nullable
-                        as String,
-            title:
-                null == title
-                    ? _value.title
-                    : title // ignore: cast_nullable_to_non_nullable
-                        as String,
-            imageUrl:
-                null == imageUrl
-                    ? _value.imageUrl
-                    : imageUrl // ignore: cast_nullable_to_non_nullable
-                        as String,
-            brand:
-                null == brand
-                    ? _value.brand
-                    : brand // ignore: cast_nullable_to_non_nullable
-                        as String,
-            price:
-                null == price
-                    ? _value.price
-                    : price // ignore: cast_nullable_to_non_nullable
-                        as double,
-            discount:
-                null == discount
-                    ? _value.discount
-                    : discount // ignore: cast_nullable_to_non_nullable
-                        as double,
+            productItemModel:
+                null == productItemModel
+                    ? _value.productItemModel
+                    : productItemModel // ignore: cast_nullable_to_non_nullable
+                        as ProductItemModel,
             returnPolicy:
                 null == returnPolicy
                     ? _value.returnPolicy
                     : returnPolicy // ignore: cast_nullable_to_non_nullable
                         as String,
-            deliveryDays:
-                null == deliveryDays
-                    ? _value.deliveryDays
-                    : deliveryDays // ignore: cast_nullable_to_non_nullable
-                        as int,
             quantity:
                 null == quantity
                     ? _value.quantity
@@ -134,6 +88,16 @@ class _$CartModelCopyWithImpl<$Res, $Val extends CartModel>
           )
           as $Val,
     );
+  }
+
+  /// Create a copy of CartModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ProductItemModelCopyWith<$Res> get productItemModel {
+    return $ProductItemModelCopyWith<$Res>(_value.productItemModel, (value) {
+      return _then(_value.copyWith(productItemModel: value) as $Val);
+    });
   }
 }
 
@@ -147,16 +111,13 @@ abstract class _$$CartModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call({
-    String productId,
-    String title,
-    String imageUrl,
-    String brand,
-    double price,
-    double discount,
+    ProductItemModel productItemModel,
     String returnPolicy,
-    int deliveryDays,
     int quantity,
   });
+
+  @override
+  $ProductItemModelCopyWith<$Res> get productItemModel;
 }
 
 /// @nodoc
@@ -173,58 +134,22 @@ class __$$CartModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? productId = null,
-    Object? title = null,
-    Object? imageUrl = null,
-    Object? brand = null,
-    Object? price = null,
-    Object? discount = null,
+    Object? productItemModel = null,
     Object? returnPolicy = null,
-    Object? deliveryDays = null,
     Object? quantity = null,
   }) {
     return _then(
       _$CartModelImpl(
-        productId:
-            null == productId
-                ? _value.productId
-                : productId // ignore: cast_nullable_to_non_nullable
-                    as String,
-        title:
-            null == title
-                ? _value.title
-                : title // ignore: cast_nullable_to_non_nullable
-                    as String,
-        imageUrl:
-            null == imageUrl
-                ? _value.imageUrl
-                : imageUrl // ignore: cast_nullable_to_non_nullable
-                    as String,
-        brand:
-            null == brand
-                ? _value.brand
-                : brand // ignore: cast_nullable_to_non_nullable
-                    as String,
-        price:
-            null == price
-                ? _value.price
-                : price // ignore: cast_nullable_to_non_nullable
-                    as double,
-        discount:
-            null == discount
-                ? _value.discount
-                : discount // ignore: cast_nullable_to_non_nullable
-                    as double,
+        productItemModel:
+            null == productItemModel
+                ? _value.productItemModel
+                : productItemModel // ignore: cast_nullable_to_non_nullable
+                    as ProductItemModel,
         returnPolicy:
             null == returnPolicy
                 ? _value.returnPolicy
                 : returnPolicy // ignore: cast_nullable_to_non_nullable
                     as String,
-        deliveryDays:
-            null == deliveryDays
-                ? _value.deliveryDays
-                : deliveryDays // ignore: cast_nullable_to_non_nullable
-                    as int,
         quantity:
             null == quantity
                 ? _value.quantity
@@ -236,17 +161,12 @@ class __$$CartModelImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true)
 class _$CartModelImpl implements _CartModel {
   const _$CartModelImpl({
-    required this.productId,
-    required this.title,
-    required this.imageUrl,
-    required this.brand,
-    required this.price,
-    required this.discount,
+    required this.productItemModel,
     required this.returnPolicy,
-    required this.deliveryDays,
     required this.quantity,
   });
 
@@ -254,27 +174,15 @@ class _$CartModelImpl implements _CartModel {
       _$$CartModelImplFromJson(json);
 
   @override
-  final String productId;
-  @override
-  final String title;
-  @override
-  final String imageUrl;
-  @override
-  final String brand;
-  @override
-  final double price;
-  @override
-  final double discount;
+  final ProductItemModel productItemModel;
   @override
   final String returnPolicy;
-  @override
-  final int deliveryDays;
   @override
   final int quantity;
 
   @override
   String toString() {
-    return 'CartModel(productId: $productId, title: $title, imageUrl: $imageUrl, brand: $brand, price: $price, discount: $discount, returnPolicy: $returnPolicy, deliveryDays: $deliveryDays, quantity: $quantity)';
+    return 'CartModel(productItemModel: $productItemModel, returnPolicy: $returnPolicy, quantity: $quantity)';
   }
 
   @override
@@ -282,37 +190,18 @@ class _$CartModelImpl implements _CartModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CartModelImpl &&
-            (identical(other.productId, productId) ||
-                other.productId == productId) &&
-            (identical(other.title, title) || other.title == title) &&
-            (identical(other.imageUrl, imageUrl) ||
-                other.imageUrl == imageUrl) &&
-            (identical(other.brand, brand) || other.brand == brand) &&
-            (identical(other.price, price) || other.price == price) &&
-            (identical(other.discount, discount) ||
-                other.discount == discount) &&
+            (identical(other.productItemModel, productItemModel) ||
+                other.productItemModel == productItemModel) &&
             (identical(other.returnPolicy, returnPolicy) ||
                 other.returnPolicy == returnPolicy) &&
-            (identical(other.deliveryDays, deliveryDays) ||
-                other.deliveryDays == deliveryDays) &&
             (identical(other.quantity, quantity) ||
                 other.quantity == quantity));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(
-    runtimeType,
-    productId,
-    title,
-    imageUrl,
-    brand,
-    price,
-    discount,
-    returnPolicy,
-    deliveryDays,
-    quantity,
-  );
+  int get hashCode =>
+      Object.hash(runtimeType, productItemModel, returnPolicy, quantity);
 
   /// Create a copy of CartModel
   /// with the given fields replaced by the non-null parameter values.
@@ -330,14 +219,8 @@ class _$CartModelImpl implements _CartModel {
 
 abstract class _CartModel implements CartModel {
   const factory _CartModel({
-    required final String productId,
-    required final String title,
-    required final String imageUrl,
-    required final String brand,
-    required final double price,
-    required final double discount,
+    required final ProductItemModel productItemModel,
     required final String returnPolicy,
-    required final int deliveryDays,
     required final int quantity,
   }) = _$CartModelImpl;
 
@@ -345,21 +228,9 @@ abstract class _CartModel implements CartModel {
       _$CartModelImpl.fromJson;
 
   @override
-  String get productId;
-  @override
-  String get title;
-  @override
-  String get imageUrl;
-  @override
-  String get brand;
-  @override
-  double get price;
-  @override
-  double get discount;
+  ProductItemModel get productItemModel;
   @override
   String get returnPolicy;
-  @override
-  int get deliveryDays;
   @override
   int get quantity;
 

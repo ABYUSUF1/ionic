@@ -44,7 +44,7 @@ class RecentSearches extends StatelessWidget {
                   onTap: () {
                     context.push(
                       AppRouterName.productIdRoute(
-                        productsItem[index].id.toString(),
+                        productsItem[index].productId.toString(),
                       ),
                     );
                   },

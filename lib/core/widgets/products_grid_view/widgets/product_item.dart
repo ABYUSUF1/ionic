@@ -33,7 +33,7 @@ class ProductItem extends StatelessWidget {
                 ? null
                 : () {
                   context.push(
-                    AppRouterName.productIdRoute(productItem.id),
+                    AppRouterName.productIdRoute(productItem.productId),
                     extra: product,
                   );
                 },

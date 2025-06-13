@@ -69,7 +69,7 @@ class Product with _$Product {
 extension ProductExtension on Product {
   ProductItemEntity toProductItem() {
     return ProductItemEntity(
-      id: id?.toString() ?? '',
+      productId: id?.toString() ?? '',
       title: title ?? '',
       imageUrl: thumbnail ?? '',
       price: price ?? 0.0,
@@ -77,21 +77,17 @@ extension ProductExtension on Product {
       stock: stock ?? 0,
       reviewsCount: reviews?.length ?? 0,
       brand: brand ?? '',
+      discount: discountPercentage ?? 0.0,
+      deliveryDays: deliveryDays(shippingInformation),
     );
   }
 
   // to Cart Entity
   CartEntity toCartEntity() {
     return CartEntity(
-      productId: id?.toString() ?? '',
-      title: title ?? '',
-      imageUrl: thumbnail ?? '',
-      brand: brand ?? '',
-      price: price ?? 0.0,
-      discount: discountPercentage ?? 0.0,
-      returnPolicy: returnPolicy ?? '',
-      deliveryDays: deliveryDays(shippingInformation),
+      productItemEntity: toProductItem(),
       quantity: 1,
+      returnPolicy: returnPolicy ?? '',
     );
   }
 }

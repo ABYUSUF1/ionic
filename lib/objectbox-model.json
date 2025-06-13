@@ -34,7 +34,7 @@
     },
     {
       "id": "2:6004888736176740058",
-      "lastPropertyId": "9:493140872050341460",
+      "lastPropertyId": "12:5676891121810434691",
       "name": "ProductItemEntity",
       "properties": [
         {
@@ -42,11 +42,6 @@
           "name": "obxId",
           "type": 6,
           "flags": 1
-        },
-        {
-          "id": "2:3698640012311869439",
-          "name": "id",
-          "type": 9
         },
         {
           "id": "3:3857355228079323238",
@@ -82,6 +77,21 @@
           "id": "9:493140872050341460",
           "name": "reviewsCount",
           "type": 6
+        },
+        {
+          "id": "10:718348493789171740",
+          "name": "productId",
+          "type": 9
+        },
+        {
+          "id": "11:4211147428576917842",
+          "name": "discount",
+          "type": 8
+        },
+        {
+          "id": "12:5676891121810434691",
+          "name": "deliveryDays",
+          "type": 6
         }
       ],
       "relations": []
@@ -95,7 +105,9 @@
   "modelVersionParserMinimum": 5,
   "retiredEntityUids": [],
   "retiredIndexUids": [],
-  "retiredPropertyUids": [],
+  "retiredPropertyUids": [
+    3698640012311869439
+  ],
   "retiredRelationUids": [],
   "version": 1
 }

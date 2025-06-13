@@ -57,7 +57,7 @@ final _entities = <obx_int.ModelEntity>[
   obx_int.ModelEntity(
     id: const obx_int.IdUid(2, 6004888736176740058),
     name: 'ProductItemEntity',
-    lastPropertyId: const obx_int.IdUid(9, 493140872050341460),
+    lastPropertyId: const obx_int.IdUid(12, 5676891121810434691),
     flags: 0,
     properties: <obx_int.ModelProperty>[
       obx_int.ModelProperty(
@@ -65,12 +65,6 @@ final _entities = <obx_int.ModelEntity>[
         name: 'obxId',
         type: 6,
         flags: 1,
-      ),
-      obx_int.ModelProperty(
-        id: const obx_int.IdUid(2, 3698640012311869439),
-        name: 'id',
-        type: 9,
-        flags: 0,
       ),
       obx_int.ModelProperty(
         id: const obx_int.IdUid(3, 3857355228079323238),
@@ -111,6 +105,24 @@ final _entities = <obx_int.ModelEntity>[
       obx_int.ModelProperty(
         id: const obx_int.IdUid(9, 493140872050341460),
         name: 'reviewsCount',
+        type: 6,
+        flags: 0,
+      ),
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(10, 718348493789171740),
+        name: 'productId',
+        type: 9,
+        flags: 0,
+      ),
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(11, 4211147428576917842),
+        name: 'discount',
+        type: 8,
+        flags: 0,
+      ),
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(12, 5676891121810434691),
+        name: 'deliveryDays',
         type: 6,
         flags: 0,
       ),
@@ -164,7 +176,7 @@ obx_int.ModelDefinition getObjectBoxModel() {
     lastSequenceId: const obx_int.IdUid(0, 0),
     retiredEntityUids: const [],
     retiredIndexUids: const [],
-    retiredPropertyUids: const [],
+    retiredPropertyUids: const [3698640012311869439],
     retiredRelationUids: const [],
     modelVersion: 5,
     modelVersionParserMinimum: 5,
@@ -235,13 +247,12 @@ obx_int.ModelDefinition getObjectBoxModel() {
         object.obxId = id;
       },
       objectToFB: (ProductItemEntity object, fb.Builder fbb) {
-        final idOffset = fbb.writeString(object.id);
         final titleOffset = fbb.writeString(object.title);
         final imageUrlOffset = fbb.writeString(object.imageUrl);
         final brandOffset = fbb.writeString(object.brand);
-        fbb.startTable(10);
+        final productIdOffset = fbb.writeString(object.productId);
+        fbb.startTable(13);
         fbb.addInt64(0, object.obxId);
-        fbb.addOffset(1, idOffset);
         fbb.addOffset(2, titleOffset);
         fbb.addOffset(3, imageUrlOffset);
         fbb.addFloat64(4, object.price);
@@ -249,6 +260,9 @@ obx_int.ModelDefinition getObjectBoxModel() {
         fbb.addOffset(6, brandOffset);
         fbb.addInt64(7, object.stock);
         fbb.addInt64(8, object.reviewsCount);
+        fbb.addOffset(9, productIdOffset);
+        fbb.addFloat64(10, object.discount);
+        fbb.addInt64(11, object.deliveryDays);
         fbb.finish(fbb.endTable());
         return object.obxId;
       },
@@ -261,9 +275,9 @@ obx_int.ModelDefinition getObjectBoxModel() {
           4,
           0,
         );
-        final idParam = const fb.StringReader(
+        final productIdParam = const fb.StringReader(
           asciiOptimization: true,
-        ).vTableGet(buffer, rootOffset, 6, '');
+        ).vTableGet(buffer, rootOffset, 22, '');
         final titleParam = const fb.StringReader(
           asciiOptimization: true,
         ).vTableGet(buffer, rootOffset, 8, '');
@@ -297,9 +311,21 @@ obx_int.ModelDefinition getObjectBoxModel() {
         final brandParam = const fb.StringReader(
           asciiOptimization: true,
         ).vTableGet(buffer, rootOffset, 16, '');
+        final discountParam = const fb.Float64Reader().vTableGet(
+          buffer,
+          rootOffset,
+          24,
+          0,
+        );
+        final deliveryDaysParam = const fb.Int64Reader().vTableGet(
+          buffer,
+          rootOffset,
+          26,
+          0,
+        );
         final object = ProductItemEntity(
           obxId: obxIdParam,
-          id: idParam,
+          productId: productIdParam,
           title: titleParam,
           imageUrl: imageUrlParam,
           price: priceParam,
@@ -307,6 +333,8 @@ obx_int.ModelDefinition getObjectBoxModel() {
           stock: stockParam,
           reviewsCount: reviewsCountParam,
           brand: brandParam,
+          discount: discountParam,
+          deliveryDays: deliveryDaysParam,
         );
 
         return object;
@@ -347,43 +375,53 @@ class ProductItemEntity_ {
     _entities[1].properties[0],
   );
 
-  /// See [ProductItemEntity.id].
-  static final id = obx.QueryStringProperty<ProductItemEntity>(
-    _entities[1].properties[1],
-  );
-
   /// See [ProductItemEntity.title].
   static final title = obx.QueryStringProperty<ProductItemEntity>(
-    _entities[1].properties[2],
+    _entities[1].properties[1],
   );
 
   /// See [ProductItemEntity.imageUrl].
   static final imageUrl = obx.QueryStringProperty<ProductItemEntity>(
-    _entities[1].properties[3],
+    _entities[1].properties[2],
   );
 
   /// See [ProductItemEntity.price].
   static final price = obx.QueryDoubleProperty<ProductItemEntity>(
-    _entities[1].properties[4],
+    _entities[1].properties[3],
   );
 
   /// See [ProductItemEntity.rating].
   static final rating = obx.QueryDoubleProperty<ProductItemEntity>(
-    _entities[1].properties[5],
+    _entities[1].properties[4],
   );
 
   /// See [ProductItemEntity.brand].
   static final brand = obx.QueryStringProperty<ProductItemEntity>(
-    _entities[1].properties[6],
+    _entities[1].properties[5],
   );
 
   /// See [ProductItemEntity.stock].
   static final stock = obx.QueryIntegerProperty<ProductItemEntity>(
-    _entities[1].properties[7],
+    _entities[1].properties[6],
   );
 
   /// See [ProductItemEntity.reviewsCount].
   static final reviewsCount = obx.QueryIntegerProperty<ProductItemEntity>(
+    _entities[1].properties[7],
+  );
+
+  /// See [ProductItemEntity.productId].
+  static final productId = obx.QueryStringProperty<ProductItemEntity>(
     _entities[1].properties[8],
+  );
+
+  /// See [ProductItemEntity.discount].
+  static final discount = obx.QueryDoubleProperty<ProductItemEntity>(
+    _entities[1].properties[9],
+  );
+
+  /// See [ProductItemEntity.deliveryDays].
+  static final deliveryDays = obx.QueryIntegerProperty<ProductItemEntity>(
+    _entities[1].properties[10],
   );
 }

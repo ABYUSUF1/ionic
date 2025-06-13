@@ -105,7 +105,7 @@ class SearchCubit extends Cubit<SearchState> {
     final item = product.toProductItem();
 
     // Remove if already exists
-    recentSearches.removeWhere((e) => e.id == item.id);
+    recentSearches.removeWhere((e) => e.productId == item.productId);
 
     // Insert at the top
     recentSearches.insert(0, item);
@@ -121,7 +121,7 @@ class SearchCubit extends Cubit<SearchState> {
 
   void deleteRecentSearch(Product product) {
     final id = product.id!;
-    recentSearches.removeWhere((e) => e.id == id.toString());
+    recentSearches.removeWhere((e) => e.productId == id.toString());
     _searchRepo.deleteRecentSearches(product.toProductItem());
     emit(SearchState.recentSearches(recentSearches));
   }

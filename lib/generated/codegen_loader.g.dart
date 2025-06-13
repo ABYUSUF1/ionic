@@ -227,6 +227,19 @@ class CodegenLoader extends AssetLoader{
   "cart_already_in_cart": "بالفعل في سلة التسوق",
   "cart_empty_title": "سلة التسوق فارغة.",
   "cart_empty_desc": "ماذا تنتظر؟ ابدأ التسوق الآن!",
+  "cart_checkout": "إتمام الشراء",
+  "cart_order_summary": "ملخص الطلب",
+  "cart_total": "الإجمالي",
+  "cart_subtotal": "المجموع قبل الخصم",
+  "cart_delivery_fee": "رسوم التوصيل",
+  "cart_coupon_discount": "خصم الكوبون",
+  "cart_apply_coupon": "تطبيق",
+  "cart_remove_coupon": "إزالة",
+  "cart_coupon_code": "رمز الكوبون",
+  "cart_coupon_removed": "تمت إزالة الكوبون",
+  "cart_coupon_applied": "تم تطبيق الكوبون بنجاح! 🎉",
+  "cart_delivery_fee_desc": "توصيل مجاني للطلبات التي تتجاوز ٢٠٠ جنيه",
+  "cart_invalid_coupon": "رمز الكوبون غير صالح، يجب أن يكون مكونًا من 4 أحرف",
   "delivery_arrives_by": "تصل بحلول"
 };
 static const Map<String,dynamic> _en = {
@@ -433,6 +446,19 @@ static const Map<String,dynamic> _en = {
   "cart_already_in_cart": "Already in cart",
   "cart_empty_title": "Your cart is empty.",
   "cart_empty_desc": "What are you waiting for? Start shopping now!",
+  "cart_checkout": "Checkout",
+  "cart_order_summary": "Order Summary",
+  "cart_total": "Total",
+  "cart_subtotal": "Subtotal",
+  "cart_delivery_fee": "Delivery Fee",
+  "cart_coupon_discount": "Coupon Discount",
+  "cart_apply_coupon": "Apply",
+  "cart_remove_coupon": "Remove",
+  "cart_coupon_code": "Coupon Code",
+  "cart_coupon_removed": "Coupon Removed",
+  "cart_coupon_applied": "Coupon applied successfully! 🎉",
+  "cart_delivery_fee_desc": "Free Delivery on orders over EGP 200",
+  "cart_invalid_coupon": "Invalid Coupon Code, It should be 4 characters long",
   "delivery_arrives_by": "Arrives by"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"ar": _ar, "en": _en};

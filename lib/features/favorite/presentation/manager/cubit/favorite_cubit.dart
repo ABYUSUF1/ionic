@@ -24,6 +24,7 @@ class FavoriteCubit extends Cubit<FavoriteState> with AuthGuardMixin {
 
   // Stores current list of favorites in memory
   List<ProductItemEntity> favorites = <ProductItemEntity>[];
+  Set<String> favoriteIds = <String>{};
 
   /// Fetch favorites
   Future<void> fetchFavorites() async {
@@ -35,6 +36,7 @@ class FavoriteCubit extends Cubit<FavoriteState> with AuthGuardMixin {
       products,
     ) {
       favorites = List<ProductItemEntity>.from(products);
+      favoriteIds = Set<String>.from(products.map((e) => e.productId));
       emit(FavoriteState.success(products));
     });
   }
@@ -51,8 +53,10 @@ class FavoriteCubit extends Cubit<FavoriteState> with AuthGuardMixin {
     if (_isToggling) return;
     _isToggling = true;
 
-    if (isFavorite(productItemEntity)) {
-      _favoriteRepo.removeFavorite(productItemEntity.id); // Optimistic removal
+    if (isFavorite(productItemEntity.productId)) {
+      _favoriteRepo.removeFavorite(
+        productItemEntity.productId,
+      ); // Optimistic removal
       favorites.remove(productItemEntity);
       AppSnackbar.showNoteSnackBar(
         context,
@@ -67,13 +71,13 @@ class FavoriteCubit extends Cubit<FavoriteState> with AuthGuardMixin {
       );
     }
 
+    favoriteIds = Set<String>.from(favorites.map((e) => e.productId));
     emit(FavoriteState.success(List.from(favorites))); // Re-emit updated list
     _isToggling = false;
   }
 
   /// Check if a product is currently favorited
-  bool isFavorite(ProductItemEntity productItemEntity) {
-    //  Check by id for simplicity
-    return favorites.where((e) => e.id == productItemEntity.id).isNotEmpty;
+  bool isFavorite(String productId) {
+    return favoriteIds.contains(productId);
   }
 }

@@ -21,14 +21,16 @@ ProductItemModel _$ProductItemModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ProductItemModel {
-  String get id => throw _privateConstructorUsedError;
+  String get productId => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   String get imageUrl => throw _privateConstructorUsedError;
   double get price => throw _privateConstructorUsedError;
-  double get rating => throw _privateConstructorUsedError;
+  double get discount => throw _privateConstructorUsedError;
   String get brand => throw _privateConstructorUsedError;
+  double get rating => throw _privateConstructorUsedError;
   int get stock => throw _privateConstructorUsedError;
   int get reviewsCount => throw _privateConstructorUsedError;
+  int get deliveryDays => throw _privateConstructorUsedError;
 
   /// Serializes this ProductItemModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -48,14 +50,16 @@ abstract class $ProductItemModelCopyWith<$Res> {
   ) = _$ProductItemModelCopyWithImpl<$Res, ProductItemModel>;
   @useResult
   $Res call({
-    String id,
+    String productId,
     String title,
     String imageUrl,
     double price,
-    double rating,
+    double discount,
     String brand,
+    double rating,
     int stock,
     int reviewsCount,
+    int deliveryDays,
   });
 }
 
@@ -74,21 +78,23 @@ class _$ProductItemModelCopyWithImpl<$Res, $Val extends ProductItemModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? productId = null,
     Object? title = null,
     Object? imageUrl = null,
     Object? price = null,
-    Object? rating = null,
+    Object? discount = null,
     Object? brand = null,
+    Object? rating = null,
     Object? stock = null,
     Object? reviewsCount = null,
+    Object? deliveryDays = null,
   }) {
     return _then(
       _value.copyWith(
-            id:
-                null == id
-                    ? _value.id
-                    : id // ignore: cast_nullable_to_non_nullable
+            productId:
+                null == productId
+                    ? _value.productId
+                    : productId // ignore: cast_nullable_to_non_nullable
                         as String,
             title:
                 null == title
@@ -105,16 +111,21 @@ class _$ProductItemModelCopyWithImpl<$Res, $Val extends ProductItemModel>
                     ? _value.price
                     : price // ignore: cast_nullable_to_non_nullable
                         as double,
-            rating:
-                null == rating
-                    ? _value.rating
-                    : rating // ignore: cast_nullable_to_non_nullable
+            discount:
+                null == discount
+                    ? _value.discount
+                    : discount // ignore: cast_nullable_to_non_nullable
                         as double,
             brand:
                 null == brand
                     ? _value.brand
                     : brand // ignore: cast_nullable_to_non_nullable
                         as String,
+            rating:
+                null == rating
+                    ? _value.rating
+                    : rating // ignore: cast_nullable_to_non_nullable
+                        as double,
             stock:
                 null == stock
                     ? _value.stock
@@ -124,6 +135,11 @@ class _$ProductItemModelCopyWithImpl<$Res, $Val extends ProductItemModel>
                 null == reviewsCount
                     ? _value.reviewsCount
                     : reviewsCount // ignore: cast_nullable_to_non_nullable
+                        as int,
+            deliveryDays:
+                null == deliveryDays
+                    ? _value.deliveryDays
+                    : deliveryDays // ignore: cast_nullable_to_non_nullable
                         as int,
           )
           as $Val,
@@ -141,14 +157,16 @@ abstract class _$$ProductItemModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call({
-    String id,
+    String productId,
     String title,
     String imageUrl,
     double price,
-    double rating,
+    double discount,
     String brand,
+    double rating,
     int stock,
     int reviewsCount,
+    int deliveryDays,
   });
 }
 
@@ -166,21 +184,23 @@ class __$$ProductItemModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? productId = null,
     Object? title = null,
     Object? imageUrl = null,
     Object? price = null,
-    Object? rating = null,
+    Object? discount = null,
     Object? brand = null,
+    Object? rating = null,
     Object? stock = null,
     Object? reviewsCount = null,
+    Object? deliveryDays = null,
   }) {
     return _then(
       _$ProductItemModelImpl(
-        id:
-            null == id
-                ? _value.id
-                : id // ignore: cast_nullable_to_non_nullable
+        productId:
+            null == productId
+                ? _value.productId
+                : productId // ignore: cast_nullable_to_non_nullable
                     as String,
         title:
             null == title
@@ -197,16 +217,21 @@ class __$$ProductItemModelImplCopyWithImpl<$Res>
                 ? _value.price
                 : price // ignore: cast_nullable_to_non_nullable
                     as double,
-        rating:
-            null == rating
-                ? _value.rating
-                : rating // ignore: cast_nullable_to_non_nullable
+        discount:
+            null == discount
+                ? _value.discount
+                : discount // ignore: cast_nullable_to_non_nullable
                     as double,
         brand:
             null == brand
                 ? _value.brand
                 : brand // ignore: cast_nullable_to_non_nullable
                     as String,
+        rating:
+            null == rating
+                ? _value.rating
+                : rating // ignore: cast_nullable_to_non_nullable
+                    as double,
         stock:
             null == stock
                 ? _value.stock
@@ -217,6 +242,11 @@ class __$$ProductItemModelImplCopyWithImpl<$Res>
                 ? _value.reviewsCount
                 : reviewsCount // ignore: cast_nullable_to_non_nullable
                     as int,
+        deliveryDays:
+            null == deliveryDays
+                ? _value.deliveryDays
+                : deliveryDays // ignore: cast_nullable_to_non_nullable
+                    as int,
       ),
     );
   }
@@ -225,22 +255,24 @@ class __$$ProductItemModelImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ProductItemModelImpl implements _ProductItemModel {
-  _$ProductItemModelImpl({
-    required this.id,
+  const _$ProductItemModelImpl({
+    required this.productId,
     required this.title,
     required this.imageUrl,
     required this.price,
-    required this.rating,
+    required this.discount,
     required this.brand,
+    required this.rating,
     required this.stock,
     required this.reviewsCount,
+    required this.deliveryDays,
   });
 
   factory _$ProductItemModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$ProductItemModelImplFromJson(json);
 
   @override
-  final String id;
+  final String productId;
   @override
   final String title;
   @override
@@ -248,17 +280,21 @@ class _$ProductItemModelImpl implements _ProductItemModel {
   @override
   final double price;
   @override
-  final double rating;
+  final double discount;
   @override
   final String brand;
+  @override
+  final double rating;
   @override
   final int stock;
   @override
   final int reviewsCount;
+  @override
+  final int deliveryDays;
 
   @override
   String toString() {
-    return 'ProductItemModel(id: $id, title: $title, imageUrl: $imageUrl, price: $price, rating: $rating, brand: $brand, stock: $stock, reviewsCount: $reviewsCount)';
+    return 'ProductItemModel(productId: $productId, title: $title, imageUrl: $imageUrl, price: $price, discount: $discount, brand: $brand, rating: $rating, stock: $stock, reviewsCount: $reviewsCount, deliveryDays: $deliveryDays)';
   }
 
   @override
@@ -266,30 +302,37 @@ class _$ProductItemModelImpl implements _ProductItemModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ProductItemModelImpl &&
-            (identical(other.id, id) || other.id == id) &&
+            (identical(other.productId, productId) ||
+                other.productId == productId) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.imageUrl, imageUrl) ||
                 other.imageUrl == imageUrl) &&
             (identical(other.price, price) || other.price == price) &&
-            (identical(other.rating, rating) || other.rating == rating) &&
+            (identical(other.discount, discount) ||
+                other.discount == discount) &&
             (identical(other.brand, brand) || other.brand == brand) &&
+            (identical(other.rating, rating) || other.rating == rating) &&
             (identical(other.stock, stock) || other.stock == stock) &&
             (identical(other.reviewsCount, reviewsCount) ||
-                other.reviewsCount == reviewsCount));
+                other.reviewsCount == reviewsCount) &&
+            (identical(other.deliveryDays, deliveryDays) ||
+                other.deliveryDays == deliveryDays));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
     runtimeType,
-    id,
+    productId,
     title,
     imageUrl,
     price,
-    rating,
+    discount,
     brand,
+    rating,
     stock,
     reviewsCount,
+    deliveryDays,
   );
 
   /// Create a copy of ProductItemModel
@@ -307,28 +350,27 @@ class _$ProductItemModelImpl implements _ProductItemModel {
   Map<String, dynamic> toJson() {
     return _$$ProductItemModelImplToJson(this);
   }
-
-  @override
-  int obxId = 0;
 }
 
 abstract class _ProductItemModel implements ProductItemModel {
-  factory _ProductItemModel({
-    required final String id,
+  const factory _ProductItemModel({
+    required final String productId,
     required final String title,
     required final String imageUrl,
     required final double price,
-    required final double rating,
+    required final double discount,
     required final String brand,
+    required final double rating,
     required final int stock,
     required final int reviewsCount,
+    required final int deliveryDays,
   }) = _$ProductItemModelImpl;
 
   factory _ProductItemModel.fromJson(Map<String, dynamic> json) =
       _$ProductItemModelImpl.fromJson;
 
   @override
-  String get id;
+  String get productId;
   @override
   String get title;
   @override
@@ -336,13 +378,17 @@ abstract class _ProductItemModel implements ProductItemModel {
   @override
   double get price;
   @override
-  double get rating;
+  double get discount;
   @override
   String get brand;
+  @override
+  double get rating;
   @override
   int get stock;
   @override
   int get reviewsCount;
+  @override
+  int get deliveryDays;
 
   /// Create a copy of ProductItemModel
   /// with the given fields replaced by the non-null parameter values.

@@ -23,7 +23,7 @@ class CartRemoteDataSource with AuthGuardMixin {
         .collection(FirestoreCollectionNames.users)
         .doc(userId)
         .collection(FirestoreCollectionNames.cart)
-        .doc(cartModel.productId)
+        .doc(cartModel.productItemModel.productId)
         .set(cartModel.toJson());
   }
 

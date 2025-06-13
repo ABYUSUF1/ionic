@@ -21,50 +21,56 @@ mixin _$CartState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<CartEntity> cartEntity) success,
     required TResult Function(String errMessage) error,
     required TResult Function() empty,
+    required TResult Function(
+      List<CartEntity> cartEntity,
+      CartOrderSummary cartTotals,
+    )
+    success,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<CartEntity> cartEntity)? success,
     TResult? Function(String errMessage)? error,
     TResult? Function()? empty,
+    TResult? Function(List<CartEntity> cartEntity, CartOrderSummary cartTotals)?
+    success,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<CartEntity> cartEntity)? success,
     TResult Function(String errMessage)? error,
     TResult Function()? empty,
+    TResult Function(List<CartEntity> cartEntity, CartOrderSummary cartTotals)?
+    success,
     required TResult orElse(),
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Success value) success,
     required TResult Function(_Error value) error,
     required TResult Function(_Empty value) empty,
+    required TResult Function(_Success value) success,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_Success value)? success,
     TResult? Function(_Error value)? error,
     TResult? Function(_Empty value)? empty,
+    TResult? Function(_Success value)? success,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Success value)? success,
     TResult Function(_Error value)? error,
     TResult Function(_Empty value)? empty,
+    TResult Function(_Success value)? success,
     required TResult orElse(),
   }) => throw _privateConstructorUsedError;
 }
@@ -134,9 +140,13 @@ class _$InitialImpl implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<CartEntity> cartEntity) success,
     required TResult Function(String errMessage) error,
     required TResult Function() empty,
+    required TResult Function(
+      List<CartEntity> cartEntity,
+      CartOrderSummary cartTotals,
+    )
+    success,
   }) {
     return initial();
   }
@@ -146,9 +156,10 @@ class _$InitialImpl implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<CartEntity> cartEntity)? success,
     TResult? Function(String errMessage)? error,
     TResult? Function()? empty,
+    TResult? Function(List<CartEntity> cartEntity, CartOrderSummary cartTotals)?
+    success,
   }) {
     return initial?.call();
   }
@@ -158,9 +169,10 @@ class _$InitialImpl implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<CartEntity> cartEntity)? success,
     TResult Function(String errMessage)? error,
     TResult Function()? empty,
+    TResult Function(List<CartEntity> cartEntity, CartOrderSummary cartTotals)?
+    success,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -174,9 +186,9 @@ class _$InitialImpl implements _Initial {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Success value) success,
     required TResult Function(_Error value) error,
     required TResult Function(_Empty value) empty,
+    required TResult Function(_Success value) success,
   }) {
     return initial(this);
   }
@@ -186,9 +198,9 @@ class _$InitialImpl implements _Initial {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_Success value)? success,
     TResult? Function(_Error value)? error,
     TResult? Function(_Empty value)? empty,
+    TResult? Function(_Success value)? success,
   }) {
     return initial?.call(this);
   }
@@ -198,9 +210,9 @@ class _$InitialImpl implements _Initial {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Success value)? success,
     TResult Function(_Error value)? error,
     TResult Function(_Empty value)? empty,
+    TResult Function(_Success value)? success,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -259,9 +271,13 @@ class _$LoadingImpl implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<CartEntity> cartEntity) success,
     required TResult Function(String errMessage) error,
     required TResult Function() empty,
+    required TResult Function(
+      List<CartEntity> cartEntity,
+      CartOrderSummary cartTotals,
+    )
+    success,
   }) {
     return loading();
   }
@@ -271,9 +287,10 @@ class _$LoadingImpl implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<CartEntity> cartEntity)? success,
     TResult? Function(String errMessage)? error,
     TResult? Function()? empty,
+    TResult? Function(List<CartEntity> cartEntity, CartOrderSummary cartTotals)?
+    success,
   }) {
     return loading?.call();
   }
@@ -283,9 +300,10 @@ class _$LoadingImpl implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<CartEntity> cartEntity)? success,
     TResult Function(String errMessage)? error,
     TResult Function()? empty,
+    TResult Function(List<CartEntity> cartEntity, CartOrderSummary cartTotals)?
+    success,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -299,9 +317,9 @@ class _$LoadingImpl implements _Loading {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Success value) success,
     required TResult Function(_Error value) error,
     required TResult Function(_Empty value) empty,
+    required TResult Function(_Success value) success,
   }) {
     return loading(this);
   }
@@ -311,9 +329,9 @@ class _$LoadingImpl implements _Loading {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_Success value)? success,
     TResult? Function(_Error value)? error,
     TResult? Function(_Empty value)? empty,
+    TResult? Function(_Success value)? success,
   }) {
     return loading?.call(this);
   }
@@ -323,9 +341,9 @@ class _$LoadingImpl implements _Loading {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Success value)? success,
     TResult Function(_Error value)? error,
     TResult Function(_Empty value)? empty,
+    TResult Function(_Success value)? success,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -337,178 +355,6 @@ class _$LoadingImpl implements _Loading {
 
 abstract class _Loading implements CartState {
   const factory _Loading() = _$LoadingImpl;
-}
-
-/// @nodoc
-abstract class _$$SuccessImplCopyWith<$Res> {
-  factory _$$SuccessImplCopyWith(
-    _$SuccessImpl value,
-    $Res Function(_$SuccessImpl) then,
-  ) = __$$SuccessImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({List<CartEntity> cartEntity});
-}
-
-/// @nodoc
-class __$$SuccessImplCopyWithImpl<$Res>
-    extends _$CartStateCopyWithImpl<$Res, _$SuccessImpl>
-    implements _$$SuccessImplCopyWith<$Res> {
-  __$$SuccessImplCopyWithImpl(
-    _$SuccessImpl _value,
-    $Res Function(_$SuccessImpl) _then,
-  ) : super(_value, _then);
-
-  /// Create a copy of CartState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({Object? cartEntity = null}) {
-    return _then(
-      _$SuccessImpl(
-        null == cartEntity
-            ? _value._cartEntity
-            : cartEntity // ignore: cast_nullable_to_non_nullable
-                as List<CartEntity>,
-      ),
-    );
-  }
-}
-
-/// @nodoc
-
-class _$SuccessImpl implements _Success {
-  const _$SuccessImpl(final List<CartEntity> cartEntity)
-    : _cartEntity = cartEntity;
-
-  final List<CartEntity> _cartEntity;
-  @override
-  List<CartEntity> get cartEntity {
-    if (_cartEntity is EqualUnmodifiableListView) return _cartEntity;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_cartEntity);
-  }
-
-  @override
-  String toString() {
-    return 'CartState.success(cartEntity: $cartEntity)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$SuccessImpl &&
-            const DeepCollectionEquality().equals(
-              other._cartEntity,
-              _cartEntity,
-            ));
-  }
-
-  @override
-  int get hashCode => Object.hash(
-    runtimeType,
-    const DeepCollectionEquality().hash(_cartEntity),
-  );
-
-  /// Create a copy of CartState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
-      __$$SuccessImplCopyWithImpl<_$SuccessImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function(List<CartEntity> cartEntity) success,
-    required TResult Function(String errMessage) error,
-    required TResult Function() empty,
-  }) {
-    return success(cartEntity);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function(List<CartEntity> cartEntity)? success,
-    TResult? Function(String errMessage)? error,
-    TResult? Function()? empty,
-  }) {
-    return success?.call(cartEntity);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(List<CartEntity> cartEntity)? success,
-    TResult Function(String errMessage)? error,
-    TResult Function()? empty,
-    required TResult orElse(),
-  }) {
-    if (success != null) {
-      return success(cartEntity);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Success value) success,
-    required TResult Function(_Error value) error,
-    required TResult Function(_Empty value) empty,
-  }) {
-    return success(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Success value)? success,
-    TResult? Function(_Error value)? error,
-    TResult? Function(_Empty value)? empty,
-  }) {
-    return success?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Success value)? success,
-    TResult Function(_Error value)? error,
-    TResult Function(_Empty value)? empty,
-    required TResult orElse(),
-  }) {
-    if (success != null) {
-      return success(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Success implements CartState {
-  const factory _Success(final List<CartEntity> cartEntity) = _$SuccessImpl;
-
-  List<CartEntity> get cartEntity;
-
-  /// Create a copy of CartState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
-      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -584,9 +430,13 @@ class _$ErrorImpl implements _Error {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<CartEntity> cartEntity) success,
     required TResult Function(String errMessage) error,
     required TResult Function() empty,
+    required TResult Function(
+      List<CartEntity> cartEntity,
+      CartOrderSummary cartTotals,
+    )
+    success,
   }) {
     return error(errMessage);
   }
@@ -596,9 +446,10 @@ class _$ErrorImpl implements _Error {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<CartEntity> cartEntity)? success,
     TResult? Function(String errMessage)? error,
     TResult? Function()? empty,
+    TResult? Function(List<CartEntity> cartEntity, CartOrderSummary cartTotals)?
+    success,
   }) {
     return error?.call(errMessage);
   }
@@ -608,9 +459,10 @@ class _$ErrorImpl implements _Error {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<CartEntity> cartEntity)? success,
     TResult Function(String errMessage)? error,
     TResult Function()? empty,
+    TResult Function(List<CartEntity> cartEntity, CartOrderSummary cartTotals)?
+    success,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -624,9 +476,9 @@ class _$ErrorImpl implements _Error {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Success value) success,
     required TResult Function(_Error value) error,
     required TResult Function(_Empty value) empty,
+    required TResult Function(_Success value) success,
   }) {
     return error(this);
   }
@@ -636,9 +488,9 @@ class _$ErrorImpl implements _Error {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_Success value)? success,
     TResult? Function(_Error value)? error,
     TResult? Function(_Empty value)? empty,
+    TResult? Function(_Success value)? success,
   }) {
     return error?.call(this);
   }
@@ -648,9 +500,9 @@ class _$ErrorImpl implements _Error {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Success value)? success,
     TResult Function(_Error value)? error,
     TResult Function(_Empty value)? empty,
+    TResult Function(_Success value)? success,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -717,9 +569,13 @@ class _$EmptyImpl implements _Empty {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<CartEntity> cartEntity) success,
     required TResult Function(String errMessage) error,
     required TResult Function() empty,
+    required TResult Function(
+      List<CartEntity> cartEntity,
+      CartOrderSummary cartTotals,
+    )
+    success,
   }) {
     return empty();
   }
@@ -729,9 +585,10 @@ class _$EmptyImpl implements _Empty {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<CartEntity> cartEntity)? success,
     TResult? Function(String errMessage)? error,
     TResult? Function()? empty,
+    TResult? Function(List<CartEntity> cartEntity, CartOrderSummary cartTotals)?
+    success,
   }) {
     return empty?.call();
   }
@@ -741,9 +598,10 @@ class _$EmptyImpl implements _Empty {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<CartEntity> cartEntity)? success,
     TResult Function(String errMessage)? error,
     TResult Function()? empty,
+    TResult Function(List<CartEntity> cartEntity, CartOrderSummary cartTotals)?
+    success,
     required TResult orElse(),
   }) {
     if (empty != null) {
@@ -757,9 +615,9 @@ class _$EmptyImpl implements _Empty {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Success value) success,
     required TResult Function(_Error value) error,
     required TResult Function(_Empty value) empty,
+    required TResult Function(_Success value) success,
   }) {
     return empty(this);
   }
@@ -769,9 +627,9 @@ class _$EmptyImpl implements _Empty {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_Success value)? success,
     TResult? Function(_Error value)? error,
     TResult? Function(_Empty value)? empty,
+    TResult? Function(_Success value)? success,
   }) {
     return empty?.call(this);
   }
@@ -781,9 +639,9 @@ class _$EmptyImpl implements _Empty {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Success value)? success,
     TResult Function(_Error value)? error,
     TResult Function(_Empty value)? empty,
+    TResult Function(_Success value)? success,
     required TResult orElse(),
   }) {
     if (empty != null) {
@@ -795,4 +653,196 @@ class _$EmptyImpl implements _Empty {
 
 abstract class _Empty implements CartState {
   const factory _Empty() = _$EmptyImpl;
+}
+
+/// @nodoc
+abstract class _$$SuccessImplCopyWith<$Res> {
+  factory _$$SuccessImplCopyWith(
+    _$SuccessImpl value,
+    $Res Function(_$SuccessImpl) then,
+  ) = __$$SuccessImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({List<CartEntity> cartEntity, CartOrderSummary cartTotals});
+}
+
+/// @nodoc
+class __$$SuccessImplCopyWithImpl<$Res>
+    extends _$CartStateCopyWithImpl<$Res, _$SuccessImpl>
+    implements _$$SuccessImplCopyWith<$Res> {
+  __$$SuccessImplCopyWithImpl(
+    _$SuccessImpl _value,
+    $Res Function(_$SuccessImpl) _then,
+  ) : super(_value, _then);
+
+  /// Create a copy of CartState
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({Object? cartEntity = null, Object? cartTotals = null}) {
+    return _then(
+      _$SuccessImpl(
+        null == cartEntity
+            ? _value._cartEntity
+            : cartEntity // ignore: cast_nullable_to_non_nullable
+                as List<CartEntity>,
+        null == cartTotals
+            ? _value.cartTotals
+            : cartTotals // ignore: cast_nullable_to_non_nullable
+                as CartOrderSummary,
+      ),
+    );
+  }
+}
+
+/// @nodoc
+
+class _$SuccessImpl implements _Success {
+  const _$SuccessImpl(final List<CartEntity> cartEntity, this.cartTotals)
+    : _cartEntity = cartEntity;
+
+  final List<CartEntity> _cartEntity;
+  @override
+  List<CartEntity> get cartEntity {
+    if (_cartEntity is EqualUnmodifiableListView) return _cartEntity;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_cartEntity);
+  }
+
+  @override
+  final CartOrderSummary cartTotals;
+
+  @override
+  String toString() {
+    return 'CartState.success(cartEntity: $cartEntity, cartTotals: $cartTotals)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SuccessImpl &&
+            const DeepCollectionEquality().equals(
+              other._cartEntity,
+              _cartEntity,
+            ) &&
+            (identical(other.cartTotals, cartTotals) ||
+                other.cartTotals == cartTotals));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+    runtimeType,
+    const DeepCollectionEquality().hash(_cartEntity),
+    cartTotals,
+  );
+
+  /// Create a copy of CartState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
+      __$$SuccessImplCopyWithImpl<_$SuccessImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(String errMessage) error,
+    required TResult Function() empty,
+    required TResult Function(
+      List<CartEntity> cartEntity,
+      CartOrderSummary cartTotals,
+    )
+    success,
+  }) {
+    return success(cartEntity, cartTotals);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(String errMessage)? error,
+    TResult? Function()? empty,
+    TResult? Function(List<CartEntity> cartEntity, CartOrderSummary cartTotals)?
+    success,
+  }) {
+    return success?.call(cartEntity, cartTotals);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(String errMessage)? error,
+    TResult Function()? empty,
+    TResult Function(List<CartEntity> cartEntity, CartOrderSummary cartTotals)?
+    success,
+    required TResult orElse(),
+  }) {
+    if (success != null) {
+      return success(cartEntity, cartTotals);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Error value) error,
+    required TResult Function(_Empty value) empty,
+    required TResult Function(_Success value) success,
+  }) {
+    return success(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Error value)? error,
+    TResult? Function(_Empty value)? empty,
+    TResult? Function(_Success value)? success,
+  }) {
+    return success?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Error value)? error,
+    TResult Function(_Empty value)? empty,
+    TResult Function(_Success value)? success,
+    required TResult orElse(),
+  }) {
+    if (success != null) {
+      return success(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Success implements CartState {
+  const factory _Success(
+    final List<CartEntity> cartEntity,
+    final CartOrderSummary cartTotals,
+  ) = _$SuccessImpl;
+
+  List<CartEntity> get cartEntity;
+  CartOrderSummary get cartTotals;
+
+  /// Create a copy of CartState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

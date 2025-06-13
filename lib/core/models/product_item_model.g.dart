@@ -9,25 +9,29 @@ part of 'product_item_model.dart';
 _$ProductItemModelImpl _$$ProductItemModelImplFromJson(
   Map<String, dynamic> json,
 ) => _$ProductItemModelImpl(
-  id: json['id'] as String,
+  productId: json['productId'] as String,
   title: json['title'] as String,
   imageUrl: json['imageUrl'] as String,
   price: (json['price'] as num).toDouble(),
-  rating: (json['rating'] as num).toDouble(),
+  discount: (json['discount'] as num).toDouble(),
   brand: json['brand'] as String,
+  rating: (json['rating'] as num).toDouble(),
   stock: (json['stock'] as num).toInt(),
   reviewsCount: (json['reviewsCount'] as num).toInt(),
+  deliveryDays: (json['deliveryDays'] as num).toInt(),
 );
 
 Map<String, dynamic> _$$ProductItemModelImplToJson(
   _$ProductItemModelImpl instance,
 ) => <String, dynamic>{
-  'id': instance.id,
+  'productId': instance.productId,
   'title': instance.title,
   'imageUrl': instance.imageUrl,
   'price': instance.price,
-  'rating': instance.rating,
+  'discount': instance.discount,
   'brand': instance.brand,
+  'rating': instance.rating,
   'stock': instance.stock,
   'reviewsCount': instance.reviewsCount,
+  'deliveryDays': instance.deliveryDays,
 };

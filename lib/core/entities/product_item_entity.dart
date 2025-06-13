@@ -6,18 +6,20 @@ class ProductItemEntity {
   @Id()
   int obxId = 0;
 
-  final String id;
+  final String productId;
   final String title;
   final String imageUrl;
   final double price;
-  final double rating;
+  final double discount;
   final String brand;
+  final double rating;
   final int stock;
   final int reviewsCount;
+  final int deliveryDays;
 
   ProductItemEntity({
     this.obxId = 0,
-    required this.id,
+    required this.productId,
     required this.title,
     required this.imageUrl,
     required this.price,
@@ -25,11 +27,13 @@ class ProductItemEntity {
     required this.stock,
     required this.reviewsCount,
     required this.brand,
+    required this.discount,
+    required this.deliveryDays,
   });
 
   static ProductItemEntity loading() {
     return ProductItemEntity(
-      id: '-1',
+      productId: '-1',
       title: 'Loading',
       imageUrl: '',
       price: 0.0,
@@ -37,6 +41,8 @@ class ProductItemEntity {
       brand: "Brand",
       stock: 0,
       reviewsCount: 0,
+      discount: 0.0,
+      deliveryDays: 0,
     );
   }
 }
@@ -44,14 +50,16 @@ class ProductItemEntity {
 extension ProductItemEntityExtension on ProductItemEntity {
   ProductItemModel toProductItemModel() {
     return ProductItemModel(
-      id: id,
+      productId: productId,
       title: title,
       imageUrl: imageUrl,
       price: price,
+      discount: discount,
       rating: rating,
       stock: stock,
       reviewsCount: reviewsCount,
       brand: brand,
+      deliveryDays: deliveryDays,
     );
   }
 }

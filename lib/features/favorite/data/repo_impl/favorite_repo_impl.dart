@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:ionic/core/entities/product_item_entity.dart';
+import 'package:ionic/core/models/product_item_model.dart';
 
 import 'package:ionic/core/utils/errors/failure.dart';
 import 'package:ionic/features/favorite/data/data_sources/remote/favorite_remote_data_source.dart';
@@ -25,8 +26,9 @@ class FavoriteRepoImpl implements FavoriteRepo {
   @override
   Future<Either<Failure, List<ProductItemEntity>>> fetchFavorites() async {
     try {
-      final List<ProductItemEntity> response = await _remote.fetchFavorites();
-      return Right(response);
+      final List<ProductItemModel> response = await _remote.fetchFavorites();
+      final result = response.map((e) => e.toProductItemEntity()).toList();
+      return Right(result);
     } catch (e) {
       return const Left(Failure("Failed to fetch favorites"));
     }

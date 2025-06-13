@@ -18,10 +18,10 @@ class CartItemImage extends StatelessWidget {
           color: theme.colorScheme.secondary,
         ),
         child:
-            product.imageUrl.isEmpty
+            product.productItemEntity.imageUrl.isEmpty
                 ? null
                 : CachedNetworkImage(
-                  imageUrl: product.imageUrl,
+                  imageUrl: product.productItemEntity.imageUrl,
                   height: 200,
                   // fit: BoxFit.cover,
                 ),

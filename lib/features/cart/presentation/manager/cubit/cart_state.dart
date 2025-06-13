@@ -4,9 +4,12 @@ part of 'cart_cubit.dart';
 class CartState with _$CartState {
   const factory CartState.initial() = _Initial;
   const factory CartState.loading() = _Loading;
-  const factory CartState.success(List<CartEntity> cartEntity) = _Success;
   const factory CartState.error(String errMessage) = _Error;
   const factory CartState.empty() = _Empty;
+  const factory CartState.success(
+    List<CartEntity> cartEntity,
+    CartOrderSummary cartTotals,
+  ) = _Success;
 }
 
 extension CartStateExt on CartState {

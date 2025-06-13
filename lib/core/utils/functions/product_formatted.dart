@@ -145,31 +145,23 @@ String formattedShipping(BuildContext context, String? shippingInformation) {
 }
 
 String formattedReturnPolicy(BuildContext context, String? returnPolicy) {
-  final lower = returnPolicy!.toLowerCase().trim();
+  final lower = returnPolicy?.toLowerCase().trim() ?? '';
 
   if (lower == 'no return policy') {
-    return context.plural(LocaleKeys.product_return_policy_days, 0);
+    return LocaleKeys.product_return_policy_days.plural(0);
   }
 
   final match = RegExp(r'(\d+)\s+days?\s+return policy').firstMatch(lower);
   if (match != null) {
     final days = int.parse(match.group(1)!);
-    if (days == 1) {
-      return context.tr(
-        LocaleKeys.product_return_policy_days,
-        args: [days.toString()],
-      );
-    } else {
-      return context.plural(
-        LocaleKeys.product_return_policy_days,
-        days,
-        args: [days.toString()],
-      );
-    }
+
+    return LocaleKeys.product_return_policy_days.plural(
+      days,
+      args: [days.toString()],
+    );
   }
 
-  // fallback if format is unexpected
-  return returnPolicy;
+  return returnPolicy!;
 }
 
 String formattedReviewsCount(BuildContext context, int? reviewsCount) {

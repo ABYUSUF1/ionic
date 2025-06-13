@@ -23,16 +23,16 @@ class CartItemDetails extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            product.brand.isEmpty
+            product.productItemEntity.brand.isEmpty
                 ? context.tr(LocaleKeys.product_brand_unknown)
-                : product.brand,
+                : product.productItemEntity.brand,
             style: theme.textTheme.bodyMedium!.copyWith(
               color: theme.colorScheme.onSurfaceVariant,
               fontFamily: appFont(context),
             ),
           ),
           Text(
-            product.title,
+            product.productItemEntity.title,
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
             style: theme.textTheme.bodyMedium!.copyWith(
@@ -43,9 +43,11 @@ class CartItemDetails extends StatelessWidget {
           CartItemPrice(product: product),
 
           const SizedBox(height: 16),
-          CartItemArrivedBy(deliveryDays: product.deliveryDays),
+          CartItemArrivedBy(
+            deliveryDays: product.productItemEntity.deliveryDays,
+          ),
 
-          isFreeDelivery(product.price)
+          isFreeDelivery(product.productItemEntity.price)
               ? Row(
                 spacing: 8,
                 children: [

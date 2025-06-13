@@ -9,7 +9,7 @@ final class AppSnackbar {
       context: context,
       message: message,
       color: AppColors.primaryColor,
-      duration: const Duration(seconds: 10),
+      duration: const Duration(seconds: 7),
     );
   }
 
@@ -27,7 +27,7 @@ final class AppSnackbar {
       context: context,
       message: message,
       color: Colors.green,
-      duration: const Duration(seconds: 10),
+      duration: const Duration(seconds: 7),
       icon: IconsaxPlusLinear.tick_square,
     );
   }
@@ -49,6 +49,11 @@ void _showCustomSnackBar({
     behavior: SnackBarBehavior.floating,
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
     padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+    margin: const EdgeInsets.only(
+      bottom: 100, // Enough space above your bottom button
+      left: 16,
+      right: 16,
+    ),
     elevation: 0,
     showCloseIcon: false,
   );
