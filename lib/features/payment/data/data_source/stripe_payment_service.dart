@@ -1,30 +1,23 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:ionic/core/api/api_client.dart';
 import 'package:ionic/core/utils/errors/failure.dart';
-import 'package:ionic/features/payment/data/data_source/payment_service.dart';
 
 import '../../../../core/utils/errors/server_failure.dart';
 
 class StripePaymentService {
   final ApiClient _apiClient;
-  final Stripe stripe = Stripe.instance;
 
   StripePaymentService(this._apiClient);
 
-  static const String _createPaymentIntentUrl =
-      'https://api.stripe.com/v1/payment_intents';
+  final Stripe stripe = Stripe.instance;
+  final String stripPublishKey = dotenv.env['STRIPE_PUBLISH_TEST_KEY']!;
 
-  Future<Either<Failure, void>> pay({
-    required int amount,
-    required String secretKey,
-  }) async {
+  Future<Either<Failure, void>> pay({required int amount}) async {
     try {
-      final String clientSecret = await createPaymentIntent(
-        amount: amount,
-        secretKey: secretKey,
-      );
+      final String clientSecret = await createPaymentIntent(amount: amount);
 
       await _initPaymentSheet(clientSecret: clientSecret);
 
@@ -35,35 +28,33 @@ class StripePaymentService {
       if (e is DioException) {
         return Left(ServerFailure.fromDioError(e));
       } else if (e is StripeException) {
-        return Left(Failure('Payment failed: ${e.error.localizedMessage}'));
-      } else {
-        return const Left(
-          Failure('An unexpected error occurred. Please contact support.'),
+        return Left(
+          Failure('Stripe Payment failed: ${e.error.localizedMessage}'),
         );
+      } else {
+        return const Left(Failure('An unexpected error occurred'));
       }
     }
   }
 
-  Future<String> createPaymentIntent({
-    required String secretKey,
-    required int amount,
-  }) async {
+  Future<String> createPaymentIntent({required int amount}) async {
     final response = await _apiClient.post(
-      _createPaymentIntentUrl,
+      'https://mhnckorjmoadgsbjirdd.supabase.co/functions/v1/create-payment-intent',
       headers: {
-        'Authorization': 'Bearer $secretKey',
-        'Content-Type': 'application/x-www-form-urlencoded',
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $stripPublishKey',
       },
-      data: {'amount': amount * 100},
+      data: {'amount': amount * 100, 'currency': 'egp'},
     );
-    return response.data['client_secret'];
+
+    return response.data['clientSecret'];
   }
 
   Future<void> _initPaymentSheet({required String clientSecret}) async {
     await stripe.initPaymentSheet(
       paymentSheetParameters: SetupPaymentSheetParameters(
         paymentIntentClientSecret: clientSecret,
-        merchantDisplayName: 'Ionic',
+        merchantDisplayName: 'Ionic', // Your App name
       ),
     );
   }
