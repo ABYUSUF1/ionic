@@ -54,6 +54,7 @@ dependencies:
   latlong2: ^0.9.1
   location: ^8.0.0
   geocoding: ^4.0.0
+  flutter_stripe: ^11.5.0
 
 
 dev_dependencies:

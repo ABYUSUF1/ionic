@@ -203,6 +203,7 @@ abstract class  LocaleKeys {
   static const checkout_delivery_instructions = 'checkout_delivery_instructions';
   static const checkout_leave_at_door = 'checkout_leave_at_door';
   static const checkout_hand_it_to_me = 'checkout_hand_it_to_me';
-  static const call_on_arrival = 'call_on_arrival';
+  static const checkout_call_on_arrival = 'checkout_call_on_arrival';
+  static const checkout_cash_on_delivery = 'checkout_cash_on_delivery';
 
 }

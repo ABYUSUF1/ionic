@@ -258,7 +258,8 @@
     "checkout_delivery_instructions": "تعليمات التوصيل",
     "checkout_leave_at_door": "اتركها عند الباب",
     "checkout_hand_it_to_me": "سلمني إياها مباشرة",
-    "call_on_arrival": "اتصل عند الوصول"
+    "checkout_call_on_arrival": "اتصل عند الوصول",
+    "checkout_cash_on_delivery" : "الدفع عند التوصيل"
 
   }   
     

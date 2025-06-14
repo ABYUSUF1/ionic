@@ -254,6 +254,7 @@
     "checkout_delivery_instructions" : "Delivery Instructions",
     "checkout_leave_at_door" : "Leave at door",
     "checkout_hand_it_to_me" : "Hand it to me",
-    "call_on_arrival" : "Call on arrival"
+    "checkout_call_on_arrival" : "Call on arrival",
+    "checkout_cash_on_delivery" : "Cash on Delivery"
 
 }

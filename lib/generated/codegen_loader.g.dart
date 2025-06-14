@@ -248,7 +248,8 @@ class CodegenLoader extends AssetLoader{
   "checkout_delivery_instructions": "تعليمات التوصيل",
   "checkout_leave_at_door": "اتركها عند الباب",
   "checkout_hand_it_to_me": "سلمني إياها مباشرة",
-  "call_on_arrival": "اتصل عند الوصول"
+  "checkout_call_on_arrival": "اتصل عند الوصول",
+  "checkout_cash_on_delivery": "الدفع عند التوصيل"
 };
 static const Map<String,dynamic> _en = {
   "common_next": "Next",
@@ -475,7 +476,8 @@ static const Map<String,dynamic> _en = {
   "checkout_delivery_instructions": "Delivery Instructions",
   "checkout_leave_at_door": "Leave at door",
   "checkout_hand_it_to_me": "Hand it to me",
-  "call_on_arrival": "Call on arrival"
+  "checkout_call_on_arrival": "Call on arrival",
+  "checkout_cash_on_delivery": "Cash on Delivery"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"ar": _ar, "en": _en};
 }
