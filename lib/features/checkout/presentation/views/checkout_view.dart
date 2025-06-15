@@ -1,7 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ionic/core/services/di/get_it_service.dart';
 import 'package:ionic/core/widgets/responsive_layout.dart';
+import 'package:ionic/features/payment/presentation/manager/cubit/payment_cubit.dart';
 import 'package:ionic/generated/locale_keys.g.dart';
 import '../manager/cubit/checkout_cubit.dart';
 import '../widgets/checkout_mobile_view_body.dart';
@@ -14,8 +16,11 @@ class CheckoutView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    return BlocProvider(
-      create: (context) => CheckoutCubit()..initialize(context),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => CheckoutCubit()..initialize(context)),
+        BlocProvider(create: (context) => PaymentCubit(getIt())),
+      ],
       child: Scaffold(
         bottomNavigationBar:
             ResponsiveLayout.isMobile(context)

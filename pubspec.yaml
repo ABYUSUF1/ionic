@@ -85,6 +85,7 @@ flutter:
     - assets/logo/
     - assets/translation/
     - assets/ads/
+    - .env
 
 
 

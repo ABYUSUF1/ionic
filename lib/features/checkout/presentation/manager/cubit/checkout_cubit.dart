@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:ionic/core/utils/enums/payment_method_enum.dart';
 import 'package:ionic/features/address/presentation/manager/default_address/default_address_cubit.dart';
+import 'package:ionic/features/payment/presentation/manager/cubit/payment_cubit.dart';
 
 import '../../../../../core/utils/enums/delivery_instructions_enum.dart';
 
@@ -37,7 +38,14 @@ class CheckoutCubit extends Cubit<CheckoutState> {
     emit(state.copyWith(deliveryInstruction: instruction));
   }
 
-  void placeOrder() {
+  Future<void> placeOrder(BuildContext context, int amount) async {
     emit(state.copyWith(isLoading: true));
+
+    if (state.paymentMethod == PaymentMethodEnum.cod) {
+      emit(state.copyWith(isLoading: false));
+    } else if (state.paymentMethod == PaymentMethodEnum.stripe) {
+      await context.read<PaymentCubit>().payWithStripe(amount: amount);
+      emit(state.copyWith(isLoading: false));
+    }
   }
 }

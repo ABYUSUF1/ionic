@@ -17,7 +17,7 @@ class CheckoutPaymentMethod extends StatelessWidget {
     final methods = [
       {
         'type': PaymentMethodEnum.cod,
-        'label': LocaleKeys.checkout_cash_on_delivery,
+        'label': context.tr(LocaleKeys.checkout_cash_on_delivery),
       },
       {'type': PaymentMethodEnum.stripe, 'label': 'Stripe'},
       {'type': PaymentMethodEnum.paymob, 'label': 'Paymob'},
@@ -30,7 +30,7 @@ class CheckoutPaymentMethod extends StatelessWidget {
         children:
             methods.map((method) {
               final type = method['type'] as PaymentMethodEnum;
-              final label = context.tr(method['label'] as String);
+              final label = method['label'] as String;
               return RadioListTile<PaymentMethodEnum>(
                 title: Text(label),
                 value: type,

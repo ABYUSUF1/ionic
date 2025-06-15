@@ -3,6 +3,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:ionic/core/api/api_client.dart';
+import 'package:ionic/core/theme/app_colors.dart';
 import 'package:ionic/core/utils/errors/failure.dart';
 
 import '../../../../core/utils/errors/server_failure.dart';
@@ -13,7 +14,7 @@ class StripePaymentService {
   StripePaymentService(this._apiClient);
 
   final Stripe stripe = Stripe.instance;
-  final String stripPublishKey = dotenv.env['STRIPE_PUBLISH_TEST_KEY']!;
+  final String supabaseAnonKey = dotenv.env['SUPABASE_ANON_KEY']!;
 
   Future<Either<Failure, void>> pay({required int amount}) async {
     try {
@@ -42,7 +43,7 @@ class StripePaymentService {
       'https://mhnckorjmoadgsbjirdd.supabase.co/functions/v1/create-payment-intent',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer $stripPublishKey',
+        'Authorization': 'Bearer $supabaseAnonKey',
       },
       data: {'amount': amount * 100, 'currency': 'egp'},
     );
@@ -54,7 +55,10 @@ class StripePaymentService {
     await stripe.initPaymentSheet(
       paymentSheetParameters: SetupPaymentSheetParameters(
         paymentIntentClientSecret: clientSecret,
-        merchantDisplayName: 'Ionic', // Your App name
+        merchantDisplayName: 'Ionic',
+        appearance: const PaymentSheetAppearance(
+          colors: PaymentSheetAppearanceColors(primary: AppColors.primaryColor),
+        ),
       ),
     );
   }

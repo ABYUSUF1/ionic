@@ -15,7 +15,7 @@ class CheckoutPlaceOrderButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final cartCubit = context.watch<CartCubit>();
+    final cartCubit = context.read<CartCubit>();
 
     return BlocBuilder<CheckoutCubit, CheckoutState>(
       builder: (context, state) {
@@ -32,7 +32,12 @@ class CheckoutPlaceOrderButton extends StatelessWidget {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    button(context, canPlaceOrder, theme),
+                    button(
+                      context,
+                      canPlaceOrder,
+                      theme,
+                      cartCubit.totalPrice.toInt(),
+                    ),
                     const SizedBox(height: 8),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -55,7 +60,12 @@ class CheckoutPlaceOrderButton extends StatelessWidget {
                 ),
               ),
             )
-            : button(context, canPlaceOrder, theme);
+            : button(
+              context,
+              canPlaceOrder,
+              theme,
+              cartCubit.totalPrice.toInt(),
+            );
       },
     );
   }
@@ -64,15 +74,18 @@ class CheckoutPlaceOrderButton extends StatelessWidget {
     BuildContext context,
     bool canPlaceOrder,
     ThemeData theme,
+    int amount,
   ) {
+    bool isLoading = context.read<CheckoutCubit>().state.isLoading;
     return CustomFilledButton(
       text: context.tr(LocaleKeys.checkout_place_order),
+      isLoading: isLoading,
       buttonColor:
           canPlaceOrder ? AppColors.primaryColor : theme.colorScheme.secondary,
       onPressed:
           canPlaceOrder
               ? () {
-                /* place order */
+                context.read<CheckoutCubit>().placeOrder(context, amount);
               }
               : null,
     );
