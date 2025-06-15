@@ -40,7 +40,7 @@ class StripePaymentService {
 
   Future<String> createPaymentIntent({required int amount}) async {
     final response = await _apiClient.post(
-      'https://mhnckorjmoadgsbjirdd.supabase.co/functions/v1/create-payment-intent',
+      'https://mhnckorjmoadgsbjirdd.supabase.co/functions/v1/create-stripe-payment-intent',
       headers: {
         'Content-Type': 'application/json',
         'Authorization': 'Bearer $supabaseAnonKey',

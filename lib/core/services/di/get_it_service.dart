@@ -24,6 +24,7 @@ import 'package:ionic/features/favorite/domain/repo/favorite_repo.dart';
 import 'package:ionic/features/favorite/presentation/manager/cubit/favorite_cubit.dart';
 import 'package:ionic/features/home/domain/repo/home_repo.dart';
 import 'package:ionic/features/home/presentation/manager/categories/home_categories_cubit.dart';
+import 'package:ionic/features/payment/data/data_source/paymob_payment_service.dart';
 import 'package:ionic/features/payment/data/data_source/stripe_payment_service.dart';
 import 'package:ionic/features/payment/data/repo_impl/payment_repo_impl.dart';
 import 'package:ionic/features/payment/domain/repo/payment_repo.dart';
@@ -77,6 +78,7 @@ Future<void> setupGetIt() async {
   getIt.registerLazySingleton(() => AddressRemoteDataSource());
   getIt.registerLazySingleton(() => CartRemoteDataSource());
   getIt.registerLazySingleton(() => StripePaymentService(getIt()));
+  getIt.registerLazySingleton(() => PaymobPaymentService());
 
   // Register Repositories
   getIt.registerLazySingleton<AuthRepo>(() => AuthRepoImpl(getIt()));
@@ -96,7 +98,9 @@ Future<void> setupGetIt() async {
     () => AddressRepoImpl(getIt(), getIt()),
   );
   getIt.registerLazySingleton<CartRepo>(() => CartRepoImpl(getIt()));
-  getIt.registerLazySingleton<PaymentRepo>(() => PaymentRepoImpl(getIt()));
+  getIt.registerLazySingleton<PaymentRepo>(
+    () => PaymentRepoImpl(getIt(), getIt()),
+  );
 
   // Register BLoCs/Cubits
   getIt.registerFactory(() => NetworkCubit(getIt()));

@@ -1,103 +1,35 @@
-import 'dart:async';
-
-import 'package:dartz/dartz.dart';
-import 'package:dio/dio.dart';
-import 'package:ionic/features/payment/data/models/paymob_billing_data_model.dart';
-import 'package:ionic/features/payment/data/models/paymob_items_model.dart';
-
-import '../../../../core/api/api_client.dart';
-import '../../../../core/utils/errors/failure.dart';
-import '../../../../core/utils/errors/server_failure.dart';
+import 'package:ionic/core/constants/supabase_edge_function.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
+import '../models/paymob_billing_data_model.dart';
+import '../models/paymob_items_model.dart';
 
 class PaymobPaymentService {
-  final ApiClient _apiClient;
-  PaymobPaymentService(this._apiClient);
+  final SupabaseClient _supabase = Supabase.instance.client;
 
-  static const _createPaymentIntention =
-      'https://accept.paymob.com/v1/intention/';
-  static const _authToken = 'https://accept.paymob.com/api/auth/tokens';
-  static const _getOrderStatus =
-      'https://accept.paymob.com/api/ecommerce/orders/transaction_inquiry';
-
-  Future<Either<Failure, Map<String, dynamic>>> createPaymentIntention({
-    required String secretKey,
+  Future<Map<String, dynamic>> createPaymentIntent({
     required int totalPrice,
-    required int integrationId,
-    required List<PaymobItemsModel>? items,
-    required PaymobBillingDataModel? billingData,
+    required List<PaymobItemsModel> items,
+    required PaymobBillingDataModel billingData,
   }) async {
-    final amount = _calculateAmount(totalPrice);
-    final serializedItems = items?.map((e) => e.toJson()).toList() ?? [];
-    final serializedBillingData =
-        billingData?.toJson() ?? PaymobBillingDataModel().toJson();
+    final response = await _supabase.functions.invoke(
+      SupabaseEdgeFunction.paymobCreateIntent,
+      body: {
+        'totalPrice': totalPrice,
+        'items': items.map((e) => e.toJson()).toList(),
+        'billingData': billingData.toJson(),
+      },
+    );
 
-    try {
-      final response = await _apiClient.post(
-        _createPaymentIntention,
-        data: {
-          "amount": amount,
-          "currency": 'egp',
-          "payment_methods": [integrationId],
-          "items": serializedItems,
-          "billing_data": serializedBillingData,
-        },
-        headers: {"Authorization": "Token $secretKey"},
-      );
-
-      return Right({
-        "client_secret": response.data['client_secret'],
-        "order_id": response.data['intention_order_id'],
-      });
-    } on DioException catch (e) {
-      return Left(ServerFailure.fromDioError(e));
-    } catch (e) {
-      return const Left(
-        Failure("An unexpected error occurred. Please contact support."),
-      );
-    }
+    return response.data;
   }
 
-  Future<Either<Failure, String>> authToken({required String apiKey}) async {
-    try {
-      final response = await _apiClient.post(
-        _authToken,
-        data: {"api_key": apiKey},
-      );
-      return Right(response.data['token']);
-    } on DioException catch (e) {
-      return Left(ServerFailure.fromDioError(e));
-    } catch (e) {
-      return const Left(
-        Failure("An unexpected error occurred. Please contact support."),
-      );
-    }
-  }
-
-  Future<Either<Failure, bool>> getPaymentStatus({
-    required String authToken,
-    required String orderId,
-  }) async {
-    try {
-      final response = await _apiClient.post(
-        _getOrderStatus,
-        headers: {"Authorization": authToken},
-        data: {"order_id": orderId},
-      );
-
-      if (response.data.containsKey('success')) {
-        return Right(response.data['success']);
-      }
-      return const Left(Failure("Payment status not available."));
-    } on DioException catch (e) {
-      return Left(ServerFailure.fromDioError(e));
-    } catch (e) {
-      return const Left(
-        Failure("An unexpected error occurred. Please contact support."),
-      );
-    }
-  }
-
-  int _calculateAmount(int totalPrice) {
-    return totalPrice * 100;
+  // I dont use it, but it still a way to check if the payment is successful
+  // it will be determined in your WebView via onLoadStop already...
+  Future<bool> verifyPayment({required String orderId}) async {
+    final res = await _supabase.functions.invoke(
+      SupabaseEdgeFunction.paymobVerifyIntent,
+      body: {'order_id': orderId},
+    );
+    return res.data['success'] == true;
   }
 }

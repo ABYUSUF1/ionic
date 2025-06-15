@@ -5,7 +5,7 @@ import 'package:ionic/core/utils/functions/star_color.dart';
 import 'package:ionic/core/widgets/rating_bar_indicator.dart';
 import 'package:ionic/core/widgets/responsive_layout.dart';
 
-import '../../../../core/constants/app_font.dart';
+import '../../../../core/theme/app_font.dart';
 import '../../../../generated/locale_keys.g.dart';
 
 class ProductOverallRating extends StatelessWidget {

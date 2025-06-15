@@ -2,7 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:ionic/core/models/product_model/review.dart';
 
-import '../../../../core/constants/app_font.dart';
+import '../../../../core/theme/app_font.dart';
 import '../../../../core/widgets/rating_bar_indicator.dart';
 import '../../../../generated/locale_keys.g.dart';
 

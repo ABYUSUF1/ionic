@@ -7,7 +7,7 @@ import 'package:ionic/core/models/product_model/product.dart';
 import 'package:ionic/core/routing/app_router_name.dart';
 import 'package:ionic/core/widgets/loading/skeleton_loading.dart';
 
-import '../../../constants/app_font.dart';
+import '../../../theme/app_font.dart';
 import '../../../utils/functions/product_formatted.dart';
 import 'favorite_button.dart';
 

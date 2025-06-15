@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../../core/constants/app_font.dart';
+import '../../../../../core/theme/app_font.dart';
 import '../../../../../generated/locale_keys.g.dart';
 import 'home_popular_products_grid.dart';
 

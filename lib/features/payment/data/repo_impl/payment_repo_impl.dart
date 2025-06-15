@@ -1,13 +1,17 @@
 import 'package:dartz/dartz.dart';
 import 'package:ionic/core/utils/errors/failure.dart';
+import 'package:ionic/features/payment/data/data_source/paymob_payment_service.dart';
 import 'package:ionic/features/payment/data/data_source/stripe_payment_service.dart';
 
 import '../../domain/repo/payment_repo.dart';
+import '../models/paymob_billing_data_model.dart';
+import '../models/paymob_items_model.dart';
 
 class PaymentRepoImpl implements PaymentRepo {
   final StripePaymentService _stripePaymentService;
+  final PaymobPaymentService _paymobPaymentService;
 
-  PaymentRepoImpl(this._stripePaymentService);
+  PaymentRepoImpl(this._stripePaymentService, this._paymobPaymentService);
 
   @override
   Future<Either<Failure, void>> payWithPayPal({required int amount}) {
@@ -16,9 +20,21 @@ class PaymentRepoImpl implements PaymentRepo {
   }
 
   @override
-  Future<Either<Failure, void>> payWithPaymob({required int amount}) {
-    // TODO: implement payWithPaymob
-    throw UnimplementedError();
+  Future<Either<Failure, Map<String, dynamic>>> payWithPaymob({
+    required int amount,
+    required List<PaymobItemsModel> items,
+    required PaymobBillingDataModel billingData,
+  }) async {
+    try {
+      final result = await _paymobPaymentService.createPaymentIntent(
+        totalPrice: amount,
+        items: items,
+        billingData: billingData,
+      );
+      return Right(result);
+    } catch (e) {
+      return Left(Failure(e.toString()));
+    }
   }
 
   @override

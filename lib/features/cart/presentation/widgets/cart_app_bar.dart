@@ -7,7 +7,7 @@ import 'package:ionic/features/cart/domain/entity/cart_entity.dart';
 import 'package:ionic/features/cart/presentation/manager/cubit/cart_cubit.dart';
 import 'package:ionic/generated/locale_keys.g.dart';
 
-import '../../../../core/constants/app_font.dart';
+import '../../../../core/theme/app_font.dart';
 import '../../../home/presentation/widgets/home_app_bar_widgets/home_app_bar_address_button.dart';
 
 class CartAppBar extends StatelessWidget implements PreferredSizeWidget {

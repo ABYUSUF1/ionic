@@ -1,6 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:ionic/core/constants/app_font.dart';
+import 'package:ionic/core/theme/app_font.dart';
 import 'package:ionic/generated/locale_keys.g.dart';
 
 class CartItemArrivedBy extends StatelessWidget {

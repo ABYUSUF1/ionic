@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
-import 'package:ionic/core/constants/app_font.dart';
+import 'package:ionic/core/theme/app_font.dart';
 import 'package:ionic/core/theme/app_colors.dart';
 import 'package:ionic/features/cart/domain/entity/cart_entity.dart';
 import 'package:ionic/features/cart/presentation/widgets/cart_item_arrived_by.dart';

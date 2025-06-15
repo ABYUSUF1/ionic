@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:ionic/features/home/data/models/category_model/localized_title.dart';
 import 'package:ionic/generated/locale_keys.g.dart';
 
-import '../../../../core/constants/app_font.dart';
+import '../../../../core/theme/app_font.dart';
 import '../../../../core/models/product_model/product.dart';
 import '../../../../core/routing/app_router_name.dart';
 import '../../../../core/theme/app_colors.dart';

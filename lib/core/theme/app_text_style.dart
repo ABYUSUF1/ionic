@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ionic/core/constants/app_font.dart';
+import 'package:ionic/core/theme/app_font.dart';
 
 import 'app_colors.dart';
 

@@ -2,7 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:ionic/generated/locale_keys.g.dart';
 
-import '../../../../../core/constants/app_font.dart';
+import '../../../../../core/theme/app_font.dart';
 
 class HomeCategoriesUpper extends StatelessWidget {
   const HomeCategoriesUpper({super.key});

@@ -20,6 +20,7 @@ import 'package:ionic/features/cart/presentation/manager/cubit/cart_cubit.dart';
 import 'package:ionic/features/favorite/presentation/manager/cubit/favorite_cubit.dart';
 import 'package:ionic/firebase_options.dart';
 import 'package:ionic/generated/codegen_loader.g.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 import 'core/theme/manager/cubit/theme_cubit.dart';
 import 'features/address/domain/repo/address_repo.dart';
 import 'features/address/presentation/manager/default_address/default_address_cubit.dart';
@@ -33,6 +34,10 @@ Future<void> main() async {
   Stripe.publishableKey = dotenv.env['STRIPE_PUBLISH_TEST_KEY']!;
   await EasyLocalization.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  await Supabase.initialize(
+    url: dotenv.env['SUPABASE_URL']!,
+    anonKey: dotenv.env['SUPABASE_ANON_KEY']!,
+  );
   await setupGetIt();
 
   runApp(
