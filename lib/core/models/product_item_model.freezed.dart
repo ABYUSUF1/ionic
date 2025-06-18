@@ -21,16 +21,30 @@ ProductItemModel _$ProductItemModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ProductItemModel {
+  @Id()
+  int get obxId => throw _privateConstructorUsedError;
+  @Id()
+  set obxId(int value) => throw _privateConstructorUsedError;
   String get productId => throw _privateConstructorUsedError;
+  set productId(String value) => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
+  set title(String value) => throw _privateConstructorUsedError;
   String get imageUrl => throw _privateConstructorUsedError;
+  set imageUrl(String value) => throw _privateConstructorUsedError;
   double get price => throw _privateConstructorUsedError;
+  set price(double value) => throw _privateConstructorUsedError;
   double get discount => throw _privateConstructorUsedError;
+  set discount(double value) => throw _privateConstructorUsedError;
   String get brand => throw _privateConstructorUsedError;
+  set brand(String value) => throw _privateConstructorUsedError;
   double get rating => throw _privateConstructorUsedError;
+  set rating(double value) => throw _privateConstructorUsedError;
   int get stock => throw _privateConstructorUsedError;
+  set stock(int value) => throw _privateConstructorUsedError;
   int get reviewsCount => throw _privateConstructorUsedError;
+  set reviewsCount(int value) => throw _privateConstructorUsedError;
   int get deliveryDays => throw _privateConstructorUsedError;
+  set deliveryDays(int value) => throw _privateConstructorUsedError;
 
   /// Serializes this ProductItemModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -50,6 +64,7 @@ abstract class $ProductItemModelCopyWith<$Res> {
   ) = _$ProductItemModelCopyWithImpl<$Res, ProductItemModel>;
   @useResult
   $Res call({
+    @Id() int obxId,
     String productId,
     String title,
     String imageUrl,
@@ -78,6 +93,7 @@ class _$ProductItemModelCopyWithImpl<$Res, $Val extends ProductItemModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? obxId = null,
     Object? productId = null,
     Object? title = null,
     Object? imageUrl = null,
@@ -91,6 +107,11 @@ class _$ProductItemModelCopyWithImpl<$Res, $Val extends ProductItemModel>
   }) {
     return _then(
       _value.copyWith(
+            obxId:
+                null == obxId
+                    ? _value.obxId
+                    : obxId // ignore: cast_nullable_to_non_nullable
+                        as int,
             productId:
                 null == productId
                     ? _value.productId
@@ -157,6 +178,7 @@ abstract class _$$ProductItemModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call({
+    @Id() int obxId,
     String productId,
     String title,
     String imageUrl,
@@ -184,6 +206,7 @@ class __$$ProductItemModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? obxId = null,
     Object? productId = null,
     Object? title = null,
     Object? imageUrl = null,
@@ -197,6 +220,11 @@ class __$$ProductItemModelImplCopyWithImpl<$Res>
   }) {
     return _then(
       _$ProductItemModelImpl(
+        obxId:
+            null == obxId
+                ? _value.obxId
+                : obxId // ignore: cast_nullable_to_non_nullable
+                    as int,
         productId:
             null == productId
                 ? _value.productId
@@ -254,8 +282,10 @@ class __$$ProductItemModelImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
+@Entity(realClass: ProductItemModel)
 class _$ProductItemModelImpl implements _ProductItemModel {
-  const _$ProductItemModelImpl({
+  _$ProductItemModelImpl({
+    @Id() this.obxId = 0,
     required this.productId,
     required this.title,
     required this.imageUrl,
@@ -272,29 +302,33 @@ class _$ProductItemModelImpl implements _ProductItemModel {
       _$$ProductItemModelImplFromJson(json);
 
   @override
-  final String productId;
+  @JsonKey()
+  @Id()
+  int obxId;
   @override
-  final String title;
+  String productId;
   @override
-  final String imageUrl;
+  String title;
   @override
-  final double price;
+  String imageUrl;
   @override
-  final double discount;
+  double price;
   @override
-  final String brand;
+  double discount;
   @override
-  final double rating;
+  String brand;
   @override
-  final int stock;
+  double rating;
   @override
-  final int reviewsCount;
+  int stock;
   @override
-  final int deliveryDays;
+  int reviewsCount;
+  @override
+  int deliveryDays;
 
   @override
   String toString() {
-    return 'ProductItemModel(productId: $productId, title: $title, imageUrl: $imageUrl, price: $price, discount: $discount, brand: $brand, rating: $rating, stock: $stock, reviewsCount: $reviewsCount, deliveryDays: $deliveryDays)';
+    return 'ProductItemModel(obxId: $obxId, productId: $productId, title: $title, imageUrl: $imageUrl, price: $price, discount: $discount, brand: $brand, rating: $rating, stock: $stock, reviewsCount: $reviewsCount, deliveryDays: $deliveryDays)';
   }
 
   @override
@@ -302,6 +336,7 @@ class _$ProductItemModelImpl implements _ProductItemModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ProductItemModelImpl &&
+            (identical(other.obxId, obxId) || other.obxId == obxId) &&
             (identical(other.productId, productId) ||
                 other.productId == productId) &&
             (identical(other.title, title) || other.title == title) &&
@@ -323,6 +358,7 @@ class _$ProductItemModelImpl implements _ProductItemModel {
   @override
   int get hashCode => Object.hash(
     runtimeType,
+    obxId,
     productId,
     title,
     imageUrl,
@@ -353,42 +389,58 @@ class _$ProductItemModelImpl implements _ProductItemModel {
 }
 
 abstract class _ProductItemModel implements ProductItemModel {
-  const factory _ProductItemModel({
-    required final String productId,
-    required final String title,
-    required final String imageUrl,
-    required final double price,
-    required final double discount,
-    required final String brand,
-    required final double rating,
-    required final int stock,
-    required final int reviewsCount,
-    required final int deliveryDays,
+  factory _ProductItemModel({
+    @Id() int obxId,
+    required String productId,
+    required String title,
+    required String imageUrl,
+    required double price,
+    required double discount,
+    required String brand,
+    required double rating,
+    required int stock,
+    required int reviewsCount,
+    required int deliveryDays,
   }) = _$ProductItemModelImpl;
 
   factory _ProductItemModel.fromJson(Map<String, dynamic> json) =
       _$ProductItemModelImpl.fromJson;
 
   @override
+  @Id()
+  int get obxId;
+  @Id()
+  set obxId(int value);
+  @override
   String get productId;
+  set productId(String value);
   @override
   String get title;
+  set title(String value);
   @override
   String get imageUrl;
+  set imageUrl(String value);
   @override
   double get price;
+  set price(double value);
   @override
   double get discount;
+  set discount(double value);
   @override
   String get brand;
+  set brand(String value);
   @override
   double get rating;
+  set rating(double value);
   @override
   int get stock;
+  set stock(int value);
   @override
   int get reviewsCount;
+  set reviewsCount(int value);
   @override
   int get deliveryDays;
+  set deliveryDays(int value);
 
   /// Create a copy of ProductItemModel
   /// with the given fields replaced by the non-null parameter values.

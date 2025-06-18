@@ -1,13 +1,13 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ionic/core/widgets/empty_state_widget.dart';
 import 'package:ionic/features/address/domain/entity/address_entity.dart';
 import 'package:ionic/features/auth/presentation/manager/auth/auth_cubit.dart';
 import 'package:ionic/generated/locale_keys.g.dart';
 
 import '../../../../core/constants/app_assets.dart';
 import '../../../../core/services/di/get_it_service.dart';
-import '../../../../core/widgets/empty_widget.dart';
 import '../../domain/repo/address_repo.dart';
 import '../manager/save_address/save_address_cubit.dart';
 import '../widgets/save_address_widgets/save_address_form.dart';
@@ -25,7 +25,7 @@ class SaveAddressView extends StatelessWidget {
         return state.maybeWhen(
           orElse:
               () => Scaffold(
-                body: EmptyWidget(
+                body: EmptyStateWidget(
                   svgImage:
                       isDarkMode
                           ? AppAssets.illustrationsLoginIllustrationDark

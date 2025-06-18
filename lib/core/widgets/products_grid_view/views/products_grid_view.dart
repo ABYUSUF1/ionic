@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ionic/core/entities/product_item_entity.dart';
 import 'package:ionic/core/models/product_model/product.dart';
-import 'package:ionic/core/widgets/empty_widget.dart';
+import 'package:ionic/core/widgets/empty_state_widget.dart';
 import 'package:ionic/core/widgets/products_grid_view/manager/cubit/products_control_state.dart';
 import 'package:ionic/core/widgets/products_grid_view/widgets/products_grid.dart';
 import 'package:ionic/core/widgets/products_grid_view/manager/cubit/products_control_cubit.dart';
@@ -61,7 +61,7 @@ class ProductsGridView extends StatelessWidget {
                 ),
                 body:
                     state.filteredProducts.isEmpty
-                        ? EmptyWidget(
+                        ? EmptyStateWidget(
                           svgImage: emptySvgImage,
                           title: emptyTitle,
                           subtitle: emptySubtitle,

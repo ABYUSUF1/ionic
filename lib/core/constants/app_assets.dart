@@ -186,18 +186,6 @@ class AppAssets {
   /// assets/lotties/wifi_disconnected_animation.json
   static const String lottiesWifiDisconnectedAnimation = "assets/lotties/wifi_disconnected_animation.json";
 
-  /// Assets for paymentPaymob
-  /// assets/payment/paymob.svg
-  static const String paymentPaymob = "assets/payment/paymob.svg";
-
-  /// Assets for paymentPaypal
-  /// assets/payment/paypal.svg
-  static const String paymentPaypal = "assets/payment/paypal.svg";
-
-  /// Assets for paymentStripe
-  /// assets/payment/stripe.svg
-  static const String paymentStripe = "assets/payment/stripe.svg";
-
   /// Assets for translationAr
   /// assets/translation/ar.json
   static const String translationAr = "assets/translation/ar.json";

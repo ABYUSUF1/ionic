@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:ionic/core/api/api_client.dart';
 import 'package:ionic/core/entities/product_item_entity.dart';
+import 'package:ionic/core/models/product_item_model.dart';
 import 'package:ionic/core/models/product_model/products_model.dart';
 import 'package:ionic/core/services/data_source/local/object_box_service.dart';
 import 'package:ionic/core/utils/errors/failure.dart';
@@ -33,30 +34,32 @@ class SearchRepoImpl implements SearchRepo {
 
   @override
   void addRecentSearches(ProductItemEntity productItem) {
-    final box = _objectBoxService.box<ProductItemEntity>();
+    final box = _objectBoxService.box<ProductItemModel>();
 
     // Find existing by product.id (not obxId)
     final existing =
         box
-            .query(ProductItemEntity_.productId.equals(productItem.productId))
+            .query(ProductItemModel_.productId.equals(productItem.productId))
             .build()
             .findFirst();
 
     if (existing != null) {
-      // Remove old entry (optional if `put()` will override)
       box.remove(existing.obxId);
     }
 
-    box.put(productItem);
+    box.put(productItem.toProductItemModel());
   }
 
   @override
   void deleteRecentSearches(ProductItemEntity productItem) {
-    _objectBoxService.box<ProductItemEntity>().remove(productItem.obxId);
+    _objectBoxService.box<ProductItemModel>().remove(
+      productItem.toProductItemModel().obxId,
+    );
   }
 
   @override
   List<ProductItemEntity> getRecentSearches() {
-    return _objectBoxService.box<ProductItemEntity>().getAll();
+    final result = _objectBoxService.box<ProductItemModel>().getAll();
+    return result.map((e) => e.toProductItemEntity()).toList();
   }
 }

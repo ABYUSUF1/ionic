@@ -1,12 +1,12 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ionic/core/widgets/empty_state_widget.dart';
 import 'package:ionic/features/address/presentation/widgets/default_address_widgets/default_address_bottom_bar.dart';
 import 'package:ionic/features/auth/presentation/manager/auth/auth_cubit.dart';
 import 'package:ionic/generated/locale_keys.g.dart';
 
 import '../../../../core/constants/app_assets.dart';
-import '../../../../core/widgets/empty_widget.dart';
 import '../manager/default_address/default_address_cubit.dart';
 import '../widgets/default_address_widgets/default_address_view_body.dart';
 
@@ -35,7 +35,7 @@ class DefaultAddressView extends StatelessWidget {
           },
           orElse:
               () => Scaffold(
-                body: EmptyWidget(
+                body: EmptyStateWidget(
                   svgImage:
                       isDarkMode
                           ? AppAssets.illustrationsLoginIllustrationDark

@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ionic/core/constants/app_assets.dart';
 import 'package:ionic/core/theme/app_font.dart';
 import 'package:ionic/core/theme/app_colors.dart';
-import 'package:ionic/core/widgets/empty_widget.dart';
+import 'package:ionic/core/widgets/empty_state_widget.dart';
 import 'package:ionic/features/address/domain/entity/address_entity.dart';
 import 'package:ionic/features/address/presentation/manager/default_address/default_address_cubit.dart';
 import 'package:ionic/generated/locale_keys.g.dart';
@@ -22,7 +22,7 @@ class DefaultAddressViewBody extends StatelessWidget {
       builder: (context, state) {
         return state.maybeWhen(
           empty:
-              () => EmptyWidget(
+              () => EmptyStateWidget(
                 svgImage:
                     isDark
                         ? AppAssets.illustrationsGpsIllustrationDark
@@ -31,7 +31,7 @@ class DefaultAddressViewBody extends StatelessWidget {
                 subtitle: context.tr(LocaleKeys.address_no_addresses_desc),
               ),
           error:
-              (errMessage) => EmptyWidget(
+              (errMessage) => EmptyStateWidget(
                 svgImage:
                     isDark
                         ? AppAssets.illustrationsErrorIllustrationDark

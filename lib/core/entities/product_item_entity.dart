@@ -1,11 +1,6 @@
-import 'package:objectbox/objectbox.dart';
 import '../models/product_item_model.dart';
 
-@Entity()
 class ProductItemEntity {
-  @Id()
-  int obxId = 0;
-
   final String productId;
   final String title;
   final String imageUrl;
@@ -18,7 +13,6 @@ class ProductItemEntity {
   final int deliveryDays;
 
   ProductItemEntity({
-    this.obxId = 0,
     required this.productId,
     required this.title,
     required this.imageUrl,

@@ -9,6 +9,7 @@ part of 'product_item_model.dart';
 _$ProductItemModelImpl _$$ProductItemModelImplFromJson(
   Map<String, dynamic> json,
 ) => _$ProductItemModelImpl(
+  obxId: (json['obxId'] as num?)?.toInt() ?? 0,
   productId: json['productId'] as String,
   title: json['title'] as String,
   imageUrl: json['imageUrl'] as String,
@@ -24,6 +25,7 @@ _$ProductItemModelImpl _$$ProductItemModelImplFromJson(
 Map<String, dynamic> _$$ProductItemModelImplToJson(
   _$ProductItemModelImpl instance,
 ) => <String, dynamic>{
+  'obxId': instance.obxId,
   'productId': instance.productId,
   'title': instance.title,
   'imageUrl': instance.imageUrl,

@@ -5,7 +5,7 @@ import 'package:ionic/features/cart/domain/entity/cart_order_summary.dart';
 import 'package:ionic/features/cart/presentation/manager/cubit/cart_cubit.dart';
 
 import '../../../../core/constants/app_assets.dart';
-import '../../../../core/widgets/empty_widget.dart';
+import '../../../../core/widgets/empty_state_widget.dart';
 import '../../../../generated/locale_keys.g.dart';
 import '../../domain/entity/cart_entity.dart';
 import '../widgets/cart_app_bar.dart';
@@ -23,6 +23,7 @@ class CartView extends StatelessWidget {
 
     return BlocBuilder<CartCubit, CartState>(
       builder: (context, state) {
+        // state.isError ? context.read<CartCubit>().fetchCart() : null;
         final (
           List<CartEntity> products,
           CartOrderSummary cartOrderSummary,
@@ -43,7 +44,7 @@ class CartView extends StatelessWidget {
                   : CartBottomBar(cartOrderSummary: cartOrderSummary),
           body: state.maybeWhen(
             empty:
-                () => EmptyWidget(
+                () => EmptyStateWidget(
                   svgImage:
                       isDark
                           ? AppAssets.illustrationsEmptyIllustrationDark
@@ -52,7 +53,7 @@ class CartView extends StatelessWidget {
                   subtitle: context.tr(LocaleKeys.cart_empty_desc),
                 ),
             error:
-                (errMessage) => EmptyWidget(
+                (errMessage) => EmptyStateWidget(
                   svgImage:
                       isDark
                           ? AppAssets.illustrationsErrorIllustrationDark

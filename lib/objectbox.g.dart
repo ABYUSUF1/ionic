@@ -14,8 +14,8 @@ import 'package:objectbox/internal.dart'
 import 'package:objectbox/objectbox.dart' as obx;
 import 'package:objectbox_flutter_libs/objectbox_flutter_libs.dart';
 
-import 'core/entities/product_item_entity.dart';
 import 'core/models/app_settings.dart';
+import 'core/models/product_item_model.dart';
 
 export 'package:objectbox/objectbox.dart'; // so that callers only have to import this file
 
@@ -55,73 +55,73 @@ final _entities = <obx_int.ModelEntity>[
     backlinks: <obx_int.ModelBacklink>[],
   ),
   obx_int.ModelEntity(
-    id: const obx_int.IdUid(2, 6004888736176740058),
-    name: 'ProductItemEntity',
-    lastPropertyId: const obx_int.IdUid(12, 5676891121810434691),
+    id: const obx_int.IdUid(4, 4917520937335082264),
+    name: 'ProductItemModel',
+    lastPropertyId: const obx_int.IdUid(11, 5797003170052896360),
     flags: 0,
     properties: <obx_int.ModelProperty>[
       obx_int.ModelProperty(
-        id: const obx_int.IdUid(1, 6549981377943383646),
+        id: const obx_int.IdUid(1, 966944341466508862),
         name: 'obxId',
         type: 6,
         flags: 1,
       ),
       obx_int.ModelProperty(
-        id: const obx_int.IdUid(3, 3857355228079323238),
-        name: 'title',
-        type: 9,
-        flags: 0,
-      ),
-      obx_int.ModelProperty(
-        id: const obx_int.IdUid(4, 734511456478015182),
-        name: 'imageUrl',
-        type: 9,
-        flags: 0,
-      ),
-      obx_int.ModelProperty(
-        id: const obx_int.IdUid(5, 5381042808446140363),
-        name: 'price',
-        type: 8,
-        flags: 0,
-      ),
-      obx_int.ModelProperty(
-        id: const obx_int.IdUid(6, 5730435310936841953),
-        name: 'rating',
-        type: 8,
-        flags: 0,
-      ),
-      obx_int.ModelProperty(
-        id: const obx_int.IdUid(7, 4833571906203877201),
-        name: 'brand',
-        type: 9,
-        flags: 0,
-      ),
-      obx_int.ModelProperty(
-        id: const obx_int.IdUid(8, 7527000995949110117),
-        name: 'stock',
-        type: 6,
-        flags: 0,
-      ),
-      obx_int.ModelProperty(
-        id: const obx_int.IdUid(9, 493140872050341460),
-        name: 'reviewsCount',
-        type: 6,
-        flags: 0,
-      ),
-      obx_int.ModelProperty(
-        id: const obx_int.IdUid(10, 718348493789171740),
+        id: const obx_int.IdUid(2, 8283118843620508549),
         name: 'productId',
         type: 9,
         flags: 0,
       ),
       obx_int.ModelProperty(
-        id: const obx_int.IdUid(11, 4211147428576917842),
+        id: const obx_int.IdUid(3, 3713096769694632708),
+        name: 'title',
+        type: 9,
+        flags: 0,
+      ),
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(4, 2000132989491215905),
+        name: 'imageUrl',
+        type: 9,
+        flags: 0,
+      ),
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(5, 7474772174442036108),
+        name: 'price',
+        type: 8,
+        flags: 0,
+      ),
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(6, 5098746854507972654),
         name: 'discount',
         type: 8,
         flags: 0,
       ),
       obx_int.ModelProperty(
-        id: const obx_int.IdUid(12, 5676891121810434691),
+        id: const obx_int.IdUid(7, 6170932235725292342),
+        name: 'brand',
+        type: 9,
+        flags: 0,
+      ),
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(8, 6448050588353740336),
+        name: 'rating',
+        type: 8,
+        flags: 0,
+      ),
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(9, 5137092538423693143),
+        name: 'stock',
+        type: 6,
+        flags: 0,
+      ),
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(10, 7988543289427347089),
+        name: 'reviewsCount',
+        type: 6,
+        flags: 0,
+      ),
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(11, 5797003170052896360),
         name: 'deliveryDays',
         type: 6,
         flags: 0,
@@ -170,13 +170,37 @@ Future<obx.Store> openStore({
 obx_int.ModelDefinition getObjectBoxModel() {
   final model = obx_int.ModelInfo(
     entities: _entities,
-    lastEntityId: const obx_int.IdUid(2, 6004888736176740058),
+    lastEntityId: const obx_int.IdUid(4, 4917520937335082264),
     lastIndexId: const obx_int.IdUid(0, 0),
     lastRelationId: const obx_int.IdUid(0, 0),
     lastSequenceId: const obx_int.IdUid(0, 0),
-    retiredEntityUids: const [],
+    retiredEntityUids: const [6004888736176740058, 7188350132069096693],
     retiredIndexUids: const [],
-    retiredPropertyUids: const [3698640012311869439],
+    retiredPropertyUids: const [
+      3698640012311869439,
+      6549981377943383646,
+      3857355228079323238,
+      734511456478015182,
+      5381042808446140363,
+      5730435310936841953,
+      4833571906203877201,
+      7527000995949110117,
+      493140872050341460,
+      718348493789171740,
+      4211147428576917842,
+      5676891121810434691,
+      8125824065020373791,
+      1345646770767169131,
+      7103362176105202485,
+      5402707402772965374,
+      7815145443919012931,
+      6668542210972106335,
+      6878443481509638857,
+      2762898759230663229,
+      319001423601453186,
+      1951727307351253626,
+      1552060859256502194,
+    ],
     retiredRelationUids: const [],
     modelVersion: 5,
     modelVersionParserMinimum: 5,
@@ -238,31 +262,31 @@ obx_int.ModelDefinition getObjectBoxModel() {
         return object;
       },
     ),
-    ProductItemEntity: obx_int.EntityDefinition<ProductItemEntity>(
+    ProductItemModel: obx_int.EntityDefinition<ProductItemModel>(
       model: _entities[1],
-      toOneRelations: (ProductItemEntity object) => [],
-      toManyRelations: (ProductItemEntity object) => {},
-      getId: (ProductItemEntity object) => object.obxId,
-      setId: (ProductItemEntity object, int id) {
+      toOneRelations: (ProductItemModel object) => [],
+      toManyRelations: (ProductItemModel object) => {},
+      getId: (ProductItemModel object) => object.obxId,
+      setId: (ProductItemModel object, int id) {
         object.obxId = id;
       },
-      objectToFB: (ProductItemEntity object, fb.Builder fbb) {
+      objectToFB: (ProductItemModel object, fb.Builder fbb) {
+        final productIdOffset = fbb.writeString(object.productId);
         final titleOffset = fbb.writeString(object.title);
         final imageUrlOffset = fbb.writeString(object.imageUrl);
         final brandOffset = fbb.writeString(object.brand);
-        final productIdOffset = fbb.writeString(object.productId);
-        fbb.startTable(13);
+        fbb.startTable(12);
         fbb.addInt64(0, object.obxId);
+        fbb.addOffset(1, productIdOffset);
         fbb.addOffset(2, titleOffset);
         fbb.addOffset(3, imageUrlOffset);
         fbb.addFloat64(4, object.price);
-        fbb.addFloat64(5, object.rating);
+        fbb.addFloat64(5, object.discount);
         fbb.addOffset(6, brandOffset);
-        fbb.addInt64(7, object.stock);
-        fbb.addInt64(8, object.reviewsCount);
-        fbb.addOffset(9, productIdOffset);
-        fbb.addFloat64(10, object.discount);
-        fbb.addInt64(11, object.deliveryDays);
+        fbb.addFloat64(7, object.rating);
+        fbb.addInt64(8, object.stock);
+        fbb.addInt64(9, object.reviewsCount);
+        fbb.addInt64(10, object.deliveryDays);
         fbb.finish(fbb.endTable());
         return object.obxId;
       },
@@ -277,7 +301,7 @@ obx_int.ModelDefinition getObjectBoxModel() {
         );
         final productIdParam = const fb.StringReader(
           asciiOptimization: true,
-        ).vTableGet(buffer, rootOffset, 22, '');
+        ).vTableGet(buffer, rootOffset, 6, '');
         final titleParam = const fb.StringReader(
           asciiOptimization: true,
         ).vTableGet(buffer, rootOffset, 8, '');
@@ -290,50 +314,50 @@ obx_int.ModelDefinition getObjectBoxModel() {
           12,
           0,
         );
-        final ratingParam = const fb.Float64Reader().vTableGet(
+        final discountParam = const fb.Float64Reader().vTableGet(
           buffer,
           rootOffset,
           14,
           0,
         );
-        final stockParam = const fb.Int64Reader().vTableGet(
+        final brandParam = const fb.StringReader(
+          asciiOptimization: true,
+        ).vTableGet(buffer, rootOffset, 16, '');
+        final ratingParam = const fb.Float64Reader().vTableGet(
           buffer,
           rootOffset,
           18,
           0,
         );
-        final reviewsCountParam = const fb.Int64Reader().vTableGet(
+        final stockParam = const fb.Int64Reader().vTableGet(
           buffer,
           rootOffset,
           20,
           0,
         );
-        final brandParam = const fb.StringReader(
-          asciiOptimization: true,
-        ).vTableGet(buffer, rootOffset, 16, '');
-        final discountParam = const fb.Float64Reader().vTableGet(
+        final reviewsCountParam = const fb.Int64Reader().vTableGet(
           buffer,
           rootOffset,
-          24,
+          22,
           0,
         );
         final deliveryDaysParam = const fb.Int64Reader().vTableGet(
           buffer,
           rootOffset,
-          26,
+          24,
           0,
         );
-        final object = ProductItemEntity(
+        final object = ProductItemModel(
           obxId: obxIdParam,
           productId: productIdParam,
           title: titleParam,
           imageUrl: imageUrlParam,
           price: priceParam,
+          discount: discountParam,
+          brand: brandParam,
           rating: ratingParam,
           stock: stockParam,
           reviewsCount: reviewsCountParam,
-          brand: brandParam,
-          discount: discountParam,
           deliveryDays: deliveryDaysParam,
         );
 
@@ -368,60 +392,60 @@ class AppSettings_ {
   );
 }
 
-/// [ProductItemEntity] entity fields to define ObjectBox queries.
-class ProductItemEntity_ {
-  /// See [ProductItemEntity.obxId].
-  static final obxId = obx.QueryIntegerProperty<ProductItemEntity>(
+/// [ProductItemModel] entity fields to define ObjectBox queries.
+class ProductItemModel_ {
+  /// See [ProductItemModel.obxId].
+  static final obxId = obx.QueryIntegerProperty<ProductItemModel>(
     _entities[1].properties[0],
   );
 
-  /// See [ProductItemEntity.title].
-  static final title = obx.QueryStringProperty<ProductItemEntity>(
+  /// See [ProductItemModel.productId].
+  static final productId = obx.QueryStringProperty<ProductItemModel>(
     _entities[1].properties[1],
   );
 
-  /// See [ProductItemEntity.imageUrl].
-  static final imageUrl = obx.QueryStringProperty<ProductItemEntity>(
+  /// See [ProductItemModel.title].
+  static final title = obx.QueryStringProperty<ProductItemModel>(
     _entities[1].properties[2],
   );
 
-  /// See [ProductItemEntity.price].
-  static final price = obx.QueryDoubleProperty<ProductItemEntity>(
+  /// See [ProductItemModel.imageUrl].
+  static final imageUrl = obx.QueryStringProperty<ProductItemModel>(
     _entities[1].properties[3],
   );
 
-  /// See [ProductItemEntity.rating].
-  static final rating = obx.QueryDoubleProperty<ProductItemEntity>(
+  /// See [ProductItemModel.price].
+  static final price = obx.QueryDoubleProperty<ProductItemModel>(
     _entities[1].properties[4],
   );
 
-  /// See [ProductItemEntity.brand].
-  static final brand = obx.QueryStringProperty<ProductItemEntity>(
+  /// See [ProductItemModel.discount].
+  static final discount = obx.QueryDoubleProperty<ProductItemModel>(
     _entities[1].properties[5],
   );
 
-  /// See [ProductItemEntity.stock].
-  static final stock = obx.QueryIntegerProperty<ProductItemEntity>(
+  /// See [ProductItemModel.brand].
+  static final brand = obx.QueryStringProperty<ProductItemModel>(
     _entities[1].properties[6],
   );
 
-  /// See [ProductItemEntity.reviewsCount].
-  static final reviewsCount = obx.QueryIntegerProperty<ProductItemEntity>(
+  /// See [ProductItemModel.rating].
+  static final rating = obx.QueryDoubleProperty<ProductItemModel>(
     _entities[1].properties[7],
   );
 
-  /// See [ProductItemEntity.productId].
-  static final productId = obx.QueryStringProperty<ProductItemEntity>(
+  /// See [ProductItemModel.stock].
+  static final stock = obx.QueryIntegerProperty<ProductItemModel>(
     _entities[1].properties[8],
   );
 
-  /// See [ProductItemEntity.discount].
-  static final discount = obx.QueryDoubleProperty<ProductItemEntity>(
+  /// See [ProductItemModel.reviewsCount].
+  static final reviewsCount = obx.QueryIntegerProperty<ProductItemModel>(
     _entities[1].properties[9],
   );
 
-  /// See [ProductItemEntity.deliveryDays].
-  static final deliveryDays = obx.QueryIntegerProperty<ProductItemEntity>(
+  /// See [ProductItemModel.deliveryDays].
+  static final deliveryDays = obx.QueryIntegerProperty<ProductItemModel>(
     _entities[1].properties[10],
   );
 }

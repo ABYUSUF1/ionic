@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:ionic/core/constants/app_assets.dart';
 import 'package:ionic/core/routing/app_router_name.dart';
-import 'package:ionic/core/widgets/empty_widget.dart';
+import 'package:ionic/core/widgets/empty_state_widget.dart';
 import 'package:ionic/features/search/presentation/manager/cubit/search_cubit.dart';
 import 'package:ionic/generated/locale_keys.g.dart';
 
@@ -44,7 +44,7 @@ class ResultSearches extends StatelessWidget {
           const SizedBox(height: 30),
           products.isEmpty
               ? Center(
-                child: EmptyWidget(
+                child: EmptyStateWidget(
                   svgImage:
                       !isDarkMode
                           ? AppAssets.illustrationsNoSearchIllustrationLight

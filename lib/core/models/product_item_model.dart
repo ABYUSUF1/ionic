@@ -1,13 +1,16 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../entities/product_item_entity.dart';
 
 part 'product_item_model.freezed.dart';
 part 'product_item_model.g.dart';
 
-@freezed
+@Freezed(addImplicitFinal: false)
 class ProductItemModel with _$ProductItemModel {
-  const factory ProductItemModel({
+  @Entity(realClass: ProductItemModel)
+  factory ProductItemModel({
+    @Id() @Default(0) int obxId,
     required String productId,
     required String title,
     required String imageUrl,
