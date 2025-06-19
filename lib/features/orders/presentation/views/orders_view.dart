@@ -5,6 +5,12 @@ class OrdersView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(appBar: AppBar(title: const Text("Orders")));
+    final theme = Theme.of(context);
+    return Scaffold(
+      backgroundColor: theme.colorScheme.surface,
+      appBar: AppBar(
+        title: Text("Orders", style: theme.textTheme.headlineMedium),
+      ),
+    );
   }
 }

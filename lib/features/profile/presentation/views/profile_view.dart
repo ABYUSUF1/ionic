@@ -2,6 +2,7 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ionic/core/widgets/responsive_layout.dart';
+import 'package:ionic/features/orders/presentation/views/orders_view.dart';
 import 'package:ionic/features/profile/presentation/manager/tablet_ui_logic/cubit/tablet_ui_logic_cubit.dart';
 import 'package:ionic/features/profile/presentation/views/edit_profile_view.dart';
 import 'package:ionic/features/profile/presentation/widgets/profile_widgets/profile_app_bar_widgets/profile_app_bar.dart';
@@ -48,7 +49,7 @@ class ProfileTabletView extends StatelessWidget {
                     child = const EditProfileView();
                     break;
                   case ProfileButtonEnum.myOrders:
-                    child = const Text("Orders View");
+                    child = const OrdersView();
                     break;
                   case ProfileButtonEnum.myAddresses:
                     child = const DefaultAddressView();

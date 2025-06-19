@@ -18,6 +18,8 @@ import 'package:ionic/features/auth/presentation/manager/auth/auth_cubit.dart';
 import 'package:ionic/features/cart/domain/repo/cart_repo.dart';
 import 'package:ionic/features/cart/presentation/manager/cubit/cart_cubit.dart';
 import 'package:ionic/features/favorite/presentation/manager/cubit/favorite_cubit.dart';
+import 'package:ionic/features/orders/domain/repo/orders_repo.dart';
+import 'package:ionic/features/orders/presentation/manager/cubit/orders_cubit.dart';
 import 'package:ionic/firebase_options.dart';
 import 'package:ionic/generated/codegen_loader.g.dart';
 import 'package:ionic/generated/locale_keys.g.dart';
@@ -77,6 +79,7 @@ class IonicApp extends StatelessWidget {
         BlocProvider(
           create: (context) => DefaultAddressCubit(getIt<AddressRepo>()),
         ),
+        BlocProvider(create: (context) => OrdersCubit(getIt<OrdersRepo>())),
       ],
       child: BlocBuilder<ThemeCubit, bool>(
         builder: (context, isDarkMode) {

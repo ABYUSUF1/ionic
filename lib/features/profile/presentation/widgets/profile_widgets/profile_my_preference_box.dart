@@ -30,14 +30,18 @@ class ProfileMyPreferenceBox extends StatelessWidget {
           title: context.tr(LocaleKeys.profile_my_cart),
           icon: IconsaxPlusLinear.bag_2,
           requireAuth: true,
-          onTap: () {},
+          onTap: () {
+            context.pushNamed(AppRouterName.cartRoute);
+          },
         ),
         CustomProfileListTile(
           title: LocaleKeys.profile_my_orders.tr(),
           icon: IconsaxPlusLinear.box,
           section: ProfileButtonEnum.myOrders,
           requireAuth: true,
-          onTap: () {},
+          onTap: () {
+            context.pushNamed(AppRouterName.ordersRoute);
+          },
         ),
         CustomProfileListTile(
           title: LocaleKeys.profile_my_addresses.tr(),

@@ -1,13 +1,18 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:ionic/core/widgets/buttons/custom_filled_button.dart';
+import 'package:ionic/core/widgets/dialog/custom_dialog.dart';
 import 'package:ionic/core/widgets/responsive_layout.dart';
+import 'package:ionic/features/auth/presentation/manager/auth/auth_cubit.dart';
+import 'package:ionic/features/profile/presentation/views/edit_profile_view.dart';
 import 'package:ionic/generated/locale_keys.g.dart';
 
 import '../../../../core/theme/app_colors.dart';
 import '../../../cart/presentation/manager/cubit/cart_cubit.dart';
 import '../manager/cubit/checkout_cubit.dart';
+import 'package:ionic/core/constants/app_assets.dart';
 
 class CheckoutPlaceOrderButton extends StatelessWidget {
   const CheckoutPlaceOrderButton({super.key});
@@ -77,12 +82,40 @@ class CheckoutPlaceOrderButton extends StatelessWidget {
       isLoading: isLoading,
       buttonColor:
           canPlaceOrder ? AppColors.primaryColor : theme.colorScheme.secondary,
-      onPressed:
-          canPlaceOrder
-              ? () {
-                context.read<CheckoutCubit>().placeOrder(context, amount);
-              }
-              : null,
+      onPressed: () async {
+        final isAuthenticatedWithPhone = context
+            .read<AuthCubit>()
+            .state
+            .maybeWhen(
+              authenticated: (authEntity) => authEntity.phoneNumber != null,
+              orElse: () => false,
+            );
+
+        if (isAuthenticatedWithPhone) {
+          if (canPlaceOrder) {
+            await context.read<CheckoutCubit>().placeOrder(context, amount);
+          }
+        } else {
+          showCustomDialog(
+            context: context,
+            title: "Phone number required",
+            subTitle: "Please add your phone number to place your order",
+            svgPic: AppAssets.illustrationsLoginIllustrationDark,
+            buttonText: "Add phone number",
+            onTap: () {
+              context.pop(); // close dialog
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) {
+                    return const EditProfileView();
+                  },
+                ),
+              );
+            },
+          );
+        }
+      },
     );
   }
 }

@@ -41,4 +41,21 @@ class CartRemoteDataSource with AuthGuardMixin {
         .doc(productId)
         .delete();
   }
+
+  Future<void> clearCart() async {
+    final snapshot =
+        await firestore
+            .collection(FirestoreCollectionNames.users)
+            .doc(userId)
+            .collection(FirestoreCollectionNames.cart)
+            .get();
+
+    final batch = firestore.batch();
+
+    for (final doc in snapshot.docs) {
+      batch.delete(doc.reference);
+    }
+
+    await batch.commit();
+  }
 }

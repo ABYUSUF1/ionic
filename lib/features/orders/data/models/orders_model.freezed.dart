@@ -34,8 +34,8 @@ mixin _$OrdersModel {
   DeliveryInstructionsEnum get deliveryInstructions =>
       throw _privateConstructorUsedError;
   OrderStatusEnum get orderStatus => throw _privateConstructorUsedError;
-  DateTime get placedAt => throw _privateConstructorUsedError;
-  DateTime get deliveredAt => throw _privateConstructorUsedError;
+  DateTime get createdAt => throw _privateConstructorUsedError;
+  DateTime get arrivedAt => throw _privateConstructorUsedError;
   bool get isPaid => throw _privateConstructorUsedError;
 
   /// Serializes this OrdersModel to a JSON map.
@@ -68,8 +68,8 @@ abstract class $OrdersModelCopyWith<$Res> {
     PaymentMethodEnum paymentMethod,
     DeliveryInstructionsEnum deliveryInstructions,
     OrderStatusEnum orderStatus,
-    DateTime placedAt,
-    DateTime deliveredAt,
+    DateTime createdAt,
+    DateTime arrivedAt,
     bool isPaid,
   });
 }
@@ -101,8 +101,8 @@ class _$OrdersModelCopyWithImpl<$Res, $Val extends OrdersModel>
     Object? paymentMethod = null,
     Object? deliveryInstructions = null,
     Object? orderStatus = null,
-    Object? placedAt = null,
-    Object? deliveredAt = null,
+    Object? createdAt = null,
+    Object? arrivedAt = null,
     Object? isPaid = null,
   }) {
     return _then(
@@ -167,15 +167,15 @@ class _$OrdersModelCopyWithImpl<$Res, $Val extends OrdersModel>
                     ? _value.orderStatus
                     : orderStatus // ignore: cast_nullable_to_non_nullable
                         as OrderStatusEnum,
-            placedAt:
-                null == placedAt
-                    ? _value.placedAt
-                    : placedAt // ignore: cast_nullable_to_non_nullable
+            createdAt:
+                null == createdAt
+                    ? _value.createdAt
+                    : createdAt // ignore: cast_nullable_to_non_nullable
                         as DateTime,
-            deliveredAt:
-                null == deliveredAt
-                    ? _value.deliveredAt
-                    : deliveredAt // ignore: cast_nullable_to_non_nullable
+            arrivedAt:
+                null == arrivedAt
+                    ? _value.arrivedAt
+                    : arrivedAt // ignore: cast_nullable_to_non_nullable
                         as DateTime,
             isPaid:
                 null == isPaid
@@ -210,8 +210,8 @@ abstract class _$$OrdersModelImplCopyWith<$Res>
     PaymentMethodEnum paymentMethod,
     DeliveryInstructionsEnum deliveryInstructions,
     OrderStatusEnum orderStatus,
-    DateTime placedAt,
-    DateTime deliveredAt,
+    DateTime createdAt,
+    DateTime arrivedAt,
     bool isPaid,
   });
 }
@@ -242,8 +242,8 @@ class __$$OrdersModelImplCopyWithImpl<$Res>
     Object? paymentMethod = null,
     Object? deliveryInstructions = null,
     Object? orderStatus = null,
-    Object? placedAt = null,
-    Object? deliveredAt = null,
+    Object? createdAt = null,
+    Object? arrivedAt = null,
     Object? isPaid = null,
   }) {
     return _then(
@@ -308,15 +308,15 @@ class __$$OrdersModelImplCopyWithImpl<$Res>
                 ? _value.orderStatus
                 : orderStatus // ignore: cast_nullable_to_non_nullable
                     as OrderStatusEnum,
-        placedAt:
-            null == placedAt
-                ? _value.placedAt
-                : placedAt // ignore: cast_nullable_to_non_nullable
+        createdAt:
+            null == createdAt
+                ? _value.createdAt
+                : createdAt // ignore: cast_nullable_to_non_nullable
                     as DateTime,
-        deliveredAt:
-            null == deliveredAt
-                ? _value.deliveredAt
-                : deliveredAt // ignore: cast_nullable_to_non_nullable
+        arrivedAt:
+            null == arrivedAt
+                ? _value.arrivedAt
+                : arrivedAt // ignore: cast_nullable_to_non_nullable
                     as DateTime,
         isPaid:
             null == isPaid
@@ -329,7 +329,8 @@ class __$$OrdersModelImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true)
 class _$OrdersModelImpl implements _OrdersModel {
   const _$OrdersModelImpl({
     required this.orderId,
@@ -344,8 +345,8 @@ class _$OrdersModelImpl implements _OrdersModel {
     required this.paymentMethod,
     required this.deliveryInstructions,
     required this.orderStatus,
-    required this.placedAt,
-    required this.deliveredAt,
+    required this.createdAt,
+    required this.arrivedAt,
     required this.isPaid,
   }) : _products = products;
 
@@ -383,15 +384,15 @@ class _$OrdersModelImpl implements _OrdersModel {
   @override
   final OrderStatusEnum orderStatus;
   @override
-  final DateTime placedAt;
+  final DateTime createdAt;
   @override
-  final DateTime deliveredAt;
+  final DateTime arrivedAt;
   @override
   final bool isPaid;
 
   @override
   String toString() {
-    return 'OrdersModel(orderId: $orderId, userId: $userId, firstName: $firstName, lastName: $lastName, phoneNumber: $phoneNumber, address: $address, products: $products, totalPrice: $totalPrice, totalQuantity: $totalQuantity, paymentMethod: $paymentMethod, deliveryInstructions: $deliveryInstructions, orderStatus: $orderStatus, placedAt: $placedAt, deliveredAt: $deliveredAt, isPaid: $isPaid)';
+    return 'OrdersModel(orderId: $orderId, userId: $userId, firstName: $firstName, lastName: $lastName, phoneNumber: $phoneNumber, address: $address, products: $products, totalPrice: $totalPrice, totalQuantity: $totalQuantity, paymentMethod: $paymentMethod, deliveryInstructions: $deliveryInstructions, orderStatus: $orderStatus, createdAt: $createdAt, arrivedAt: $arrivedAt, isPaid: $isPaid)';
   }
 
   @override
@@ -419,10 +420,10 @@ class _$OrdersModelImpl implements _OrdersModel {
                 other.deliveryInstructions == deliveryInstructions) &&
             (identical(other.orderStatus, orderStatus) ||
                 other.orderStatus == orderStatus) &&
-            (identical(other.placedAt, placedAt) ||
-                other.placedAt == placedAt) &&
-            (identical(other.deliveredAt, deliveredAt) ||
-                other.deliveredAt == deliveredAt) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt) &&
+            (identical(other.arrivedAt, arrivedAt) ||
+                other.arrivedAt == arrivedAt) &&
             (identical(other.isPaid, isPaid) || other.isPaid == isPaid));
   }
 
@@ -442,8 +443,8 @@ class _$OrdersModelImpl implements _OrdersModel {
     paymentMethod,
     deliveryInstructions,
     orderStatus,
-    placedAt,
-    deliveredAt,
+    createdAt,
+    arrivedAt,
     isPaid,
   );
 
@@ -475,8 +476,8 @@ abstract class _OrdersModel implements OrdersModel {
     required final PaymentMethodEnum paymentMethod,
     required final DeliveryInstructionsEnum deliveryInstructions,
     required final OrderStatusEnum orderStatus,
-    required final DateTime placedAt,
-    required final DateTime deliveredAt,
+    required final DateTime createdAt,
+    required final DateTime arrivedAt,
     required final bool isPaid,
   }) = _$OrdersModelImpl;
 
@@ -508,9 +509,9 @@ abstract class _OrdersModel implements OrdersModel {
   @override
   OrderStatusEnum get orderStatus;
   @override
-  DateTime get placedAt;
+  DateTime get createdAt;
   @override
-  DateTime get deliveredAt;
+  DateTime get arrivedAt;
   @override
   bool get isPaid;
 

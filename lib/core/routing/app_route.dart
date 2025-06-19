@@ -13,6 +13,7 @@ import 'package:ionic/features/auth/presentation/views/sign_up_view.dart';
 import 'package:ionic/features/cart/presentation/views/cart_view.dart';
 import 'package:ionic/features/home/data/models/category_model/localized_title.dart';
 import 'package:ionic/features/home/presentation/views/home_view.dart';
+import 'package:ionic/features/orders/presentation/views/orders_view.dart';
 import 'package:ionic/features/product/presentation/views/product_view.dart';
 import 'package:ionic/features/profile/presentation/views/edit_profile_view.dart';
 import 'package:ionic/features/profile/presentation/views/profile_view.dart';
@@ -208,6 +209,13 @@ final GoRouter appRouter = GoRouter(
       path: AppRouterName.checkoutRoute,
       name: AppRouterName.checkoutRoute,
       builder: (context, state) => const CheckoutView(),
+    ),
+
+    /// --------------------- Orders ---------------------
+    GoRoute(
+      path: AppRouterName.ordersRoute,
+      name: AppRouterName.ordersRoute,
+      builder: (context, state) => const OrdersView(),
     ),
   ],
 );

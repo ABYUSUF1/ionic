@@ -87,7 +87,7 @@ class EditProfileGenderBirthdate extends StatelessWidget {
     final isSelected = selectedGender == gender;
 
     return ConstrainedBox(
-      constraints: const BoxConstraints(minWidth: 100, maxWidth: 400),
+      constraints: const BoxConstraints(minWidth: 87, maxWidth: 400),
       child: OutlinedButton(
         onPressed: () {
           cubit.gender = gender;

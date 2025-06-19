@@ -43,7 +43,6 @@ class CartRepoImpl with AuthGuardMixin implements CartRepo {
         return Right(response.toEntity());
       }
     } catch (e) {
-      print(e.toString());
       return Left(Failure("Failed to fetch cart ${e.toString()}"));
     }
   }
@@ -62,11 +61,16 @@ class CartRepoImpl with AuthGuardMixin implements CartRepo {
     }
   }
 
-  /// we will use it when user logs out
   @override
-  Either<Failure, void> clearCart() {
+  Future<Either<Failure, void>> clearCart() async {
     try {
-      _local.clearCart();
+      if (isEmailVerified) {
+        // clear user cart
+        await _remote.clearCart();
+      } else {
+        // clear guest cart
+        _local.clearCart();
+      }
       return const Right(null);
     } catch (e) {
       return const Left(Failure("Failed to clear cart"));
@@ -123,7 +127,6 @@ class CartRepoImpl with AuthGuardMixin implements CartRepo {
         CartEntity(cartProductsEntity: remoteCartMap.values.toList()),
       );
     } catch (e) {
-      print("Error syncing local cart: $e");
       return const Left(Failure("Failed to sync local cart"));
     }
   }

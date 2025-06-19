@@ -28,9 +28,7 @@ class CartCubit extends Cubit<CartState> {
   bool _hasSyncedLocalCart = false;
 
   Future<void> syncLocalCartToRemote() async {
-    print("Start Sync ---------------------------------1");
     if (_hasSyncedLocalCart) return;
-    print("Make Sync true ---------------------------------1");
     _hasSyncedLocalCart = true;
 
     final result = await _cartRepo.syncLocalCartToRemote();

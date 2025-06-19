@@ -8,6 +8,6 @@ abstract class CartRepo {
   Future<Either<Failure, void>> addToCart(CartProductEntity cartProductEntity);
   Future<Either<Failure, CartEntity>> fetchCart();
   Future<Either<Failure, void>> removeFromCart(String productId);
-  Either<Failure, void> clearCart();
+  Future<Either<Failure, void>> clearCart();
   Future<Either<Failure, CartEntity>> syncLocalCartToRemote();
 }

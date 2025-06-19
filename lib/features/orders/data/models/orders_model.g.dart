@@ -29,8 +29,8 @@ _$OrdersModelImpl _$$OrdersModelImplFromJson(Map<String, dynamic> json) =>
         json['deliveryInstructions'],
       ),
       orderStatus: $enumDecode(_$OrderStatusEnumEnumMap, json['orderStatus']),
-      placedAt: DateTime.parse(json['placedAt'] as String),
-      deliveredAt: DateTime.parse(json['deliveredAt'] as String),
+      createdAt: DateTime.parse(json['createdAt'] as String),
+      arrivedAt: DateTime.parse(json['arrivedAt'] as String),
       isPaid: json['isPaid'] as bool,
     );
 
@@ -42,15 +42,15 @@ Map<String, dynamic> _$$OrdersModelImplToJson(_$OrdersModelImpl instance) =>
       'lastName': instance.lastName,
       'phoneNumber': instance.phoneNumber,
       'address': instance.address,
-      'products': instance.products,
+      'products': instance.products.map((e) => e.toJson()).toList(),
       'totalPrice': instance.totalPrice,
       'totalQuantity': instance.totalQuantity,
       'paymentMethod': _$PaymentMethodEnumEnumMap[instance.paymentMethod]!,
       'deliveryInstructions':
           _$DeliveryInstructionsEnumEnumMap[instance.deliveryInstructions]!,
       'orderStatus': _$OrderStatusEnumEnumMap[instance.orderStatus]!,
-      'placedAt': instance.placedAt.toIso8601String(),
-      'deliveredAt': instance.deliveredAt.toIso8601String(),
+      'createdAt': instance.createdAt.toIso8601String(),
+      'arrivedAt': instance.arrivedAt.toIso8601String(),
       'isPaid': instance.isPaid,
     };
 

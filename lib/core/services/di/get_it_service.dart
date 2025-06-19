@@ -25,6 +25,9 @@ import 'package:ionic/features/favorite/domain/repo/favorite_repo.dart';
 import 'package:ionic/features/favorite/presentation/manager/cubit/favorite_cubit.dart';
 import 'package:ionic/features/home/domain/repo/home_repo.dart';
 import 'package:ionic/features/home/presentation/manager/categories/home_categories_cubit.dart';
+import 'package:ionic/features/orders/data/repo_impl/orders_repo_impl.dart';
+import 'package:ionic/features/orders/domain/repo/orders_repo.dart';
+import 'package:ionic/features/orders/presentation/manager/cubit/orders_cubit.dart';
 import 'package:ionic/features/payment/data/data_source/paymob_payment_service.dart';
 import 'package:ionic/features/payment/data/data_source/stripe_payment_service.dart';
 import 'package:ionic/features/payment/data/repo_impl/payment_repo_impl.dart';
@@ -103,6 +106,7 @@ Future<void> setupGetIt() async {
   getIt.registerLazySingleton<PaymentRepo>(
     () => PaymentRepoImpl(getIt(), getIt()),
   );
+  getIt.registerLazySingleton<OrdersRepo>(() => OrdersRepoImpl());
 
   // Register BLoCs/Cubits
   getIt.registerFactory(() => NetworkCubit(getIt()));
@@ -121,4 +125,5 @@ Future<void> setupGetIt() async {
   getIt.registerFactory(() => LocateOnMapCubit(getIt()));
   getIt.registerFactory(() => CartCubit(getIt()));
   getIt.registerFactory(() => PaymentCubit(getIt()));
+  getIt.registerFactory(() => OrdersCubit(getIt()));
 }
