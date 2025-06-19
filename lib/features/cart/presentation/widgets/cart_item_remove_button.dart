@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
+import 'package:ionic/features/cart/domain/entity/cart_product_entity.dart';
 
-import '../../domain/entity/cart_entity.dart';
 import '../manager/cubit/cart_cubit.dart';
 
 class CartItemRemoveButton extends StatelessWidget {
-  final CartEntity product;
+  final CartProductEntity product;
   const CartItemRemoveButton({super.key, required this.product});
 
   @override
@@ -19,9 +19,7 @@ class CartItemRemoveButton extends StatelessWidget {
       ),
       icon: Icon(IconsaxPlusLinear.trash, color: theme.colorScheme.onSurface),
       onPressed: () {
-        context.read<CartCubit>().removeFromCart(
-          product.productItemEntity.productId,
-        );
+        context.read<CartCubit>().removeFromCart(product.productItem.productId);
       },
     );
   }

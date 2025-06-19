@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:ionic/core/widgets/buttons/custom_filled_button.dart';
 
 class EmptyStateWidget extends StatelessWidget {
   final String? svgImage;
@@ -56,13 +57,13 @@ class EmptyStateWidget extends StatelessWidget {
     final theme = Theme.of(context);
     return Center(
       child: Padding(
-        padding: const EdgeInsets.all(24.0),
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             if (svgImage != null) ...[
               SvgPicture.asset(svgImage!, height: 180),
-              const SizedBox(height: 24),
+              const SizedBox(height: 30),
             ],
             Text(
               title,
@@ -78,11 +79,8 @@ class EmptyStateWidget extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
             if (buttonText != null && onButtonPressed != null) ...[
-              const SizedBox(height: 24),
-              ElevatedButton(
-                onPressed: onButtonPressed,
-                child: Text(buttonText!),
-              ),
+              const SizedBox(height: 30),
+              CustomFilledButton(onPressed: onButtonPressed, text: buttonText!),
             ],
           ],
         ),

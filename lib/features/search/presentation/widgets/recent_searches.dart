@@ -25,6 +25,8 @@ class RecentSearches extends StatelessWidget {
             productsItem.isEmpty
                 ? context.tr(LocaleKeys.search_no_recent_searches)
                 : context.tr(LocaleKeys.search_recent_searches),
+
+            style: theme.textTheme.headlineMedium!.copyWith(fontSize: 18),
           ),
           const SizedBox(height: 8),
           Container(
@@ -54,7 +56,7 @@ class RecentSearches extends StatelessWidget {
                         width: 80,
                         height: 80,
                         decoration: BoxDecoration(
-                          color: theme.colorScheme.surface,
+                          color: theme.colorScheme.secondary,
                           borderRadius: BorderRadius.circular(8),
                         ),
                         child: CachedNetworkImage(
@@ -64,7 +66,9 @@ class RecentSearches extends StatelessWidget {
                       const SizedBox(height: 8),
                       Text(
                         productsItem[index].title,
-                        style: theme.textTheme.bodySmall,
+                        style: theme.textTheme.bodySmall!.copyWith(
+                          color: theme.colorScheme.onSurface,
+                        ),
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                         textAlign: TextAlign.center,

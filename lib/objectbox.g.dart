@@ -16,6 +16,8 @@ import 'package:objectbox_flutter_libs/objectbox_flutter_libs.dart';
 
 import 'core/models/app_settings.dart';
 import 'core/models/product_item_model.dart';
+import 'features/cart/data/models/cart_local_model.dart';
+import 'features/cart/data/models/cart_product_local_model.dart';
 
 export 'package:objectbox/objectbox.dart'; // so that callers only have to import this file
 
@@ -130,6 +132,72 @@ final _entities = <obx_int.ModelEntity>[
     relations: <obx_int.ModelRelation>[],
     backlinks: <obx_int.ModelBacklink>[],
   ),
+  obx_int.ModelEntity(
+    id: const obx_int.IdUid(5, 3835464390114655718),
+    name: 'CartLocalModel',
+    lastPropertyId: const obx_int.IdUid(1, 5691012610208271799),
+    flags: 0,
+    properties: <obx_int.ModelProperty>[
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(1, 5691012610208271799),
+        name: 'obxId',
+        type: 6,
+        flags: 1,
+      ),
+    ],
+    relations: <obx_int.ModelRelation>[],
+    backlinks: <obx_int.ModelBacklink>[
+      obx_int.ModelBacklink(
+        name: 'cartProducts',
+        srcEntity: 'CartProductLocalModel',
+        srcField: 'cart',
+      ),
+    ],
+  ),
+  obx_int.ModelEntity(
+    id: const obx_int.IdUid(6, 4897410659104016453),
+    name: 'CartProductLocalModel',
+    lastPropertyId: const obx_int.IdUid(5, 8925298522989421520),
+    flags: 0,
+    properties: <obx_int.ModelProperty>[
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(1, 6533046229734852810),
+        name: 'id',
+        type: 6,
+        flags: 1,
+      ),
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(2, 8732864527211450554),
+        name: 'productItemId',
+        type: 11,
+        flags: 520,
+        indexId: const obx_int.IdUid(1, 4265035882694742800),
+        relationTarget: 'ProductItemModel',
+      ),
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(3, 6220068980641815301),
+        name: 'returnPolicy',
+        type: 9,
+        flags: 0,
+      ),
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(4, 8257699150476720173),
+        name: 'quantity',
+        type: 6,
+        flags: 0,
+      ),
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(5, 8925298522989421520),
+        name: 'cartId',
+        type: 11,
+        flags: 520,
+        indexId: const obx_int.IdUid(2, 2193384268094822469),
+        relationTarget: 'CartLocalModel',
+      ),
+    ],
+    relations: <obx_int.ModelRelation>[],
+    backlinks: <obx_int.ModelBacklink>[],
+  ),
 ];
 
 /// Shortcut for [obx.Store.new] that passes [getObjectBoxModel] and for Flutter
@@ -170,8 +238,8 @@ Future<obx.Store> openStore({
 obx_int.ModelDefinition getObjectBoxModel() {
   final model = obx_int.ModelInfo(
     entities: _entities,
-    lastEntityId: const obx_int.IdUid(4, 4917520937335082264),
-    lastIndexId: const obx_int.IdUid(0, 0),
+    lastEntityId: const obx_int.IdUid(6, 4897410659104016453),
+    lastIndexId: const obx_int.IdUid(2, 2193384268094822469),
     lastRelationId: const obx_int.IdUid(0, 0),
     lastSequenceId: const obx_int.IdUid(0, 0),
     retiredEntityUids: const [6004888736176740058, 7188350132069096693],
@@ -364,6 +432,105 @@ obx_int.ModelDefinition getObjectBoxModel() {
         return object;
       },
     ),
+    CartLocalModel: obx_int.EntityDefinition<CartLocalModel>(
+      model: _entities[2],
+      toOneRelations: (CartLocalModel object) => [],
+      toManyRelations:
+          (CartLocalModel object) => {
+            obx_int.RelInfo<CartProductLocalModel>.toOneBacklink(
+                  5,
+                  object.obxId,
+                  (CartProductLocalModel srcObject) => srcObject.cart,
+                ):
+                object.cartProducts,
+          },
+      getId: (CartLocalModel object) => object.obxId,
+      setId: (CartLocalModel object, int id) {
+        object.obxId = id;
+      },
+      objectToFB: (CartLocalModel object, fb.Builder fbb) {
+        fbb.startTable(2);
+        fbb.addInt64(0, object.obxId);
+        fbb.finish(fbb.endTable());
+        return object.obxId;
+      },
+      objectFromFB: (obx.Store store, ByteData fbData) {
+        final buffer = fb.BufferContext(fbData);
+        final rootOffset = buffer.derefObject(0);
+
+        final object =
+            CartLocalModel()
+              ..obxId = const fb.Int64Reader().vTableGet(
+                buffer,
+                rootOffset,
+                4,
+                0,
+              );
+        obx_int.InternalToManyAccess.setRelInfo<CartLocalModel>(
+          object.cartProducts,
+          store,
+          obx_int.RelInfo<CartProductLocalModel>.toOneBacklink(
+            5,
+            object.obxId,
+            (CartProductLocalModel srcObject) => srcObject.cart,
+          ),
+        );
+        return object;
+      },
+    ),
+    CartProductLocalModel: obx_int.EntityDefinition<CartProductLocalModel>(
+      model: _entities[3],
+      toOneRelations:
+          (CartProductLocalModel object) => [object.productItem, object.cart],
+      toManyRelations: (CartProductLocalModel object) => {},
+      getId: (CartProductLocalModel object) => object.id,
+      setId: (CartProductLocalModel object, int id) {
+        object.id = id;
+      },
+      objectToFB: (CartProductLocalModel object, fb.Builder fbb) {
+        final returnPolicyOffset = fbb.writeString(object.returnPolicy);
+        fbb.startTable(6);
+        fbb.addInt64(0, object.id);
+        fbb.addInt64(1, object.productItem.targetId);
+        fbb.addOffset(2, returnPolicyOffset);
+        fbb.addInt64(3, object.quantity);
+        fbb.addInt64(4, object.cart.targetId);
+        fbb.finish(fbb.endTable());
+        return object.id;
+      },
+      objectFromFB: (obx.Store store, ByteData fbData) {
+        final buffer = fb.BufferContext(fbData);
+        final rootOffset = buffer.derefObject(0);
+        final returnPolicyParam = const fb.StringReader(
+          asciiOptimization: true,
+        ).vTableGet(buffer, rootOffset, 8, '');
+        final quantityParam = const fb.Int64Reader().vTableGet(
+          buffer,
+          rootOffset,
+          10,
+          0,
+        );
+        final object = CartProductLocalModel(
+          returnPolicy: returnPolicyParam,
+          quantity: quantityParam,
+        )..id = const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0);
+        object.productItem.targetId = const fb.Int64Reader().vTableGet(
+          buffer,
+          rootOffset,
+          6,
+          0,
+        );
+        object.productItem.attach(store);
+        object.cart.targetId = const fb.Int64Reader().vTableGet(
+          buffer,
+          rootOffset,
+          12,
+          0,
+        );
+        object.cart.attach(store);
+        return object;
+      },
+    ),
   };
 
   return obx_int.ModelDefinition(model, bindings);
@@ -448,4 +615,48 @@ class ProductItemModel_ {
   static final deliveryDays = obx.QueryIntegerProperty<ProductItemModel>(
     _entities[1].properties[10],
   );
+}
+
+/// [CartLocalModel] entity fields to define ObjectBox queries.
+class CartLocalModel_ {
+  /// See [CartLocalModel.obxId].
+  static final obxId = obx.QueryIntegerProperty<CartLocalModel>(
+    _entities[2].properties[0],
+  );
+
+  /// see [CartLocalModel.cartProducts]
+  static final cartProducts =
+      obx.QueryBacklinkToMany<CartProductLocalModel, CartLocalModel>(
+        CartProductLocalModel_.cart,
+      );
+}
+
+/// [CartProductLocalModel] entity fields to define ObjectBox queries.
+class CartProductLocalModel_ {
+  /// See [CartProductLocalModel.id].
+  static final id = obx.QueryIntegerProperty<CartProductLocalModel>(
+    _entities[3].properties[0],
+  );
+
+  /// See [CartProductLocalModel.productItem].
+  static final productItem =
+      obx.QueryRelationToOne<CartProductLocalModel, ProductItemModel>(
+        _entities[3].properties[1],
+      );
+
+  /// See [CartProductLocalModel.returnPolicy].
+  static final returnPolicy = obx.QueryStringProperty<CartProductLocalModel>(
+    _entities[3].properties[2],
+  );
+
+  /// See [CartProductLocalModel.quantity].
+  static final quantity = obx.QueryIntegerProperty<CartProductLocalModel>(
+    _entities[3].properties[3],
+  );
+
+  /// See [CartProductLocalModel.cart].
+  static final cart =
+      obx.QueryRelationToOne<CartProductLocalModel, CartLocalModel>(
+        _entities[3].properties[4],
+      );
 }

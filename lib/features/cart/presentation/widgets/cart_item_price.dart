@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:ionic/features/cart/domain/entity/cart_product_entity.dart';
 
 import '../../../../core/utils/functions/product_formatted.dart';
-import '../../domain/entity/cart_entity.dart';
 
 class CartItemPrice extends StatelessWidget {
   const CartItemPrice({super.key, required this.product});
 
-  final CartEntity product;
+  final CartProductEntity product;
 
   @override
   Widget build(BuildContext context) {
@@ -20,16 +20,16 @@ class CartItemPrice extends StatelessWidget {
           children: [
             const Text("EGP "),
             Text(
-              formattedPrice(product.productItemEntity.price),
+              formattedPrice(product.productItem.price),
               style: theme.textTheme.headlineMedium,
             ),
           ],
         ),
-        if (product.productItemEntity.discount > 0) ...[
+        if (product.productItem.discount > 0) ...[
           Text(
             formattedPriceBeforeDiscount(
-                  product.productItemEntity.price,
-                  product.productItemEntity.discount,
+                  product.productItem.price,
+                  product.productItem.discount,
                 ) ??
                 '',
             style: theme.textTheme.bodyMedium!.copyWith(
@@ -39,7 +39,7 @@ class CartItemPrice extends StatelessWidget {
             ),
           ),
           Text(
-            '-${product.productItemEntity.discount}%',
+            '-${product.productItem.discount}%',
             style: theme.textTheme.bodyMedium!.copyWith(
               color: Colors.green,
               fontWeight: FontWeight.bold,

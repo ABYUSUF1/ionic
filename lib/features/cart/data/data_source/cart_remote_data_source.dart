@@ -1,13 +1,14 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ionic/core/services/data_source/remote/firestore_collection_names.dart';
+import 'package:ionic/features/cart/data/models/cart_product_remote_model.dart';
+import 'package:ionic/features/cart/data/models/cart_remote_model.dart';
 
 import '../../../../core/utils/mixin/auth_guard_mixin.dart';
-import '../models/cart_model.dart';
 
 class CartRemoteDataSource with AuthGuardMixin {
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
 
-  Future<List<CartModel>> fetchCart() async {
+  Future<CartRemoteModel> fetchCart() async {
     final snapshot =
         await firestore
             .collection(FirestoreCollectionNames.users)
@@ -15,16 +16,21 @@ class CartRemoteDataSource with AuthGuardMixin {
             .collection(FirestoreCollectionNames.cart)
             .get();
 
-    return snapshot.docs.map((doc) => CartModel.fromJson(doc.data())).toList();
+    final products =
+        snapshot.docs
+            .map((doc) => CartProductRemoteModel.fromJson(doc.data()))
+            .toList();
+
+    return CartRemoteModel(cartProducts: products);
   }
 
-  Future<void> addToCart(CartModel cartModel) async {
+  Future<void> addToCart(CartProductRemoteModel cartProductModel) async {
     await firestore
         .collection(FirestoreCollectionNames.users)
         .doc(userId)
         .collection(FirestoreCollectionNames.cart)
-        .doc(cartModel.productItemModel.productId)
-        .set(cartModel.toJson());
+        .doc(cartProductModel.productItem.productId)
+        .set(cartProductModel.toJson());
   }
 
   Future<void> removeFromCart(String productId) async {

@@ -43,7 +43,7 @@ class OrderSummary extends StatelessWidget {
                 style: theme.textTheme.bodyLarge,
               ),
               Text(
-                "EGP ${cartOrderSummary.subTotal}",
+                "EGP ${cartOrderSummary.subtotal}",
                 style: theme.textTheme.bodyLarge,
               ),
             ],

@@ -27,7 +27,7 @@ class FavoriteRepoImpl implements FavoriteRepo {
   Future<Either<Failure, List<ProductItemEntity>>> fetchFavorites() async {
     try {
       final List<ProductItemModel> response = await _remote.fetchFavorites();
-      final result = response.map((e) => e.toProductItemEntity()).toList();
+      final result = response.map((e) => e.toEntity()).toList();
       return Right(result);
     } catch (e) {
       return const Left(Failure("Failed to fetch favorites"));

@@ -15,59 +15,53 @@ class CheckoutPlaceOrderButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final cartCubit = context.read<CartCubit>();
+    final cartState = context.watch<CartCubit>().state;
+    final checkoutState = context.watch<CheckoutCubit>().state;
 
-    return BlocBuilder<CheckoutCubit, CheckoutState>(
-      builder: (context, state) {
-        final canPlaceOrder = state.canPlaceOrder;
+    final totalPrice = cartState.maybeWhen(
+      success: (_, summary) => summary.totalPrice,
+      orElse: () => 0.0,
+    );
 
-        return ResponsiveLayout.isMobile(context)
-            ? ColoredBox(
-              color: theme.colorScheme.surface,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 12.0,
-                  vertical: 30,
-                ),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
+    final totalQuantity = cartState.maybeWhen(
+      success: (_, summary) => summary.totalQuantity,
+      orElse: () => 0,
+    );
+
+    final canPlaceOrder = checkoutState.canPlaceOrder;
+
+    return ResponsiveLayout.isMobile(context)
+        ? ColoredBox(
+          color: theme.colorScheme.surface,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 30),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                button(context, canPlaceOrder, theme, totalPrice.toInt()),
+                const SizedBox(height: 8),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    button(
-                      context,
-                      canPlaceOrder,
-                      theme,
-                      cartCubit.totalPrice.toInt(),
+                    Text(
+                      "${context.tr(LocaleKeys.cart_total)}: $totalPrice EGP",
+                      style: theme.textTheme.titleLarge,
                     ),
-                    const SizedBox(height: 8),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          "${context.tr(LocaleKeys.cart_total)}: ${cartCubit.totalPrice} EGP",
-                          style: theme.textTheme.titleLarge,
-                        ),
-                        Text(
-                          context.plural(
-                            LocaleKeys.cart_items_in_cart,
-                            cartCubit.totalQuantity,
-                            args: [cartCubit.totalQuantity.toString()],
-                          ),
-                          style: theme.textTheme.titleLarge,
-                        ),
-                      ],
+                    Text(
+                      context.plural(
+                        LocaleKeys.cart_items_in_cart,
+                        totalQuantity,
+                        args: [totalQuantity.toString()],
+                      ),
+                      style: theme.textTheme.titleLarge,
                     ),
                   ],
                 ),
-              ),
-            )
-            : button(
-              context,
-              canPlaceOrder,
-              theme,
-              cartCubit.totalPrice.toInt(),
-            );
-      },
-    );
+              ],
+            ),
+          ),
+        )
+        : button(context, canPlaceOrder, theme, totalPrice.toInt());
   }
 
   CustomFilledButton button(
@@ -77,6 +71,7 @@ class CheckoutPlaceOrderButton extends StatelessWidget {
     int amount,
   ) {
     bool isLoading = context.read<CheckoutCubit>().state.isLoading;
+
     return CustomFilledButton(
       text: context.tr(LocaleKeys.checkout_place_order),
       isLoading: isLoading,

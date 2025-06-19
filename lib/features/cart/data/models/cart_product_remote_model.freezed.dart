@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'cart_model.dart';
+part of 'cart_product_remote_model.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,65 +15,68 @@ final _privateConstructorUsedError = UnsupportedError(
   'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
 );
 
-CartModel _$CartModelFromJson(Map<String, dynamic> json) {
-  return _CartModel.fromJson(json);
+CartProductRemoteModel _$CartProductRemoteModelFromJson(
+  Map<String, dynamic> json,
+) {
+  return _CartProductRemoteModel.fromJson(json);
 }
 
 /// @nodoc
-mixin _$CartModel {
-  ProductItemModel get productItemModel => throw _privateConstructorUsedError;
+mixin _$CartProductRemoteModel {
+  ProductItemModel get productItem => throw _privateConstructorUsedError;
   String get returnPolicy => throw _privateConstructorUsedError;
   int get quantity => throw _privateConstructorUsedError;
 
-  /// Serializes this CartModel to a JSON map.
+  /// Serializes this CartProductRemoteModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of CartModel
+  /// Create a copy of CartProductRemoteModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $CartModelCopyWith<CartModel> get copyWith =>
+  $CartProductRemoteModelCopyWith<CartProductRemoteModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $CartModelCopyWith<$Res> {
-  factory $CartModelCopyWith(CartModel value, $Res Function(CartModel) then) =
-      _$CartModelCopyWithImpl<$Res, CartModel>;
+abstract class $CartProductRemoteModelCopyWith<$Res> {
+  factory $CartProductRemoteModelCopyWith(
+    CartProductRemoteModel value,
+    $Res Function(CartProductRemoteModel) then,
+  ) = _$CartProductRemoteModelCopyWithImpl<$Res, CartProductRemoteModel>;
   @useResult
-  $Res call({
-    ProductItemModel productItemModel,
-    String returnPolicy,
-    int quantity,
-  });
+  $Res call({ProductItemModel productItem, String returnPolicy, int quantity});
 
-  $ProductItemModelCopyWith<$Res> get productItemModel;
+  $ProductItemModelCopyWith<$Res> get productItem;
 }
 
 /// @nodoc
-class _$CartModelCopyWithImpl<$Res, $Val extends CartModel>
-    implements $CartModelCopyWith<$Res> {
-  _$CartModelCopyWithImpl(this._value, this._then);
+class _$CartProductRemoteModelCopyWithImpl<
+  $Res,
+  $Val extends CartProductRemoteModel
+>
+    implements $CartProductRemoteModelCopyWith<$Res> {
+  _$CartProductRemoteModelCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of CartModel
+  /// Create a copy of CartProductRemoteModel
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? productItemModel = null,
+    Object? productItem = null,
     Object? returnPolicy = null,
     Object? quantity = null,
   }) {
     return _then(
       _value.copyWith(
-            productItemModel:
-                null == productItemModel
-                    ? _value.productItemModel
-                    : productItemModel // ignore: cast_nullable_to_non_nullable
+            productItem:
+                null == productItem
+                    ? _value.productItem
+                    : productItem // ignore: cast_nullable_to_non_nullable
                         as ProductItemModel,
             returnPolicy:
                 null == returnPolicy
@@ -90,60 +93,57 @@ class _$CartModelCopyWithImpl<$Res, $Val extends CartModel>
     );
   }
 
-  /// Create a copy of CartModel
+  /// Create a copy of CartProductRemoteModel
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $ProductItemModelCopyWith<$Res> get productItemModel {
-    return $ProductItemModelCopyWith<$Res>(_value.productItemModel, (value) {
-      return _then(_value.copyWith(productItemModel: value) as $Val);
+  $ProductItemModelCopyWith<$Res> get productItem {
+    return $ProductItemModelCopyWith<$Res>(_value.productItem, (value) {
+      return _then(_value.copyWith(productItem: value) as $Val);
     });
   }
 }
 
 /// @nodoc
-abstract class _$$CartModelImplCopyWith<$Res>
-    implements $CartModelCopyWith<$Res> {
-  factory _$$CartModelImplCopyWith(
-    _$CartModelImpl value,
-    $Res Function(_$CartModelImpl) then,
-  ) = __$$CartModelImplCopyWithImpl<$Res>;
+abstract class _$$CartProductRemoteModelImplCopyWith<$Res>
+    implements $CartProductRemoteModelCopyWith<$Res> {
+  factory _$$CartProductRemoteModelImplCopyWith(
+    _$CartProductRemoteModelImpl value,
+    $Res Function(_$CartProductRemoteModelImpl) then,
+  ) = __$$CartProductRemoteModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({
-    ProductItemModel productItemModel,
-    String returnPolicy,
-    int quantity,
-  });
+  $Res call({ProductItemModel productItem, String returnPolicy, int quantity});
 
   @override
-  $ProductItemModelCopyWith<$Res> get productItemModel;
+  $ProductItemModelCopyWith<$Res> get productItem;
 }
 
 /// @nodoc
-class __$$CartModelImplCopyWithImpl<$Res>
-    extends _$CartModelCopyWithImpl<$Res, _$CartModelImpl>
-    implements _$$CartModelImplCopyWith<$Res> {
-  __$$CartModelImplCopyWithImpl(
-    _$CartModelImpl _value,
-    $Res Function(_$CartModelImpl) _then,
+class __$$CartProductRemoteModelImplCopyWithImpl<$Res>
+    extends
+        _$CartProductRemoteModelCopyWithImpl<$Res, _$CartProductRemoteModelImpl>
+    implements _$$CartProductRemoteModelImplCopyWith<$Res> {
+  __$$CartProductRemoteModelImplCopyWithImpl(
+    _$CartProductRemoteModelImpl _value,
+    $Res Function(_$CartProductRemoteModelImpl) _then,
   ) : super(_value, _then);
 
-  /// Create a copy of CartModel
+  /// Create a copy of CartProductRemoteModel
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? productItemModel = null,
+    Object? productItem = null,
     Object? returnPolicy = null,
     Object? quantity = null,
   }) {
     return _then(
-      _$CartModelImpl(
-        productItemModel:
-            null == productItemModel
-                ? _value.productItemModel
-                : productItemModel // ignore: cast_nullable_to_non_nullable
+      _$CartProductRemoteModelImpl(
+        productItem:
+            null == productItem
+                ? _value.productItem
+                : productItem // ignore: cast_nullable_to_non_nullable
                     as ProductItemModel,
         returnPolicy:
             null == returnPolicy
@@ -163,18 +163,18 @@ class __$$CartModelImplCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(explicitToJson: true)
-class _$CartModelImpl implements _CartModel {
-  const _$CartModelImpl({
-    required this.productItemModel,
+class _$CartProductRemoteModelImpl implements _CartProductRemoteModel {
+  const _$CartProductRemoteModelImpl({
+    required this.productItem,
     required this.returnPolicy,
     required this.quantity,
   });
 
-  factory _$CartModelImpl.fromJson(Map<String, dynamic> json) =>
-      _$$CartModelImplFromJson(json);
+  factory _$CartProductRemoteModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$CartProductRemoteModelImplFromJson(json);
 
   @override
-  final ProductItemModel productItemModel;
+  final ProductItemModel productItem;
   @override
   final String returnPolicy;
   @override
@@ -182,16 +182,16 @@ class _$CartModelImpl implements _CartModel {
 
   @override
   String toString() {
-    return 'CartModel(productItemModel: $productItemModel, returnPolicy: $returnPolicy, quantity: $quantity)';
+    return 'CartProductRemoteModel(productItem: $productItem, returnPolicy: $returnPolicy, quantity: $quantity)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$CartModelImpl &&
-            (identical(other.productItemModel, productItemModel) ||
-                other.productItemModel == productItemModel) &&
+            other is _$CartProductRemoteModelImpl &&
+            (identical(other.productItem, productItem) ||
+                other.productItem == productItem) &&
             (identical(other.returnPolicy, returnPolicy) ||
                 other.returnPolicy == returnPolicy) &&
             (identical(other.quantity, quantity) ||
@@ -201,43 +201,47 @@ class _$CartModelImpl implements _CartModel {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, productItemModel, returnPolicy, quantity);
+      Object.hash(runtimeType, productItem, returnPolicy, quantity);
 
-  /// Create a copy of CartModel
+  /// Create a copy of CartProductRemoteModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$CartModelImplCopyWith<_$CartModelImpl> get copyWith =>
-      __$$CartModelImplCopyWithImpl<_$CartModelImpl>(this, _$identity);
+  _$$CartProductRemoteModelImplCopyWith<_$CartProductRemoteModelImpl>
+  get copyWith =>
+      __$$CartProductRemoteModelImplCopyWithImpl<_$CartProductRemoteModelImpl>(
+        this,
+        _$identity,
+      );
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$CartModelImplToJson(this);
+    return _$$CartProductRemoteModelImplToJson(this);
   }
 }
 
-abstract class _CartModel implements CartModel {
-  const factory _CartModel({
-    required final ProductItemModel productItemModel,
+abstract class _CartProductRemoteModel implements CartProductRemoteModel {
+  const factory _CartProductRemoteModel({
+    required final ProductItemModel productItem,
     required final String returnPolicy,
     required final int quantity,
-  }) = _$CartModelImpl;
+  }) = _$CartProductRemoteModelImpl;
 
-  factory _CartModel.fromJson(Map<String, dynamic> json) =
-      _$CartModelImpl.fromJson;
+  factory _CartProductRemoteModel.fromJson(Map<String, dynamic> json) =
+      _$CartProductRemoteModelImpl.fromJson;
 
   @override
-  ProductItemModel get productItemModel;
+  ProductItemModel get productItem;
   @override
   String get returnPolicy;
   @override
   int get quantity;
 
-  /// Create a copy of CartModel
+  /// Create a copy of CartProductRemoteModel
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$CartModelImplCopyWith<_$CartModelImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$CartProductRemoteModelImplCopyWith<_$CartProductRemoteModelImpl>
+  get copyWith => throw _privateConstructorUsedError;
 }

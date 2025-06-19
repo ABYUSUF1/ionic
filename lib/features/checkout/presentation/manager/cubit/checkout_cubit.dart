@@ -1,9 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:ionic/core/utils/enums/payment_method_enum.dart';
 import 'package:ionic/features/address/presentation/manager/default_address/default_address_cubit.dart';
+import 'package:ionic/features/cart/presentation/manager/cubit/cart_cubit.dart';
 import 'package:ionic/features/payment/presentation/manager/cubit/payment_cubit.dart';
 
 import '../../../../../core/utils/enums/delivery_instructions_enum.dart';
@@ -22,9 +22,25 @@ class CheckoutCubit extends Cubit<CheckoutState> {
         ),
       );
 
+  DateTime? arrivesAt;
+
   void initialize(BuildContext context) {
     final address =
         context.read<DefaultAddressCubit>().defaultAddress?.address ?? '';
+
+    final products = context.read<CartCubit>().cartEntity.cartProductsEntity;
+
+    if (products.isNotEmpty) {
+      final now = DateTime.now();
+
+      // Find the product with the maximum deliveryDays
+      final maxDeliveryDays = products
+          .map((product) => product.productItem.deliveryDays)
+          .reduce((a, b) => a > b ? a : b);
+
+      arrivesAt = now.add(Duration(days: maxDeliveryDays));
+    }
+
     emit(state.copyWith(address: address));
   }
 

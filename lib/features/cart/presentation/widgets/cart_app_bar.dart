@@ -11,8 +11,8 @@ import '../../../../core/theme/app_font.dart';
 import '../../../home/presentation/widgets/home_app_bar_widgets/home_app_bar_address_button.dart';
 
 class CartAppBar extends StatelessWidget implements PreferredSizeWidget {
-  final List<CartEntity> products;
-  const CartAppBar({super.key, required this.products});
+  final CartEntity cartEntity;
+  const CartAppBar({super.key, required this.cartEntity});
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +36,7 @@ class CartAppBar extends StatelessWidget implements PreferredSizeWidget {
                   SkeletonLoading(
                     isLoading: context.read<CartCubit>().state.isLoading,
                     child: Text(
-                      '(${context.plural(LocaleKeys.cart_items_in_cart, products.length, args: [products.length.toString()])})',
+                      '(${context.plural(LocaleKeys.cart_items_in_cart, cartEntity.cartProductsEntity.length, args: [cartEntity.cartProductsEntity.length.toString()])})',
                       style: theme.textTheme.headlineMedium!.copyWith(
                         color: theme.colorScheme.onSurfaceVariant,
                         fontFamily: appFont(context),

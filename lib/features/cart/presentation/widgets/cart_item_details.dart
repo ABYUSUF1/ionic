@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 import 'package:ionic/core/theme/app_font.dart';
 import 'package:ionic/core/theme/app_colors.dart';
-import 'package:ionic/features/cart/domain/entity/cart_entity.dart';
+import 'package:ionic/features/cart/domain/entity/cart_product_entity.dart';
 import 'package:ionic/features/cart/presentation/widgets/cart_item_arrived_by.dart';
 import 'package:ionic/generated/locale_keys.g.dart';
 
@@ -11,7 +11,7 @@ import '../../../../core/utils/functions/product_formatted.dart';
 import 'cart_item_price.dart';
 
 class CartItemDetails extends StatelessWidget {
-  final CartEntity product;
+  final CartProductEntity product;
   const CartItemDetails({super.key, required this.product});
 
   @override
@@ -23,16 +23,16 @@ class CartItemDetails extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            product.productItemEntity.brand.isEmpty
+            product.productItem.brand.isEmpty
                 ? context.tr(LocaleKeys.product_brand_unknown)
-                : product.productItemEntity.brand,
+                : product.productItem.brand,
             style: theme.textTheme.bodyMedium!.copyWith(
               color: theme.colorScheme.onSurfaceVariant,
               fontFamily: appFont(context),
             ),
           ),
           Text(
-            product.productItemEntity.title,
+            product.productItem.title,
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
             style: theme.textTheme.bodyMedium!.copyWith(
@@ -43,11 +43,9 @@ class CartItemDetails extends StatelessWidget {
           CartItemPrice(product: product),
 
           const SizedBox(height: 16),
-          CartItemArrivedBy(
-            deliveryDays: product.productItemEntity.deliveryDays,
-          ),
+          CartItemArrivedBy(deliveryDays: product.productItem.deliveryDays),
 
-          isFreeDelivery(product.productItemEntity.price)
+          isFreeDelivery(product.productItem.price)
               ? Row(
                 spacing: 8,
                 children: [

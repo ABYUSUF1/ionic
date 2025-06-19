@@ -56,7 +56,7 @@ class ProductBottomBar extends StatelessWidget {
                         isProductInCart
                             ? null
                             : () {
-                              cubit.addToCart(product.toCartEntity());
+                              cubit.addToCart(product.toCartProduct());
                             },
                   ),
                 );

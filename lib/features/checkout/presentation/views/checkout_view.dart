@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ionic/core/services/di/get_it_service.dart';
+import 'package:ionic/core/widgets/required_login_widget.dart';
 import 'package:ionic/core/widgets/responsive_layout.dart';
 import 'package:ionic/features/payment/presentation/manager/cubit/payment_cubit.dart';
 import 'package:ionic/generated/locale_keys.g.dart';
@@ -16,26 +17,31 @@ class CheckoutView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(create: (context) => CheckoutCubit()..initialize(context)),
-        BlocProvider(create: (context) => PaymentCubit(getIt())),
-      ],
-      child: Scaffold(
-        bottomNavigationBar:
-            ResponsiveLayout.isMobile(context)
-                ? const CheckoutPlaceOrderButton()
-                : null,
-        appBar: AppBar(
-          title: Text(
-            context.tr(LocaleKeys.checkout_title),
-            style: theme.textTheme.headlineMedium,
+    return RequiredLoginScreen(
+      appBarTitle: context.tr(LocaleKeys.checkout_title),
+      child: MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (context) => CheckoutCubit()..initialize(context),
           ),
-          backgroundColor: theme.colorScheme.surface,
-        ),
-        body: const ResponsiveLayout(
-          mobileChild: CheckoutMobileViewBody(),
-          tabletChild: CheckoutTabletViewBody(),
+          BlocProvider(create: (context) => PaymentCubit(getIt())),
+        ],
+        child: Scaffold(
+          bottomNavigationBar:
+              ResponsiveLayout.isMobile(context)
+                  ? const CheckoutPlaceOrderButton()
+                  : null,
+          appBar: AppBar(
+            title: Text(
+              context.tr(LocaleKeys.checkout_title),
+              style: theme.textTheme.headlineMedium,
+            ),
+            backgroundColor: theme.colorScheme.surface,
+          ),
+          body: const ResponsiveLayout(
+            mobileChild: CheckoutMobileViewBody(),
+            tabletChild: CheckoutTabletViewBody(),
+          ),
         ),
       ),
     );

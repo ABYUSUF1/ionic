@@ -37,7 +37,6 @@ class SearchCubit extends Cubit<SearchState> {
       }
     } else {
       _productsEntity = _productsEntity.copyWith(products: [], skip: 0);
-      emit(const SearchState.loading());
     }
 
     _debounceSearch?.cancel();
@@ -57,6 +56,8 @@ class SearchCubit extends Cubit<SearchState> {
       if (isLoadMore) {
         _isLoadingMore = true;
         emit(SearchState.resultSearches(_productsEntity, isPaginating: true));
+      } else {
+        emit(const SearchState.loading());
       }
 
       final result = await _searchRepo.search(

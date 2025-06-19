@@ -1,4 +1,3 @@
-import 'package:animate_do/animate_do.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -29,7 +28,7 @@ class RequiredLoginScreen extends StatelessWidget {
     return BlocConsumer<AuthCubit, AuthState>(
       listener: (context, state) {
         state.maybeWhen(
-          orElse: () => closeFullScreenLoading(context),
+          orElse: () => null,
           loading: (message) => showFullScreenLoading(context, message),
         );
       },
@@ -51,7 +50,7 @@ class RequiredLoginScreen extends StatelessWidget {
                 title: Text(appBarTitle, style: theme.textTheme.headlineMedium),
               ),
               body: Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(16.0),
                 child: SingleChildScrollView(
                   child: ConstrainedBox(
                     constraints: const BoxConstraints(maxWidth: 600),
@@ -76,7 +75,9 @@ class RequiredLoginScreen extends StatelessWidget {
                             LocaleKeys.auth_continue_with_google,
                           ),
                           svgIcon: AppAssets.iconsGoogle,
-                          onPressed: () {},
+                          onPressed: () async {
+                            await context.read<AuthCubit>().signInWithGoogle();
+                          },
                         ),
                         CustomFilledButton(
                           text: "Sign in / Sign up",

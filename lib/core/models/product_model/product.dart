@@ -1,8 +1,8 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:ionic/core/entities/product_item_entity.dart';
 import 'package:ionic/core/utils/functions/product_formatted.dart';
+import 'package:ionic/features/cart/domain/entity/cart_product_entity.dart';
 
-import '../../../features/cart/domain/entity/cart_entity.dart';
 import 'dimensions.dart';
 import 'meta.dart';
 import 'review.dart';
@@ -82,12 +82,11 @@ extension ProductExtension on Product {
     );
   }
 
-  // to Cart Entity
-  CartEntity toCartEntity() {
-    return CartEntity(
-      productItemEntity: toProductItem(),
-      quantity: 1,
+  CartProductEntity toCartProduct() {
+    return CartProductEntity(
+      productItem: toProductItem(),
       returnPolicy: returnPolicy ?? '',
+      quantity: 1,
     );
   }
 }

@@ -2,98 +2,117 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:ionic/core/utils/functions/product_formatted.dart';
 import 'package:ionic/features/cart/domain/entity/cart_entity.dart';
 import 'package:ionic/features/cart/domain/repo/cart_repo.dart';
 
 import '../../../domain/entity/cart_order_summary.dart';
+import '../../../domain/entity/cart_product_entity.dart';
 
 part 'cart_state.dart';
 part 'cart_cubit.freezed.dart';
 
 class CartCubit extends Cubit<CartState> {
   final CartRepo _cartRepo;
+
   CartCubit(this._cartRepo) : super(const CartState.initial()) {
     fetchCart();
   }
 
-  List<CartEntity> cartEntityList = [];
+  CartEntity cartEntity = const CartEntity(cartProductsEntity: []);
   final Set<String> _productIdsInCart = {};
-  final Map<String, Timer> _debounceTimers = {}; // for rapid quantity updates
+  final Map<String, Timer> _debounceTimers = {};
 
-  double get subtotal => cartEntityList.fold(
-    0.0,
-    (total, e) => total + e.productItemEntity.price * e.quantity,
-  );
+  String? appliedCoupon;
+  double couponDiscount = 0;
 
-  int get totalQuantity =>
-      cartEntityList.fold(0, (total, e) => total + e.quantity);
+  bool _hasSyncedLocalCart = false;
 
-  double get shippingFee {
-    final hasAtLeastOneNonFreeItem = cartEntityList.any(
-      (cart) => !isFreeDelivery(cart.productItemEntity.price),
-    );
-    return hasAtLeastOneNonFreeItem ? 25.0 : 0.0;
+  Future<void> syncLocalCartToRemote() async {
+    print("Start Sync ---------------------------------1");
+    if (_hasSyncedLocalCart) return;
+    print("Make Sync true ---------------------------------1");
+    _hasSyncedLocalCart = true;
+
+    final result = await _cartRepo.syncLocalCartToRemote();
+    result.fold((l) => emit(CartState.error(l.errMessage)), (syncedCartEntity) {
+      cartEntity = syncedCartEntity;
+      _productIdsInCart
+        ..clear()
+        ..addAll(
+          cartEntity.cartProductsEntity.map((e) => e.productItem.productId),
+        );
+      if (cartEntity.cartProductsEntity.isEmpty) {
+        emit(const CartState.empty());
+      } else {
+        emitSuccess();
+      }
+    });
   }
 
-  double couponDiscount = 0.0; // Will update this later
-
-  double get totalPrice => subtotal + shippingFee - couponDiscount;
-
   void emitSuccess() {
-    emit(
-      CartState.success(
-        List.from(cartEntityList),
-        CartOrderSummary(
-          totalQuantity: totalQuantity,
-          shippingFee: shippingFee,
-          couponDiscount: couponDiscount,
-          totalPrice: totalPrice,
-          subTotal: subtotal,
-        ),
-      ),
+    final summary = CartOrderSummary.fromCart(
+      cart: cartEntity,
+      couponDiscount: couponDiscount,
     );
+    emit(CartState.success(cartEntity, summary));
   }
 
   Future<void> fetchCart() async {
-    if (cartEntityList.isNotEmpty) {
+    if (cartEntity.cartProductsEntity.isNotEmpty) {
       emitSuccess();
       return;
     }
 
     emit(const CartState.loading());
+
     final result = await _cartRepo.fetchCart();
     result.fold((l) => emit(CartState.error(l.errMessage)), (r) {
-      cartEntityList = r;
-      if (cartEntityList.isEmpty) {
+      cartEntity = r;
+      if (cartEntity.cartProductsEntity.isEmpty) {
         emit(const CartState.empty());
       } else {
         _productIdsInCart.addAll(
-          cartEntityList.map((e) => e.productItemEntity.productId),
+          cartEntity.cartProductsEntity.map((e) => e.productItem.productId),
         );
         emitSuccess();
       }
     });
   }
 
-  void addToCart(CartEntity cartEntity) {
-    cartEntityList.add(cartEntity);
-    _productIdsInCart.add(cartEntity.productItemEntity.productId);
-    _cartRepo.addToCart(cartEntity);
+  void addToCart(CartProductEntity cartProduct) {
+    final updatedList = List<CartProductEntity>.from(
+      cartEntity.cartProductsEntity,
+    )..add(cartProduct);
+
+    cartEntity = CartEntity(cartProductsEntity: updatedList);
+    _productIdsInCart.add(cartProduct.productItem.productId);
+    _cartRepo.addToCart(cartProduct);
     emitSuccess();
   }
 
   void removeFromCart(String productId) {
-    cartEntityList.removeWhere(
-      (e) => e.productItemEntity.productId == productId,
-    );
+    final updatedList =
+        cartEntity.cartProductsEntity
+            .where((e) => e.productItem.productId != productId)
+            .toList();
+
+    cartEntity = CartEntity(cartProductsEntity: updatedList);
     _productIdsInCart.remove(productId);
     _cartRepo.removeFromCart(productId);
-    if (cartEntityList.isEmpty) {
+
+    if (cartEntity.cartProductsEntity.isEmpty) {
       emit(const CartState.empty());
     } else {
       emitSuccess();
     }
+  }
+
+  void clearCart() {
+    cartEntity = const CartEntity(cartProductsEntity: []);
+    _productIdsInCart.clear();
+    _cartRepo.clearCart();
+    _hasSyncedLocalCart = false;
+    emit(const CartState.empty());
   }
 
   bool isProductInCart(String productId) =>
@@ -108,12 +127,12 @@ class CartCubit extends Cubit<CartState> {
   }
 
   void _updateQuantity(String productId, {required bool increase}) {
-    final index = cartEntityList.indexWhere(
-      (e) => e.productItemEntity.productId == productId,
+    final index = cartEntity.cartProductsEntity.indexWhere(
+      (e) => e.productItem.productId == productId,
     );
     if (index == -1) return;
 
-    final currentItem = cartEntityList[index];
+    final currentItem = cartEntity.cartProductsEntity[index];
     final newQuantity =
         increase
             ? currentItem.quantity + 1
@@ -121,14 +140,14 @@ class CartCubit extends Cubit<CartState> {
             ? currentItem.quantity - 1
             : 1;
 
-    // Update local UI Optimistically
     final updatedItem = currentItem.copyWith(quantity: newQuantity);
-    final newList = List<CartEntity>.from(cartEntityList)
-      ..[index] = updatedItem;
-    cartEntityList = newList;
+    final updatedList = List<CartProductEntity>.from(
+      cartEntity.cartProductsEntity,
+    )..[index] = updatedItem;
+
+    cartEntity = CartEntity(cartProductsEntity: updatedList);
     emitSuccess();
 
-    // Debounce Firestore update
     _debounceTimers[productId]?.cancel();
     _debounceTimers[productId] = Timer(
       const Duration(milliseconds: 500),
@@ -139,12 +158,12 @@ class CartCubit extends Cubit<CartState> {
     );
   }
 
-  String? appliedCoupon;
-
   void applyCoupon(String code) {
+    if (cartEntity.cartProductsEntity.isEmpty) return;
+
     if (code.length == 4 && appliedCoupon != code) {
       appliedCoupon = code;
-      couponDiscount = 25.0; // apply EGP 25 discount
+      couponDiscount = 25.0;
       emitSuccess();
     }
   }

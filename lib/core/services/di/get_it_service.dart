@@ -12,6 +12,7 @@ import 'package:ionic/features/address/presentation/manager/locate_on_map/locate
 import 'package:ionic/features/auth/presentation/manager/auth/auth_cubit.dart';
 import 'package:ionic/features/auth/presentation/manager/forget_password/forget_password_cubit.dart';
 import 'package:ionic/features/auth/presentation/manager/sign_in/sign_in_cubit.dart';
+import 'package:ionic/features/cart/data/data_source/cart_local_data_source.dart';
 import 'package:ionic/features/cart/data/data_source/cart_remote_data_source.dart';
 import 'package:ionic/features/cart/data/repo_impl/cart_repo_impl.dart';
 import 'package:ionic/features/cart/domain/repo/cart_repo.dart';
@@ -77,6 +78,7 @@ Future<void> setupGetIt() async {
   getIt.registerLazySingleton(() => FavoriteRemoteDataSource());
   getIt.registerLazySingleton(() => AddressRemoteDataSource());
   getIt.registerLazySingleton(() => CartRemoteDataSource());
+  getIt.registerLazySingleton(() => CartLocalDataSource(getIt()));
   getIt.registerLazySingleton(() => StripePaymentService(getIt()));
   getIt.registerLazySingleton(() => PaymobPaymentService());
 
@@ -97,7 +99,7 @@ Future<void> setupGetIt() async {
   getIt.registerLazySingleton<AddressRepo>(
     () => AddressRepoImpl(getIt(), getIt()),
   );
-  getIt.registerLazySingleton<CartRepo>(() => CartRepoImpl(getIt()));
+  getIt.registerLazySingleton<CartRepo>(() => CartRepoImpl(getIt(), getIt()));
   getIt.registerLazySingleton<PaymentRepo>(
     () => PaymentRepoImpl(getIt(), getIt()),
   );

@@ -1,13 +1,12 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
-import 'package:ionic/features/cart/domain/entity/cart_entity.dart';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ionic/features/cart/domain/entity/cart_product_entity.dart';
 
 import '../manager/cubit/cart_cubit.dart';
 
 class CartItemQuantityButton extends StatelessWidget {
-  final CartEntity product;
+  final CartProductEntity product;
   const CartItemQuantityButton({super.key, required this.product});
 
   @override
@@ -36,7 +35,7 @@ class CartItemQuantityButton extends StatelessWidget {
               quantity == 1
                   ? null
                   : () => cartCubit.decrementQuantity(
-                    product.productItemEntity.productId,
+                    product.productItem.productId,
                   ),
         ),
         Container(
@@ -64,9 +63,7 @@ class CartItemQuantityButton extends StatelessWidget {
           ),
           icon: Icon(Icons.add, color: theme.colorScheme.onSurface),
           onPressed:
-              () => cartCubit.incrementQuantity(
-                product.productItemEntity.productId,
-              ),
+              () => cartCubit.incrementQuantity(product.productItem.productId),
         ),
       ],
     );

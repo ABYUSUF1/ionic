@@ -28,7 +28,7 @@ class ProductItemModel with _$ProductItemModel {
 }
 
 extension ProductItemModelExtension on ProductItemModel {
-  ProductItemEntity toProductItemEntity() {
+  ProductItemEntity toEntity() {
     return ProductItemEntity(
       productId: productId,
       title: title,

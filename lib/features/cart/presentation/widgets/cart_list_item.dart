@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ionic/features/cart/domain/entity/cart_entity.dart';
+import 'package:ionic/features/cart/domain/entity/cart_product_entity.dart';
 import 'package:ionic/features/cart/presentation/widgets/cart_item_favorite_button.dart';
 import 'package:ionic/features/cart/presentation/widgets/cart_item_quantity_button.dart';
 import 'package:ionic/features/cart/presentation/widgets/cart_item_remove_button.dart';
@@ -9,7 +9,7 @@ import 'cart_item_image.dart';
 
 class CartListItem extends StatelessWidget {
   const CartListItem({super.key, required this.product});
-  final CartEntity product;
+  final CartProductEntity product;
 
   @override
   Widget build(BuildContext context) {

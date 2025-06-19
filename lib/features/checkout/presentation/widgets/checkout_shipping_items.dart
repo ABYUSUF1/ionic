@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ionic/features/checkout/presentation/manager/cubit/checkout_cubit.dart';
 import 'package:ionic/features/checkout/presentation/widgets/checkout_items_list.dart';
 import 'package:ionic/generated/locale_keys.g.dart';
 
@@ -11,7 +12,13 @@ class CheckoutShippingItems extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final quantity = context.read<CartCubit>().totalQuantity;
+    final formattedDate = DateFormat(
+      'E, MMM d',
+    ).format(context.read<CheckoutCubit>().arrivesAt!);
+    final quantity = context.watch<CartCubit>().state.maybeWhen(
+      orElse: () => 0,
+      success: (_, summary) => summary.totalQuantity,
+    );
     final theme = Theme.of(context);
     return Container(
       width: double.infinity,
@@ -36,7 +43,7 @@ class CheckoutShippingItems extends StatelessWidget {
                   style: theme.textTheme.bodyMedium,
                 ),
                 TextSpan(
-                  text: "Wed, Jun 18",
+                  text: formattedDate,
                   style: theme.textTheme.titleLarge!.copyWith(
                     color: Colors.green,
                     fontWeight: FontWeight.bold,

@@ -18,7 +18,7 @@ class CartBottomBar extends StatelessWidget {
     final theme = Theme.of(context);
     final cubit = context.read<CartCubit>();
     final width = MediaQuery.sizeOf(context).width;
-    return cubit.state.isLoading
+    return cartOrderSummary.totalPrice == 0 || cubit.state.isLoading
         ? const SizedBox.shrink()
         : ColoredBox(
           color: theme.colorScheme.surface,
@@ -52,8 +52,11 @@ class CartBottomBar extends StatelessWidget {
                       Text(
                         context.plural(
                           LocaleKeys.cart_items_in_cart,
-                          cubit.cartEntityList.length,
-                          args: [cubit.cartEntityList.length.toString()],
+                          cubit.cartEntity.cartProductsEntity.length,
+                          args: [
+                            cubit.cartEntity.cartProductsEntity.length
+                                .toString(),
+                          ],
                         ),
                         style: theme.textTheme.bodySmall!.copyWith(
                           color: Colors.white,

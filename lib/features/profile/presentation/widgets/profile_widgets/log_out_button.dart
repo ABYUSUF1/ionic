@@ -20,7 +20,6 @@ class LogOutButton extends StatelessWidget {
         builder: (context, state) {
           return state.maybeWhen(
             unAuthenticated: () => const SizedBox.shrink(),
-
             orElse:
                 () => Padding(
                   padding: EdgeInsetsDirectional.only(

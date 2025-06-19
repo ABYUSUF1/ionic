@@ -11,7 +11,7 @@ class CheckoutItemsList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final products = context.read<CartCubit>().cartEntityList;
+    final products = context.read<CartCubit>().cartEntity.cartProductsEntity;
     return ListView.separated(
       physics: const NeverScrollableScrollPhysics(),
       itemCount: products.length,
@@ -30,7 +30,7 @@ class CheckoutItemsList extends StatelessWidget {
                   alignment: AlignmentDirectional.center,
                   children: [
                     CachedNetworkImage(
-                      imageUrl: products[index].productItemEntity.imageUrl,
+                      imageUrl: products[index].productItem.imageUrl,
                       height: 100,
                       width: 100,
                     ),
@@ -69,17 +69,17 @@ class CheckoutItemsList extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      products[index].productItemEntity.brand,
+                      products[index].productItem.brand,
                       style: theme.textTheme.bodyMedium!.copyWith(
                         color: theme.colorScheme.onSurfaceVariant,
                       ),
                     ),
                     Text(
-                      products[index].productItemEntity.title,
+                      products[index].productItem.title,
                       style: theme.textTheme.bodyLarge!,
                     ),
                     Text(
-                      "EGP ${products[index].productItemEntity.price.toString()}",
+                      "EGP ${products[index].productItem.price.toString()}",
                       style: theme.textTheme.titleLarge!,
                     ),
                     Row(

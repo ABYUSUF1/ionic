@@ -8,12 +8,12 @@ import 'cart_coupon_code_desc.dart';
 import 'cart_order_summary.dart';
 
 class CartViewBody extends StatelessWidget {
-  final List<CartEntity> products;
+  final CartEntity cartEntity;
   final CartOrderSummary cartOrderSummary;
 
   const CartViewBody({
     super.key,
-    required this.products,
+    required this.cartEntity,
     required this.cartOrderSummary,
   });
 
@@ -31,7 +31,9 @@ class CartViewBody extends StatelessWidget {
         children: [
           Expanded(
             flex: 3,
-            child: SingleChildScrollView(child: CartList(products: products)),
+            child: SingleChildScrollView(
+              child: CartList(cartEntity: cartEntity),
+            ),
           ),
           Expanded(
             flex: 2,
@@ -58,7 +60,7 @@ class CartViewBody extends StatelessWidget {
         spacing: 16,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          CartList(products: products),
+          CartList(cartEntity: cartEntity),
           const CartCouponCodeDesc(),
           OrderSummary(cartOrderSummary: cartOrderSummary),
         ],

@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
+import 'package:ionic/features/cart/domain/entity/cart_product_entity.dart';
 import 'package:ionic/features/favorite/presentation/manager/cubit/favorite_cubit.dart';
 
-import '../../domain/entity/cart_entity.dart';
-
 class CartItemFavoriteButton extends StatelessWidget {
-  final CartEntity product;
+  final CartProductEntity product;
   const CartItemFavoriteButton({super.key, required this.product});
 
   @override
@@ -15,9 +14,7 @@ class CartItemFavoriteButton extends StatelessWidget {
     return BlocBuilder<FavoriteCubit, FavoriteState>(
       builder: (context, state) {
         final cubit = context.read<FavoriteCubit>();
-        final isFavorite = cubit.isFavorite(
-          product.productItemEntity.productId,
-        );
+        final isFavorite = cubit.isFavorite(product.productItem.productId);
         return IconButton(
           style: IconButton.styleFrom(
             shape: RoundedRectangleBorder(
@@ -33,7 +30,7 @@ class CartItemFavoriteButton extends StatelessWidget {
                     : theme.colorScheme.onSurface,
           ),
           onPressed: () {
-            cubit.toggleFavorites(product.productItemEntity, context);
+            cubit.toggleFavorites(product.productItem, context);
           },
         );
       },

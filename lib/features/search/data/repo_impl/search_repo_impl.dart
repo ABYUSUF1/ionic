@@ -60,6 +60,6 @@ class SearchRepoImpl implements SearchRepo {
   @override
   List<ProductItemEntity> getRecentSearches() {
     final result = _objectBoxService.box<ProductItemModel>().getAll();
-    return result.map((e) => e.toProductItemEntity()).toList();
+    return result.map((e) => e.toEntity()).toList();
   }
 }

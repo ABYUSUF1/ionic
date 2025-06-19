@@ -1,6 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+import 'package:ionic/core/routing/app_router_name.dart';
 import 'package:ionic/features/cart/domain/entity/cart_order_summary.dart';
 import 'package:ionic/features/cart/presentation/manager/cubit/cart_cubit.dart';
 
@@ -23,13 +25,17 @@ class CartView extends StatelessWidget {
 
     return BlocBuilder<CartCubit, CartState>(
       builder: (context, state) {
-        // state.isError ? context.read<CartCubit>().fetchCart() : null;
         final (
-          List<CartEntity> products,
+          CartEntity cartEntity,
           CartOrderSummary cartOrderSummary,
         ) = state.maybeWhen(
-          success: (products, cartOrderSummary) => (products, cartOrderSummary),
-          orElse: () => ([], CartOrderSummary.loading()),
+          success:
+              (cartEntity, cartOrderSummary) => (cartEntity, cartOrderSummary),
+          orElse:
+              () => (
+                const CartEntity(cartProductsEntity: []),
+                CartOrderSummary.loading(),
+              ),
         );
 
         return Scaffold(
@@ -37,20 +43,23 @@ class CartView extends StatelessWidget {
               !state.isSuccess
                   ? theme.colorScheme.surface
                   : theme.scaffoldBackgroundColor,
-          appBar: CartAppBar(products: products),
+          appBar: CartAppBar(cartEntity: cartEntity),
           bottomNavigationBar:
               width > 900
                   ? null
                   : CartBottomBar(cartOrderSummary: cartOrderSummary),
           body: state.maybeWhen(
             empty:
-                () => EmptyStateWidget(
+                () => EmptyStateWidget.withButton(
                   svgImage:
                       isDark
                           ? AppAssets.illustrationsEmptyIllustrationDark
                           : AppAssets.illustrationsEmptyIllustrationLight,
                   title: context.tr(LocaleKeys.cart_empty_title),
                   subtitle: context.tr(LocaleKeys.cart_empty_desc),
+                  buttonText: "Shop now",
+                  onButtonPressed:
+                      () => context.goNamed(AppRouterName.homeRoute),
                 ),
             error:
                 (errMessage) => EmptyStateWidget(
@@ -63,7 +72,7 @@ class CartView extends StatelessWidget {
                 ),
             orElse:
                 () => CartViewBody(
-                  products: products,
+                  cartEntity: cartEntity,
                   cartOrderSummary: cartOrderSummary,
                 ),
           ),

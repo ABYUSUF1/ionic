@@ -24,7 +24,7 @@ mixin _$CartState {
     required TResult Function(String errMessage) error,
     required TResult Function() empty,
     required TResult Function(
-      List<CartEntity> cartEntity,
+      CartEntity cartEntity,
       CartOrderSummary cartTotals,
     )
     success,
@@ -35,7 +35,7 @@ mixin _$CartState {
     TResult? Function()? loading,
     TResult? Function(String errMessage)? error,
     TResult? Function()? empty,
-    TResult? Function(List<CartEntity> cartEntity, CartOrderSummary cartTotals)?
+    TResult? Function(CartEntity cartEntity, CartOrderSummary cartTotals)?
     success,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -44,7 +44,7 @@ mixin _$CartState {
     TResult Function()? loading,
     TResult Function(String errMessage)? error,
     TResult Function()? empty,
-    TResult Function(List<CartEntity> cartEntity, CartOrderSummary cartTotals)?
+    TResult Function(CartEntity cartEntity, CartOrderSummary cartTotals)?
     success,
     required TResult orElse(),
   }) => throw _privateConstructorUsedError;
@@ -143,7 +143,7 @@ class _$InitialImpl implements _Initial {
     required TResult Function(String errMessage) error,
     required TResult Function() empty,
     required TResult Function(
-      List<CartEntity> cartEntity,
+      CartEntity cartEntity,
       CartOrderSummary cartTotals,
     )
     success,
@@ -158,7 +158,7 @@ class _$InitialImpl implements _Initial {
     TResult? Function()? loading,
     TResult? Function(String errMessage)? error,
     TResult? Function()? empty,
-    TResult? Function(List<CartEntity> cartEntity, CartOrderSummary cartTotals)?
+    TResult? Function(CartEntity cartEntity, CartOrderSummary cartTotals)?
     success,
   }) {
     return initial?.call();
@@ -171,7 +171,7 @@ class _$InitialImpl implements _Initial {
     TResult Function()? loading,
     TResult Function(String errMessage)? error,
     TResult Function()? empty,
-    TResult Function(List<CartEntity> cartEntity, CartOrderSummary cartTotals)?
+    TResult Function(CartEntity cartEntity, CartOrderSummary cartTotals)?
     success,
     required TResult orElse(),
   }) {
@@ -274,7 +274,7 @@ class _$LoadingImpl implements _Loading {
     required TResult Function(String errMessage) error,
     required TResult Function() empty,
     required TResult Function(
-      List<CartEntity> cartEntity,
+      CartEntity cartEntity,
       CartOrderSummary cartTotals,
     )
     success,
@@ -289,7 +289,7 @@ class _$LoadingImpl implements _Loading {
     TResult? Function()? loading,
     TResult? Function(String errMessage)? error,
     TResult? Function()? empty,
-    TResult? Function(List<CartEntity> cartEntity, CartOrderSummary cartTotals)?
+    TResult? Function(CartEntity cartEntity, CartOrderSummary cartTotals)?
     success,
   }) {
     return loading?.call();
@@ -302,7 +302,7 @@ class _$LoadingImpl implements _Loading {
     TResult Function()? loading,
     TResult Function(String errMessage)? error,
     TResult Function()? empty,
-    TResult Function(List<CartEntity> cartEntity, CartOrderSummary cartTotals)?
+    TResult Function(CartEntity cartEntity, CartOrderSummary cartTotals)?
     success,
     required TResult orElse(),
   }) {
@@ -433,7 +433,7 @@ class _$ErrorImpl implements _Error {
     required TResult Function(String errMessage) error,
     required TResult Function() empty,
     required TResult Function(
-      List<CartEntity> cartEntity,
+      CartEntity cartEntity,
       CartOrderSummary cartTotals,
     )
     success,
@@ -448,7 +448,7 @@ class _$ErrorImpl implements _Error {
     TResult? Function()? loading,
     TResult? Function(String errMessage)? error,
     TResult? Function()? empty,
-    TResult? Function(List<CartEntity> cartEntity, CartOrderSummary cartTotals)?
+    TResult? Function(CartEntity cartEntity, CartOrderSummary cartTotals)?
     success,
   }) {
     return error?.call(errMessage);
@@ -461,7 +461,7 @@ class _$ErrorImpl implements _Error {
     TResult Function()? loading,
     TResult Function(String errMessage)? error,
     TResult Function()? empty,
-    TResult Function(List<CartEntity> cartEntity, CartOrderSummary cartTotals)?
+    TResult Function(CartEntity cartEntity, CartOrderSummary cartTotals)?
     success,
     required TResult orElse(),
   }) {
@@ -572,7 +572,7 @@ class _$EmptyImpl implements _Empty {
     required TResult Function(String errMessage) error,
     required TResult Function() empty,
     required TResult Function(
-      List<CartEntity> cartEntity,
+      CartEntity cartEntity,
       CartOrderSummary cartTotals,
     )
     success,
@@ -587,7 +587,7 @@ class _$EmptyImpl implements _Empty {
     TResult? Function()? loading,
     TResult? Function(String errMessage)? error,
     TResult? Function()? empty,
-    TResult? Function(List<CartEntity> cartEntity, CartOrderSummary cartTotals)?
+    TResult? Function(CartEntity cartEntity, CartOrderSummary cartTotals)?
     success,
   }) {
     return empty?.call();
@@ -600,7 +600,7 @@ class _$EmptyImpl implements _Empty {
     TResult Function()? loading,
     TResult Function(String errMessage)? error,
     TResult Function()? empty,
-    TResult Function(List<CartEntity> cartEntity, CartOrderSummary cartTotals)?
+    TResult Function(CartEntity cartEntity, CartOrderSummary cartTotals)?
     success,
     required TResult orElse(),
   }) {
@@ -662,7 +662,7 @@ abstract class _$$SuccessImplCopyWith<$Res> {
     $Res Function(_$SuccessImpl) then,
   ) = __$$SuccessImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<CartEntity> cartEntity, CartOrderSummary cartTotals});
+  $Res call({CartEntity cartEntity, CartOrderSummary cartTotals});
 }
 
 /// @nodoc
@@ -682,9 +682,9 @@ class __$$SuccessImplCopyWithImpl<$Res>
     return _then(
       _$SuccessImpl(
         null == cartEntity
-            ? _value._cartEntity
+            ? _value.cartEntity
             : cartEntity // ignore: cast_nullable_to_non_nullable
-                as List<CartEntity>,
+                as CartEntity,
         null == cartTotals
             ? _value.cartTotals
             : cartTotals // ignore: cast_nullable_to_non_nullable
@@ -697,17 +697,10 @@ class __$$SuccessImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$SuccessImpl implements _Success {
-  const _$SuccessImpl(final List<CartEntity> cartEntity, this.cartTotals)
-    : _cartEntity = cartEntity;
+  const _$SuccessImpl(this.cartEntity, this.cartTotals);
 
-  final List<CartEntity> _cartEntity;
   @override
-  List<CartEntity> get cartEntity {
-    if (_cartEntity is EqualUnmodifiableListView) return _cartEntity;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_cartEntity);
-  }
-
+  final CartEntity cartEntity;
   @override
   final CartOrderSummary cartTotals;
 
@@ -721,20 +714,14 @@ class _$SuccessImpl implements _Success {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SuccessImpl &&
-            const DeepCollectionEquality().equals(
-              other._cartEntity,
-              _cartEntity,
-            ) &&
+            (identical(other.cartEntity, cartEntity) ||
+                other.cartEntity == cartEntity) &&
             (identical(other.cartTotals, cartTotals) ||
                 other.cartTotals == cartTotals));
   }
 
   @override
-  int get hashCode => Object.hash(
-    runtimeType,
-    const DeepCollectionEquality().hash(_cartEntity),
-    cartTotals,
-  );
+  int get hashCode => Object.hash(runtimeType, cartEntity, cartTotals);
 
   /// Create a copy of CartState
   /// with the given fields replaced by the non-null parameter values.
@@ -752,7 +739,7 @@ class _$SuccessImpl implements _Success {
     required TResult Function(String errMessage) error,
     required TResult Function() empty,
     required TResult Function(
-      List<CartEntity> cartEntity,
+      CartEntity cartEntity,
       CartOrderSummary cartTotals,
     )
     success,
@@ -767,7 +754,7 @@ class _$SuccessImpl implements _Success {
     TResult? Function()? loading,
     TResult? Function(String errMessage)? error,
     TResult? Function()? empty,
-    TResult? Function(List<CartEntity> cartEntity, CartOrderSummary cartTotals)?
+    TResult? Function(CartEntity cartEntity, CartOrderSummary cartTotals)?
     success,
   }) {
     return success?.call(cartEntity, cartTotals);
@@ -780,7 +767,7 @@ class _$SuccessImpl implements _Success {
     TResult Function()? loading,
     TResult Function(String errMessage)? error,
     TResult Function()? empty,
-    TResult Function(List<CartEntity> cartEntity, CartOrderSummary cartTotals)?
+    TResult Function(CartEntity cartEntity, CartOrderSummary cartTotals)?
     success,
     required TResult orElse(),
   }) {
@@ -833,11 +820,11 @@ class _$SuccessImpl implements _Success {
 
 abstract class _Success implements CartState {
   const factory _Success(
-    final List<CartEntity> cartEntity,
+    final CartEntity cartEntity,
     final CartOrderSummary cartTotals,
   ) = _$SuccessImpl;
 
-  List<CartEntity> get cartEntity;
+  CartEntity get cartEntity;
   CartOrderSummary get cartTotals;
 
   /// Create a copy of CartState

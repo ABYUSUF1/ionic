@@ -1,15 +1,16 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:ionic/features/cart/domain/entity/cart_entity.dart';
+import 'package:ionic/features/cart/domain/entity/cart_product_entity.dart';
 
 class CartItemImage extends StatelessWidget {
   const CartItemImage({super.key, required this.product});
 
-  final CartEntity product;
+  final CartProductEntity product;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final imageUrl = product.productItem.imageUrl;
     return Expanded(
       flex: 2,
       child: Container(
@@ -18,10 +19,10 @@ class CartItemImage extends StatelessWidget {
           color: theme.colorScheme.secondary,
         ),
         child:
-            product.productItemEntity.imageUrl.isEmpty
+            imageUrl.isEmpty
                 ? null
                 : CachedNetworkImage(
-                  imageUrl: product.productItemEntity.imageUrl,
+                  imageUrl: imageUrl,
                   height: 200,
                   // fit: BoxFit.cover,
                 ),

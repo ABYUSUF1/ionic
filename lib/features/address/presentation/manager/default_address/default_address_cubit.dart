@@ -3,23 +3,18 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:ionic/features/address/domain/entity/address_entity.dart';
 import 'package:ionic/features/address/domain/repo/address_repo.dart';
 
-import '../../../../../core/utils/mixin/auth_guard_mixin.dart';
-
 part 'default_address_state.dart';
 part 'default_address_cubit.freezed.dart';
 
-class DefaultAddressCubit extends Cubit<DefaultAddressState>
-    with AuthGuardMixin {
+class DefaultAddressCubit extends Cubit<DefaultAddressState> {
   final AddressRepo _repo;
-  DefaultAddressCubit(this._repo) : super(const DefaultAddressState.initial()) {
-    fetchAddresses();
-  }
+  DefaultAddressCubit(this._repo) : super(const DefaultAddressState.initial());
 
   List<AddressEntity> addresses = <AddressEntity>[];
   AddressEntity? defaultAddress;
 
   Future<void> fetchAddresses() async {
-    if (addresses.isNotEmpty && isEmailVerified) {
+    if (addresses.isNotEmpty) {
       emit(DefaultAddressState.success(addresses));
       return;
     }
@@ -103,5 +98,11 @@ class DefaultAddressCubit extends Cubit<DefaultAddressState>
 
     _repo.setDefaultAddress(selectedAddressEntity);
     emit(DefaultAddressState.success(updatedAddresses));
+  }
+
+  void clearAddresses() {
+    addresses = <AddressEntity>[];
+    defaultAddress = null;
+    emit(const DefaultAddressState.empty());
   }
 }
