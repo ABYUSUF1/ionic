@@ -6,33 +6,30 @@ part of 'orders_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$OrdersModelImpl _$$OrdersModelImplFromJson(Map<String, dynamic> json) =>
-    _$OrdersModelImpl(
-      orderId: json['orderId'] as String,
-      userId: json['userId'] as String,
-      firstName: json['firstName'] as String,
-      lastName: json['lastName'] as String,
-      phoneNumber: json['phoneNumber'] as String,
-      address: json['address'] as String,
-      products:
-          (json['products'] as List<dynamic>)
-              .map((e) => ProductItemModel.fromJson(e as Map<String, dynamic>))
-              .toList(),
-      totalPrice: (json['totalPrice'] as num).toDouble(),
-      totalQuantity: (json['totalQuantity'] as num).toInt(),
-      paymentMethod: $enumDecode(
-        _$PaymentMethodEnumEnumMap,
-        json['paymentMethod'],
-      ),
-      deliveryInstructions: $enumDecode(
-        _$DeliveryInstructionsEnumEnumMap,
-        json['deliveryInstructions'],
-      ),
-      orderStatus: $enumDecode(_$OrderStatusEnumEnumMap, json['orderStatus']),
-      createdAt: DateTime.parse(json['createdAt'] as String),
-      arrivedAt: DateTime.parse(json['arrivedAt'] as String),
-      isPaid: json['isPaid'] as bool,
-    );
+_$OrdersModelImpl _$$OrdersModelImplFromJson(
+  Map<String, dynamic> json,
+) => _$OrdersModelImpl(
+  orderId: json['orderId'] as String,
+  userId: json['userId'] as String,
+  firstName: json['firstName'] as String,
+  lastName: json['lastName'] as String,
+  phoneNumber: json['phoneNumber'] as String,
+  address: json['address'] as String,
+  products:
+      (json['products'] as List<dynamic>)
+          .map((e) => OrdersProductModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
+  totalPrice: (json['totalPrice'] as num).toDouble(),
+  totalQuantity: (json['totalQuantity'] as num).toInt(),
+  paymentMethod: $enumDecode(_$PaymentMethodEnumEnumMap, json['paymentMethod']),
+  deliveryInstructions: $enumDecode(
+    _$DeliveryInstructionsEnumEnumMap,
+    json['deliveryInstructions'],
+  ),
+  orderStatus: $enumDecode(_$OrderStatusEnumEnumMap, json['orderStatus']),
+  createdAt: DateTime.parse(json['createdAt'] as String),
+  arrivedAt: DateTime.parse(json['arrivedAt'] as String),
+);
 
 Map<String, dynamic> _$$OrdersModelImplToJson(_$OrdersModelImpl instance) =>
     <String, dynamic>{
@@ -51,7 +48,6 @@ Map<String, dynamic> _$$OrdersModelImplToJson(_$OrdersModelImpl instance) =>
       'orderStatus': _$OrderStatusEnumEnumMap[instance.orderStatus]!,
       'createdAt': instance.createdAt.toIso8601String(),
       'arrivedAt': instance.arrivedAt.toIso8601String(),
-      'isPaid': instance.isPaid,
     };
 
 const _$PaymentMethodEnumEnumMap = {

@@ -82,11 +82,12 @@ extension ProductExtension on Product {
     );
   }
 
-  CartProductEntity toCartProduct() {
+  CartProductEntity toCartProduct(int quantity) {
+    print(quantity);
     return CartProductEntity(
       productItem: toProductItem(),
       returnPolicy: returnPolicy ?? '',
-      quantity: 1,
+      quantity: quantity,
     );
   }
 }

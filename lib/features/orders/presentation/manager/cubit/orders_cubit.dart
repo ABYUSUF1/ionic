@@ -13,6 +13,11 @@ class OrdersCubit extends Cubit<OrdersState> {
   List<OrdersEntity> orders = [];
 
   Future<void> fetchOrders() async {
+    if (orders.isNotEmpty) {
+      emit(OrdersState.success(orders));
+      return;
+    }
+
     emit(const OrdersState.loading());
     final result = await ordersRepo.fetchOrders();
     result.fold((l) => emit(OrdersState.error(l.errMessage)), (r) {

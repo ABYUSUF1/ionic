@@ -24,4 +24,13 @@ class ProductCubit extends Cubit<ProductState> {
       (r) => emit(ProductState.success(r)),
     );
   }
+
+  void updateQuantity(int newQty) {
+    state.maybeWhen(
+      success: (product, quantity) {
+        emit(ProductState.success(product, quantity: newQty));
+      },
+      orElse: () {},
+    );
+  }
 }

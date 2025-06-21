@@ -1,5 +1,12 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:ionic/core/theme/app_font.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ionic/core/widgets/empty_state_widget.dart';
+import 'package:ionic/core/widgets/loading/skeleton_loading.dart';
+import 'package:ionic/features/orders/domain/entity/orders_entity.dart';
+import 'package:ionic/features/orders/presentation/manager/cubit/orders_cubit.dart';
+import '../../../../generated/locale_keys.g.dart';
+import '../widgets/order_list_item.dart';
 import '../widgets/orders_app_bar.dart';
 
 class OrdersView extends StatelessWidget {
@@ -8,87 +15,49 @@ class OrdersView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final cubit = context.read<OrdersCubit>();
+    cubit.fetchOrders();
 
-    return Scaffold(
-      appBar: const OrdersAppBar(),
-      body: ListView.builder(
-        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
-        itemCount: 4,
-        itemBuilder: (BuildContext context, int index) {
-          return OrderTile(
-            orderId: "Order ID 123456678912345678901",
-            itemCount: 3,
-            date: "Wed, Jun 19",
-            total: "EGP 450",
-            status: "Pending",
-            statusColor: theme.colorScheme.primary,
-          );
-        },
-      ),
-    );
-  }
-}
-
-class OrderTile extends StatelessWidget {
-  final String orderId;
-  final int itemCount;
-  final String date;
-  final String total;
-  final String status;
-  final Color statusColor;
-
-  const OrderTile({
-    super.key,
-    required this.orderId,
-    required this.itemCount,
-    required this.date,
-    required this.total,
-    required this.status,
-    required this.statusColor,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-
-    return Container(
-      margin: const EdgeInsets.only(bottom: 12),
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(8),
-        color: theme.colorScheme.surface,
-      ),
-      child: ListTile(
-        contentPadding: const EdgeInsets.all(0),
-        minVerticalPadding: 0,
-        dense: true,
-        title: Text(
-          orderId,
-          style: theme.textTheme.bodySmall!.copyWith(
-            fontWeight: FontWeight.w600,
-            fontFamily: appFont(context),
-          ),
-        ),
-        subtitle: Text(
-          "$itemCount items • $date",
-          style: theme.textTheme.bodyMedium,
-        ),
-        trailing: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
-          decoration: BoxDecoration(
-            color: statusColor.withOpacity(0.2),
-            borderRadius: BorderRadius.circular(20),
-          ),
-          child: Text(
-            status,
-            style: theme.textTheme.bodySmall!.copyWith(
-              fontWeight: FontWeight.w600,
-              color: statusColor,
-              fontFamily: appFont(context),
-            ),
-          ),
-        ),
-      ),
+    return BlocBuilder<OrdersCubit, OrdersState>(
+      builder: (context, state) {
+        final orders = state.maybeWhen(
+          orElse: () => [OrdersEntity.loading()],
+          success: (orderEntity) => orderEntity,
+        );
+        return state.maybeWhen(
+          orElse:
+              () => Scaffold(
+                appBar: const OrdersAppBar(),
+                body: SkeletonLoading(
+                  isLoading: state.isLoading,
+                  child: ListView.builder(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 8,
+                      vertical: 16,
+                    ),
+                    itemCount: orders.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return OrderListItem(
+                        orderId: orders[index].orderId,
+                        itemCount: orders[index].products.length,
+                        date: orders[index].arrivedAt.toString(),
+                        total: orders[index].totalPrice.toString(),
+                        status: orders[index].orderStatus.name,
+                        statusColor: theme.colorScheme.primary,
+                      );
+                    },
+                  ),
+                ),
+              ),
+          error:
+              (errMessage) => EmptyStateWidget.withButton(
+                title: context.tr(LocaleKeys.common_something_went_wrong),
+                subtitle: errMessage,
+                buttonText: "Try Again",
+                onButtonPressed: () => cubit.fetchOrders(),
+              ),
+        );
+      },
     );
   }
 }

@@ -1,3 +1,5 @@
+import 'package:ionic/features/orders/domain/entity/orders_product_entity.dart';
+
 import '../models/product_item_model.dart';
 
 class ProductItemEntity {
@@ -54,6 +56,18 @@ extension ProductItemEntityExtension on ProductItemEntity {
       reviewsCount: reviewsCount,
       brand: brand,
       deliveryDays: deliveryDays,
+    );
+  }
+
+  OrdersProductEntity toOrdersProductEntity(int quantity) {
+    return OrdersProductEntity(
+      productId: productId,
+      name: title,
+      imageUrl: imageUrl,
+      brand: brand,
+      price: price,
+      quantity: quantity,
+      totalPrice: price,
     );
   }
 }

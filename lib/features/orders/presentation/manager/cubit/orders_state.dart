@@ -7,3 +7,10 @@ class OrdersState with _$OrdersState {
   const factory OrdersState.error(String errMessage) = _Error;
   const factory OrdersState.success(List<OrdersEntity> orders) = _Success;
 }
+
+extension OrdersStateX on OrdersState {
+  bool get isInitial => this is _Initial;
+  bool get isLoading => this is _Loading;
+  bool get isError => this is _Error;
+  bool get isSuccess => this is _Success;
+}

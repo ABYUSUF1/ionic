@@ -23,7 +23,7 @@ class ProductView extends StatelessWidget {
         builder: (context, state) {
           final Product product = state.maybeWhen(
             orElse: () => Product.loading(),
-            success: (p) => p,
+            success: (p, _) => p,
           );
           return Skeletonizer(
             enabled: state.maybeWhen(orElse: () => false, loading: () => true),

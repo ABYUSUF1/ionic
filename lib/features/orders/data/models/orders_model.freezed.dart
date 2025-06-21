@@ -27,7 +27,7 @@ mixin _$OrdersModel {
   String get lastName => throw _privateConstructorUsedError;
   String get phoneNumber => throw _privateConstructorUsedError;
   String get address => throw _privateConstructorUsedError;
-  List<ProductItemModel> get products => throw _privateConstructorUsedError;
+  List<OrdersProductModel> get products => throw _privateConstructorUsedError;
   double get totalPrice => throw _privateConstructorUsedError;
   int get totalQuantity => throw _privateConstructorUsedError;
   PaymentMethodEnum get paymentMethod => throw _privateConstructorUsedError;
@@ -36,7 +36,6 @@ mixin _$OrdersModel {
   OrderStatusEnum get orderStatus => throw _privateConstructorUsedError;
   DateTime get createdAt => throw _privateConstructorUsedError;
   DateTime get arrivedAt => throw _privateConstructorUsedError;
-  bool get isPaid => throw _privateConstructorUsedError;
 
   /// Serializes this OrdersModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -62,7 +61,7 @@ abstract class $OrdersModelCopyWith<$Res> {
     String lastName,
     String phoneNumber,
     String address,
-    List<ProductItemModel> products,
+    List<OrdersProductModel> products,
     double totalPrice,
     int totalQuantity,
     PaymentMethodEnum paymentMethod,
@@ -70,7 +69,6 @@ abstract class $OrdersModelCopyWith<$Res> {
     OrderStatusEnum orderStatus,
     DateTime createdAt,
     DateTime arrivedAt,
-    bool isPaid,
   });
 }
 
@@ -103,7 +101,6 @@ class _$OrdersModelCopyWithImpl<$Res, $Val extends OrdersModel>
     Object? orderStatus = null,
     Object? createdAt = null,
     Object? arrivedAt = null,
-    Object? isPaid = null,
   }) {
     return _then(
       _value.copyWith(
@@ -141,7 +138,7 @@ class _$OrdersModelCopyWithImpl<$Res, $Val extends OrdersModel>
                 null == products
                     ? _value.products
                     : products // ignore: cast_nullable_to_non_nullable
-                        as List<ProductItemModel>,
+                        as List<OrdersProductModel>,
             totalPrice:
                 null == totalPrice
                     ? _value.totalPrice
@@ -177,11 +174,6 @@ class _$OrdersModelCopyWithImpl<$Res, $Val extends OrdersModel>
                     ? _value.arrivedAt
                     : arrivedAt // ignore: cast_nullable_to_non_nullable
                         as DateTime,
-            isPaid:
-                null == isPaid
-                    ? _value.isPaid
-                    : isPaid // ignore: cast_nullable_to_non_nullable
-                        as bool,
           )
           as $Val,
     );
@@ -204,7 +196,7 @@ abstract class _$$OrdersModelImplCopyWith<$Res>
     String lastName,
     String phoneNumber,
     String address,
-    List<ProductItemModel> products,
+    List<OrdersProductModel> products,
     double totalPrice,
     int totalQuantity,
     PaymentMethodEnum paymentMethod,
@@ -212,7 +204,6 @@ abstract class _$$OrdersModelImplCopyWith<$Res>
     OrderStatusEnum orderStatus,
     DateTime createdAt,
     DateTime arrivedAt,
-    bool isPaid,
   });
 }
 
@@ -244,7 +235,6 @@ class __$$OrdersModelImplCopyWithImpl<$Res>
     Object? orderStatus = null,
     Object? createdAt = null,
     Object? arrivedAt = null,
-    Object? isPaid = null,
   }) {
     return _then(
       _$OrdersModelImpl(
@@ -282,7 +272,7 @@ class __$$OrdersModelImplCopyWithImpl<$Res>
             null == products
                 ? _value._products
                 : products // ignore: cast_nullable_to_non_nullable
-                    as List<ProductItemModel>,
+                    as List<OrdersProductModel>,
         totalPrice:
             null == totalPrice
                 ? _value.totalPrice
@@ -318,11 +308,6 @@ class __$$OrdersModelImplCopyWithImpl<$Res>
                 ? _value.arrivedAt
                 : arrivedAt // ignore: cast_nullable_to_non_nullable
                     as DateTime,
-        isPaid:
-            null == isPaid
-                ? _value.isPaid
-                : isPaid // ignore: cast_nullable_to_non_nullable
-                    as bool,
       ),
     );
   }
@@ -339,7 +324,7 @@ class _$OrdersModelImpl implements _OrdersModel {
     required this.lastName,
     required this.phoneNumber,
     required this.address,
-    required final List<ProductItemModel> products,
+    required final List<OrdersProductModel> products,
     required this.totalPrice,
     required this.totalQuantity,
     required this.paymentMethod,
@@ -347,7 +332,6 @@ class _$OrdersModelImpl implements _OrdersModel {
     required this.orderStatus,
     required this.createdAt,
     required this.arrivedAt,
-    required this.isPaid,
   }) : _products = products;
 
   factory _$OrdersModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -365,9 +349,9 @@ class _$OrdersModelImpl implements _OrdersModel {
   final String phoneNumber;
   @override
   final String address;
-  final List<ProductItemModel> _products;
+  final List<OrdersProductModel> _products;
   @override
-  List<ProductItemModel> get products {
+  List<OrdersProductModel> get products {
     if (_products is EqualUnmodifiableListView) return _products;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_products);
@@ -387,12 +371,10 @@ class _$OrdersModelImpl implements _OrdersModel {
   final DateTime createdAt;
   @override
   final DateTime arrivedAt;
-  @override
-  final bool isPaid;
 
   @override
   String toString() {
-    return 'OrdersModel(orderId: $orderId, userId: $userId, firstName: $firstName, lastName: $lastName, phoneNumber: $phoneNumber, address: $address, products: $products, totalPrice: $totalPrice, totalQuantity: $totalQuantity, paymentMethod: $paymentMethod, deliveryInstructions: $deliveryInstructions, orderStatus: $orderStatus, createdAt: $createdAt, arrivedAt: $arrivedAt, isPaid: $isPaid)';
+    return 'OrdersModel(orderId: $orderId, userId: $userId, firstName: $firstName, lastName: $lastName, phoneNumber: $phoneNumber, address: $address, products: $products, totalPrice: $totalPrice, totalQuantity: $totalQuantity, paymentMethod: $paymentMethod, deliveryInstructions: $deliveryInstructions, orderStatus: $orderStatus, createdAt: $createdAt, arrivedAt: $arrivedAt)';
   }
 
   @override
@@ -423,8 +405,7 @@ class _$OrdersModelImpl implements _OrdersModel {
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
             (identical(other.arrivedAt, arrivedAt) ||
-                other.arrivedAt == arrivedAt) &&
-            (identical(other.isPaid, isPaid) || other.isPaid == isPaid));
+                other.arrivedAt == arrivedAt));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -445,7 +426,6 @@ class _$OrdersModelImpl implements _OrdersModel {
     orderStatus,
     createdAt,
     arrivedAt,
-    isPaid,
   );
 
   /// Create a copy of OrdersModel
@@ -470,7 +450,7 @@ abstract class _OrdersModel implements OrdersModel {
     required final String lastName,
     required final String phoneNumber,
     required final String address,
-    required final List<ProductItemModel> products,
+    required final List<OrdersProductModel> products,
     required final double totalPrice,
     required final int totalQuantity,
     required final PaymentMethodEnum paymentMethod,
@@ -478,7 +458,6 @@ abstract class _OrdersModel implements OrdersModel {
     required final OrderStatusEnum orderStatus,
     required final DateTime createdAt,
     required final DateTime arrivedAt,
-    required final bool isPaid,
   }) = _$OrdersModelImpl;
 
   factory _OrdersModel.fromJson(Map<String, dynamic> json) =
@@ -497,7 +476,7 @@ abstract class _OrdersModel implements OrdersModel {
   @override
   String get address;
   @override
-  List<ProductItemModel> get products;
+  List<OrdersProductModel> get products;
   @override
   double get totalPrice;
   @override
@@ -512,8 +491,6 @@ abstract class _OrdersModel implements OrdersModel {
   DateTime get createdAt;
   @override
   DateTime get arrivedAt;
-  @override
-  bool get isPaid;
 
   /// Create a copy of OrdersModel
   /// with the given fields replaced by the non-null parameter values.

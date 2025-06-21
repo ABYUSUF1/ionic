@@ -4,4 +4,5 @@ final class FirestoreCollectionNames {
   static const String addresses = 'addresses';
   static const String cart = 'cart';
   static const String orders = 'orders';
+  static const String ordersCounter = 'orders_counter';
 }

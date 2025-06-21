@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:ionic/core/entities/product_item_entity.dart';
 import 'package:ionic/core/utils/enums/payment_method_enum.dart';
 import 'package:ionic/core/widgets/snackbar/app_snackbar.dart';
 import 'package:ionic/features/address/presentation/manager/default_address/default_address_cubit.dart';
@@ -140,11 +141,13 @@ class CheckoutCubit extends Cubit<CheckoutState> {
       deliveryInstructions: state.deliveryInstruction!,
       arrivedAt: arrivesAt!,
       createdAt: DateTime.now(),
-      products: cartProducts.map((e) => e.productItem).toList(),
+      products:
+          cartProducts
+              .map((e) => e.productItem.toOrdersProductEntity(e.quantity))
+              .toList(),
       totalPrice: tuple?.$1 ?? 0.0,
       totalQuantity: tuple?.$2 ?? 0,
       orderStatus: OrderStatusEnum.pending,
-      isPaid: state.paymentMethod != PaymentMethodEnum.cod,
     );
 
     await context.read<OrdersCubit>().addToOrders(order);
