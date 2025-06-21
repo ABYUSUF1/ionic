@@ -1,10 +1,11 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ionic/core/constants/app_assets.dart';
 import 'package:ionic/core/widgets/empty_state_widget.dart';
-import 'package:ionic/core/widgets/loading/skeleton_loading.dart';
 import 'package:ionic/features/orders/domain/entity/orders_entity.dart';
 import 'package:ionic/features/orders/presentation/manager/cubit/orders_cubit.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 import '../../../../generated/locale_keys.g.dart';
 import '../widgets/order_list_item.dart';
 import '../widgets/orders_app_bar.dart';
@@ -14,22 +15,39 @@ class OrdersView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
+    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
     final cubit = context.read<OrdersCubit>();
     cubit.fetchOrders();
 
     return BlocBuilder<OrdersCubit, OrdersState>(
       builder: (context, state) {
         final orders = state.maybeWhen(
-          orElse: () => [OrdersEntity.loading()],
-          success: (orderEntity) => orderEntity,
+          success: (allOrders, filtered) => filtered ?? allOrders,
+          orElse: () => List.generate(3, (_) => OrdersEntity.loading()),
         );
-        return state.maybeWhen(
-          orElse:
-              () => Scaffold(
-                appBar: const OrdersAppBar(),
-                body: SkeletonLoading(
-                  isLoading: state.isLoading,
+
+        return Scaffold(
+          appBar: const OrdersAppBar(),
+          body: state.maybeWhen(
+            error:
+                (errMessage) => EmptyStateWidget.withButton(
+                  title: context.tr(LocaleKeys.common_something_went_wrong),
+                  subtitle: errMessage,
+                  buttonText: "Try Again",
+                  onButtonPressed: () => cubit.fetchOrders(),
+                ),
+            empty:
+                (message) => EmptyStateWidget(
+                  title: 'No Orders Found',
+                  subtitle: message,
+                  svgImage:
+                      isDarkMode
+                          ? AppAssets.illustrationsEmptyIllustrationDark
+                          : AppAssets.illustrationsEmptyIllustrationDark,
+                ),
+            orElse:
+                () => Skeletonizer(
+                  enabled: state.isLoading,
                   child: ListView.builder(
                     padding: const EdgeInsets.symmetric(
                       horizontal: 8,
@@ -37,25 +55,12 @@ class OrdersView extends StatelessWidget {
                     ),
                     itemCount: orders.length,
                     itemBuilder: (BuildContext context, int index) {
-                      return OrderListItem(
-                        orderId: orders[index].orderId,
-                        itemCount: orders[index].products.length,
-                        date: orders[index].arrivedAt.toString(),
-                        total: orders[index].totalPrice.toString(),
-                        status: orders[index].orderStatus.name,
-                        statusColor: theme.colorScheme.primary,
-                      );
+                      final order = orders[index];
+                      return OrderListItem(orderEntity: order);
                     },
                   ),
                 ),
-              ),
-          error:
-              (errMessage) => EmptyStateWidget.withButton(
-                title: context.tr(LocaleKeys.common_something_went_wrong),
-                subtitle: errMessage,
-                buttonText: "Try Again",
-                onButtonPressed: () => cubit.fetchOrders(),
-              ),
+          ),
         );
       },
     );

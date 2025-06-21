@@ -4,5 +4,8 @@ import 'package:ionic/features/orders/domain/entity/orders_entity.dart';
 
 abstract class OrdersRepo {
   Future<Either<Failure, List<OrdersEntity>>> fetchOrders();
-  Future<Either<Failure, void>> addOrder(OrdersEntity ordersEntity);
+
+  Future<Either<Failure, String>> addOrder(
+    OrdersEntity ordersEntity,
+  ); // return order Id
 }

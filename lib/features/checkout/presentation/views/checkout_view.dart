@@ -35,7 +35,7 @@ class CheckoutView extends StatelessWidget {
           listener: (context, state) {
             state.maybeWhen(
               orElse: () {},
-              success: (order) {
+              success: (order, _) {
                 closeFullScreenLoading(context);
                 AppSnackbar.showSuccessSnackBar(
                   context,

@@ -1,65 +1,150 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:ionic/core/theme/app_font.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ionic/core/theme/app_colors.dart';
+import 'package:ionic/features/orders/domain/entity/orders_entity.dart';
+import 'package:ionic/features/orders/presentation/manager/cubit/orders_cubit.dart';
+import 'package:ionic/generated/locale_keys.g.dart';
+
+import 'order_status_widget.dart';
 
 class OrderListItem extends StatelessWidget {
-  final String orderId;
-  final int itemCount;
-  final String date;
-  final String total;
-  final String status;
-  final Color statusColor;
-
-  const OrderListItem({
-    super.key,
-    required this.orderId,
-    required this.itemCount,
-    required this.date,
-    required this.total,
-    required this.status,
-    required this.statusColor,
-  });
+  final OrdersEntity orderEntity;
+  const OrderListItem({super.key, required this.orderEntity});
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
     return Container(
+      clipBehavior: Clip.hardEdge,
+      width: double.infinity,
+      height: 255,
       margin: const EdgeInsets.only(bottom: 12),
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
         color: theme.colorScheme.surface,
       ),
-      child: ListTile(
-        contentPadding: const EdgeInsets.all(0),
-        minVerticalPadding: 0,
-        dense: true,
-        title: Text(
-          orderId,
-          style: theme.textTheme.bodySmall!.copyWith(
-            fontWeight: FontWeight.w600,
-            fontFamily: appFont(context),
-          ),
-        ),
-        subtitle: Text(
-          "$itemCount items • $date",
-          style: theme.textTheme.bodyMedium,
-        ),
-        trailing: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
-          decoration: BoxDecoration(
-            color: statusColor.withValues(alpha: 0.2),
-            borderRadius: BorderRadius.circular(20),
-          ),
-          child: Text(
-            status,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            orderEntity.orderId,
             style: theme.textTheme.bodySmall!.copyWith(
+              color: theme.colorScheme.onSurfaceVariant,
               fontWeight: FontWeight.w600,
-              color: statusColor,
-              fontFamily: appFont(context),
             ),
           ),
-        ),
+          const SizedBox(height: 5),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                "${orderEntity.products.length} items",
+                style: theme.textTheme.bodySmall!.copyWith(
+                  color: theme.colorScheme.onSurface,
+                ),
+              ),
+              OrderStatusWidget(
+                statusColor: AppColors.primaryColor,
+                status: orderEntity.orderStatus.name,
+              ),
+            ],
+          ),
+          const SizedBox(height: 10),
+          Stack(
+            children: [
+              Column(
+                children:
+                    orderEntity.products
+                        .take(2)
+                        .map(
+                          (e) => ListTile(
+                            isThreeLine: true,
+                            dense: true,
+                            title: Text(
+                              e.brand.isEmpty
+                                  ? context.tr(LocaleKeys.product_brand_unknown)
+                                  : e.brand,
+                              style: theme.textTheme.bodySmall,
+                            ),
+                            subtitle: Text(
+                              e.name,
+                              style: theme.textTheme.bodyMedium,
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                            leading: Container(
+                              width: 50,
+                              height: 50,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(8),
+                                color: theme.colorScheme.secondary,
+                              ),
+                              child:
+                                  context.read<OrdersCubit>().state.isLoading
+                                      ? null
+                                      : CachedNetworkImage(
+                                        imageUrl: e.imageUrl,
+                                        width: 50,
+                                        height: 50,
+                                      ),
+                            ),
+                          ),
+                        )
+                        .toList(),
+              ),
+
+              // Shadow gradient from bottom of ListTile section to middle of 2nd item
+              orderEntity.products.length == 1
+                  ? const SizedBox.shrink()
+                  : Positioned(
+                    bottom: 0,
+                    left: 0,
+                    right: 0,
+                    height: 50, // Adjust to cover about half of 2nd ListTile
+                    child: IgnorePointer(
+                      child: Container(
+                        decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            begin: Alignment.bottomCenter,
+                            end: Alignment.topCenter,
+                            colors: [
+                              theme.colorScheme.surface,
+                              theme.colorScheme.surface.withValues(alpha: 0.85),
+                              theme.colorScheme.surface.withValues(alpha: 0.6),
+                              theme.colorScheme.surface.withValues(alpha: 0.0),
+                            ],
+                            stops: const [0.0, 0.4, 0.7, 1.0],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+            ],
+          ),
+          const Spacer(),
+          Center(
+            child: TextButton.icon(
+              onPressed: () {},
+              iconAlignment: IconAlignment.end,
+              icon: const Icon(
+                Icons.arrow_forward_ios_rounded,
+                size: 14,
+                color: AppColors.primaryColor,
+              ),
+              label: Text(
+                "Show details",
+                style: theme.textTheme.labelSmall!.copyWith(
+                  color: AppColors.primaryColor,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

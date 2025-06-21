@@ -21,44 +21,62 @@ mixin _$OrdersState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(String errMessage) error,
-    required TResult Function(List<OrdersEntity> orders) success,
+    required TResult Function(
+      List<OrdersEntity> allOrders,
+      List<OrdersEntity>? filtered,
+    )
+    success,
+    required TResult Function(String message) empty,
+    required TResult Function(String message) error,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(String errMessage)? error,
-    TResult? Function(List<OrdersEntity> orders)? success,
+    TResult? Function(
+      List<OrdersEntity> allOrders,
+      List<OrdersEntity>? filtered,
+    )?
+    success,
+    TResult? Function(String message)? empty,
+    TResult? Function(String message)? error,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(String errMessage)? error,
-    TResult Function(List<OrdersEntity> orders)? success,
+    TResult Function(
+      List<OrdersEntity> allOrders,
+      List<OrdersEntity>? filtered,
+    )?
+    success,
+    TResult Function(String message)? empty,
+    TResult Function(String message)? error,
     required TResult orElse(),
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Error value) error,
     required TResult Function(_Success value) success,
+    required TResult Function(_Empty value) empty,
+    required TResult Function(_Error value) error,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_Error value)? error,
     TResult? Function(_Success value)? success,
+    TResult? Function(_Empty value)? empty,
+    TResult? Function(_Error value)? error,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Error value)? error,
     TResult Function(_Success value)? success,
+    TResult Function(_Empty value)? empty,
+    TResult Function(_Error value)? error,
     required TResult orElse(),
   }) => throw _privateConstructorUsedError;
 }
@@ -130,8 +148,13 @@ class _$InitialImpl implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(String errMessage) error,
-    required TResult Function(List<OrdersEntity> orders) success,
+    required TResult Function(
+      List<OrdersEntity> allOrders,
+      List<OrdersEntity>? filtered,
+    )
+    success,
+    required TResult Function(String message) empty,
+    required TResult Function(String message) error,
   }) {
     return initial();
   }
@@ -141,8 +164,13 @@ class _$InitialImpl implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(String errMessage)? error,
-    TResult? Function(List<OrdersEntity> orders)? success,
+    TResult? Function(
+      List<OrdersEntity> allOrders,
+      List<OrdersEntity>? filtered,
+    )?
+    success,
+    TResult? Function(String message)? empty,
+    TResult? Function(String message)? error,
   }) {
     return initial?.call();
   }
@@ -152,8 +180,13 @@ class _$InitialImpl implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(String errMessage)? error,
-    TResult Function(List<OrdersEntity> orders)? success,
+    TResult Function(
+      List<OrdersEntity> allOrders,
+      List<OrdersEntity>? filtered,
+    )?
+    success,
+    TResult Function(String message)? empty,
+    TResult Function(String message)? error,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -167,8 +200,9 @@ class _$InitialImpl implements _Initial {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Error value) error,
     required TResult Function(_Success value) success,
+    required TResult Function(_Empty value) empty,
+    required TResult Function(_Error value) error,
   }) {
     return initial(this);
   }
@@ -178,8 +212,9 @@ class _$InitialImpl implements _Initial {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_Error value)? error,
     TResult? Function(_Success value)? success,
+    TResult? Function(_Empty value)? empty,
+    TResult? Function(_Error value)? error,
   }) {
     return initial?.call(this);
   }
@@ -189,8 +224,9 @@ class _$InitialImpl implements _Initial {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Error value)? error,
     TResult Function(_Success value)? success,
+    TResult Function(_Empty value)? empty,
+    TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -249,8 +285,13 @@ class _$LoadingImpl implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(String errMessage) error,
-    required TResult Function(List<OrdersEntity> orders) success,
+    required TResult Function(
+      List<OrdersEntity> allOrders,
+      List<OrdersEntity>? filtered,
+    )
+    success,
+    required TResult Function(String message) empty,
+    required TResult Function(String message) error,
   }) {
     return loading();
   }
@@ -260,8 +301,13 @@ class _$LoadingImpl implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(String errMessage)? error,
-    TResult? Function(List<OrdersEntity> orders)? success,
+    TResult? Function(
+      List<OrdersEntity> allOrders,
+      List<OrdersEntity>? filtered,
+    )?
+    success,
+    TResult? Function(String message)? empty,
+    TResult? Function(String message)? error,
   }) {
     return loading?.call();
   }
@@ -271,8 +317,13 @@ class _$LoadingImpl implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(String errMessage)? error,
-    TResult Function(List<OrdersEntity> orders)? success,
+    TResult Function(
+      List<OrdersEntity> allOrders,
+      List<OrdersEntity>? filtered,
+    )?
+    success,
+    TResult Function(String message)? empty,
+    TResult Function(String message)? error,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -286,8 +337,9 @@ class _$LoadingImpl implements _Loading {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Error value) error,
     required TResult Function(_Success value) success,
+    required TResult Function(_Empty value) empty,
+    required TResult Function(_Error value) error,
   }) {
     return loading(this);
   }
@@ -297,8 +349,9 @@ class _$LoadingImpl implements _Loading {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_Error value)? error,
     TResult? Function(_Success value)? success,
+    TResult? Function(_Empty value)? empty,
+    TResult? Function(_Error value)? error,
   }) {
     return loading?.call(this);
   }
@@ -308,8 +361,9 @@ class _$LoadingImpl implements _Loading {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Error value)? error,
     TResult Function(_Success value)? success,
+    TResult Function(_Empty value)? empty,
+    TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -324,168 +378,13 @@ abstract class _Loading implements OrdersState {
 }
 
 /// @nodoc
-abstract class _$$ErrorImplCopyWith<$Res> {
-  factory _$$ErrorImplCopyWith(
-    _$ErrorImpl value,
-    $Res Function(_$ErrorImpl) then,
-  ) = __$$ErrorImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({String errMessage});
-}
-
-/// @nodoc
-class __$$ErrorImplCopyWithImpl<$Res>
-    extends _$OrdersStateCopyWithImpl<$Res, _$ErrorImpl>
-    implements _$$ErrorImplCopyWith<$Res> {
-  __$$ErrorImplCopyWithImpl(
-    _$ErrorImpl _value,
-    $Res Function(_$ErrorImpl) _then,
-  ) : super(_value, _then);
-
-  /// Create a copy of OrdersState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({Object? errMessage = null}) {
-    return _then(
-      _$ErrorImpl(
-        null == errMessage
-            ? _value.errMessage
-            : errMessage // ignore: cast_nullable_to_non_nullable
-                as String,
-      ),
-    );
-  }
-}
-
-/// @nodoc
-
-class _$ErrorImpl implements _Error {
-  const _$ErrorImpl(this.errMessage);
-
-  @override
-  final String errMessage;
-
-  @override
-  String toString() {
-    return 'OrdersState.error(errMessage: $errMessage)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$ErrorImpl &&
-            (identical(other.errMessage, errMessage) ||
-                other.errMessage == errMessage));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, errMessage);
-
-  /// Create a copy of OrdersState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$ErrorImplCopyWith<_$ErrorImpl> get copyWith =>
-      __$$ErrorImplCopyWithImpl<_$ErrorImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function(String errMessage) error,
-    required TResult Function(List<OrdersEntity> orders) success,
-  }) {
-    return error(errMessage);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function(String errMessage)? error,
-    TResult? Function(List<OrdersEntity> orders)? success,
-  }) {
-    return error?.call(errMessage);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(String errMessage)? error,
-    TResult Function(List<OrdersEntity> orders)? success,
-    required TResult orElse(),
-  }) {
-    if (error != null) {
-      return error(errMessage);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Error value) error,
-    required TResult Function(_Success value) success,
-  }) {
-    return error(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Error value)? error,
-    TResult? Function(_Success value)? success,
-  }) {
-    return error?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Error value)? error,
-    TResult Function(_Success value)? success,
-    required TResult orElse(),
-  }) {
-    if (error != null) {
-      return error(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Error implements OrdersState {
-  const factory _Error(final String errMessage) = _$ErrorImpl;
-
-  String get errMessage;
-
-  /// Create a copy of OrdersState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ErrorImplCopyWith<_$ErrorImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
 abstract class _$$SuccessImplCopyWith<$Res> {
   factory _$$SuccessImplCopyWith(
     _$SuccessImpl value,
     $Res Function(_$SuccessImpl) then,
   ) = __$$SuccessImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<OrdersEntity> orders});
+  $Res call({List<OrdersEntity> allOrders, List<OrdersEntity>? filtered});
 }
 
 /// @nodoc
@@ -501,13 +400,18 @@ class __$$SuccessImplCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? orders = null}) {
+  $Res call({Object? allOrders = null, Object? filtered = freezed}) {
     return _then(
       _$SuccessImpl(
-        null == orders
-            ? _value._orders
-            : orders // ignore: cast_nullable_to_non_nullable
+        null == allOrders
+            ? _value._allOrders
+            : allOrders // ignore: cast_nullable_to_non_nullable
                 as List<OrdersEntity>,
+        filtered:
+            freezed == filtered
+                ? _value._filtered
+                : filtered // ignore: cast_nullable_to_non_nullable
+                    as List<OrdersEntity>?,
       ),
     );
   }
@@ -516,19 +420,33 @@ class __$$SuccessImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$SuccessImpl implements _Success {
-  const _$SuccessImpl(final List<OrdersEntity> orders) : _orders = orders;
+  const _$SuccessImpl(
+    final List<OrdersEntity> allOrders, {
+    final List<OrdersEntity>? filtered,
+  }) : _allOrders = allOrders,
+       _filtered = filtered;
 
-  final List<OrdersEntity> _orders;
+  final List<OrdersEntity> _allOrders;
   @override
-  List<OrdersEntity> get orders {
-    if (_orders is EqualUnmodifiableListView) return _orders;
+  List<OrdersEntity> get allOrders {
+    if (_allOrders is EqualUnmodifiableListView) return _allOrders;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_orders);
+    return EqualUnmodifiableListView(_allOrders);
+  }
+
+  final List<OrdersEntity>? _filtered;
+  @override
+  List<OrdersEntity>? get filtered {
+    final value = _filtered;
+    if (value == null) return null;
+    if (_filtered is EqualUnmodifiableListView) return _filtered;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
   }
 
   @override
   String toString() {
-    return 'OrdersState.success(orders: $orders)';
+    return 'OrdersState.success(allOrders: $allOrders, filtered: $filtered)';
   }
 
   @override
@@ -536,12 +454,19 @@ class _$SuccessImpl implements _Success {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SuccessImpl &&
-            const DeepCollectionEquality().equals(other._orders, _orders));
+            const DeepCollectionEquality().equals(
+              other._allOrders,
+              _allOrders,
+            ) &&
+            const DeepCollectionEquality().equals(other._filtered, _filtered));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_orders));
+  int get hashCode => Object.hash(
+    runtimeType,
+    const DeepCollectionEquality().hash(_allOrders),
+    const DeepCollectionEquality().hash(_filtered),
+  );
 
   /// Create a copy of OrdersState
   /// with the given fields replaced by the non-null parameter values.
@@ -556,10 +481,15 @@ class _$SuccessImpl implements _Success {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(String errMessage) error,
-    required TResult Function(List<OrdersEntity> orders) success,
+    required TResult Function(
+      List<OrdersEntity> allOrders,
+      List<OrdersEntity>? filtered,
+    )
+    success,
+    required TResult Function(String message) empty,
+    required TResult Function(String message) error,
   }) {
-    return success(orders);
+    return success(allOrders, filtered);
   }
 
   @override
@@ -567,10 +497,15 @@ class _$SuccessImpl implements _Success {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(String errMessage)? error,
-    TResult? Function(List<OrdersEntity> orders)? success,
+    TResult? Function(
+      List<OrdersEntity> allOrders,
+      List<OrdersEntity>? filtered,
+    )?
+    success,
+    TResult? Function(String message)? empty,
+    TResult? Function(String message)? error,
   }) {
-    return success?.call(orders);
+    return success?.call(allOrders, filtered);
   }
 
   @override
@@ -578,12 +513,17 @@ class _$SuccessImpl implements _Success {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(String errMessage)? error,
-    TResult Function(List<OrdersEntity> orders)? success,
+    TResult Function(
+      List<OrdersEntity> allOrders,
+      List<OrdersEntity>? filtered,
+    )?
+    success,
+    TResult Function(String message)? empty,
+    TResult Function(String message)? error,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success(orders);
+      return success(allOrders, filtered);
     }
     return orElse();
   }
@@ -593,8 +533,9 @@ class _$SuccessImpl implements _Success {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Error value) error,
     required TResult Function(_Success value) success,
+    required TResult Function(_Empty value) empty,
+    required TResult Function(_Error value) error,
   }) {
     return success(this);
   }
@@ -604,8 +545,9 @@ class _$SuccessImpl implements _Success {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_Error value)? error,
     TResult? Function(_Success value)? success,
+    TResult? Function(_Empty value)? empty,
+    TResult? Function(_Error value)? error,
   }) {
     return success?.call(this);
   }
@@ -615,8 +557,9 @@ class _$SuccessImpl implements _Success {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Error value)? error,
     TResult Function(_Success value)? success,
+    TResult Function(_Empty value)? empty,
+    TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -627,13 +570,361 @@ class _$SuccessImpl implements _Success {
 }
 
 abstract class _Success implements OrdersState {
-  const factory _Success(final List<OrdersEntity> orders) = _$SuccessImpl;
+  const factory _Success(
+    final List<OrdersEntity> allOrders, {
+    final List<OrdersEntity>? filtered,
+  }) = _$SuccessImpl;
 
-  List<OrdersEntity> get orders;
+  List<OrdersEntity> get allOrders;
+  List<OrdersEntity>? get filtered;
 
   /// Create a copy of OrdersState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$EmptyImplCopyWith<$Res> {
+  factory _$$EmptyImplCopyWith(
+    _$EmptyImpl value,
+    $Res Function(_$EmptyImpl) then,
+  ) = __$$EmptyImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String message});
+}
+
+/// @nodoc
+class __$$EmptyImplCopyWithImpl<$Res>
+    extends _$OrdersStateCopyWithImpl<$Res, _$EmptyImpl>
+    implements _$$EmptyImplCopyWith<$Res> {
+  __$$EmptyImplCopyWithImpl(
+    _$EmptyImpl _value,
+    $Res Function(_$EmptyImpl) _then,
+  ) : super(_value, _then);
+
+  /// Create a copy of OrdersState
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({Object? message = null}) {
+    return _then(
+      _$EmptyImpl(
+        null == message
+            ? _value.message
+            : message // ignore: cast_nullable_to_non_nullable
+                as String,
+      ),
+    );
+  }
+}
+
+/// @nodoc
+
+class _$EmptyImpl implements _Empty {
+  const _$EmptyImpl(this.message);
+
+  @override
+  final String message;
+
+  @override
+  String toString() {
+    return 'OrdersState.empty(message: $message)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$EmptyImpl &&
+            (identical(other.message, message) || other.message == message));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, message);
+
+  /// Create a copy of OrdersState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$EmptyImplCopyWith<_$EmptyImpl> get copyWith =>
+      __$$EmptyImplCopyWithImpl<_$EmptyImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(
+      List<OrdersEntity> allOrders,
+      List<OrdersEntity>? filtered,
+    )
+    success,
+    required TResult Function(String message) empty,
+    required TResult Function(String message) error,
+  }) {
+    return empty(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(
+      List<OrdersEntity> allOrders,
+      List<OrdersEntity>? filtered,
+    )?
+    success,
+    TResult? Function(String message)? empty,
+    TResult? Function(String message)? error,
+  }) {
+    return empty?.call(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(
+      List<OrdersEntity> allOrders,
+      List<OrdersEntity>? filtered,
+    )?
+    success,
+    TResult Function(String message)? empty,
+    TResult Function(String message)? error,
+    required TResult orElse(),
+  }) {
+    if (empty != null) {
+      return empty(message);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Success value) success,
+    required TResult Function(_Empty value) empty,
+    required TResult Function(_Error value) error,
+  }) {
+    return empty(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Success value)? success,
+    TResult? Function(_Empty value)? empty,
+    TResult? Function(_Error value)? error,
+  }) {
+    return empty?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Success value)? success,
+    TResult Function(_Empty value)? empty,
+    TResult Function(_Error value)? error,
+    required TResult orElse(),
+  }) {
+    if (empty != null) {
+      return empty(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Empty implements OrdersState {
+  const factory _Empty(final String message) = _$EmptyImpl;
+
+  String get message;
+
+  /// Create a copy of OrdersState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$EmptyImplCopyWith<_$EmptyImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ErrorImplCopyWith<$Res> {
+  factory _$$ErrorImplCopyWith(
+    _$ErrorImpl value,
+    $Res Function(_$ErrorImpl) then,
+  ) = __$$ErrorImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String message});
+}
+
+/// @nodoc
+class __$$ErrorImplCopyWithImpl<$Res>
+    extends _$OrdersStateCopyWithImpl<$Res, _$ErrorImpl>
+    implements _$$ErrorImplCopyWith<$Res> {
+  __$$ErrorImplCopyWithImpl(
+    _$ErrorImpl _value,
+    $Res Function(_$ErrorImpl) _then,
+  ) : super(_value, _then);
+
+  /// Create a copy of OrdersState
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({Object? message = null}) {
+    return _then(
+      _$ErrorImpl(
+        null == message
+            ? _value.message
+            : message // ignore: cast_nullable_to_non_nullable
+                as String,
+      ),
+    );
+  }
+}
+
+/// @nodoc
+
+class _$ErrorImpl implements _Error {
+  const _$ErrorImpl(this.message);
+
+  @override
+  final String message;
+
+  @override
+  String toString() {
+    return 'OrdersState.error(message: $message)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ErrorImpl &&
+            (identical(other.message, message) || other.message == message));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, message);
+
+  /// Create a copy of OrdersState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ErrorImplCopyWith<_$ErrorImpl> get copyWith =>
+      __$$ErrorImplCopyWithImpl<_$ErrorImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(
+      List<OrdersEntity> allOrders,
+      List<OrdersEntity>? filtered,
+    )
+    success,
+    required TResult Function(String message) empty,
+    required TResult Function(String message) error,
+  }) {
+    return error(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(
+      List<OrdersEntity> allOrders,
+      List<OrdersEntity>? filtered,
+    )?
+    success,
+    TResult? Function(String message)? empty,
+    TResult? Function(String message)? error,
+  }) {
+    return error?.call(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(
+      List<OrdersEntity> allOrders,
+      List<OrdersEntity>? filtered,
+    )?
+    success,
+    TResult Function(String message)? empty,
+    TResult Function(String message)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(message);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Success value) success,
+    required TResult Function(_Empty value) empty,
+    required TResult Function(_Error value) error,
+  }) {
+    return error(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Success value)? success,
+    TResult? Function(_Empty value)? empty,
+    TResult? Function(_Error value)? error,
+  }) {
+    return error?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Success value)? success,
+    TResult Function(_Empty value)? empty,
+    TResult Function(_Error value)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Error implements OrdersState {
+  const factory _Error(final String message) = _$ErrorImpl;
+
+  String get message;
+
+  /// Create a copy of OrdersState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$ErrorImplCopyWith<_$ErrorImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -12,7 +12,7 @@ class OrdersRepoImpl with AuthGuardMixin implements OrdersRepo {
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
 
   @override
-  Future<Either<Failure, void>> addOrder(OrdersEntity ordersEntity) async {
+  Future<Either<Failure, String>> addOrder(OrdersEntity ordersEntity) async {
     try {
       // Step 1: Get today's date for counter key
       final String today = DateFormat('yyyy-MM-dd').format(DateTime.now());
@@ -63,7 +63,7 @@ class OrdersRepoImpl with AuthGuardMixin implements OrdersRepo {
           .doc() // Let Firestore generate unique doc ID
           .set(completeOrderEntity.toModel().toJson());
 
-      return const Right(null);
+      return Right(newOrderId);
     } catch (e) {
       return Left(Failure("Could not place order: ${e.toString()}"));
     }

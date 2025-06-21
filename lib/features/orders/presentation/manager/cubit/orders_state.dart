@@ -4,8 +4,12 @@ part of 'orders_cubit.dart';
 class OrdersState with _$OrdersState {
   const factory OrdersState.initial() = _Initial;
   const factory OrdersState.loading() = _Loading;
-  const factory OrdersState.error(String errMessage) = _Error;
-  const factory OrdersState.success(List<OrdersEntity> orders) = _Success;
+  const factory OrdersState.success(
+    List<OrdersEntity> allOrders, {
+    List<OrdersEntity>? filtered,
+  }) = _Success;
+  const factory OrdersState.empty(String message) = _Empty;
+  const factory OrdersState.error(String message) = _Error;
 }
 
 extension OrdersStateX on OrdersState {

@@ -1,10 +1,8 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:iconsax_plus/iconsax_plus.dart';
 import 'package:ionic/core/constants/app_assets.dart';
 
 import '../../../../core/widgets/buttons/custom_back_button.dart';
-import '../../../../generated/locale_keys.g.dart';
+import 'orders_search_field.dart';
 
 class OrdersAppBar extends StatelessWidget implements PreferredSizeWidget {
   const OrdersAppBar({super.key});
@@ -33,27 +31,7 @@ class OrdersAppBar extends StatelessWidget implements PreferredSizeWidget {
                 ],
               ),
               const SizedBox(height: 12),
-              TextField(
-                onTapOutside:
-                    (_) => FocusManager.instance.primaryFocus?.unfocus(),
-                decoration: InputDecoration(
-                  hintText: context.tr(
-                    LocaleKeys.common_search_for,
-                    args: ['Orders'],
-                  ),
-                  hintStyle: theme.textTheme.titleMedium!.copyWith(
-                    color: theme.colorScheme.onSurfaceVariant,
-                  ),
-                  prefixIcon: const Icon(IconsaxPlusLinear.search_normal_1),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8),
-                    borderSide: BorderSide.none,
-                  ),
-                  filled: true,
-                  fillColor: theme.colorScheme.secondary,
-                  contentPadding: const EdgeInsets.symmetric(vertical: 15.0),
-                ),
-              ),
+              const OrdersSearchFiled(),
             ],
           ),
         ),
