@@ -8,7 +8,7 @@ class CartState with _$CartState {
   const factory CartState.empty() = _Empty;
   const factory CartState.success(
     CartEntity cartEntity,
-    CartOrderSummary cartTotals,
+    OrderSummaryEntity orderSummary,
   ) = _Success;
 }
 

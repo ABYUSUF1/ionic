@@ -22,6 +22,7 @@ class SaveAddressForm extends StatelessWidget {
       key: cubit.formKey,
       child: Scaffold(
         appBar: AppBar(
+          backgroundColor: theme.colorScheme.surface,
           title: Text(
             cubit.isEdit
                 ? context.tr(LocaleKeys.address_update_address)

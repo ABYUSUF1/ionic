@@ -2,7 +2,7 @@ import 'package:go_router/go_router.dart';
 import 'package:ionic/core/routing/app_router_name.dart';
 import 'package:ionic/features/address/data/models/address_model.dart';
 import 'package:ionic/features/address/domain/entity/address_entity.dart';
-import 'package:ionic/features/address/presentation/views/save_address.dart';
+import 'package:ionic/features/address/presentation/views/save_address_view.dart';
 import 'package:ionic/features/address/presentation/views/default_address_view.dart';
 import 'package:ionic/features/address/presentation/views/locate_on_map_view.dart';
 import 'package:ionic/features/auth/presentation/args/email_sent_args.dart';
@@ -13,6 +13,7 @@ import 'package:ionic/features/auth/presentation/views/sign_up_view.dart';
 import 'package:ionic/features/cart/presentation/views/cart_view.dart';
 import 'package:ionic/features/home/data/models/category_model/localized_title.dart';
 import 'package:ionic/features/home/presentation/views/home_view.dart';
+import 'package:ionic/features/orders/domain/entity/orders_entity.dart';
 import 'package:ionic/features/orders/presentation/views/orders_view.dart';
 import 'package:ionic/features/product/presentation/views/product_view.dart';
 import 'package:ionic/features/profile/presentation/views/edit_profile_view.dart';
@@ -23,6 +24,7 @@ import '../../features/categories/presentation/views/categories_view.dart';
 import '../../features/checkout/presentation/views/checkout_view.dart';
 import '../../features/favorite/presentation/views/favorite_view.dart';
 import '../../features/onboarding/presentation/views/onboarding_view.dart';
+import '../../features/orders/presentation/views/order_details_view.dart';
 import '../../features/search/presentation/views/search_view.dart';
 import '../models/product_model/product.dart';
 import '../services/data_source/local/local_app_settings_service.dart';
@@ -216,6 +218,16 @@ final GoRouter appRouter = GoRouter(
       path: AppRouterName.ordersRoute,
       name: AppRouterName.ordersRoute,
       builder: (context, state) => const OrdersView(),
+      routes: [
+        GoRoute(
+          path: AppRouterName.orderDetailsRoute,
+          name: AppRouterName.orderDetailsRoute,
+          builder: (context, state) {
+            final order = state.extra as OrdersEntity;
+            return OrderDetailsView(ordersEntity: order);
+          },
+        ),
+      ],
     ),
   ],
 );

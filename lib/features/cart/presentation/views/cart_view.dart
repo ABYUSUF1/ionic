@@ -2,8 +2,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:ionic/core/entities/order_summary_entity.dart';
 import 'package:ionic/core/routing/app_router_name.dart';
-import 'package:ionic/features/cart/domain/entity/cart_order_summary.dart';
 import 'package:ionic/features/cart/presentation/manager/cubit/cart_cubit.dart';
 
 import '../../../../core/constants/app_assets.dart';
@@ -27,14 +27,14 @@ class CartView extends StatelessWidget {
       builder: (context, state) {
         final (
           CartEntity cartEntity,
-          CartOrderSummary cartOrderSummary,
+          OrderSummaryEntity cartOrderSummary,
         ) = state.maybeWhen(
           success:
               (cartEntity, cartOrderSummary) => (cartEntity, cartOrderSummary),
           orElse:
               () => (
                 const CartEntity(cartProductsEntity: []),
-                CartOrderSummary.loading(),
+                OrderSummaryEntity.loading(),
               ),
         );
 

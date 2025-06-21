@@ -13,11 +13,11 @@ class SaveAddressViewBody extends StatelessWidget {
     return const Padding(
       padding: EdgeInsets.all(16.0),
       child: Column(
-        spacing: 30,
+        spacing: 16,
         children: [
           AddressDetails(),
           AddressPersonalInformation(),
-          AddressType(),
+          AddressTypeWidget(),
           IsDefaultCheckbox(),
         ],
       ),

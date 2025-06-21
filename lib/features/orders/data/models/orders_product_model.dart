@@ -14,7 +14,7 @@ class OrdersProductModel with _$OrdersProductModel {
     required String brand,
     required double price,
     required int quantity,
-    required double totalPrice,
+    required String returnPolicy,
   }) = _OrdersProductModel;
 
   factory OrdersProductModel.fromJson(Map<String, dynamic> json) =>
@@ -29,6 +29,6 @@ extension OrdersProductModelX on OrdersProductModel {
     brand: brand,
     price: price,
     quantity: quantity,
-    totalPrice: totalPrice,
+    returnPolicy: returnPolicy,
   );
 }

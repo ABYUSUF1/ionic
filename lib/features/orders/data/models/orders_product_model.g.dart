@@ -15,7 +15,7 @@ _$OrdersProductModelImpl _$$OrdersProductModelImplFromJson(
   brand: json['brand'] as String,
   price: (json['price'] as num).toDouble(),
   quantity: (json['quantity'] as num).toInt(),
-  totalPrice: (json['totalPrice'] as num).toDouble(),
+  returnPolicy: json['returnPolicy'] as String,
 );
 
 Map<String, dynamic> _$$OrdersProductModelImplToJson(
@@ -27,5 +27,5 @@ Map<String, dynamic> _$$OrdersProductModelImplToJson(
   'brand': instance.brand,
   'price': instance.price,
   'quantity': instance.quantity,
-  'totalPrice': instance.totalPrice,
+  'returnPolicy': instance.returnPolicy,
 };

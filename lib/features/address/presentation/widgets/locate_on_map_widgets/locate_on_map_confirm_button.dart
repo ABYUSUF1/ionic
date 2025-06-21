@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:ionic/core/utils/enums/address_type_enum.dart';
 import 'package:ionic/features/address/domain/entity/address_entity.dart';
 import 'package:ionic/features/auth/domain/entity/auth_entity.dart';
 import 'package:ionic/features/auth/presentation/manager/auth/auth_cubit.dart';
@@ -39,16 +40,18 @@ class LocateOnMapConfirmButton extends StatelessWidget {
                 ? () => context.push(
                   AppRouterName.saveAddressRoute,
                   extra: state.whenOrNull(
-                    success: (address, _) {
+                    success: (address, latLng) {
                       final authEntity =
                           context.read<AuthCubit>().cachedAuthEntity;
                       return AddressEntity(
                         id: '',
                         address: address,
                         phoneNumber: authEntity?.phoneNumber ?? '',
-                        type: AddressEnum.home,
+                        type: AddressTypeEnum.home,
                         isDefault: false,
                         fullName: authEntity!.displayName,
+                        lat: latLng.latitude,
+                        lng: latLng.longitude,
                       );
                     },
                   ),

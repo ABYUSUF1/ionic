@@ -4,6 +4,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:ionic/core/entities/product_item_entity.dart';
 import 'package:ionic/core/utils/enums/payment_method_enum.dart';
 import 'package:ionic/core/widgets/snackbar/app_snackbar.dart';
+import 'package:ionic/features/address/domain/entity/address_entity.dart';
 import 'package:ionic/features/address/presentation/manager/default_address/default_address_cubit.dart';
 import 'package:ionic/features/auth/presentation/manager/auth/auth_cubit.dart';
 import 'package:ionic/features/cart/presentation/manager/cubit/cart_cubit.dart';
@@ -125,28 +126,30 @@ class CheckoutCubit extends Cubit<CheckoutState> {
   Future<void> _createOrder(BuildContext context) async {
     final user = context.read<AuthCubit>().cachedAuthEntity!;
     final cartCubit = context.read<CartCubit>();
+    final addressCubit = context.read<DefaultAddressCubit>();
     final cartProducts = cartCubit.cartEntity.cartProductsEntity;
-    final tuple = cartCubit.state.whenOrNull(
-      success: (_, summary) => (summary.totalPrice, summary.totalQuantity),
+    final summary = cartCubit.state.whenOrNull(
+      success: (_, summary) => summary,
     );
 
     final order = OrdersEntity(
       orderId: '', // Firebase will generate this
-      userId: user.id,
-      firstName: user.firstName,
-      lastName: user.lastName,
-      phoneNumber: user.phoneNumber!,
-      address: state.address,
+      customerInfoEntity: addressCubit.defaultAddress!
+          .toOrdersCustomerInfoEntity(user.id),
       paymentMethod: state.paymentMethod!,
       deliveryInstructions: state.deliveryInstruction!,
       arrivedAt: arrivesAt!,
-      createdAt: DateTime.now(),
+      placedAt: DateTime.now(),
       products:
           cartProducts
-              .map((e) => e.productItem.toOrdersProductEntity(e.quantity))
+              .map(
+                (e) => e.productItem.toOrdersProductEntity(
+                  e.quantity,
+                  e.returnPolicy,
+                ),
+              )
               .toList(),
-      totalPrice: tuple?.$1 ?? 0.0,
-      totalQuantity: tuple?.$2 ?? 0,
+      summaryEntity: summary!,
       orderStatus: OrderStatusEnum.pending,
     );
 

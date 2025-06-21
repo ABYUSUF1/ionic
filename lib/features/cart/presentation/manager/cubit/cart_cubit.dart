@@ -2,10 +2,10 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:ionic/core/entities/order_summary_entity.dart';
 import 'package:ionic/features/cart/domain/entity/cart_entity.dart';
 import 'package:ionic/features/cart/domain/repo/cart_repo.dart';
 
-import '../../../domain/entity/cart_order_summary.dart';
 import '../../../domain/entity/cart_product_entity.dart';
 
 part 'cart_state.dart';
@@ -48,7 +48,7 @@ class CartCubit extends Cubit<CartState> {
   }
 
   void emitSuccess() {
-    final summary = CartOrderSummary.fromCart(
+    final summary = OrderSummaryEntity.fromCart(
       cart: cartEntity,
       couponDiscount: couponDiscount,
     );

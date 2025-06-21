@@ -66,9 +66,7 @@ class OrdersCubit extends Cubit<OrdersState> {
             (product) => product.name.toLowerCase().contains(lowerQuery),
           );
 
-          final formattedDate = DateFormat(
-            'yyyy-MM-dd',
-          ).format(order.createdAt);
+          final formattedDate = DateFormat('yyyy-MM-dd').format(order.placedAt);
           final matchesDate = formattedDate.contains(lowerQuery);
 
           return matchesProductName || matchesDate;

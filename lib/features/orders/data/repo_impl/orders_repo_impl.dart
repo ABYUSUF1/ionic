@@ -53,7 +53,7 @@ class OrdersRepoImpl with AuthGuardMixin implements OrdersRepo {
       // Step 3: Add the order with orderId and createdAt
       final completeOrderEntity = ordersEntity.copyWith(
         orderId: newOrderId,
-        createdAt: DateTime.now(),
+        placedAt: DateTime.now(),
       );
 
       await firestore

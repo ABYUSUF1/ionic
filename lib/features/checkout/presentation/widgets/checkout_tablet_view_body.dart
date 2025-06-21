@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:ionic/features/cart/presentation/widgets/cart_order_summary.dart';
+import 'package:ionic/core/widgets/order_summary_widget.dart';
 import 'package:ionic/features/checkout/presentation/widgets/checkout_payment_method.dart';
 import '../../../cart/presentation/manager/cubit/cart_cubit.dart';
 import '../widgets/checkout_address_button.dart';
@@ -41,7 +41,7 @@ class CheckoutTabletViewBody extends StatelessWidget {
             child: Column(
               spacing: 16,
               children: [
-                OrderSummary(
+                OrderSummaryWidget(
                   cartOrderSummary: cartOrderSummary!,
                   showCouponCode: false,
                 ),

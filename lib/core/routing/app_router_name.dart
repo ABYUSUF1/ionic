@@ -39,4 +39,5 @@ final class AppRouterName {
 
   /// orders routes
   static const String ordersRoute = '/orders';
+  static const String orderDetailsRoute = '/order-details';
 }

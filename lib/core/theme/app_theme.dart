@@ -14,6 +14,7 @@ class AppTheme {
       backgroundColor: Colors.transparent,
       elevation: 0, // No shadow
       foregroundColor: AppColors.lightHardColor,
+      scrolledUnderElevation: 0,
     ),
     colorScheme: const ColorScheme.light(
       primary: AppColors.primaryColor,
@@ -63,6 +64,7 @@ class AppTheme {
       backgroundColor: Colors.transparent,
       elevation: 0,
       foregroundColor: AppColors.darkHardColor,
+      scrolledUnderElevation: 0,
     ),
     colorScheme: const ColorScheme.dark(
       primary: AppColors.primaryColor,

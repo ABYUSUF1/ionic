@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:ionic/core/utils/enums/address_type_enum.dart';
 
 import '../../domain/entity/address_entity.dart';
 
@@ -12,8 +13,10 @@ class AddressModel with _$AddressModel {
     required String fullName,
     required String address,
     required String phoneNumber,
-    required AddressEnum type,
+    required AddressTypeEnum type,
     required bool isDefault,
+    required double lat,
+    required double lng,
   }) = _AddressModel;
 
   factory AddressModel.fromJson(Map<String, dynamic> json) =>
@@ -28,5 +31,7 @@ extension AddressModelExtension on AddressModel {
     phoneNumber: phoneNumber,
     type: type,
     isDefault: isDefault,
+    lat: lat,
+    lng: lng,
   );
 }

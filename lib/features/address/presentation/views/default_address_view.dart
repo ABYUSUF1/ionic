@@ -15,6 +15,7 @@ class DefaultAddressView extends StatelessWidget {
       appBarTitle: context.tr(LocaleKeys.address_default_address),
       child: Scaffold(
         appBar: AppBar(
+          backgroundColor: theme.colorScheme.surface,
           title: Text(
             context.tr(LocaleKeys.address_default_address),
             style: theme.textTheme.headlineMedium,

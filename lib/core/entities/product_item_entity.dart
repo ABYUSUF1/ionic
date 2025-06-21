@@ -59,7 +59,7 @@ extension ProductItemEntityExtension on ProductItemEntity {
     );
   }
 
-  OrdersProductEntity toOrdersProductEntity(int quantity) {
+  OrdersProductEntity toOrdersProductEntity(int quantity, String returnPolicy) {
     return OrdersProductEntity(
       productId: productId,
       name: title,
@@ -67,7 +67,7 @@ extension ProductItemEntityExtension on ProductItemEntity {
       brand: brand,
       price: price,
       quantity: quantity,
-      totalPrice: price,
+      returnPolicy: returnPolicy,
     );
   }
 }

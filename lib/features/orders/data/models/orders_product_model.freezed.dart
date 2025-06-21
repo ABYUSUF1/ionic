@@ -27,7 +27,7 @@ mixin _$OrdersProductModel {
   String get brand => throw _privateConstructorUsedError;
   double get price => throw _privateConstructorUsedError;
   int get quantity => throw _privateConstructorUsedError;
-  double get totalPrice => throw _privateConstructorUsedError;
+  String get returnPolicy => throw _privateConstructorUsedError;
 
   /// Serializes this OrdersProductModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -53,7 +53,7 @@ abstract class $OrdersProductModelCopyWith<$Res> {
     String brand,
     double price,
     int quantity,
-    double totalPrice,
+    String returnPolicy,
   });
 }
 
@@ -78,7 +78,7 @@ class _$OrdersProductModelCopyWithImpl<$Res, $Val extends OrdersProductModel>
     Object? brand = null,
     Object? price = null,
     Object? quantity = null,
-    Object? totalPrice = null,
+    Object? returnPolicy = null,
   }) {
     return _then(
       _value.copyWith(
@@ -112,11 +112,11 @@ class _$OrdersProductModelCopyWithImpl<$Res, $Val extends OrdersProductModel>
                     ? _value.quantity
                     : quantity // ignore: cast_nullable_to_non_nullable
                         as int,
-            totalPrice:
-                null == totalPrice
-                    ? _value.totalPrice
-                    : totalPrice // ignore: cast_nullable_to_non_nullable
-                        as double,
+            returnPolicy:
+                null == returnPolicy
+                    ? _value.returnPolicy
+                    : returnPolicy // ignore: cast_nullable_to_non_nullable
+                        as String,
           )
           as $Val,
     );
@@ -139,7 +139,7 @@ abstract class _$$OrdersProductModelImplCopyWith<$Res>
     String brand,
     double price,
     int quantity,
-    double totalPrice,
+    String returnPolicy,
   });
 }
 
@@ -163,7 +163,7 @@ class __$$OrdersProductModelImplCopyWithImpl<$Res>
     Object? brand = null,
     Object? price = null,
     Object? quantity = null,
-    Object? totalPrice = null,
+    Object? returnPolicy = null,
   }) {
     return _then(
       _$OrdersProductModelImpl(
@@ -197,11 +197,11 @@ class __$$OrdersProductModelImplCopyWithImpl<$Res>
                 ? _value.quantity
                 : quantity // ignore: cast_nullable_to_non_nullable
                     as int,
-        totalPrice:
-            null == totalPrice
-                ? _value.totalPrice
-                : totalPrice // ignore: cast_nullable_to_non_nullable
-                    as double,
+        returnPolicy:
+            null == returnPolicy
+                ? _value.returnPolicy
+                : returnPolicy // ignore: cast_nullable_to_non_nullable
+                    as String,
       ),
     );
   }
@@ -217,7 +217,7 @@ class _$OrdersProductModelImpl implements _OrdersProductModel {
     required this.brand,
     required this.price,
     required this.quantity,
-    required this.totalPrice,
+    required this.returnPolicy,
   });
 
   factory _$OrdersProductModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -236,11 +236,11 @@ class _$OrdersProductModelImpl implements _OrdersProductModel {
   @override
   final int quantity;
   @override
-  final double totalPrice;
+  final String returnPolicy;
 
   @override
   String toString() {
-    return 'OrdersProductModel(productId: $productId, name: $name, imageUrl: $imageUrl, brand: $brand, price: $price, quantity: $quantity, totalPrice: $totalPrice)';
+    return 'OrdersProductModel(productId: $productId, name: $name, imageUrl: $imageUrl, brand: $brand, price: $price, quantity: $quantity, returnPolicy: $returnPolicy)';
   }
 
   @override
@@ -257,8 +257,8 @@ class _$OrdersProductModelImpl implements _OrdersProductModel {
             (identical(other.price, price) || other.price == price) &&
             (identical(other.quantity, quantity) ||
                 other.quantity == quantity) &&
-            (identical(other.totalPrice, totalPrice) ||
-                other.totalPrice == totalPrice));
+            (identical(other.returnPolicy, returnPolicy) ||
+                other.returnPolicy == returnPolicy));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -271,7 +271,7 @@ class _$OrdersProductModelImpl implements _OrdersProductModel {
     brand,
     price,
     quantity,
-    totalPrice,
+    returnPolicy,
   );
 
   /// Create a copy of OrdersProductModel
@@ -299,7 +299,7 @@ abstract class _OrdersProductModel implements OrdersProductModel {
     required final String brand,
     required final double price,
     required final int quantity,
-    required final double totalPrice,
+    required final String returnPolicy,
   }) = _$OrdersProductModelImpl;
 
   factory _OrdersProductModel.fromJson(Map<String, dynamic> json) =
@@ -318,7 +318,7 @@ abstract class _OrdersProductModel implements OrdersProductModel {
   @override
   int get quantity;
   @override
-  double get totalPrice;
+  String get returnPolicy;
 
   /// Create a copy of OrdersProductModel
   /// with the given fields replaced by the non-null parameter values.

@@ -2,6 +2,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+import 'package:ionic/core/routing/app_router_name.dart';
 import 'package:ionic/core/theme/app_colors.dart';
 import 'package:ionic/features/orders/domain/entity/orders_entity.dart';
 import 'package:ionic/features/orders/presentation/manager/cubit/orders_cubit.dart';
@@ -128,7 +130,12 @@ class OrderListItem extends StatelessWidget {
           const Spacer(),
           Center(
             child: TextButton.icon(
-              onPressed: () {},
+              onPressed: () {
+                context.pushNamed(
+                  AppRouterName.orderDetailsRoute,
+                  extra: orderEntity,
+                );
+              },
               iconAlignment: IconAlignment.end,
               icon: const Icon(
                 Icons.arrow_forward_ios_rounded,

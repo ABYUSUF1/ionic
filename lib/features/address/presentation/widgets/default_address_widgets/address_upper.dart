@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 import 'package:ionic/core/constants/app_assets.dart';
 import 'package:ionic/core/routing/app_router_name.dart';
+import 'package:ionic/core/utils/enums/address_type_enum.dart';
 import 'package:ionic/core/widgets/dialog/custom_dialog.dart';
 import 'package:ionic/features/address/domain/entity/address_entity.dart';
 import 'package:ionic/features/address/presentation/manager/default_address/default_address_cubit.dart';
@@ -62,7 +63,7 @@ class AddressUpper extends StatelessWidget {
             label: Text(context.tr(LocaleKeys.common_delete)),
             icon: const Icon(IconsaxPlusLinear.trash),
             onPressed: () {
-              //TODO: delete address svg
+              //TODO: delete address svg image
               showCustomDialog(
                 context: context,
                 title: context.tr(LocaleKeys.address_delete_address),

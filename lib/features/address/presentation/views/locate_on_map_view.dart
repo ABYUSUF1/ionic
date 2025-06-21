@@ -25,6 +25,7 @@ class LocateOnMapView extends StatelessWidget {
             orElse: () => "",
           );
           return Scaffold(
+            backgroundColor: theme.colorScheme.surface,
             appBar: AppBar(
               title: Text(
                 context.tr(LocaleKeys.address_locate_on_map),

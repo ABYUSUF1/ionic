@@ -7,7 +7,7 @@ class OrdersProductEntity {
   final String brand;
   final double price;
   final int quantity;
-  final double totalPrice;
+  final String returnPolicy;
 
   OrdersProductEntity({
     required this.productId,
@@ -16,7 +16,7 @@ class OrdersProductEntity {
     required this.brand,
     required this.price,
     required this.quantity,
-    required this.totalPrice,
+    required this.returnPolicy,
   });
 
   // to Model
@@ -27,7 +27,7 @@ class OrdersProductEntity {
     brand: brand,
     price: price,
     quantity: quantity,
-    totalPrice: totalPrice,
+    returnPolicy: returnPolicy,
   );
 
   // loading
@@ -38,6 +38,6 @@ class OrdersProductEntity {
     brand: 'Loading',
     price: 0.0,
     quantity: 0,
-    totalPrice: 0.0,
+    returnPolicy: 'Loading Loading Loading Loading',
   );
 }

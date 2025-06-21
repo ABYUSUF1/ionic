@@ -22,19 +22,15 @@ OrdersModel _$OrdersModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$OrdersModel {
   String get orderId => throw _privateConstructorUsedError;
-  String get userId => throw _privateConstructorUsedError;
-  String get firstName => throw _privateConstructorUsedError;
-  String get lastName => throw _privateConstructorUsedError;
-  String get phoneNumber => throw _privateConstructorUsedError;
-  String get address => throw _privateConstructorUsedError;
+  OrdersCustomerInfoModel get customerInfoModel =>
+      throw _privateConstructorUsedError;
+  OrderSummaryModel get summaryModel => throw _privateConstructorUsedError;
   List<OrdersProductModel> get products => throw _privateConstructorUsedError;
-  double get totalPrice => throw _privateConstructorUsedError;
-  int get totalQuantity => throw _privateConstructorUsedError;
   PaymentMethodEnum get paymentMethod => throw _privateConstructorUsedError;
   DeliveryInstructionsEnum get deliveryInstructions =>
       throw _privateConstructorUsedError;
   OrderStatusEnum get orderStatus => throw _privateConstructorUsedError;
-  DateTime get createdAt => throw _privateConstructorUsedError;
+  DateTime get placedAt => throw _privateConstructorUsedError;
   DateTime get arrivedAt => throw _privateConstructorUsedError;
 
   /// Serializes this OrdersModel to a JSON map.
@@ -56,20 +52,18 @@ abstract class $OrdersModelCopyWith<$Res> {
   @useResult
   $Res call({
     String orderId,
-    String userId,
-    String firstName,
-    String lastName,
-    String phoneNumber,
-    String address,
+    OrdersCustomerInfoModel customerInfoModel,
+    OrderSummaryModel summaryModel,
     List<OrdersProductModel> products,
-    double totalPrice,
-    int totalQuantity,
     PaymentMethodEnum paymentMethod,
     DeliveryInstructionsEnum deliveryInstructions,
     OrderStatusEnum orderStatus,
-    DateTime createdAt,
+    DateTime placedAt,
     DateTime arrivedAt,
   });
+
+  $OrdersCustomerInfoModelCopyWith<$Res> get customerInfoModel;
+  $OrderSummaryModelCopyWith<$Res> get summaryModel;
 }
 
 /// @nodoc
@@ -88,18 +82,13 @@ class _$OrdersModelCopyWithImpl<$Res, $Val extends OrdersModel>
   @override
   $Res call({
     Object? orderId = null,
-    Object? userId = null,
-    Object? firstName = null,
-    Object? lastName = null,
-    Object? phoneNumber = null,
-    Object? address = null,
+    Object? customerInfoModel = null,
+    Object? summaryModel = null,
     Object? products = null,
-    Object? totalPrice = null,
-    Object? totalQuantity = null,
     Object? paymentMethod = null,
     Object? deliveryInstructions = null,
     Object? orderStatus = null,
-    Object? createdAt = null,
+    Object? placedAt = null,
     Object? arrivedAt = null,
   }) {
     return _then(
@@ -109,46 +98,21 @@ class _$OrdersModelCopyWithImpl<$Res, $Val extends OrdersModel>
                     ? _value.orderId
                     : orderId // ignore: cast_nullable_to_non_nullable
                         as String,
-            userId:
-                null == userId
-                    ? _value.userId
-                    : userId // ignore: cast_nullable_to_non_nullable
-                        as String,
-            firstName:
-                null == firstName
-                    ? _value.firstName
-                    : firstName // ignore: cast_nullable_to_non_nullable
-                        as String,
-            lastName:
-                null == lastName
-                    ? _value.lastName
-                    : lastName // ignore: cast_nullable_to_non_nullable
-                        as String,
-            phoneNumber:
-                null == phoneNumber
-                    ? _value.phoneNumber
-                    : phoneNumber // ignore: cast_nullable_to_non_nullable
-                        as String,
-            address:
-                null == address
-                    ? _value.address
-                    : address // ignore: cast_nullable_to_non_nullable
-                        as String,
+            customerInfoModel:
+                null == customerInfoModel
+                    ? _value.customerInfoModel
+                    : customerInfoModel // ignore: cast_nullable_to_non_nullable
+                        as OrdersCustomerInfoModel,
+            summaryModel:
+                null == summaryModel
+                    ? _value.summaryModel
+                    : summaryModel // ignore: cast_nullable_to_non_nullable
+                        as OrderSummaryModel,
             products:
                 null == products
                     ? _value.products
                     : products // ignore: cast_nullable_to_non_nullable
                         as List<OrdersProductModel>,
-            totalPrice:
-                null == totalPrice
-                    ? _value.totalPrice
-                    : totalPrice // ignore: cast_nullable_to_non_nullable
-                        as double,
-            totalQuantity:
-                null == totalQuantity
-                    ? _value.totalQuantity
-                    : totalQuantity // ignore: cast_nullable_to_non_nullable
-                        as int,
             paymentMethod:
                 null == paymentMethod
                     ? _value.paymentMethod
@@ -164,10 +128,10 @@ class _$OrdersModelCopyWithImpl<$Res, $Val extends OrdersModel>
                     ? _value.orderStatus
                     : orderStatus // ignore: cast_nullable_to_non_nullable
                         as OrderStatusEnum,
-            createdAt:
-                null == createdAt
-                    ? _value.createdAt
-                    : createdAt // ignore: cast_nullable_to_non_nullable
+            placedAt:
+                null == placedAt
+                    ? _value.placedAt
+                    : placedAt // ignore: cast_nullable_to_non_nullable
                         as DateTime,
             arrivedAt:
                 null == arrivedAt
@@ -177,6 +141,28 @@ class _$OrdersModelCopyWithImpl<$Res, $Val extends OrdersModel>
           )
           as $Val,
     );
+  }
+
+  /// Create a copy of OrdersModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $OrdersCustomerInfoModelCopyWith<$Res> get customerInfoModel {
+    return $OrdersCustomerInfoModelCopyWith<$Res>(_value.customerInfoModel, (
+      value,
+    ) {
+      return _then(_value.copyWith(customerInfoModel: value) as $Val);
+    });
+  }
+
+  /// Create a copy of OrdersModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $OrderSummaryModelCopyWith<$Res> get summaryModel {
+    return $OrderSummaryModelCopyWith<$Res>(_value.summaryModel, (value) {
+      return _then(_value.copyWith(summaryModel: value) as $Val);
+    });
   }
 }
 
@@ -191,20 +177,20 @@ abstract class _$$OrdersModelImplCopyWith<$Res>
   @useResult
   $Res call({
     String orderId,
-    String userId,
-    String firstName,
-    String lastName,
-    String phoneNumber,
-    String address,
+    OrdersCustomerInfoModel customerInfoModel,
+    OrderSummaryModel summaryModel,
     List<OrdersProductModel> products,
-    double totalPrice,
-    int totalQuantity,
     PaymentMethodEnum paymentMethod,
     DeliveryInstructionsEnum deliveryInstructions,
     OrderStatusEnum orderStatus,
-    DateTime createdAt,
+    DateTime placedAt,
     DateTime arrivedAt,
   });
+
+  @override
+  $OrdersCustomerInfoModelCopyWith<$Res> get customerInfoModel;
+  @override
+  $OrderSummaryModelCopyWith<$Res> get summaryModel;
 }
 
 /// @nodoc
@@ -222,18 +208,13 @@ class __$$OrdersModelImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? orderId = null,
-    Object? userId = null,
-    Object? firstName = null,
-    Object? lastName = null,
-    Object? phoneNumber = null,
-    Object? address = null,
+    Object? customerInfoModel = null,
+    Object? summaryModel = null,
     Object? products = null,
-    Object? totalPrice = null,
-    Object? totalQuantity = null,
     Object? paymentMethod = null,
     Object? deliveryInstructions = null,
     Object? orderStatus = null,
-    Object? createdAt = null,
+    Object? placedAt = null,
     Object? arrivedAt = null,
   }) {
     return _then(
@@ -243,46 +224,21 @@ class __$$OrdersModelImplCopyWithImpl<$Res>
                 ? _value.orderId
                 : orderId // ignore: cast_nullable_to_non_nullable
                     as String,
-        userId:
-            null == userId
-                ? _value.userId
-                : userId // ignore: cast_nullable_to_non_nullable
-                    as String,
-        firstName:
-            null == firstName
-                ? _value.firstName
-                : firstName // ignore: cast_nullable_to_non_nullable
-                    as String,
-        lastName:
-            null == lastName
-                ? _value.lastName
-                : lastName // ignore: cast_nullable_to_non_nullable
-                    as String,
-        phoneNumber:
-            null == phoneNumber
-                ? _value.phoneNumber
-                : phoneNumber // ignore: cast_nullable_to_non_nullable
-                    as String,
-        address:
-            null == address
-                ? _value.address
-                : address // ignore: cast_nullable_to_non_nullable
-                    as String,
+        customerInfoModel:
+            null == customerInfoModel
+                ? _value.customerInfoModel
+                : customerInfoModel // ignore: cast_nullable_to_non_nullable
+                    as OrdersCustomerInfoModel,
+        summaryModel:
+            null == summaryModel
+                ? _value.summaryModel
+                : summaryModel // ignore: cast_nullable_to_non_nullable
+                    as OrderSummaryModel,
         products:
             null == products
                 ? _value._products
                 : products // ignore: cast_nullable_to_non_nullable
                     as List<OrdersProductModel>,
-        totalPrice:
-            null == totalPrice
-                ? _value.totalPrice
-                : totalPrice // ignore: cast_nullable_to_non_nullable
-                    as double,
-        totalQuantity:
-            null == totalQuantity
-                ? _value.totalQuantity
-                : totalQuantity // ignore: cast_nullable_to_non_nullable
-                    as int,
         paymentMethod:
             null == paymentMethod
                 ? _value.paymentMethod
@@ -298,10 +254,10 @@ class __$$OrdersModelImplCopyWithImpl<$Res>
                 ? _value.orderStatus
                 : orderStatus // ignore: cast_nullable_to_non_nullable
                     as OrderStatusEnum,
-        createdAt:
-            null == createdAt
-                ? _value.createdAt
-                : createdAt // ignore: cast_nullable_to_non_nullable
+        placedAt:
+            null == placedAt
+                ? _value.placedAt
+                : placedAt // ignore: cast_nullable_to_non_nullable
                     as DateTime,
         arrivedAt:
             null == arrivedAt
@@ -319,18 +275,13 @@ class __$$OrdersModelImplCopyWithImpl<$Res>
 class _$OrdersModelImpl implements _OrdersModel {
   const _$OrdersModelImpl({
     required this.orderId,
-    required this.userId,
-    required this.firstName,
-    required this.lastName,
-    required this.phoneNumber,
-    required this.address,
+    required this.customerInfoModel,
+    required this.summaryModel,
     required final List<OrdersProductModel> products,
-    required this.totalPrice,
-    required this.totalQuantity,
     required this.paymentMethod,
     required this.deliveryInstructions,
     required this.orderStatus,
-    required this.createdAt,
+    required this.placedAt,
     required this.arrivedAt,
   }) : _products = products;
 
@@ -340,15 +291,9 @@ class _$OrdersModelImpl implements _OrdersModel {
   @override
   final String orderId;
   @override
-  final String userId;
+  final OrdersCustomerInfoModel customerInfoModel;
   @override
-  final String firstName;
-  @override
-  final String lastName;
-  @override
-  final String phoneNumber;
-  @override
-  final String address;
+  final OrderSummaryModel summaryModel;
   final List<OrdersProductModel> _products;
   @override
   List<OrdersProductModel> get products {
@@ -358,23 +303,19 @@ class _$OrdersModelImpl implements _OrdersModel {
   }
 
   @override
-  final double totalPrice;
-  @override
-  final int totalQuantity;
-  @override
   final PaymentMethodEnum paymentMethod;
   @override
   final DeliveryInstructionsEnum deliveryInstructions;
   @override
   final OrderStatusEnum orderStatus;
   @override
-  final DateTime createdAt;
+  final DateTime placedAt;
   @override
   final DateTime arrivedAt;
 
   @override
   String toString() {
-    return 'OrdersModel(orderId: $orderId, userId: $userId, firstName: $firstName, lastName: $lastName, phoneNumber: $phoneNumber, address: $address, products: $products, totalPrice: $totalPrice, totalQuantity: $totalQuantity, paymentMethod: $paymentMethod, deliveryInstructions: $deliveryInstructions, orderStatus: $orderStatus, createdAt: $createdAt, arrivedAt: $arrivedAt)';
+    return 'OrdersModel(orderId: $orderId, customerInfoModel: $customerInfoModel, summaryModel: $summaryModel, products: $products, paymentMethod: $paymentMethod, deliveryInstructions: $deliveryInstructions, orderStatus: $orderStatus, placedAt: $placedAt, arrivedAt: $arrivedAt)';
   }
 
   @override
@@ -383,27 +324,19 @@ class _$OrdersModelImpl implements _OrdersModel {
         (other.runtimeType == runtimeType &&
             other is _$OrdersModelImpl &&
             (identical(other.orderId, orderId) || other.orderId == orderId) &&
-            (identical(other.userId, userId) || other.userId == userId) &&
-            (identical(other.firstName, firstName) ||
-                other.firstName == firstName) &&
-            (identical(other.lastName, lastName) ||
-                other.lastName == lastName) &&
-            (identical(other.phoneNumber, phoneNumber) ||
-                other.phoneNumber == phoneNumber) &&
-            (identical(other.address, address) || other.address == address) &&
+            (identical(other.customerInfoModel, customerInfoModel) ||
+                other.customerInfoModel == customerInfoModel) &&
+            (identical(other.summaryModel, summaryModel) ||
+                other.summaryModel == summaryModel) &&
             const DeepCollectionEquality().equals(other._products, _products) &&
-            (identical(other.totalPrice, totalPrice) ||
-                other.totalPrice == totalPrice) &&
-            (identical(other.totalQuantity, totalQuantity) ||
-                other.totalQuantity == totalQuantity) &&
             (identical(other.paymentMethod, paymentMethod) ||
                 other.paymentMethod == paymentMethod) &&
             (identical(other.deliveryInstructions, deliveryInstructions) ||
                 other.deliveryInstructions == deliveryInstructions) &&
             (identical(other.orderStatus, orderStatus) ||
                 other.orderStatus == orderStatus) &&
-            (identical(other.createdAt, createdAt) ||
-                other.createdAt == createdAt) &&
+            (identical(other.placedAt, placedAt) ||
+                other.placedAt == placedAt) &&
             (identical(other.arrivedAt, arrivedAt) ||
                 other.arrivedAt == arrivedAt));
   }
@@ -413,18 +346,13 @@ class _$OrdersModelImpl implements _OrdersModel {
   int get hashCode => Object.hash(
     runtimeType,
     orderId,
-    userId,
-    firstName,
-    lastName,
-    phoneNumber,
-    address,
+    customerInfoModel,
+    summaryModel,
     const DeepCollectionEquality().hash(_products),
-    totalPrice,
-    totalQuantity,
     paymentMethod,
     deliveryInstructions,
     orderStatus,
-    createdAt,
+    placedAt,
     arrivedAt,
   );
 
@@ -445,18 +373,13 @@ class _$OrdersModelImpl implements _OrdersModel {
 abstract class _OrdersModel implements OrdersModel {
   const factory _OrdersModel({
     required final String orderId,
-    required final String userId,
-    required final String firstName,
-    required final String lastName,
-    required final String phoneNumber,
-    required final String address,
+    required final OrdersCustomerInfoModel customerInfoModel,
+    required final OrderSummaryModel summaryModel,
     required final List<OrdersProductModel> products,
-    required final double totalPrice,
-    required final int totalQuantity,
     required final PaymentMethodEnum paymentMethod,
     required final DeliveryInstructionsEnum deliveryInstructions,
     required final OrderStatusEnum orderStatus,
-    required final DateTime createdAt,
+    required final DateTime placedAt,
     required final DateTime arrivedAt,
   }) = _$OrdersModelImpl;
 
@@ -466,21 +389,11 @@ abstract class _OrdersModel implements OrdersModel {
   @override
   String get orderId;
   @override
-  String get userId;
+  OrdersCustomerInfoModel get customerInfoModel;
   @override
-  String get firstName;
-  @override
-  String get lastName;
-  @override
-  String get phoneNumber;
-  @override
-  String get address;
+  OrderSummaryModel get summaryModel;
   @override
   List<OrdersProductModel> get products;
-  @override
-  double get totalPrice;
-  @override
-  int get totalQuantity;
   @override
   PaymentMethodEnum get paymentMethod;
   @override
@@ -488,7 +401,7 @@ abstract class _OrdersModel implements OrdersModel {
   @override
   OrderStatusEnum get orderStatus;
   @override
-  DateTime get createdAt;
+  DateTime get placedAt;
   @override
   DateTime get arrivedAt;
 

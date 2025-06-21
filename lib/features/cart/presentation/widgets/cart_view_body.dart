@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:ionic/core/entities/order_summary_entity.dart';
 import 'package:ionic/features/cart/domain/entity/cart_entity.dart';
-import 'package:ionic/features/cart/domain/entity/cart_order_summary.dart';
 import 'package:ionic/features/cart/presentation/widgets/cart_bottom_bar.dart';
 import 'package:ionic/features/cart/presentation/widgets/cart_list.dart';
 
 import 'cart_coupon_code_desc.dart';
-import 'cart_order_summary.dart';
+import '../../../../core/widgets/order_summary_widget.dart';
 
 class CartViewBody extends StatelessWidget {
   final CartEntity cartEntity;
-  final CartOrderSummary cartOrderSummary;
+  final OrderSummaryEntity cartOrderSummary;
 
   const CartViewBody({
     super.key,
@@ -44,7 +44,7 @@ class CartViewBody extends StatelessWidget {
                 children: [
                   const SizedBox(height: 16),
                   const CartCouponCodeDesc(),
-                  OrderSummary(cartOrderSummary: cartOrderSummary),
+                  OrderSummaryWidget(cartOrderSummary: cartOrderSummary),
                   CartBottomBar(cartOrderSummary: cartOrderSummary),
                 ],
               ),
@@ -62,7 +62,7 @@ class CartViewBody extends StatelessWidget {
         children: [
           CartList(cartEntity: cartEntity),
           const CartCouponCodeDesc(),
-          OrderSummary(cartOrderSummary: cartOrderSummary),
+          OrderSummaryWidget(cartOrderSummary: cartOrderSummary),
         ],
       ),
     );

@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:ionic/core/utils/enums/address_type_enum.dart';
 import 'package:ionic/core/utils/functions/generate_random_id.dart';
 import 'package:ionic/core/widgets/snackbar/app_snackbar.dart';
 import 'package:ionic/features/address/domain/entity/address_entity.dart';
@@ -27,8 +28,9 @@ class SaveAddressCubit extends Cubit<SaveAddressState> {
   final TextEditingController firstNameController = TextEditingController();
   final TextEditingController lastNameController = TextEditingController();
   final TextEditingController phoneNumberController = TextEditingController();
-  AddressEnum selectedAddressType = AddressEnum.home;
+  AddressTypeEnum selectedAddressType = AddressTypeEnum.home;
   bool isDefault = false;
+  double lat = 0, lng = 0;
 
   // If we pass id of address that mean we edit address in init
   late bool isEdit;
@@ -43,6 +45,8 @@ class SaveAddressCubit extends Cubit<SaveAddressState> {
     selectedAddressType = selectedAddressEntity.type;
     addressEntity = selectedAddressEntity;
     isDefault = selectedAddressEntity.isDefault;
+    lat = selectedAddressEntity.lat;
+    lng = selectedAddressEntity.lng;
 
     initialAddress = selectedAddressEntity;
     emit(SaveAddressState.initial(selectedAddressEntity));
@@ -54,7 +58,7 @@ class SaveAddressCubit extends Cubit<SaveAddressState> {
     emit(SaveAddressState.initial(addressEntity));
   }
 
-  void onAddressTypeChanged(AddressEnum addressType) {
+  void onAddressTypeChanged(AddressTypeEnum addressType) {
     selectedAddressType = addressType;
     addressEntity = addressEntity.copyWith(type: addressType);
     emit(SaveAddressState.initial(addressEntity));

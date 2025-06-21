@@ -1,12 +1,12 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:ionic/features/address/domain/entity/address_entity.dart';
+import 'package:ionic/core/utils/enums/address_type_enum.dart';
 import 'package:ionic/features/address/presentation/manager/save_address/save_address_cubit.dart';
 import 'package:ionic/generated/locale_keys.g.dart';
 
-class AddressType extends StatelessWidget {
-  const AddressType({super.key});
+class AddressTypeWidget extends StatelessWidget {
+  const AddressTypeWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,24 +17,46 @@ class AddressType extends StatelessWidget {
         final cubit = context.read<SaveAddressCubit>();
         final selectedOption = cubit.selectedAddressType;
 
-        return Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              context.tr(LocaleKeys.address_type),
-              style: theme.textTheme.headlineMedium,
-            ),
-            const SizedBox(height: 16),
-            Row(
-              children: [
-                _customChip(context, selectedOption, theme, AddressEnum.home),
-                const SizedBox(width: 12),
-                _customChip(context, selectedOption, theme, AddressEnum.work),
-                const SizedBox(width: 12),
-                _customChip(context, selectedOption, theme, AddressEnum.other),
-              ],
-            ),
-          ],
+        return Container(
+          padding: const EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(8),
+            color: theme.colorScheme.surface,
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                context.tr(LocaleKeys.address_type),
+                style: theme.textTheme.headlineMedium,
+              ),
+              const SizedBox(height: 16),
+              Row(
+                children: [
+                  _customChip(
+                    context,
+                    selectedOption,
+                    theme,
+                    AddressTypeEnum.home,
+                  ),
+                  const SizedBox(width: 12),
+                  _customChip(
+                    context,
+                    selectedOption,
+                    theme,
+                    AddressTypeEnum.work,
+                  ),
+                  const SizedBox(width: 12),
+                  _customChip(
+                    context,
+                    selectedOption,
+                    theme,
+                    AddressTypeEnum.other,
+                  ),
+                ],
+              ),
+            ],
+          ),
         );
       },
     );
@@ -42,9 +64,9 @@ class AddressType extends StatelessWidget {
 
   Widget _customChip(
     BuildContext context,
-    AddressEnum selectedOption,
+    AddressTypeEnum selectedOption,
     ThemeData theme,
-    AddressEnum type,
+    AddressTypeEnum type,
   ) {
     return ChoiceChip(
       label: Text(type.label),
