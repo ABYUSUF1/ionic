@@ -5,6 +5,7 @@ import 'package:ionic/core/api/api_client.dart';
 import 'package:ionic/core/api/dio_api_client.dart';
 import 'package:ionic/core/services/image_picker/cubit/cubit/image_picker_cubit.dart';
 import 'package:ionic/core/services/image_picker/image_picker_service.dart';
+import 'package:ionic/core/services/messaging/firebase_messaging_service.dart';
 import 'package:ionic/core/services/network/network_cubit.dart';
 import 'package:ionic/features/address/data/data_source/address_remote_data_source.dart';
 import 'package:ionic/features/address/domain/repo/address_repo.dart';
@@ -67,6 +68,7 @@ Future<void> setupGetIt() async {
   getIt.registerSingleton(LocalAppSettingsService(objectBoxService));
   getIt.registerLazySingleton(() => FirebaseAuthService());
   getIt.registerLazySingleton(() => AuthFirestoreService());
+  getIt.registerLazySingleton(() => FirebaseMessagingService(getIt()));
   getIt.registerLazySingleton(() => ImagePickerService());
   getIt.registerLazySingleton<ApiClient>(() => DioApiClient(Dio()));
   getIt.registerLazySingleton<Location>(() => Location());
@@ -76,6 +78,7 @@ Future<void> setupGetIt() async {
     () => AuthRemoteDataSource(
       firebaseAuthService: getIt(),
       authFirestoreService: getIt(),
+      firebaseMessagingService: getIt(),
     ),
   );
   getIt.registerLazySingleton(() => FavoriteRemoteDataSource());

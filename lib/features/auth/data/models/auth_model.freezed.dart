@@ -30,6 +30,7 @@ mixin _$AuthModel {
   String? get photoUrl => throw _privateConstructorUsedError;
   String? get gender => throw _privateConstructorUsedError;
   DateTime? get birthDate => throw _privateConstructorUsedError;
+  String? get fcmToken => throw _privateConstructorUsedError;
 
   /// Serializes this AuthModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -56,6 +57,7 @@ abstract class $AuthModelCopyWith<$Res> {
     String? photoUrl,
     String? gender,
     DateTime? birthDate,
+    String? fcmToken,
   });
 }
 
@@ -83,6 +85,7 @@ class _$AuthModelCopyWithImpl<$Res, $Val extends AuthModel>
     Object? photoUrl = freezed,
     Object? gender = freezed,
     Object? birthDate = freezed,
+    Object? fcmToken = freezed,
   }) {
     return _then(
       _value.copyWith(
@@ -131,6 +134,11 @@ class _$AuthModelCopyWithImpl<$Res, $Val extends AuthModel>
                     ? _value.birthDate
                     : birthDate // ignore: cast_nullable_to_non_nullable
                         as DateTime?,
+            fcmToken:
+                freezed == fcmToken
+                    ? _value.fcmToken
+                    : fcmToken // ignore: cast_nullable_to_non_nullable
+                        as String?,
           )
           as $Val,
     );
@@ -156,6 +164,7 @@ abstract class _$$AuthModelImplCopyWith<$Res>
     String? photoUrl,
     String? gender,
     DateTime? birthDate,
+    String? fcmToken,
   });
 }
 
@@ -182,6 +191,7 @@ class __$$AuthModelImplCopyWithImpl<$Res>
     Object? photoUrl = freezed,
     Object? gender = freezed,
     Object? birthDate = freezed,
+    Object? fcmToken = freezed,
   }) {
     return _then(
       _$AuthModelImpl(
@@ -230,6 +240,11 @@ class __$$AuthModelImplCopyWithImpl<$Res>
                 ? _value.birthDate
                 : birthDate // ignore: cast_nullable_to_non_nullable
                     as DateTime?,
+        fcmToken:
+            freezed == fcmToken
+                ? _value.fcmToken
+                : fcmToken // ignore: cast_nullable_to_non_nullable
+                    as String?,
       ),
     );
   }
@@ -248,6 +263,7 @@ class _$AuthModelImpl implements _AuthModel {
     required this.photoUrl,
     required this.gender,
     required this.birthDate,
+    required this.fcmToken,
   });
 
   factory _$AuthModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -271,10 +287,12 @@ class _$AuthModelImpl implements _AuthModel {
   final String? gender;
   @override
   final DateTime? birthDate;
+  @override
+  final String? fcmToken;
 
   @override
   String toString() {
-    return 'AuthModel(id: $id, firstName: $firstName, lastName: $lastName, email: $email, isEmailVerified: $isEmailVerified, phoneNumber: $phoneNumber, photoUrl: $photoUrl, gender: $gender, birthDate: $birthDate)';
+    return 'AuthModel(id: $id, firstName: $firstName, lastName: $lastName, email: $email, isEmailVerified: $isEmailVerified, phoneNumber: $phoneNumber, photoUrl: $photoUrl, gender: $gender, birthDate: $birthDate, fcmToken: $fcmToken)';
   }
 
   @override
@@ -296,7 +314,9 @@ class _$AuthModelImpl implements _AuthModel {
                 other.photoUrl == photoUrl) &&
             (identical(other.gender, gender) || other.gender == gender) &&
             (identical(other.birthDate, birthDate) ||
-                other.birthDate == birthDate));
+                other.birthDate == birthDate) &&
+            (identical(other.fcmToken, fcmToken) ||
+                other.fcmToken == fcmToken));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -312,6 +332,7 @@ class _$AuthModelImpl implements _AuthModel {
     photoUrl,
     gender,
     birthDate,
+    fcmToken,
   );
 
   /// Create a copy of AuthModel
@@ -339,6 +360,7 @@ abstract class _AuthModel implements AuthModel {
     required final String? photoUrl,
     required final String? gender,
     required final DateTime? birthDate,
+    required final String? fcmToken,
   }) = _$AuthModelImpl;
 
   factory _AuthModel.fromJson(Map<String, dynamic> json) =
@@ -362,6 +384,8 @@ abstract class _AuthModel implements AuthModel {
   String? get gender;
   @override
   DateTime? get birthDate;
+  @override
+  String? get fcmToken;
 
   /// Create a copy of AuthModel
   /// with the given fields replaced by the non-null parameter values.

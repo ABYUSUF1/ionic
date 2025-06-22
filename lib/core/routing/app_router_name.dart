@@ -16,6 +16,7 @@ final class AppRouterName {
 
   // inside profile routes
   static const String editProfileRoute = 'edit-profile';
+  static const String notificationsRoute = 'notifications';
 
   // favorites route
   static const String favoriteRoute = '/favorite';

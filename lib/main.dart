@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:device_preview/device_preview.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -10,6 +11,7 @@ import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:ionic/core/routing/app_route.dart';
 import 'package:ionic/core/services/data_source/local/local_app_settings_service.dart';
 import 'package:ionic/core/services/di/get_it_service.dart';
+import 'package:ionic/core/services/messaging/firebase_messaging_service.dart';
 import 'package:ionic/core/services/network/network_cubit.dart';
 import 'package:ionic/core/services/network/network_widget.dart';
 import 'package:ionic/core/theme/app_theme.dart';
@@ -23,7 +25,7 @@ import 'package:ionic/features/orders/presentation/manager/cubit/orders_cubit.da
 import 'package:ionic/firebase_options.dart';
 import 'package:ionic/generated/codegen_loader.g.dart';
 import 'package:ionic/generated/locale_keys.g.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:supabase_flutter/supabase_flutter.dart' hide AuthState;
 import 'core/theme/manager/cubit/theme_cubit.dart';
 import 'features/address/domain/repo/address_repo.dart';
 import 'features/address/presentation/manager/default_address/default_address_cubit.dart';
@@ -37,13 +39,16 @@ Future<void> main() async {
   Stripe.publishableKey = dotenv.env['STRIPE_PUBLISH_TEST_KEY']!;
   await EasyLocalization.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+
   await Supabase.initialize(
     url: dotenv.env['SUPABASE_URL']!,
     anonKey: dotenv.env['SUPABASE_ANON_KEY']!,
   );
   await setupGetIt();
 
-  // await getIt<ObjectBoxService>().deleteAllData();
+  // ✅ Register the top-level background message handler
+  FirebaseMessaging.onBackgroundMessage(firebaseBackgroundMessageHandler);
+  await FirebaseMessaging.instance.requestPermission();
 
   runApp(
     EasyLocalization(
@@ -53,11 +58,7 @@ Future<void> main() async {
       useOnlyLangCode: true,
       ignorePluralRules: false,
       assetLoader: const CodegenLoader(),
-      child: DevicePreview(
-        builder: (context) {
-          return const IonicApp();
-        },
-      ),
+      child: DevicePreview(builder: (context) => const IonicApp()),
     ),
   );
 }
@@ -83,38 +84,50 @@ class IonicApp extends StatelessWidget {
       ],
       child: BlocBuilder<ThemeCubit, bool>(
         builder: (context, isDarkMode) {
-          return MaterialApp.router(
-            scaffoldMessengerKey: scaffoldMessengerKey,
-            debugShowCheckedModeBanner: false,
-            localizationsDelegates: context.localizationDelegates,
-            supportedLocales: context.supportedLocales,
-            locale: context.locale,
-            theme:
-                isDarkMode
-                    ? AppTheme.darkTheme(context)
-                    : AppTheme.lightTheme(context),
-            themeMode: ThemeMode.system,
-            routerConfig: appRouter,
-            builder: (context, child) {
-              return BlocBuilder<NetworkCubit, NetworkStatus>(
-                builder: (context, state) {
-                  if (state == NetworkStatus.disconnected) {
-                    return EmptyStateWidget(
-                      title: context.tr(LocaleKeys.network_no_internet),
-                      subtitle: context.tr(LocaleKeys.network_no_internet_desc),
-                    );
-                  }
-                  return BlocListener<NetworkCubit, NetworkStatus>(
-                    listener: (context, state) {
-                      if (state == NetworkStatus.connected) {
-                        showOnlineSnackBar(context);
-                      }
-                    },
-                    child: child!,
-                  );
+          return BlocListener<AuthCubit, AuthState>(
+            listener: (context, state) async {
+              state.maybeWhen(
+                orElse: () {},
+                authenticated: (authEntity) async {
+                  // await getIt<FirebaseMessagingService>().init(authEntity.id);
                 },
               );
             },
+            child: MaterialApp.router(
+              scaffoldMessengerKey: scaffoldMessengerKey,
+              debugShowCheckedModeBanner: false,
+              localizationsDelegates: context.localizationDelegates,
+              supportedLocales: context.supportedLocales,
+              locale: context.locale,
+              theme:
+                  isDarkMode
+                      ? AppTheme.darkTheme(context)
+                      : AppTheme.lightTheme(context),
+              themeMode: ThemeMode.system,
+              routerConfig: appRouter,
+              builder: (context, child) {
+                return BlocBuilder<NetworkCubit, NetworkStatus>(
+                  builder: (context, state) {
+                    if (state == NetworkStatus.disconnected) {
+                      return EmptyStateWidget(
+                        title: context.tr(LocaleKeys.network_no_internet),
+                        subtitle: context.tr(
+                          LocaleKeys.network_no_internet_desc,
+                        ),
+                      );
+                    }
+                    return BlocListener<NetworkCubit, NetworkStatus>(
+                      listener: (context, state) {
+                        if (state == NetworkStatus.connected) {
+                          showOnlineSnackBar(context);
+                        }
+                      },
+                      child: child!,
+                    );
+                  },
+                );
+              },
+            ),
           );
         },
       ),

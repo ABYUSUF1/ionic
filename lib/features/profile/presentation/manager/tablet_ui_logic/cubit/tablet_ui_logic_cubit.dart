@@ -2,7 +2,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 enum ProfileButtonEnum {
   editProfile,
-  myOrders,
   myAddresses,
   notifications,
   accountPrivacy,

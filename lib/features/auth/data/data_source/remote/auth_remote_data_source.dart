@@ -1,17 +1,21 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart'; // For debugPrint
 import 'package:ionic/core/services/auth/firebase_auth_service.dart';
+import 'package:ionic/core/services/messaging/firebase_messaging_service.dart';
 import 'package:ionic/features/auth/data/data_source/remote/auth_firestore_service.dart';
 import 'package:ionic/features/auth/data/models/auth_model.dart';
 
 class AuthRemoteDataSource {
   final FirebaseAuthService _firebaseAuthService;
   final AuthFirestoreService _authFirestoreService;
+  final FirebaseMessagingService _firebaseMessagingService;
   AuthRemoteDataSource({
     required FirebaseAuthService firebaseAuthService,
     required AuthFirestoreService authFirestoreService,
+    required FirebaseMessagingService firebaseMessagingService,
   }) : _firebaseAuthService = firebaseAuthService,
-       _authFirestoreService = authFirestoreService;
+       _authFirestoreService = authFirestoreService,
+       _firebaseMessagingService = firebaseMessagingService;
 
   /// Attempts to sign in a user with the provided email and password.
   Future<void> signInWithEmailAndPassword({
@@ -60,6 +64,7 @@ class AuthRemoteDataSource {
           phoneNumber: phoneNumber,
           gender: null,
           birthDate: null,
+          fcmToken: await _firebaseMessagingService.getToken(),
         );
         await _authFirestoreService.addUser(authModel: authModel);
       } else {
@@ -85,7 +90,6 @@ class AuthRemoteDataSource {
       if (user != null) {
         final authModel = AuthModel(
           id: user.uid,
-
           firstName: user.displayName?.split(' ').first ?? '',
           lastName: user.displayName?.split(' ').skip(1).join(' ') ?? '',
           email: user.email!,
@@ -94,6 +98,7 @@ class AuthRemoteDataSource {
           phoneNumber: user.phoneNumber ?? '',
           gender: null,
           birthDate: null,
+          fcmToken: await _firebaseMessagingService.getToken(),
         );
         await _authFirestoreService.addUser(authModel: authModel);
       } else {

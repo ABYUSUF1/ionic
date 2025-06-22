@@ -16,6 +16,7 @@ class AuthModel extends AuthEntity with _$AuthModel {
     required String? photoUrl,
     required String? gender,
     required DateTime? birthDate,
+    required String? fcmToken,
   }) = _AuthModel;
 
   factory AuthModel.fromJson(Map<String, dynamic> json) =>

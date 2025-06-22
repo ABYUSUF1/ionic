@@ -137,7 +137,7 @@ class CheckoutCubit extends Cubit<CheckoutState> {
     emit(state.copyWith(isLoading: false));
 
     if (context.mounted) {
-      context.pushNamed(AppRouterName.checkoutSuccessRoute);
+      context.pushReplacementNamed(AppRouterName.checkoutSuccessRoute);
     }
   }
 
@@ -159,7 +159,9 @@ class CheckoutCubit extends Cubit<CheckoutState> {
                   emit(state.copyWith(isLoading: false));
 
                   if (context.mounted) {
-                    context.pushNamed(AppRouterName.checkoutSuccessRoute);
+                    context.pushReplacementNamed(
+                      AppRouterName.checkoutSuccessRoute,
+                    );
                   }
                 },
                 onPaymentFailure: (error) {
@@ -184,7 +186,7 @@ class CheckoutCubit extends Cubit<CheckoutState> {
     emit(state.copyWith(isLoading: false));
 
     if (context.mounted) {
-      context.pushNamed(AppRouterName.checkoutSuccessRoute);
+      context.pushReplacementNamed(AppRouterName.checkoutSuccessRoute);
     }
   }
 }

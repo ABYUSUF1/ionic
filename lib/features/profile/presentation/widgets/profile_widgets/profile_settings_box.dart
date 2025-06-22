@@ -1,6 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
+import 'package:ionic/core/routing/app_router_name.dart';
 import 'package:ionic/features/profile/presentation/widgets/profile_widgets/custom_profile_box.dart';
 import 'package:ionic/generated/locale_keys.g.dart';
 
@@ -21,7 +23,9 @@ class ProfileSettingsBox extends StatelessWidget {
           title: context.tr(LocaleKeys.profile_notifications),
           icon: IconsaxPlusLinear.notification,
           section: ProfileButtonEnum.notifications,
-          onTap: () {},
+          onTap: () {
+            context.pushNamed(AppRouterName.notificationsRoute);
+          },
         ),
         const CustomLanguageButton(),
         const DarkModeSwitchButton(),

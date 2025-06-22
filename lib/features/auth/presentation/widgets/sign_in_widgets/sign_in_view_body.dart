@@ -19,16 +19,18 @@ class SignInViewBody extends StatelessWidget {
     return BlocListener<SignInCubit, SignInState>(
       listener: (context, state) {
         state.whenOrNull(
-          success: (authEntity) {
+          success: (authEntity) async {
             closeFullScreenLoading(context);
 
             // Maybe we come from another screen profile, checkout, ....
             // so we back to it again not from begin (home)
-            if (context.canPop()) {
+            if (context.mounted && context.canPop()) {
               context.read<AuthCubit>().updateUserData(authEntity);
               context.pop();
             } else {
-              context.pushReplacement(AppRouterName.homeRoute);
+              if (context.mounted) {
+                context.pushReplacement(AppRouterName.homeRoute);
+              }
             }
           },
           error: (message) {

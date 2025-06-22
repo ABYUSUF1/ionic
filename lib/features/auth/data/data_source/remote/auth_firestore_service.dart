@@ -51,4 +51,14 @@ class AuthFirestoreService {
             .get();
     return snapshot.docs.isNotEmpty;
   }
+
+  Future<void> updateFcmToken({
+    required String userId,
+    required String fcmToken,
+  }) async {
+    await firestore
+        .collection(FirestoreCollectionNames.users)
+        .doc(userId)
+        .update({'fcmToken': fcmToken});
+  }
 }

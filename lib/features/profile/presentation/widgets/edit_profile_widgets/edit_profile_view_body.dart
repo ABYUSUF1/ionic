@@ -10,7 +10,6 @@ import '../../../../../core/widgets/text_field/form_text_field.dart';
 import '../../../../auth/presentation/manager/auth/auth_cubit.dart';
 import '../../manager/cubit/edit_profile_cubit.dart';
 import 'custom_edit_profile_box.dart';
-import 'delete_account_button.dart';
 import 'edit_profile_change_gender_birth_date.dart';
 import 'edit_profile_change_name.dart';
 import 'edit_profile_image.dart';
@@ -60,8 +59,6 @@ class EditProfileViewBody extends StatelessWidget {
                       ],
                     ),
                   ),
-                  const SizedBox(height: 30),
-                  const DeleteAccountButton(),
 
                   if (!ResponsiveLayout.isMobile(context)) ...[
                     const SizedBox(height: 30),

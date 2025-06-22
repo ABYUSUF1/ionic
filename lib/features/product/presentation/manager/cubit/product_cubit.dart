@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:ionic/features/product/domain/repo/product_repo.dart';
@@ -14,15 +16,16 @@ class ProductCubit extends Cubit<ProductState> {
   Future<void> getProduct(String productId, Product? product) async {
     if (product != null) {
       emit(ProductState.success(product));
+      addToRecentlyProducts(product);
       return;
     }
 
     emit(const ProductState.loading());
     final result = await _productRepo.getProduct(productId);
-    result.fold(
-      (l) => emit(ProductState.error(l.errMessage)),
-      (r) => emit(ProductState.success(r)),
-    );
+    result.fold((l) => emit(ProductState.error(l.errMessage)), (r) {
+      addToRecentlyProducts(r);
+      emit(ProductState.success(r));
+    });
   }
 
   void updateQuantity(int newQty) {
@@ -32,5 +35,13 @@ class ProductCubit extends Cubit<ProductState> {
       },
       orElse: () {},
     );
+  }
+
+  void addToRecentlyProducts(Product product) {
+    try {
+      unawaited(_productRepo.addToRecentlyProducts(product.toProductItem()));
+    } catch (_) {
+      // Optionally log or ignore — no user impact
+    }
   }
 }

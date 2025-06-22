@@ -8,9 +8,9 @@ class AuthEntity {
   final bool isEmailVerified;
   final String? phoneNumber;
   final String? photoUrl;
-
   final String? gender;
   final DateTime? birthDate;
+  final String? fcmToken;
 
   AuthEntity({
     required this.id,
@@ -22,6 +22,7 @@ class AuthEntity {
     this.photoUrl,
     this.gender,
     this.birthDate,
+    this.fcmToken,
   });
 }
 
@@ -65,5 +66,6 @@ extension AuthEntityExtension on AuthEntity {
     photoUrl: photoUrl,
     gender: gender,
     birthDate: birthDate,
+    fcmToken: fcmToken,
   );
 }

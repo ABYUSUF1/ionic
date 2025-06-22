@@ -18,6 +18,7 @@ import 'package:ionic/features/orders/domain/entity/orders_entity.dart';
 import 'package:ionic/features/orders/presentation/views/orders_view.dart';
 import 'package:ionic/features/product/presentation/views/product_view.dart';
 import 'package:ionic/features/profile/presentation/views/edit_profile_view.dart';
+import 'package:ionic/features/profile/presentation/views/notification_view.dart';
 import 'package:ionic/features/profile/presentation/views/profile_view.dart';
 import 'package:ionic/main_bottom_nav_bar.dart';
 
@@ -113,6 +114,11 @@ final GoRouter appRouter = GoRouter(
                   path: AppRouterName.editProfileRoute,
                   name: AppRouterName.editProfileRoute,
                   builder: (context, state) => const EditProfileView(),
+                ),
+                GoRoute(
+                  path: AppRouterName.notificationsRoute,
+                  name: AppRouterName.notificationsRoute,
+                  builder: (context, state) => const NotificationView(),
                 ),
               ],
             ),

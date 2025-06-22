@@ -37,7 +37,6 @@ class ProfileMyPreferenceBox extends StatelessWidget {
         CustomProfileListTile(
           title: LocaleKeys.profile_my_orders.tr(),
           icon: IconsaxPlusLinear.box,
-          section: ProfileButtonEnum.myOrders,
           requireAuth: true,
           onTap: () {
             context.pushNamed(AppRouterName.ordersRoute);

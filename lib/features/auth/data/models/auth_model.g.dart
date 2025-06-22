@@ -20,6 +20,7 @@ _$AuthModelImpl _$$AuthModelImplFromJson(Map<String, dynamic> json) =>
           json['birthDate'] == null
               ? null
               : DateTime.parse(json['birthDate'] as String),
+      fcmToken: json['fcmToken'] as String?,
     );
 
 Map<String, dynamic> _$$AuthModelImplToJson(_$AuthModelImpl instance) =>
@@ -33,4 +34,5 @@ Map<String, dynamic> _$$AuthModelImplToJson(_$AuthModelImpl instance) =>
       'photoUrl': instance.photoUrl,
       'gender': instance.gender,
       'birthDate': instance.birthDate?.toIso8601String(),
+      'fcmToken': instance.fcmToken,
     };
