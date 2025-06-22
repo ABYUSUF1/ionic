@@ -12,7 +12,7 @@ class PaymobPaymentView extends StatefulWidget {
   final List<PaymobItemsModel>? items;
   final PaymobBillingDataModel? billingData;
   final VoidCallback onPaymentSuccess;
-  final VoidCallback onPaymentFailure;
+  final void Function(String error) onPaymentFailure;
 
   const PaymobPaymentView({
     super.key,
@@ -39,18 +39,22 @@ class _PaymobPaymentViewState extends State<PaymobPaymentView> {
 
   Future<void> _initiatePayment() async {
     final cubit = context.read<PaymentCubit>();
-    final result = await cubit.payWithPaymob(
-      amount: widget.totalPrice,
-      items: widget.items ?? [],
-      billingData: widget.billingData ?? PaymobBillingDataModel(),
-    );
+    try {
+      final result = await cubit.payWithPaymob(
+        amount: widget.totalPrice,
+        items: widget.items ?? [],
+        billingData: widget.billingData ?? PaymobBillingDataModel(),
+      );
 
-    if (result != null && result['payment_url'] != null) {
-      setState(() {
-        paymentUrl = result['payment_url'];
-      });
-    } else {
-      widget.onPaymentFailure();
+      if (result != null && result['payment_url'] != null) {
+        setState(() {
+          paymentUrl = result['payment_url'];
+        });
+      } else {
+        widget.onPaymentFailure("Missing payment URL.");
+      }
+    } catch (e) {
+      widget.onPaymentFailure(e.toString()); // ✅ Now it shows the real error
     }
   }
 
@@ -61,7 +65,7 @@ class _PaymobPaymentViewState extends State<PaymobPaymentView> {
     if (success == "true") {
       widget.onPaymentSuccess();
     } else if (success == "false") {
-      widget.onPaymentFailure();
+      widget.onPaymentFailure("Payment failed or was canceled.");
     }
   }
 

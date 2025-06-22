@@ -36,6 +36,7 @@ final class AppRouterName {
 
   // checkout routes
   static const String checkoutRoute = '/checkout';
+  static const String checkoutSuccessRoute = '/checkout-success';
 
   /// orders routes
   static const String ordersRoute = '/orders';

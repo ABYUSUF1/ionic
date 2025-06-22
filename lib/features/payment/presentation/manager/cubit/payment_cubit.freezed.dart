@@ -22,7 +22,7 @@ mixin _$PaymentState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() success,
-    required TResult Function() error,
+    required TResult Function(String errMessage) error,
     required TResult Function(Map<String, dynamic> data) paymobReady,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -30,7 +30,7 @@ mixin _$PaymentState {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? success,
-    TResult? Function()? error,
+    TResult? Function(String errMessage)? error,
     TResult? Function(Map<String, dynamic> data)? paymobReady,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -38,7 +38,7 @@ mixin _$PaymentState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? success,
-    TResult Function()? error,
+    TResult Function(String errMessage)? error,
     TResult Function(Map<String, dynamic> data)? paymobReady,
     required TResult orElse(),
   }) => throw _privateConstructorUsedError;
@@ -137,7 +137,7 @@ class _$InitialImpl implements _Initial {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() success,
-    required TResult Function() error,
+    required TResult Function(String errMessage) error,
     required TResult Function(Map<String, dynamic> data) paymobReady,
   }) {
     return initial();
@@ -149,7 +149,7 @@ class _$InitialImpl implements _Initial {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? success,
-    TResult? Function()? error,
+    TResult? Function(String errMessage)? error,
     TResult? Function(Map<String, dynamic> data)? paymobReady,
   }) {
     return initial?.call();
@@ -161,7 +161,7 @@ class _$InitialImpl implements _Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? success,
-    TResult Function()? error,
+    TResult Function(String errMessage)? error,
     TResult Function(Map<String, dynamic> data)? paymobReady,
     required TResult orElse(),
   }) {
@@ -262,7 +262,7 @@ class _$LoadingImpl implements _Loading {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() success,
-    required TResult Function() error,
+    required TResult Function(String errMessage) error,
     required TResult Function(Map<String, dynamic> data) paymobReady,
   }) {
     return loading();
@@ -274,7 +274,7 @@ class _$LoadingImpl implements _Loading {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? success,
-    TResult? Function()? error,
+    TResult? Function(String errMessage)? error,
     TResult? Function(Map<String, dynamic> data)? paymobReady,
   }) {
     return loading?.call();
@@ -286,7 +286,7 @@ class _$LoadingImpl implements _Loading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? success,
-    TResult Function()? error,
+    TResult Function(String errMessage)? error,
     TResult Function(Map<String, dynamic> data)? paymobReady,
     required TResult orElse(),
   }) {
@@ -387,7 +387,7 @@ class _$SuccessImpl implements _Success {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() success,
-    required TResult Function() error,
+    required TResult Function(String errMessage) error,
     required TResult Function(Map<String, dynamic> data) paymobReady,
   }) {
     return success();
@@ -399,7 +399,7 @@ class _$SuccessImpl implements _Success {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? success,
-    TResult? Function()? error,
+    TResult? Function(String errMessage)? error,
     TResult? Function(Map<String, dynamic> data)? paymobReady,
   }) {
     return success?.call();
@@ -411,7 +411,7 @@ class _$SuccessImpl implements _Success {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? success,
-    TResult Function()? error,
+    TResult Function(String errMessage)? error,
     TResult Function(Map<String, dynamic> data)? paymobReady,
     required TResult orElse(),
   }) {
@@ -472,6 +472,8 @@ abstract class _$$ErrorImplCopyWith<$Res> {
     _$ErrorImpl value,
     $Res Function(_$ErrorImpl) then,
   ) = __$$ErrorImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String errMessage});
 }
 
 /// @nodoc
@@ -485,26 +487,52 @@ class __$$ErrorImplCopyWithImpl<$Res>
 
   /// Create a copy of PaymentState
   /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({Object? errMessage = null}) {
+    return _then(
+      _$ErrorImpl(
+        null == errMessage
+            ? _value.errMessage
+            : errMessage // ignore: cast_nullable_to_non_nullable
+                as String,
+      ),
+    );
+  }
 }
 
 /// @nodoc
 
 class _$ErrorImpl implements _Error {
-  const _$ErrorImpl();
+  const _$ErrorImpl(this.errMessage);
+
+  @override
+  final String errMessage;
 
   @override
   String toString() {
-    return 'PaymentState.error()';
+    return 'PaymentState.error(errMessage: $errMessage)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$ErrorImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$ErrorImpl &&
+            (identical(other.errMessage, errMessage) ||
+                other.errMessage == errMessage));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, errMessage);
+
+  /// Create a copy of PaymentState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ErrorImplCopyWith<_$ErrorImpl> get copyWith =>
+      __$$ErrorImplCopyWithImpl<_$ErrorImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -512,10 +540,10 @@ class _$ErrorImpl implements _Error {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() success,
-    required TResult Function() error,
+    required TResult Function(String errMessage) error,
     required TResult Function(Map<String, dynamic> data) paymobReady,
   }) {
-    return error();
+    return error(errMessage);
   }
 
   @override
@@ -524,10 +552,10 @@ class _$ErrorImpl implements _Error {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? success,
-    TResult? Function()? error,
+    TResult? Function(String errMessage)? error,
     TResult? Function(Map<String, dynamic> data)? paymobReady,
   }) {
-    return error?.call();
+    return error?.call(errMessage);
   }
 
   @override
@@ -536,12 +564,12 @@ class _$ErrorImpl implements _Error {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? success,
-    TResult Function()? error,
+    TResult Function(String errMessage)? error,
     TResult Function(Map<String, dynamic> data)? paymobReady,
     required TResult orElse(),
   }) {
     if (error != null) {
-      return error();
+      return error(errMessage);
     }
     return orElse();
   }
@@ -588,7 +616,15 @@ class _$ErrorImpl implements _Error {
 }
 
 abstract class _Error implements PaymentState {
-  const factory _Error() = _$ErrorImpl;
+  const factory _Error(final String errMessage) = _$ErrorImpl;
+
+  String get errMessage;
+
+  /// Create a copy of PaymentState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$ErrorImplCopyWith<_$ErrorImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -670,7 +706,7 @@ class _$PaymobReadyImpl implements _PaymobReady {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() success,
-    required TResult Function() error,
+    required TResult Function(String errMessage) error,
     required TResult Function(Map<String, dynamic> data) paymobReady,
   }) {
     return paymobReady(data);
@@ -682,7 +718,7 @@ class _$PaymobReadyImpl implements _PaymobReady {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? success,
-    TResult? Function()? error,
+    TResult? Function(String errMessage)? error,
     TResult? Function(Map<String, dynamic> data)? paymobReady,
   }) {
     return paymobReady?.call(data);
@@ -694,7 +730,7 @@ class _$PaymobReadyImpl implements _PaymobReady {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? success,
-    TResult Function()? error,
+    TResult Function(String errMessage)? error,
     TResult Function(Map<String, dynamic> data)? paymobReady,
     required TResult orElse(),
   }) {

@@ -16,7 +16,7 @@ class PaymentCubit extends Cubit<PaymentState> {
     emit(const PaymentState.loading());
     final result = await _paymentRepo.payWithStripe(amount: amount);
     result.fold(
-      (l) => emit(const PaymentState.error()),
+      (l) => emit(PaymentState.error(l.errMessage)),
       (r) => emit(const PaymentState.success()),
     );
   }
@@ -35,14 +35,18 @@ class PaymentCubit extends Cubit<PaymentState> {
     );
 
     return result.fold(
-      (l) {
-        emit(const PaymentState.error());
-        return null;
+      (failure) {
+        final error = failure.errMessage;
+        emit(PaymentState.error(error));
+        throw Exception(error); // ✅ Now throw the message
       },
       (data) {
-        emit(const PaymentState.initial()); // Instead of success
-        // Why? Because the actual success is determined in your WebView via onLoadStop
-        // when success=true.
+        if (data['payment_url'] == null) {
+          const error = 'No payment URL received';
+          emit(const PaymentState.error(error));
+          throw Exception(error); // ✅ This too
+        }
+        emit(const PaymentState.initial()); // reset state
         return data;
       },
     );

@@ -11,6 +11,7 @@ import 'package:ionic/features/auth/presentation/views/forget_password_view.dart
 import 'package:ionic/features/auth/presentation/views/sign_in_view.dart';
 import 'package:ionic/features/auth/presentation/views/sign_up_view.dart';
 import 'package:ionic/features/cart/presentation/views/cart_view.dart';
+import 'package:ionic/features/checkout/presentation/views/checkout_success_view.dart';
 import 'package:ionic/features/home/data/models/category_model/localized_title.dart';
 import 'package:ionic/features/home/presentation/views/home_view.dart';
 import 'package:ionic/features/orders/domain/entity/orders_entity.dart';
@@ -211,6 +212,13 @@ final GoRouter appRouter = GoRouter(
       path: AppRouterName.checkoutRoute,
       name: AppRouterName.checkoutRoute,
       builder: (context, state) => const CheckoutView(),
+      routes: [
+        GoRoute(
+          path: AppRouterName.checkoutSuccessRoute,
+          name: AppRouterName.checkoutSuccessRoute,
+          builder: (context, state) => const CheckoutSuccessView(),
+        ),
+      ],
     ),
 
     /// --------------------- Orders ---------------------

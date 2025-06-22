@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:go_router/go_router.dart';
 import 'package:ionic/core/entities/product_item_entity.dart';
+import 'package:ionic/core/routing/app_router_name.dart';
 import 'package:ionic/core/utils/enums/payment_method_enum.dart';
 import 'package:ionic/core/widgets/snackbar/app_snackbar.dart';
 import 'package:ionic/features/address/domain/entity/address_entity.dart';
 import 'package:ionic/features/address/presentation/manager/default_address/default_address_cubit.dart';
 import 'package:ionic/features/auth/presentation/manager/auth/auth_cubit.dart';
 import 'package:ionic/features/cart/presentation/manager/cubit/cart_cubit.dart';
-import 'package:ionic/features/orders/presentation/manager/cubit/orders_cubit.dart';
+import 'package:ionic/features/orders/domain/repo/orders_repo.dart';
 import 'package:ionic/features/payment/presentation/manager/cubit/payment_cubit.dart';
 
 import '../../../../../core/utils/enums/delivery_instructions_enum.dart';
@@ -20,7 +22,8 @@ part 'checkout_state.dart';
 part 'checkout_cubit.freezed.dart';
 
 class CheckoutCubit extends Cubit<CheckoutState> {
-  CheckoutCubit()
+  final OrdersRepo ordersRepo;
+  CheckoutCubit(this.ordersRepo)
     : super(
         const CheckoutState(
           address: '',
@@ -64,95 +67,124 @@ class CheckoutCubit extends Cubit<CheckoutState> {
   }
 
   Future<void> placeOrder(BuildContext context, int amount) async {
-    emit(state.copyWith(isLoading: true));
-
-    final paymentSuccessful = await _handlePayment(context, amount);
-
-    // Stop flow if payment failed or was handled via navigator (Paymob)
-    if (!paymentSuccessful || state.paymentMethod == PaymentMethodEnum.paymob) {
-      emit(state.copyWith(isLoading: false));
-      return;
+    if (state.paymentMethod == PaymentMethodEnum.cod) {
+      await _checkoutWithCOD(context);
+    } else if (state.paymentMethod == PaymentMethodEnum.stripe) {
+      await _checkoutWithStripe(context, amount);
+    } else if (state.paymentMethod == PaymentMethodEnum.paymob) {
+      await _checkoutWithPaymob(context, amount);
+    } else if (state.paymentMethod == PaymentMethodEnum.paypal) {
+      AppSnackbar.showNoteSnackBar(context, "Paypal is not supported yet.");
     }
+  }
+
+  OrdersEntity _createOrder(BuildContext context) {
+    try {
+      final user = context.read<AuthCubit>().cachedAuthEntity!;
+      final cartCubit = context.read<CartCubit>();
+      final addressCubit = context.read<DefaultAddressCubit>();
+      final cartProducts = cartCubit.cartEntity.cartProductsEntity;
+      final summary = cartCubit.state.whenOrNull(
+        success: (_, summary) => summary,
+      );
+
+      final order = OrdersEntity(
+        orderId: '',
+        customerInfoEntity: addressCubit.defaultAddress!
+            .toOrdersCustomerInfoEntity(user.id),
+        paymentMethod: state.paymentMethod!,
+        deliveryInstructions: state.deliveryInstruction!,
+        arrivedAt: arrivesAt!,
+        placedAt: DateTime.now(),
+        products:
+            cartProducts
+                .map(
+                  (e) => e.productItem.toOrdersProductEntity(
+                    e.quantity,
+                    e.returnPolicy,
+                  ),
+                )
+                .toList(),
+        summaryEntity: summary!,
+        orderStatus: OrderStatusEnum.pending,
+      );
+      return order;
+    } catch (e) {
+      emit(
+        state.copyWith(errorMessage: "Failed to create order: ${e.toString()}"),
+      );
+      rethrow;
+    }
+  }
+
+  Future<void> _addToOrders(BuildContext context) async {
+    emit(state.copyWith(isLoading: true, errorMessage: null));
+    final result = await ordersRepo.addOrder(_createOrder(context));
+    result.fold(
+      (failure) => emit(
+        state.copyWith(errorMessage: failure.errMessage, isLoading: false),
+      ),
+      (orderId) => emit(state.copyWith(isLoading: false)),
+    );
+  }
+
+  Future<void> _checkoutWithCOD(BuildContext context) async {
+    emit(state.copyWith(isLoading: true));
+    await _addToOrders(context);
+    if (context.mounted) {
+      context.read<CartCubit>().clearCart();
+    }
+    emit(state.copyWith(isLoading: false));
 
     if (context.mounted) {
-      await _createOrder(context);
-      if (context.mounted) {
-        context.read<CartCubit>().clearCart();
-      }
-      emit(state.copyWith(isLoading: false));
+      context.pushNamed(AppRouterName.checkoutSuccessRoute);
     }
   }
 
-  Future<bool> _handlePayment(BuildContext context, int amount) async {
-    final paymentCubit = context.read<PaymentCubit>();
-
-    switch (state.paymentMethod!) {
-      case PaymentMethodEnum.cod:
-        return true;
-
-      case PaymentMethodEnum.stripe:
-        await paymentCubit.payWithStripe(amount: amount);
-        return true;
-
-      case PaymentMethodEnum.paymob:
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder:
-                (_) => BlocProvider.value(
-                  value: paymentCubit,
-                  child: PaymobPaymentView(
-                    totalPrice: amount,
-                    onPaymentSuccess: () async {
-                      await _createOrder(context);
-                    },
-                    onPaymentFailure: () {
-                      if (context.mounted) {
-                        emit(state.copyWith(errorMessage: "Payment Failed"));
-                      }
-                    },
-                  ),
-                ),
-          ),
-        );
-        return false;
-
-      case PaymentMethodEnum.paypal:
-        AppSnackbar.showNoteSnackBar(context, "Paypal is coming Soon...");
-        return false;
-    }
-  }
-
-  Future<void> _createOrder(BuildContext context) async {
-    final user = context.read<AuthCubit>().cachedAuthEntity!;
+  Future<void> _checkoutWithPaymob(BuildContext context, int amount) async {
     final cartCubit = context.read<CartCubit>();
-    final addressCubit = context.read<DefaultAddressCubit>();
-    final cartProducts = cartCubit.cartEntity.cartProductsEntity;
-    final summary = cartCubit.state.whenOrNull(
-      success: (_, summary) => summary,
-    );
 
-    final order = OrdersEntity(
-      orderId: '', // Firebase will generate this
-      customerInfoEntity: addressCubit.defaultAddress!
-          .toOrdersCustomerInfoEntity(user.id),
-      paymentMethod: state.paymentMethod!,
-      deliveryInstructions: state.deliveryInstruction!,
-      arrivedAt: arrivesAt!,
-      placedAt: DateTime.now(),
-      products:
-          cartProducts
-              .map(
-                (e) => e.productItem.toOrdersProductEntity(
-                  e.quantity,
-                  e.returnPolicy,
-                ),
-              )
-              .toList(),
-      summaryEntity: summary!,
-      orderStatus: OrderStatusEnum.pending,
-    );
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder:
+            (_) => BlocProvider.value(
+              value: BlocProvider.of<PaymentCubit>(context),
+              child: PaymobPaymentView(
+                totalPrice: amount,
+                onPaymentSuccess: () async {
+                  emit(state.copyWith(isLoading: true));
+                  await _addToOrders(context);
+                  cartCubit.clearCart();
+                  emit(state.copyWith(isLoading: false));
 
-    await context.read<OrdersCubit>().addToOrders(order);
+                  if (context.mounted) {
+                    context.pushNamed(AppRouterName.checkoutSuccessRoute);
+                  }
+                },
+                onPaymentFailure: (error) {
+                  emit(state.copyWith(errorMessage: error, isLoading: false));
+                },
+              ),
+            ),
+      ),
+    );
+  }
+
+  Future<void> _checkoutWithStripe(BuildContext context, int amount) async {
+    final paymentCubit = context.read<PaymentCubit>();
+    final cartCubit = context.read<CartCubit>();
+
+    emit(state.copyWith(isLoading: true));
+    await paymentCubit.payWithStripe(amount: amount);
+    if (context.mounted) {
+      await _addToOrders(context);
+    }
+    cartCubit.clearCart();
+    emit(state.copyWith(isLoading: false));
+
+    if (context.mounted) {
+      context.pushNamed(AppRouterName.checkoutSuccessRoute);
+    }
   }
 }
