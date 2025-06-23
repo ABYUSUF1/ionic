@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ionic/core/widgets/buttons/custom_filled_button.dart';
 
+import 'responsive_layout.dart';
+
 class EmptyStateWidget extends StatelessWidget {
   final String? svgImage;
   final String title;
@@ -55,6 +57,7 @@ class EmptyStateWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final isMobile = ResponsiveLayout.isMobile(context);
     return Center(
       child: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -62,12 +65,14 @@ class EmptyStateWidget extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             if (svgImage != null) ...[
-              SvgPicture.asset(svgImage!, height: 180),
+              SvgPicture.asset(svgImage!, height: isMobile ? 180 : 220),
               const SizedBox(height: 30),
             ],
             Text(
               title,
-              style: theme.textTheme.headlineMedium,
+              style: theme.textTheme.headlineMedium!.copyWith(
+                fontSize: isMobile ? 22 : 28,
+              ),
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 8),
@@ -75,12 +80,19 @@ class EmptyStateWidget extends StatelessWidget {
               subtitle,
               style: theme.textTheme.bodyMedium!.copyWith(
                 color: theme.colorScheme.onSurfaceVariant,
+                fontSize: isMobile ? 16 : 22,
               ),
               textAlign: TextAlign.center,
             ),
             if (buttonText != null && onButtonPressed != null) ...[
               const SizedBox(height: 30),
-              CustomFilledButton(onPressed: onButtonPressed, text: buttonText!),
+              ConstrainedBox(
+                constraints: const BoxConstraints(maxWidth: 600),
+                child: CustomFilledButton(
+                  onPressed: onButtonPressed,
+                  text: buttonText!,
+                ),
+              ),
             ],
           ],
         ),

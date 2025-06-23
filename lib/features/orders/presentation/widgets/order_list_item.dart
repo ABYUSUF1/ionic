@@ -44,7 +44,11 @@ class OrderListItem extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                "${orderEntity.products.length} items",
+                context.plural(
+                  LocaleKeys.common_items_count,
+                  orderEntity.products.length,
+                  args: [orderEntity.products.length.toString()],
+                ),
                 style: theme.textTheme.bodySmall!.copyWith(
                   color: theme.colorScheme.onSurface,
                 ),
@@ -143,7 +147,7 @@ class OrderListItem extends StatelessWidget {
                 color: AppColors.primaryColor,
               ),
               label: Text(
-                "Show details",
+                context.tr(LocaleKeys.orders_show_details),
                 style: theme.textTheme.labelSmall!.copyWith(
                   color: AppColors.primaryColor,
                   fontWeight: FontWeight.bold,

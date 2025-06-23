@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ionic/core/entities/order_summary_entity.dart';
+import 'package:ionic/core/widgets/responsive_layout.dart';
 import 'package:ionic/features/cart/domain/entity/cart_entity.dart';
 import 'package:ionic/features/cart/presentation/widgets/cart_bottom_bar.dart';
 import 'package:ionic/features/cart/presentation/widgets/cart_list.dart';
@@ -19,10 +20,7 @@ class CartViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.sizeOf(context).width;
-    final isTablet = screenWidth > 900;
-
-    if (isTablet) {
+    if (!ResponsiveLayout.isMobile(context)) {
       // Tablet layout
       return Row(
         spacing: 30,
@@ -30,13 +28,13 @@ class CartViewBody extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Expanded(
-            flex: 3,
+            flex: 6,
             child: SingleChildScrollView(
               child: CartList(cartEntity: cartEntity),
             ),
           ),
           Expanded(
-            flex: 2,
+            flex: 5,
             child: Padding(
               padding: const EdgeInsetsDirectional.only(end: 16.0),
               child: Column(

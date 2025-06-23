@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:ionic/core/entities/order_summary_entity.dart';
 import 'package:ionic/core/routing/app_router_name.dart';
+import 'package:ionic/core/widgets/responsive_layout.dart';
 import 'package:ionic/generated/locale_keys.g.dart';
 
 import '../manager/cubit/cart_cubit.dart';
@@ -17,7 +18,6 @@ class CartBottomBar extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final cubit = context.read<CartCubit>();
-    final width = MediaQuery.sizeOf(context).width;
     return cartOrderSummary.totalPrice == 0 || cubit.state.isLoading
         ? const SizedBox.shrink()
         : ColoredBox(
@@ -30,7 +30,7 @@ class CartBottomBar extends StatelessWidget {
               alignment: Alignment.center,
               padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
               margin:
-                  width > 900
+                  ResponsiveLayout.isMobile(context)
                       ? const EdgeInsets.all(16)
                       : const EdgeInsets.only(
                         right: 16,
@@ -49,32 +49,36 @@ class CartBottomBar extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.end,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        context.plural(
-                          LocaleKeys.cart_items_in_cart,
-                          cubit.cartEntity.cartProductsEntity.length,
-                          args: [
-                            cubit.cartEntity.cartProductsEntity.length
-                                .toString(),
-                          ],
-                        ),
-                        style: theme.textTheme.bodySmall!.copyWith(
-                          color: Colors.white,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                      ZoomIn(
-                        curve: Curves.easeInOutBack,
-                        key: ValueKey(cartOrderSummary.totalPrice),
-                        duration: const Duration(milliseconds: 300),
-                        child: Text(
-                          "EGP ${cartOrderSummary.totalPrice}",
-                          style: theme.textTheme.bodyMedium!.copyWith(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                      ),
+                      ResponsiveLayout.isMobile(context)
+                          ? Text(
+                            context.plural(
+                              LocaleKeys.common_items_count,
+                              cubit.cartEntity.cartProductsEntity.length,
+                              args: [
+                                cubit.cartEntity.cartProductsEntity.length
+                                    .toString(),
+                              ],
+                            ),
+                            style: theme.textTheme.bodySmall!.copyWith(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          )
+                          : const SizedBox.shrink(),
+                      ResponsiveLayout.isMobile(context)
+                          ? ZoomIn(
+                            curve: Curves.easeInOutBack,
+                            key: ValueKey(cartOrderSummary.totalPrice),
+                            duration: const Duration(milliseconds: 300),
+                            child: Text(
+                              "EGP ${cartOrderSummary.totalPrice}",
+                              style: theme.textTheme.bodyMedium!.copyWith(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          )
+                          : const SizedBox.shrink(),
                     ],
                   ),
 

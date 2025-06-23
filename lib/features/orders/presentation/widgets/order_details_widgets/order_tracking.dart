@@ -1,5 +1,7 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:ionic/features/orders/domain/entity/orders_entity.dart';
+import 'package:ionic/generated/locale_keys.g.dart';
 
 import '../../../../../core/utils/enums/order_status_enum.dart';
 
@@ -26,7 +28,12 @@ class OrderTracking extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final steps = ["Order Placed", "Confirmed", "Shipped", "Delivered"];
+    final steps = [
+      context.tr(LocaleKeys.order_status_pending),
+      context.tr(LocaleKeys.order_status_confirmed),
+      context.tr(LocaleKeys.order_status_shipped),
+      context.tr(LocaleKeys.order_status_delivered),
+    ];
 
     final currentStep = getCurrentStep(ordersEntity.orderStatus);
 
@@ -40,7 +47,7 @@ class OrderTracking extends StatelessWidget {
         ),
         child: Center(
           child: Text(
-            "This order has been cancelled.",
+            context.tr(LocaleKeys.order_has_been_cancelled),
             style: theme.textTheme.bodyLarge!.copyWith(
               color: theme.colorScheme.error,
               fontWeight: FontWeight.bold,
@@ -60,7 +67,10 @@ class OrderTracking extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text("Delivery Tracking", style: theme.textTheme.headlineMedium),
+          Text(
+            context.tr(LocaleKeys.order_delivery_tracking),
+            style: theme.textTheme.headlineMedium,
+          ),
           const SizedBox(height: 16),
           Column(
             children: List.generate(steps.length, (index) {

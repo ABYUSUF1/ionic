@@ -1,10 +1,12 @@
 import 'package:animate_do/animate_do.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 import 'package:ionic/core/routing/app_router_name.dart';
 import 'package:ionic/core/widgets/buttons/custom_filled_button.dart';
 import 'package:ionic/core/widgets/buttons/custom_outline_button.dart';
+import 'package:ionic/generated/locale_keys.g.dart';
 
 class CheckoutSuccessView extends StatelessWidget {
   const CheckoutSuccessView({super.key});
@@ -39,12 +41,12 @@ class CheckoutSuccessView extends StatelessWidget {
                 ),
                 const SizedBox(height: 30),
                 Text(
-                  "Thank you for ordering",
+                  context.tr(LocaleKeys.checkout_thank_you_for_ordering),
                   style: theme.textTheme.headlineMedium,
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  "Your order has been successfully placed",
+                  context.tr(LocaleKeys.checkout_order_placed_successfully),
                   style: theme.textTheme.bodyMedium!.copyWith(
                     color: theme.colorScheme.onSurfaceVariant,
                   ),
@@ -54,12 +56,12 @@ class CheckoutSuccessView extends StatelessWidget {
                   spacing: 16,
                   children: [
                     CustomOutlineButton(
-                      text: "VIEW ORDER",
+                      text: context.tr(LocaleKeys.checkout_view_order),
                       onPressed:
                           () => context.pushNamed(AppRouterName.ordersRoute),
                     ),
                     CustomFilledButton(
-                      text: "CONTINUE SHOPPING",
+                      text: context.tr(LocaleKeys.checkout_continue_shopping),
                       onPressed: () => context.go(AppRouterName.homeRoute),
                     ),
                   ],

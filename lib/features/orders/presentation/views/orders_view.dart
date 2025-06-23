@@ -17,7 +17,7 @@ class OrdersView extends StatelessWidget {
   Widget build(BuildContext context) {
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
     final cubit = context.read<OrdersCubit>();
-    cubit.fetchOrders();
+    cubit.fetchOrders(context);
 
     return BlocBuilder<OrdersCubit, OrdersState>(
       builder: (context, state) {
@@ -33,12 +33,12 @@ class OrdersView extends StatelessWidget {
                 (errMessage) => EmptyStateWidget.withButton(
                   title: context.tr(LocaleKeys.common_something_went_wrong),
                   subtitle: errMessage,
-                  buttonText: "Try Again",
-                  onButtonPressed: () => cubit.fetchOrders(),
+                  buttonText: context.tr(LocaleKeys.common_try_again),
+                  onButtonPressed: () => cubit.fetchOrders(context),
                 ),
             empty:
                 (message) => EmptyStateWidget(
-                  title: 'No Orders Found',
+                  title: context.tr(LocaleKeys.orders_empty),
                   subtitle: message,
                   svgImage:
                       isDarkMode

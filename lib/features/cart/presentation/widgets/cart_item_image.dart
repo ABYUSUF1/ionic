@@ -21,11 +21,7 @@ class CartItemImage extends StatelessWidget {
         child:
             imageUrl.isEmpty
                 ? null
-                : CachedNetworkImage(
-                  imageUrl: imageUrl,
-                  height: 200,
-                  // fit: BoxFit.cover,
-                ),
+                : CachedNetworkImage(imageUrl: imageUrl, height: 200),
       ),
     );
   }

@@ -18,7 +18,7 @@ class MainBottomNavBar extends StatelessWidget {
   Widget build(BuildContext context) {
     final List<Destinations> destinations = [
       Destinations(
-        label: context.tr(LocaleKeys.bottom_navigation_home),
+        label: context.tr(LocaleKeys.home_title),
         icon: IconsaxPlusLinear.home_2,
       ),
       Destinations(
@@ -26,11 +26,11 @@ class MainBottomNavBar extends StatelessWidget {
         icon: IconsaxPlusLinear.category_2,
       ),
       Destinations(
-        label: context.tr(LocaleKeys.bottom_navigation_cart),
+        label: context.tr(LocaleKeys.cart_title),
         icon: IconsaxPlusLinear.bag_2,
       ),
       Destinations(
-        label: context.tr(LocaleKeys.bottom_navigation_profile),
+        label: context.tr(LocaleKeys.profile_title),
         icon: IconsaxPlusLinear.profile,
       ),
     ];
@@ -41,7 +41,6 @@ class MainBottomNavBar extends StatelessWidget {
         await state.maybeWhen(
           authenticated: (authEntity) async {
             // Sync local guest cart only once per session
-            print("Call syncLocalCartToRemote");
             await context.read<CartCubit>().syncLocalCartToRemote();
             if (context.mounted) {
               await context.read<DefaultAddressCubit>().fetchAddresses();

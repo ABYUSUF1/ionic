@@ -20,6 +20,18 @@
     "common_default": "افتراضي",
     "common_you_have" : "لديك",
     "common_tomorrow": "غدا",
+    "common_try_again": "حاول مجددا",
+    "common_items_count": {
+      "zero": "لا توجد منتجات",
+      "one": "منتج واحد",
+      "two": "منتجان",
+      "few": "{} منتجات",
+      "many": "{} منتجاً",
+      "other": "{} منتج"
+    },
+    "common_created_at" : "تم الانشاء في",
+    "common_try_searching_for_something_else": "قم بالبحث عن شيء اخر",
+
 
     "network_no_internet": "لا يوجد اتصال بالإنترنت",
     "network_no_internet_desc": "يرجى التحقق من اتصالك بالإنترنت للمتابعة في التسوق",
@@ -83,15 +95,16 @@
     "auth_you_can_resend_after": "يمكنك إعادة الإرسال بعد",
     "auth_didnt_receive_the_email": "لم تستلم البريد الإلكتروني؟",
 
-    "bottom_navigation_home": "الرئيسية",
+
     "bottom_navigation_categories": "الفئات",
-    "bottom_navigation_cart": "عربة التسوق",
-    "bottom_navigation_profile": "الحساب",
 
 
+    "home_title": "الرئيسية",
     "home_popular_products": "المنتجات المحبوبة",
+    "home_recently_viewed_products": "منتجات زرتها مؤخرًا",
 
 
+    "profile_title": "الحساب",
     "profile_my_preference": "تفضيلاتي",
     "profile_my_cart": "عربة تسوقي",
     "profile_my_orders": "طلباتي",
@@ -218,21 +231,16 @@
     "address_theres_nothing_to_update": "لا يوجد ما يتم حفظه — لم يتم تعديل البيانات.",
     "address_deliver_to": "توصيل الى",
     "address_add_delivery_location": "أضف موقع التوصيل",
+    
 
+    "cart_title": "عربة التسوق",
     "cart_add_to_cart": "أضف إلى السلة",
     "cart_remove_from_cart": "إزالة من السلة",
-    "cart_items_in_cart": {
-      "zero": "لا توجد منتجات",
-      "one": "منتج واحد",
-      "two": "منتجان",
-      "few": "{} منتجات",
-      "many": "{} منتجاً",
-      "other": "{} منتج"
-    },
     "cart_qty": "الكمية: {}",
     "cart_already_in_cart": "بالفعل في سلة التسوق",
     "cart_empty_title": "سلة التسوق فارغة.",
     "cart_empty_desc": "ماذا تنتظر؟ ابدأ التسوق الآن!",
+    "cart_show_now": "تسوق الان",
     "cart_checkout": "إتمام الشراء",
     "cart_order_summary": "ملخص الطلب",
     "cart_total": "الإجمالي",
@@ -259,7 +267,30 @@
     "checkout_leave_at_door": "اتركها عند الباب",
     "checkout_hand_it_to_me": "سلمني إياها مباشرة",
     "checkout_call_on_arrival": "اتصل عند الوصول",
-    "checkout_cash_on_delivery" : "الدفع عند التوصيل"
+    "checkout_cash_on_delivery" : "الدفع عند التوصيل",
+    "checkout_thank_you_for_ordering" : "شكرا لك على طلبك!",
+    "checkout_order_placed_successfully" : "تم تقديم الطلب بنجاح!",
+    "checkout_view_order" : "عرض الطلب",
+    "checkout_continue_shopping" : "متابعة التسوق",
+    
 
+    "orders_title" : "طلباتي",
+    "orders_empty" : "لا يوجد طلبات",
+    "orders_empty_desc" : "لا يوجد طلبات حتى الان",
+    "orders_show_details" : "اظهار التفاصيل",
+    "orders_delivery_address": "عنوان التوصيل",
+    "order_id": "رقم الطلب",
+    "order_copy_id": "نسخ رقم الطلب",
+    "order_id_copied": "تم نسخ رقم الطلب",
+    "order_status_placed": "تم التقديم",
+    "order_status_delivered": "تم التوصيل",
+    "order_status_cancelled": "تم الالغاء",
+    "order_status_confirmed": "تم التاكيد",
+    "order_status_pending": "قيد الانتظار",
+    "order_status_shipped": "تم الشحن",
+    "order_has_been_cancelled": "تم الالغاء هذا الطلب.",
+    "order_delivery_tracking": "تتبع التوصيل",
+    "order_details": "تفاصيل الطلب"
+    
   }   
     

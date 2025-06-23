@@ -31,7 +31,7 @@ class CheckoutShippingItems extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "${context.tr(LocaleKeys.checkout_shipment)} (${context.plural(LocaleKeys.cart_items_in_cart, quantity, args: [quantity.toString()])})",
+            "${context.tr(LocaleKeys.checkout_shipment)} (${context.plural(LocaleKeys.common_items_count, quantity, args: [quantity.toString()])})",
             style: theme.textTheme.headlineMedium!.copyWith(fontSize: 20),
           ),
           const SizedBox(height: 5),

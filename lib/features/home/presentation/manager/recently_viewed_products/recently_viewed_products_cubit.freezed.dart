@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'recently_products_cubit.dart';
+part of 'recently_viewed_products_cubit.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -66,15 +66,15 @@ mixin _$RecentlyProductsState {
 /// @nodoc
 abstract class $RecentlyProductsStateCopyWith<$Res> {
   factory $RecentlyProductsStateCopyWith(
-    RecentlyProductsState value,
-    $Res Function(RecentlyProductsState) then,
-  ) = _$RecentlyProductsStateCopyWithImpl<$Res, RecentlyProductsState>;
+    RecentlyViewedProductsState value,
+    $Res Function(RecentlyViewedProductsState) then,
+  ) = _$RecentlyProductsStateCopyWithImpl<$Res, RecentlyViewedProductsState>;
 }
 
 /// @nodoc
 class _$RecentlyProductsStateCopyWithImpl<
   $Res,
-  $Val extends RecentlyProductsState
+  $Val extends RecentlyViewedProductsState
 >
     implements $RecentlyProductsStateCopyWith<$Res> {
   _$RecentlyProductsStateCopyWithImpl(this._value, this._then);
@@ -203,7 +203,7 @@ class _$InitialImpl implements _Initial {
   }
 }
 
-abstract class _Initial implements RecentlyProductsState {
+abstract class _Initial implements RecentlyViewedProductsState {
   const factory _Initial() = _$InitialImpl;
 }
 
@@ -322,7 +322,7 @@ class _$LoadingImpl implements _Loading {
   }
 }
 
-abstract class _Loading implements RecentlyProductsState {
+abstract class _Loading implements RecentlyViewedProductsState {
   const factory _Loading() = _$LoadingImpl;
 }
 
@@ -469,7 +469,7 @@ class _$ErrorImpl implements _Error {
   }
 }
 
-abstract class _Error implements RecentlyProductsState {
+abstract class _Error implements RecentlyViewedProductsState {
   const factory _Error(final String errMessage) = _$ErrorImpl;
 
   String get errMessage;
@@ -635,7 +635,7 @@ class _$SuccessImpl implements _Success {
   }
 }
 
-abstract class _Success implements RecentlyProductsState {
+abstract class _Success implements RecentlyViewedProductsState {
   const factory _Success(final List<ProductItemEntity> productsItem) =
       _$SuccessImpl;
 

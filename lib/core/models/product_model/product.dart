@@ -83,7 +83,6 @@ extension ProductExtension on Product {
   }
 
   CartProductEntity toCartProduct(int quantity) {
-    print(quantity);
     return CartProductEntity(
       productItem: toProductItem(),
       returnPolicy: returnPolicy ?? '',

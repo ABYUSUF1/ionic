@@ -1,7 +1,8 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:intl/intl.dart';
 import 'package:ionic/features/orders/domain/entity/orders_entity.dart';
+import 'package:ionic/generated/locale_keys.g.dart';
 
 class OrderInfoSection extends StatelessWidget {
   final OrdersEntity ordersEntity;
@@ -21,7 +22,10 @@ class OrderInfoSection extends StatelessWidget {
       title: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text("Order ID: ", style: theme.textTheme.bodyMedium),
+          Text(
+            "${context.tr(LocaleKeys.order_id)}: ",
+            style: theme.textTheme.bodyMedium,
+          ),
           Expanded(
             child: Text(
               ordersEntity.orderId,
@@ -34,21 +38,21 @@ class OrderInfoSection extends StatelessWidget {
         ],
       ),
       subtitle: Text(
-        "Created At: $formattedDate",
+        "${context.tr(LocaleKeys.common_created_at)}: $formattedDate",
         style: theme.textTheme.bodySmall,
       ),
       trailing: IconButton(
         icon: const Icon(Icons.copy, size: 18),
-        tooltip: "Copy Order ID",
+        tooltip: context.tr(LocaleKeys.order_copy_id),
         style: IconButton.styleFrom(
           backgroundColor: theme.colorScheme.secondary,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
         ),
         onPressed: () {
           Clipboard.setData(ClipboardData(text: ordersEntity.orderId));
-          ScaffoldMessenger.of(
-            context,
-          ).showSnackBar(const SnackBar(content: Text("Order ID copied!")));
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text(context.tr(LocaleKeys.order_id_copied))),
+          );
         },
       ),
     );

@@ -57,7 +57,7 @@ class CartView extends StatelessWidget {
                           : AppAssets.illustrationsEmptyIllustrationLight,
                   title: context.tr(LocaleKeys.cart_empty_title),
                   subtitle: context.tr(LocaleKeys.cart_empty_desc),
-                  buttonText: "Shop now",
+                  buttonText: context.tr(LocaleKeys.cart_show_now),
                   onButtonPressed:
                       () => context.goNamed(AppRouterName.homeRoute),
                 ),

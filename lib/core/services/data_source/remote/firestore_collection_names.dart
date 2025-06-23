@@ -1,6 +1,6 @@
 final class FirestoreCollectionNames {
   static const String users = 'users';
-  static const String recentlyProducts = 'recently_products';
+  static const String recentlyProducts = '"recently_viewed_products"';
   static const String favorites = 'favorites';
   static const String addresses = 'addresses';
   static const String cart = 'cart';

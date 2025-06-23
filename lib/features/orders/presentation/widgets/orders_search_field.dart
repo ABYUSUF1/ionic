@@ -30,10 +30,13 @@ class _OrdersSearchFiledState extends State<OrdersSearchFiled> {
       onTapOutside: (_) => FocusManager.instance.primaryFocus?.unfocus(),
       onChanged: (value) {
         setState(() {});
-        context.read<OrdersCubit>().onSearchChanged(value);
+        context.read<OrdersCubit>().onSearchChanged(value, context);
       },
       decoration: InputDecoration(
-        hintText: context.tr(LocaleKeys.common_search_for, args: ['Orders']),
+        hintText: context.tr(
+          LocaleKeys.common_search_for,
+          args: [context.tr(LocaleKeys.orders_title)],
+        ),
         hintStyle: theme.textTheme.titleMedium!.copyWith(
           color: theme.colorScheme.onSurfaceVariant,
         ),
@@ -46,7 +49,7 @@ class _OrdersSearchFiledState extends State<OrdersSearchFiled> {
                   onPressed: () {
                     controller.clear();
                     setState(() {});
-                    context.read<OrdersCubit>().onSearchChanged('');
+                    context.read<OrdersCubit>().onSearchChanged('', context);
                   },
                 )
                 : null,

@@ -54,7 +54,7 @@ class CheckoutPlaceOrderButton extends StatelessWidget {
                     ),
                     Text(
                       context.plural(
-                        LocaleKeys.cart_items_in_cart,
+                        LocaleKeys.common_items_count,
                         totalQuantity,
                         args: [totalQuantity.toString()],
                       ),

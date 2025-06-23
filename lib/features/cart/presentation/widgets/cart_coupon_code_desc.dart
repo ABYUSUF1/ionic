@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:ionic/core/theme/app_font.dart';
+import 'package:ionic/core/widgets/responsive_layout.dart';
 
 import '../../../../generated/locale_keys.g.dart';
 
@@ -12,11 +13,13 @@ class CartCouponCodeDesc extends StatelessWidget {
     final theme = Theme.of(context);
     final isDark = theme.brightness == Brightness.dark;
     final color = isDark ? Colors.greenAccent : Colors.green;
-    final isMobile = MediaQuery.sizeOf(context).width < 900;
     return Container(
       alignment: Alignment.center,
       padding: const EdgeInsets.all(16),
-      margin: isMobile ? const EdgeInsets.symmetric(horizontal: 16) : null,
+      margin:
+          ResponsiveLayout.isMobile(context)
+              ? const EdgeInsets.symmetric(horizontal: 16)
+              : null,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8.0),
         color: color.withValues(alpha: 0.2),

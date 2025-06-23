@@ -28,7 +28,7 @@ class CartAppBar extends StatelessWidget implements PreferredSizeWidget {
                 spacing: 8,
                 children: [
                   Text(
-                    context.tr(LocaleKeys.bottom_navigation_cart),
+                    context.tr(LocaleKeys.cart_title),
                     style: theme.textTheme.headlineMedium!.copyWith(
                       fontFamily: appFont(context),
                     ),
@@ -36,7 +36,7 @@ class CartAppBar extends StatelessWidget implements PreferredSizeWidget {
                   SkeletonLoading(
                     isLoading: context.read<CartCubit>().state.isLoading,
                     child: Text(
-                      '(${context.plural(LocaleKeys.cart_items_in_cart, cartEntity.cartProductsEntity.length, args: [cartEntity.cartProductsEntity.length.toString()])})',
+                      '(${context.plural(LocaleKeys.common_items_count, cartEntity.cartProductsEntity.length, args: [cartEntity.cartProductsEntity.length.toString()])})',
                       style: theme.textTheme.headlineMedium!.copyWith(
                         color: theme.colorScheme.onSurfaceVariant,
                         fontFamily: appFont(context),

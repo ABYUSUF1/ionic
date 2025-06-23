@@ -1,6 +1,8 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 import 'package:ionic/features/orders/domain/entity/orders_entity.dart';
+import 'package:ionic/generated/locale_keys.g.dart';
 
 class OrderDeliveryAddress extends StatelessWidget {
   final OrdersEntity orderEntity;
@@ -22,7 +24,10 @@ class OrderDeliveryAddress extends StatelessWidget {
         spacing: 8,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text("Delivery Address", style: theme.textTheme.headlineMedium),
+          Text(
+            context.tr(LocaleKeys.orders_delivery_address),
+            style: theme.textTheme.headlineMedium,
+          ),
           const SizedBox(height: 5),
           _customInfo(theme, IconsaxPlusLinear.profile_tick, customer.fullName),
           _customInfo(theme, IconsaxPlusLinear.location, customer.address),

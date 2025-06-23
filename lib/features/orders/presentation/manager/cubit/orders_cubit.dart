@@ -1,8 +1,10 @@
 import 'package:bloc/bloc.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:intl/intl.dart';
 import 'package:ionic/features/orders/domain/entity/orders_entity.dart';
 import 'package:ionic/features/orders/domain/repo/orders_repo.dart';
+import 'package:ionic/generated/locale_keys.g.dart';
 
 part 'orders_state.dart';
 part 'orders_cubit.freezed.dart';
@@ -17,18 +19,21 @@ class OrdersCubit extends Cubit<OrdersState> {
   bool get isOrdersFetched => orders.isNotEmpty;
 
   // 🔄 Fetch all orders
-  Future<void> fetchOrders() async {
+  Future<void> fetchOrders(BuildContext context) async {
+    if (orders.isNotEmpty && isOrdersFetched) {
+      emit(OrdersState.success(orders));
+      return;
+    }
+
     emit(const OrdersState.loading());
-
     final result = await ordersRepo.fetchOrders();
-
     result.fold((failure) => emit(OrdersState.error(failure.errMessage)), (
       fetchedOrders,
     ) {
       orders = fetchedOrders;
 
       if (orders.isEmpty) {
-        emit(const OrdersState.empty("You don't have any orders yet"));
+        emit(OrdersState.empty(context.tr(LocaleKeys.orders_empty_desc)));
       } else {
         emit(OrdersState.success(orders));
       }
@@ -52,7 +57,7 @@ class OrdersCubit extends Cubit<OrdersState> {
   }
 
   // 🔍 Search orders by product name or created date
-  void onSearchChanged(String query) {
+  void onSearchChanged(String query, BuildContext context) {
     if (query.trim().isEmpty) {
       emit(OrdersState.success(orders));
       return;
@@ -73,7 +78,11 @@ class OrdersCubit extends Cubit<OrdersState> {
         }).toList();
 
     if (filtered.isEmpty) {
-      emit(const OrdersState.empty("Try searching for something else"));
+      emit(
+        OrdersState.empty(
+          context.tr(LocaleKeys.common_try_searching_for_something_else),
+        ),
+      );
     } else {
       emit(OrdersState.success(orders, filtered: filtered));
     }

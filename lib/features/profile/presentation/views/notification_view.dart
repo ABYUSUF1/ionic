@@ -44,7 +44,6 @@ class NotificationView extends StatelessWidget {
                           type: AppSettingsType.notification,
                         );
                       } catch (e) {
-                        print(e);
                         if (context.mounted) {
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(
