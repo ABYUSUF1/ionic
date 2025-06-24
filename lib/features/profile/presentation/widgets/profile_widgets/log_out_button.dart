@@ -39,7 +39,7 @@ class LogOutButton extends StatelessWidget {
                           if (!isMobile) {
                             context.read<TabletUiLogic>().reset();
                           }
-                          await context.read<AuthCubit>().signOut();
+                          await context.read<AuthCubit>().signOut(context);
                         };
                       },
                     ),

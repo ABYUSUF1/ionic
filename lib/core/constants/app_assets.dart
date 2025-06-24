@@ -34,10 +34,6 @@ class AppAssets {
   /// assets/fonts/Tajawal-Regular.ttf
   static const String fontsTajawalRegular = "assets/fonts/Tajawal-Regular.ttf";
 
-  /// Assets for iconsFavoriteFilled
-  /// assets/icons/favorite_filled.svg
-  static const String iconsFavoriteFilled = "assets/icons/favorite_filled.svg";
-
   /// Assets for iconsGoogle
   /// assets/icons/google.svg
   static const String iconsGoogle = "assets/icons/google.svg";
@@ -133,6 +129,14 @@ class AppAssets {
   /// Assets for illustrationsTrackingIllustrationLight
   /// assets/illustrations/tracking_illustration_light.svg
   static const String illustrationsTrackingIllustrationLight = "assets/illustrations/tracking_illustration_light.svg";
+
+  /// Assets for illustrationsTrashIllustrationDark
+  /// assets/illustrations/trash_illustration_dark.svg
+  static const String illustrationsTrashIllustrationDark = "assets/illustrations/trash_illustration_dark.svg";
+
+  /// Assets for illustrationsTrashIllustrationLight
+  /// assets/illustrations/trash_illustration_light.svg
+  static const String illustrationsTrashIllustrationLight = "assets/illustrations/trash_illustration_light.svg";
 
   /// Assets for logoIonicLogo
   /// assets/logo/ionic_logo.png

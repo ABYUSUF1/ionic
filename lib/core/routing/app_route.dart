@@ -17,9 +17,11 @@ import 'package:ionic/features/home/presentation/views/home_view.dart';
 import 'package:ionic/features/orders/domain/entity/orders_entity.dart';
 import 'package:ionic/features/orders/presentation/views/orders_view.dart';
 import 'package:ionic/features/product/presentation/views/product_view.dart';
+import 'package:ionic/features/profile/presentation/views/account_privacy_view.dart';
 import 'package:ionic/features/profile/presentation/views/edit_profile_view.dart';
 import 'package:ionic/features/profile/presentation/views/notification_view.dart';
 import 'package:ionic/features/profile/presentation/views/profile_view.dart';
+import 'package:ionic/features/profile/presentation/widgets/account_privacy_widgets/delete_account_view.dart';
 import 'package:ionic/main_bottom_nav_bar.dart';
 
 import '../../features/categories/presentation/views/categories_view.dart';
@@ -119,6 +121,18 @@ final GoRouter appRouter = GoRouter(
                   path: AppRouterName.notificationsRoute,
                   name: AppRouterName.notificationsRoute,
                   builder: (context, state) => const NotificationView(),
+                ),
+                GoRoute(
+                  path: AppRouterName.accountPrivacyRoute,
+                  name: AppRouterName.accountPrivacyRoute,
+                  builder: (context, state) => const AccountPrivacyView(),
+                  routes: [
+                    GoRoute(
+                      path: AppRouterName.deleteAccountRoute,
+                      name: AppRouterName.deleteAccountRoute,
+                      builder: (context, state) => const DeleteAccountView(),
+                    ),
+                  ],
                 ),
               ],
             ),

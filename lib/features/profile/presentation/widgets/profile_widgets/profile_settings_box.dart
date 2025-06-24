@@ -30,10 +30,13 @@ class ProfileSettingsBox extends StatelessWidget {
         const CustomLanguageButton(),
         const DarkModeSwitchButton(),
         CustomProfileListTile(
-          title: "Account Privacy",
+          title: context.tr(LocaleKeys.profile_account_privacy),
           icon: IconsaxPlusLinear.lock,
+          requireAuth: true,
           section: ProfileButtonEnum.accountPrivacy,
-          onTap: () {},
+          onTap: () {
+            context.pushNamed(AppRouterName.accountPrivacyRoute);
+          },
         ),
       ],
     );

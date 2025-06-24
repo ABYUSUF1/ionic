@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 import 'package:ionic/generated/locale_keys.g.dart';
+import 'package:share_plus/share_plus.dart';
 
 import 'custom_profile_box.dart';
 import 'custom_profile_list_tile.dart';
@@ -27,7 +28,14 @@ class ProfileInfoAndSupportBox extends StatelessWidget {
         CustomProfileListTile(
           title: LocaleKeys.profile_share_app.tr(),
           icon: IconsaxPlusLinear.share,
-          onTap: () {},
+          onTap: () async {
+            await SharePlus.instance.share(
+              ShareParams(
+                title: "Ionic App",
+                text: "Check out this amazing Ionic app!",
+              ),
+            );
+          },
         ),
       ],
     );

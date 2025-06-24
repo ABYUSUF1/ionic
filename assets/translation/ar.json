@@ -31,7 +31,7 @@
     },
     "common_created_at" : "تم الانشاء في",
     "common_try_searching_for_something_else": "قم بالبحث عن شيء اخر",
-
+    "common_sign_in_up" : "تسجيل الدخول / إنشاء حساب",
 
     "network_no_internet": "لا يوجد اتصال بالإنترنت",
     "network_no_internet_desc": "يرجى التحقق من اتصالك بالإنترنت للمتابعة في التسوق",
@@ -82,6 +82,8 @@
     "auth_signing_in" : "جاري تسجيل الدخول ...",
     "auth_signing_out" : "جاري تسجيل الخروج ...",
     "auth_creating_account" : "جاري إنشاء الحساب ...",
+    "auth_signing_with_google" : "جاري التسجيل بجوجل ...",
+    "auth_deleting_account" : "جاري حذف الحساب ...",
     "auth_create_account": "انشاء حساب",
     "auth_by_continuing_you_agree_to_our": "بالمتابعة، توافق على",
     "auth_terms_of_service": "شروط الخدمة",
@@ -100,17 +102,21 @@
 
 
     "home_title": "الرئيسية",
-    "home_popular_products": "المنتجات المحبوبة",
+    "home_popular_products": "المنتجات المشهورة",
     "home_recently_viewed_products": "منتجات زرتها مؤخرًا",
 
 
     "profile_title": "الحساب",
+    "profile_select_section": "أختر قسم",
+    "profile_welcome_to_ionic" : "مرحبًا بك في ايقوني",
+    "profile_for_more_features_sign_in": "لمزيد من الميزات، قم بتسجيل الدخول.",
     "profile_my_preference": "تفضيلاتي",
-    "profile_my_cart": "عربة تسوقي",
+    "profile_my_favorites": "مفضلاتي",
     "profile_my_orders": "طلباتي",
     "profile_my_addresses": "عناويني",
     "profile_my_settings": "الاعدادات",
     "profile_notifications": "الاشعارات",
+    "profile_account_privacy": "خصوصية الحساب",
     "profile_language": "اللغة",
     "profile_dark_mode": "وضع الليلي",
     "profile_info_and_support": "معلومات ودعم",
@@ -127,6 +133,20 @@
     "edit_profile_gender_male": "ذكر",
     "edit_profile_gender_female": "انثى",
     "edit_profile_profile_updated_successfully": "تم تحديث الملف الشخصي بنجاح",
+
+    "notification_app_notification": "اشعارات التطبيق",
+    "notification_app_notification_desc" : "لا تفوت أي رسالة. انقر على الزر أدناه لتفعيل إشعاراتنا.",
+    "notification_open_notification_settings" : "افتح اعدادات الاشعارات",
+    "notification_couldnt_open_notification_settings" : "لا يمكنك فتح اعدادات الاشعارات",
+
+    "account_privacy_account_deletion": "حذف الحساب",
+    "account_privacy_account_deletion_desc": "نحن حزينون لرؤيتك تغادر! إذا كان لديك أي أسئلة أو استفسارات، لا تتردد في التواصل معنا.",
+    "account_privacy_are_you_sure": "هل أنت متأكد؟",
+    "account_privacy_are_you_sure_desc": "بمجرد حذف حسابك، لا يمكن التراجع عن ذلك. الرجاء التأكد.",
+    "account_privacy_delete_account": "حذف الحساب",
+    "account_privacy_deleting_account": "جارٍ حذف الحساب...",
+    "account_privacy_account_deleted_successfully": "تم حذف الحساب بنجاح",
+
 
     "favorites_title": "المفضلة",
     "favorites_empty": "لا يوجد منتجات في المفضلة",

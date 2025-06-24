@@ -76,7 +76,9 @@ class RequiredLoginScreen extends StatelessWidget {
                           ),
                           svgIcon: AppAssets.iconsGoogle,
                           onPressed: () async {
-                            await context.read<AuthCubit>().signInWithGoogle();
+                            await context.read<AuthCubit>().signInWithGoogle(
+                              context,
+                            );
                           },
                         ),
                         CustomFilledButton(

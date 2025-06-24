@@ -32,11 +32,13 @@ class HomeRecentlyViewedProducts extends StatelessWidget {
               orElse: () => [],
             );
 
-            return ProductGridHorizontal(
-              title: context.tr(LocaleKeys.home_recently_viewed_products),
-              isLoading: isLoading,
-              productItems: productItems,
-            );
+            return productItems.isEmpty
+                ? const SizedBox.shrink()
+                : ProductGridHorizontal(
+                  title: context.tr(LocaleKeys.home_recently_viewed_products),
+                  isLoading: isLoading,
+                  productItems: productItems,
+                );
           },
         ),
       ),

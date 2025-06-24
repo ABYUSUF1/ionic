@@ -28,7 +28,7 @@
     },
     "common_created_at": "Created At",
     "common_try_searching_for_something_else": "Try searching for something else",
-
+    "common_sign_in_up" : "Sign In / Sign Up",
 
     "network_no_internet": "No internet connection",
     "network_no_internet_desc": "Please check your internet connection to continue shopping",
@@ -79,6 +79,8 @@
     "auth_signing_in": "Signing in...",
     "auth_signing_out": "Signing out...",
     "auth_creating_account": "Creating account...",
+    "auth_signing_with_google" : "Signing in with Google ...",
+    "auth_deleting_account" : "Deleting account...",
     "auth_create_account": "Create Account",
     "auth_by_continuing_you_agree_to_our": "By continuing, you agree to our",
     "auth_terms_of_service": "Terms of Service",
@@ -102,12 +104,16 @@
 
 
     "profile_title": "Profile",
+    "profile_welcome_to_ionic": "Welcome to Ionic",
+    "profile_select_section": "Select Section",
+    "profile_for_more_features_sign_in": "For more features, sign in.",
     "profile_my_preference": "My Preferences",
-    "profile_my_cart": "My Cart",
+    "profile_my_favorites": "My Favorites",
     "profile_my_orders": "My Orders",
     "profile_my_addresses": "My Addresses",
     "profile_my_settings": "Settings",
     "profile_notifications": "Notifications",
+    "profile_account_privacy": "Account Privacy",
     "profile_language": "Language",
     "profile_dark_mode": "Dark Mode",
     "profile_info_and_support": "Information and Support",
@@ -125,6 +131,19 @@
     "edit_profile_gender_female": "Female",
     "edit_profile_profile_updated_successfully": "Profile updated successfully",
 
+
+    "notification_app_notification" : "App Notifications",
+    "notification_app_notification_desc" : "Never miss a message. Click the button below to enable notifications from us.",
+    "notification_open_notification_settings": "Open Notification Settings",
+    "notification_couldnt_open_notification_settings": "Couldn't open notification settings",
+
+    "account_privacy_account_deletion": "Account Deletion",
+    "account_privacy_account_deletion_desc":"We are sad to see you go! If you have any questions or concerns, please don't hesitate to contact us.",
+    "account_privacy_are_you_sure": "Are you sure?",
+    "account_privacy_are_you_sure_desc": "Once you delete your account, there is no going back. Please be certain.",
+    "account_privacy_delete_account": "Delete Account",
+    "account_privacy_deleting_account": "Deleting Account...",
+    "account_privacy_account_deleted_successfully": "Account deleted successfully",
 
     "favorites_title": "Favorites",
     "favorites_empty": "No favorites yet",

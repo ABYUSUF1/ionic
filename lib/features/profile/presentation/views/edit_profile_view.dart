@@ -26,7 +26,11 @@ class EditProfileView extends StatelessWidget {
       child: BlocListener<EditProfileCubit, EditProfileState>(
         listener: (context, state) {
           state.whenOrNull(
-            loading: () => showFullScreenLoading(context, "Save Changes..."),
+            loading:
+                () => showFullScreenLoading(
+                  context,
+                  context.tr(LocaleKeys.common_save_changes),
+                ),
             error: (message) {
               closeFullScreenLoading(context);
               AppSnackbar.showErrorSnackBar(context, message);
@@ -36,7 +40,9 @@ class EditProfileView extends StatelessWidget {
               closeFullScreenLoading(context);
               AppSnackbar.showSuccessSnackBar(
                 context,
-                "Profile Updated Successfully.",
+                context.tr(
+                  LocaleKeys.edit_profile_profile_updated_successfully,
+                ),
               );
             },
           );

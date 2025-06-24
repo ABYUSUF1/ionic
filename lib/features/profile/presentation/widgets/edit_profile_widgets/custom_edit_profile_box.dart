@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ionic/core/theme/app_font.dart';
 
 class CustomEditProfileBox extends StatelessWidget {
   final String title;
@@ -18,7 +19,7 @@ class CustomEditProfileBox extends StatelessWidget {
         Text(
           title,
           style: theme.textTheme.bodyLarge!.copyWith(
-            fontFamily: 'Pulp Display',
+            fontFamily: appFont(context),
           ),
         ),
         const SizedBox(height: 10),

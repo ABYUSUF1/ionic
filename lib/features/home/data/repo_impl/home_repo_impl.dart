@@ -51,6 +51,8 @@ class HomeRepoImpl with AuthGuardMixin implements HomeRepo {
   @override
   Future<Either<Failure, List<ProductItemEntity>>>
   fetchRecentlyProducts() async {
+    if (!isEmailVerified) return const Right([]);
+
     try {
       final snapshot =
           await firestore

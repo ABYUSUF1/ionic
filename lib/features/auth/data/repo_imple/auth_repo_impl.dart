@@ -198,12 +198,34 @@ class AuthRepoImpl implements AuthRepo {
     try {
       final user = await _remoteDataSource.getCurrentUser();
       return Right(user);
+    } on FirebaseAuthException catch (e) {
+      return Left(AuthFailure.fromFirebaseAuthException(e));
     } on PlatformException catch (e) {
       return Left(PlatformFailure.fromCode(e));
     } catch (e) {
       return const Left(
         Failure(
-          'An unexpected error occurred during sign-in with Google. Please try again.',
+          'An unexpected error occurred during getting current user. Please try again.',
+        ),
+      );
+    }
+  }
+
+  @override
+  Future<Either<Failure, void>> deleteUserAndData({
+    required String password,
+  }) async {
+    try {
+      await _remoteDataSource.deleteUserAndData(password: password);
+      return const Right(null);
+    } on FirebaseAuthException catch (e) {
+      return Left(AuthFailure.fromFirebaseAuthException(e));
+    } on PlatformException catch (e) {
+      return Left(PlatformFailure.fromCode(e));
+    } catch (e) {
+      return const Left(
+        Failure(
+          'An unexpected error occurred during sign-in. Please try again.',
         ),
       );
     }

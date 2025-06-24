@@ -1,6 +1,9 @@
 import 'package:bloc/bloc.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:ionic/features/auth/domain/entity/auth_entity.dart';
+import 'package:ionic/generated/locale_keys.g.dart';
 
 import '../../../domain/repo/auth_repo.dart';
 
@@ -44,8 +47,8 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   /// Sign in with google
-  Future<void> signInWithGoogle() async {
-    emit(const AuthState.loading("Signing with Google..."));
+  Future<void> signInWithGoogle(BuildContext context) async {
+    emit(AuthState.loading(context.tr(LocaleKeys.auth_signing_with_google)));
     final result = await _authRepo.signInWithGoogle();
     result.fold((failure) => emit(AuthState.error(failure.errMessage)), (
       authEntity,
@@ -62,9 +65,24 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   /// Logout
-  Future<void> signOut() async {
-    emit(const AuthState.loading("Signing out..."));
+  Future<void> signOut(BuildContext context) async {
+    emit(AuthState.loading(context.tr(LocaleKeys.auth_signing_out)));
     final result = await _authRepo.signOut();
+    result.fold((failure) => emit(AuthState.error(failure.errMessage)), (_) {
+      emit(const AuthState.unAuthenticated());
+      cachedAuthEntity = null;
+    });
+  }
+
+  /// Delete user account and data
+  Future<void> deleteUserAndData({
+    required String password,
+    required BuildContext context,
+  }) async {
+    emit(AuthState.loading(context.tr(LocaleKeys.auth_deleting_account)));
+
+    final result = await _authRepo.deleteUserAndData(password: password);
+
     result.fold((failure) => emit(AuthState.error(failure.errMessage)), (_) {
       emit(const AuthState.unAuthenticated());
       cachedAuthEntity = null;

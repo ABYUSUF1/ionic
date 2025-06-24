@@ -1,10 +1,11 @@
-import 'package:app_settings/app_settings.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:ionic/core/routing/app_router_name.dart';
 import 'package:ionic/generated/locale_keys.g.dart';
 
-class NotificationView extends StatelessWidget {
-  const NotificationView({super.key});
+class AccountPrivacyView extends StatelessWidget {
+  const AccountPrivacyView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -12,33 +13,32 @@ class NotificationView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          context.tr(LocaleKeys.profile_notifications),
+          context.tr(LocaleKeys.profile_account_privacy),
           style: theme.textTheme.headlineMedium,
         ),
       ),
-
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
               padding: const EdgeInsets.all(16),
-              width: double.infinity,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8),
                 color: theme.colorScheme.surface,
+                borderRadius: BorderRadius.circular(8),
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    context.tr(LocaleKeys.notification_app_notification),
+                    context.tr(LocaleKeys.account_privacy_account_deletion),
                     style: theme.textTheme.headlineMedium,
                   ),
                   const SizedBox(height: 4),
                   Text(
-                    context.tr(LocaleKeys.notification_app_notification_desc),
+                    context.tr(
+                      LocaleKeys.account_privacy_account_deletion_desc,
+                    ),
                     style: theme.textTheme.bodyMedium!.copyWith(
                       color: theme.colorScheme.onSurfaceVariant,
                     ),
@@ -46,27 +46,10 @@ class NotificationView extends StatelessWidget {
                   const SizedBox(height: 16),
                   ElevatedButton(
                     onPressed: () async {
-                      try {
-                        await AppSettings.openAppSettings(
-                          type: AppSettingsType.notification,
-                        );
-                      } catch (e) {
-                        if (context.mounted) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: Text(
-                                context.tr(
-                                  LocaleKeys
-                                      .notification_couldnt_open_notification_settings,
-                                ),
-                              ),
-                            ),
-                          );
-                        }
-                      }
+                      context.goNamed(AppRouterName.deleteAccountRoute);
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: theme.colorScheme.primary.withValues(
+                      backgroundColor: theme.colorScheme.error.withValues(
                         alpha: .2,
                       ),
                       shape: RoundedRectangleBorder(
@@ -74,10 +57,8 @@ class NotificationView extends StatelessWidget {
                       ),
                     ),
                     child: Text(
-                      context.tr(
-                        LocaleKeys.notification_open_notification_settings,
-                      ),
-                      style: TextStyle(color: theme.colorScheme.primary),
+                      context.tr(LocaleKeys.account_privacy_delete_account),
+                      style: TextStyle(color: theme.colorScheme.error),
                     ),
                   ),
                 ],

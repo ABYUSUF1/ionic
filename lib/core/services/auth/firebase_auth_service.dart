@@ -76,6 +76,47 @@ class FirebaseAuthService {
     Future.wait([firebaseAuth.signOut(), googleSignIn.signOut()]);
   }
 
+  /// Deletes the currently logged-in user's account after reauthenticate.
+  Future<void> deleteUser({required String password}) async {
+    final user = currentUser;
+    if (user == null || user.email == null) return;
+
+    late final AuthCredential credential;
+
+    // Detect sign-in provider
+    final providerId = user.providerData.first.providerId;
+
+    if (providerId == 'google.com') {
+      final googleUser = await GoogleSignIn().signIn();
+      final googleAuth = await googleUser?.authentication;
+
+      // Make sure authentication succeeded
+      if (googleAuth == null) return;
+
+      credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth.accessToken,
+        idToken: googleAuth.idToken,
+      );
+    } else if (providerId == 'password') {
+      credential = EmailAuthProvider.credential(
+        email: user.email!,
+        password: password,
+      );
+    } else {
+      // Unsupported provider
+      return;
+    }
+
+    // Reauthenticate
+    await user.reauthenticateWithCredential(credential);
+
+    // Delete from Firebase Auth
+    await user.delete();
+
+    // Sign out from Firebase and Google
+    await signOut();
+  }
+
   //! We will not depend on firebase auth to update user's profile
   //! bec we still have many fields that firebase auth does not support
   //! like gender, birth date, etc..   so we will use firestore.

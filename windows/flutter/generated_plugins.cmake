@@ -11,6 +11,7 @@ list(APPEND FLUTTER_PLUGIN_LIST
   firebase_core
   flutter_inappwebview_windows
   objectbox_flutter_libs
+  share_plus
   url_launcher_windows
 )
 

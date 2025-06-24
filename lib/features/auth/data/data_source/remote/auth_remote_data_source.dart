@@ -229,4 +229,17 @@ class AuthRemoteDataSource {
       rethrow;
     }
   }
+
+  Future<void> deleteUserAndData({required String password}) async {
+    try {
+      await _authFirestoreService.deleteUserAccountAndData();
+      await _firebaseAuthService.deleteUser(password: password);
+    } on FirebaseException catch (e) {
+      debugPrint('❌ Firebase error while deleting user: $e');
+      rethrow;
+    } catch (e) {
+      debugPrint('❌ Unexpected error while deleting user: $e');
+      rethrow;
+    }
+  }
 }

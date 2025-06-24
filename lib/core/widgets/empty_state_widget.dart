@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ionic/core/widgets/buttons/custom_filled_button.dart';
@@ -65,7 +66,14 @@ class EmptyStateWidget extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             if (svgImage != null) ...[
-              SvgPicture.asset(svgImage!, height: isMobile ? 180 : 220),
+              ZoomIn(
+                curve: Curves.ease,
+                duration: const Duration(milliseconds: 300),
+                child: SvgPicture.asset(
+                  svgImage!,
+                  height: isMobile ? 180 : 220,
+                ),
+              ),
               const SizedBox(height: 30),
             ],
             Text(

@@ -1,7 +1,9 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ionic/core/theme/app_colors.dart';
 import 'package:ionic/core/widgets/responsive_layout.dart';
+import 'package:ionic/generated/locale_keys.g.dart';
 import '../../../../../core/widgets/snackbar/app_snackbar.dart';
 import '../../../../auth/presentation/manager/auth/auth_cubit.dart';
 import '../../manager/tablet_ui_logic/cubit/tablet_ui_logic_cubit.dart';
@@ -138,7 +140,10 @@ class _TabletVersion extends StatelessWidget {
 bool _checkAuth(BuildContext context) {
   final user = context.read<AuthCubit>().cachedAuthEntity;
   if (user == null || !user.isEmailVerified) {
-    AppSnackbar.showNoteSnackBar(context, "Sign in first");
+    AppSnackbar.showNoteSnackBar(
+      context,
+      context.tr(LocaleKeys.address_sign_in_required),
+    );
     return false; // not authenticated
   }
   return true; // authenticated

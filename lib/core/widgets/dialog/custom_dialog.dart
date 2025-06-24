@@ -1,9 +1,11 @@
 import 'package:animate_do/animate_do.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:ionic/core/theme/app_colors.dart';
 import 'package:ionic/core/widgets/buttons/custom_filled_button.dart';
+import 'package:ionic/generated/locale_keys.g.dart';
 
 Future<void> showCustomDialog({
   required BuildContext context,
@@ -55,7 +57,7 @@ Future<void> showCustomDialog({
                         context.pop(context);
                       },
                       child: Text(
-                        "Cancel",
+                        context.tr(LocaleKeys.common_cancel),
                         style: theme.textTheme.bodyMedium!.copyWith(
                           color: AppColors.primaryColor,
                           fontWeight: FontWeight.w600,
