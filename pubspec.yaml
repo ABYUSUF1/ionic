@@ -117,8 +117,7 @@ flutter_assets:
 
 
 flutter_native_splash:
-  color: "#FFFFFF"
-  color_dark: "#171923"
+  color: "#566CEC"
   image: assets/logo/ionic_splash_logo.png
   image_dark: assets/logo/ionic_splash_logo.png
   android_gravity: center

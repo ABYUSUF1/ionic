@@ -29,7 +29,6 @@ class ProfileMyPreferenceBox extends StatelessWidget {
         CustomProfileListTile(
           title: context.tr(LocaleKeys.profile_my_favorites),
           icon: IconsaxPlusLinear.heart_tick,
-          section: ProfileButtonEnum.myFavorites,
           requireAuth: true,
           onTap: () {
             context.pushNamed(AppRouterName.favoriteRoute);

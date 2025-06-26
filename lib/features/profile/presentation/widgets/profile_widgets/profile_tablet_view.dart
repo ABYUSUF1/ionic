@@ -2,7 +2,6 @@ import 'package:animate_do/animate_do.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:ionic/features/favorite/presentation/views/favorite_view.dart';
 import 'package:ionic/features/profile/presentation/manager/tablet_ui_logic/cubit/tablet_ui_logic_cubit.dart';
 import 'package:ionic/features/profile/presentation/views/account_privacy_view.dart';
 import 'package:ionic/features/profile/presentation/views/edit_profile_view.dart';
@@ -42,7 +41,10 @@ class ProfileTabletView extends StatelessWidget {
                     child = const EditProfileView();
                     break;
                   case ProfileButtonEnum.myAddresses:
-                    child = const DefaultAddressView();
+                    child = const Padding(
+                      padding: EdgeInsets.only(bottom: 16, right: 16, left: 16),
+                      child: DefaultAddressView(),
+                    );
                     break;
                   case ProfileButtonEnum.notifications:
                     child = const NotificationView();
@@ -50,14 +52,11 @@ class ProfileTabletView extends StatelessWidget {
                   case ProfileButtonEnum.accountPrivacy:
                     child = const AccountPrivacyView();
                     break;
-                  case ProfileButtonEnum.myFavorites:
-                    child = const FavoriteView();
-                    break;
                 }
                 return FadeInDown(
                   from: 20,
                   duration: const Duration(milliseconds: 300),
-                  key: UniqueKey(),
+                  key: ValueKey(state),
                   child: child,
                 );
               },

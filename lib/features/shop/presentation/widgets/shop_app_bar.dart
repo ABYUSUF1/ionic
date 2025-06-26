@@ -20,7 +20,9 @@ class ShopAppBar extends StatelessWidget {
       toolbarHeight: 80,
       centerTitle: false,
       title: Image.asset(
-        isArabic(context) ? AppAssets.logoIonicLogoAr : AppAssets.logoIonicLogo,
+        isArabic(context)
+            ? AppAssets.logoIonicLogoAr
+            : AppAssets.logoIonicLogoEn,
         height: 40,
       ),
       actions: [

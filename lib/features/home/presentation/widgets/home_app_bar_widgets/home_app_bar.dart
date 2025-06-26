@@ -24,7 +24,7 @@ class HomeAppBar extends StatelessWidget {
               Image.asset(
                 isArabic(context)
                     ? AppAssets.logoIonicLogoAr
-                    : AppAssets.logoIonicLogo,
+                    : AppAssets.logoIonicLogoEn,
                 height: 40,
               ),
               const Spacer(),

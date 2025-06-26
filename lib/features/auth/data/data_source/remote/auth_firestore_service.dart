@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:ionic/core/services/data_source/remote/firestore_collection_names.dart';
 import '../../models/auth_model.dart';
 
@@ -71,15 +72,15 @@ class AuthFirestoreService {
       // 4. Delete Firebase Auth user
       await user.delete();
 
-      print('✅ All user data and account deleted successfully.');
+      debugPrint('✅ All user data and account deleted successfully.');
     } on FirebaseAuthException catch (e) {
       if (e.code == 'requires-recent-login') {
-        print('⚠️ Re-authentication required before deleting user.');
+        debugPrint('⚠️ Re-authentication required before deleting user.');
       } else {
-        print('❌ FirebaseAuthException: ${e.message}');
+        debugPrint('❌ FirebaseAuthException: ${e.message}');
       }
     } catch (e) {
-      print('❌ Unexpected error during deletion: $e');
+      debugPrint('❌ Unexpected error during deletion: $e');
     }
   }
 

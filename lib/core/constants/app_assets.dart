@@ -138,17 +138,13 @@ class AppAssets {
   /// assets/illustrations/trash_illustration_light.svg
   static const String illustrationsTrashIllustrationLight = "assets/illustrations/trash_illustration_light.svg";
 
-  /// Assets for logoIonicLogo
-  /// assets/logo/ionic_logo.png
-  static const String logoIonicLogo = "assets/logo/ionic_logo.png";
-
   /// Assets for logoIonicLogoAr
   /// assets/logo/ionic_logo_ar.png
   static const String logoIonicLogoAr = "assets/logo/ionic_logo_ar.png";
 
-  /// Assets for logoIonicLogoIcon
-  /// assets/logo/ionic_logo_icon.png
-  static const String logoIonicLogoIcon = "assets/logo/ionic_logo_icon.png";
+  /// Assets for logoIonicLogoEn
+  /// assets/logo/ionic_logo_en.png
+  static const String logoIonicLogoEn = "assets/logo/ionic_logo_en.png";
 
   /// Assets for logoIonicSplashLogo
   /// assets/logo/ionic_splash_logo.png

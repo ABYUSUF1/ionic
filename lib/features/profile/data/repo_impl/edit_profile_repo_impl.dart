@@ -44,7 +44,6 @@ class EditProfileRepoImpl implements EditProfileRepo {
     required String imageName,
   }) async {
     try {
-      ;
       final String? imageUrl = await _storageService.uploadImage(
         imageBytes: imageBytes,
         imageName: imageName,

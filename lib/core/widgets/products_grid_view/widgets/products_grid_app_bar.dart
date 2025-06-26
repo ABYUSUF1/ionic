@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ionic/core/utils/functions/is_arabic.dart';
 import 'package:ionic/core/widgets/products_grid_view/widgets/products_control_icon_button.dart';
 
 import '../../../constants/app_assets.dart';
@@ -33,7 +34,12 @@ class ProductsGridAppBar extends StatelessWidget
                 children: [
                   const CustomBackButton(),
                   Center(
-                    child: Image.asset(AppAssets.logoIonicLogo, height: 40),
+                    child: Image.asset(
+                      isArabic(context)
+                          ? AppAssets.logoIonicLogoAr
+                          : AppAssets.logoIonicLogoEn,
+                      height: 40,
+                    ),
                   ),
                 ],
               ),

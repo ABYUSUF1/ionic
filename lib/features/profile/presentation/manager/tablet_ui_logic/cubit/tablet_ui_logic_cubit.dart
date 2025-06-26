@@ -5,7 +5,6 @@ enum ProfileButtonEnum {
   myAddresses,
   notifications,
   accountPrivacy,
-  myFavorites,
 }
 
 class TabletUiLogic extends Cubit<ProfileButtonEnum?> {

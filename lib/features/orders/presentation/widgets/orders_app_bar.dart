@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ionic/core/constants/app_assets.dart';
+import 'package:ionic/core/utils/functions/is_arabic.dart';
 
 import '../../../../core/widgets/buttons/custom_back_button.dart';
 import '../manager/cubit/orders_cubit.dart';
@@ -30,7 +31,12 @@ class OrdersAppBar extends StatelessWidget implements PreferredSizeWidget {
                     alignment: AlignmentDirectional.centerStart,
                     child: CustomBackButton(),
                   ),
-                  Image.asset(AppAssets.logoIonicLogo, height: 35),
+                  Image.asset(
+                    isArabic(context)
+                        ? AppAssets.logoIonicLogoAr
+                        : AppAssets.logoIonicLogoEn,
+                    height: 35,
+                  ),
                 ],
               ),
               if (state.isSuccess) ...[
