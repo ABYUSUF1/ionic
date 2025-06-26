@@ -6,11 +6,11 @@ import 'package:iconsax_plus/iconsax_plus.dart';
 import 'package:ionic/generated/locale_keys.g.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
-import '../../../../../core/routing/app_router_name.dart';
-import '../../../../address/presentation/manager/default_address/default_address_cubit.dart';
+import '../routing/app_router_name.dart';
+import '../../features/address/presentation/manager/default_address/default_address_cubit.dart';
 
-class HomeAppBarAddressButton extends StatelessWidget {
-  const HomeAppBarAddressButton({super.key});
+class AddressButton extends StatelessWidget {
+  const AddressButton({super.key});
 
   @override
   Widget build(BuildContext context) {

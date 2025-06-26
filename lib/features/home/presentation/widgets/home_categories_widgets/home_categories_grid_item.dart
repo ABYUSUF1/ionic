@@ -19,7 +19,8 @@ class HomeCategoriesGridItem extends StatelessWidget {
     return InkWell(
       onTap: () {
         context.push(
-          AppRouterName.categoriesRoute,
+          AppRouterName.categoriesSlugRoute(category.slug),
+
           extra: category.localizedTitle,
         );
       },

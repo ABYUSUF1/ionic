@@ -22,12 +22,12 @@ class MainBottomNavBar extends StatelessWidget {
         icon: IconsaxPlusLinear.home_2,
       ),
       Destinations(
-        label: context.tr(LocaleKeys.bottom_navigation_categories),
-        icon: IconsaxPlusLinear.category_2,
+        label: context.tr(LocaleKeys.shop_title),
+        icon: IconsaxPlusLinear.shopping_bag,
       ),
       Destinations(
         label: context.tr(LocaleKeys.cart_title),
-        icon: IconsaxPlusLinear.bag_2,
+        icon: IconsaxPlusLinear.shopping_cart,
       ),
       Destinations(
         label: context.tr(LocaleKeys.profile_title),

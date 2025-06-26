@@ -26,7 +26,6 @@ class CustomMap extends StatelessWidget {
             borderRadius: BorderRadius.circular(8),
             child: FlutterMap(
               mapController: cubit.mapController,
-
               options: MapOptions(
                 initialCenter: const LatLng(30, 31), // Cairo
                 initialZoom: 9.2,

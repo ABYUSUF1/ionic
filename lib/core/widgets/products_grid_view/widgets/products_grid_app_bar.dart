@@ -11,10 +11,12 @@ class ProductsGridAppBar extends StatelessWidget
     implements PreferredSizeWidget {
   final Widget helperText;
   final String hintText;
+  final bool showSearchField;
   const ProductsGridAppBar({
     super.key,
     required this.helperText,
     required this.hintText,
+    required this.showSearchField,
   });
 
   @override
@@ -36,24 +38,26 @@ class ProductsGridAppBar extends StatelessWidget
                 ],
               ),
               const SizedBox(height: 16),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                spacing: 16,
-                children: [
-                  Expanded(
-                    child: SearchField(
-                      helperText: helperText,
-                      hintText: hintText,
-                      onChanged: (value) {
-                        context.read<ProductsControlCubit>().searchProducts(
-                          value,
-                        );
-                      },
-                    ),
-                  ),
-                  const ProductsControlIconButton(),
-                ],
-              ),
+              showSearchField
+                  ? Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    spacing: 16,
+                    children: [
+                      Expanded(
+                        child: SearchField(
+                          helperText: helperText,
+                          hintText: hintText,
+                          onChanged: (value) {
+                            context.read<ProductsControlCubit>().searchProducts(
+                              value,
+                            );
+                          },
+                        ),
+                      ),
+                      const ProductsControlIconButton(),
+                    ],
+                  )
+                  : const SizedBox.shrink(),
             ],
           ),
         ),

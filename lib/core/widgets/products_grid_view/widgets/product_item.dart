@@ -8,6 +8,7 @@ import 'package:ionic/core/routing/app_router_name.dart';
 
 import '../../../theme/app_font.dart';
 import '../../../utils/functions/product_formatted.dart';
+import '../../loading/image_loading_widget.dart';
 import 'favorite_button.dart';
 
 class ProductItem extends StatelessWidget {
@@ -58,7 +59,11 @@ class ProductItem extends StatelessWidget {
                   child:
                       isLoading
                           ? null
-                          : CachedNetworkImage(imageUrl: productItem.imageUrl),
+                          : CachedNetworkImage(
+                            imageUrl: productItem.imageUrl,
+                            placeholder:
+                                (context, url) => const ImageLoadingWidget(),
+                          ),
                 ),
                 FavoriteButton(productItem: productItem),
               ],

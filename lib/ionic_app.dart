@@ -4,9 +4,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ionic/core/routing/app_route.dart';
 import 'package:ionic/core/services/data_source/local/local_app_settings_service.dart';
 import 'package:ionic/core/services/network/network_cubit.dart';
-import 'package:ionic/core/services/network/network_widget.dart';
+import 'package:ionic/core/services/network/network_online_snackbar.dart';
+import 'package:ionic/core/services/network/network_view.dart';
 import 'package:ionic/core/theme/app_theme.dart';
-import 'package:ionic/core/widgets/empty_state_widget.dart';
 import 'package:ionic/features/auth/presentation/manager/auth/auth_cubit.dart';
 import 'package:ionic/features/cart/domain/repo/cart_repo.dart';
 import 'package:ionic/features/cart/presentation/manager/cubit/cart_cubit.dart';
@@ -19,7 +19,6 @@ import 'features/address/domain/repo/address_repo.dart';
 import 'features/address/presentation/manager/default_address/default_address_cubit.dart';
 import 'features/auth/domain/repo/auth_repo.dart';
 import 'features/favorite/domain/repo/favorite_repo.dart';
-import 'package:ionic/generated/locale_keys.g.dart';
 
 class IonicApp extends StatelessWidget {
   const IonicApp({super.key});
@@ -42,50 +41,21 @@ class IonicApp extends StatelessWidget {
       ],
       child: BlocBuilder<ThemeCubit, bool>(
         builder: (context, isDarkMode) {
-          return BlocListener<AuthCubit, AuthState>(
-            listener: (context, state) async {
-              state.maybeWhen(
-                orElse: () {},
-                authenticated: (authEntity) async {
-                  // await getIt<FirebaseMessagingService>().init(authEntity.id);
-                },
-              );
+          return MaterialApp.router(
+            scaffoldMessengerKey: scaffoldMessengerKey,
+            debugShowCheckedModeBanner: false,
+            localizationsDelegates: context.localizationDelegates,
+            supportedLocales: context.supportedLocales,
+            locale: context.locale,
+            theme:
+                isDarkMode
+                    ? AppTheme.darkTheme(context)
+                    : AppTheme.lightTheme(context),
+            themeMode: ThemeMode.system,
+            routerConfig: appRouter,
+            builder: (context, child) {
+              return NetworkView(child: child);
             },
-            child: MaterialApp.router(
-              scaffoldMessengerKey: scaffoldMessengerKey,
-              debugShowCheckedModeBanner: false,
-              localizationsDelegates: context.localizationDelegates,
-              supportedLocales: context.supportedLocales,
-              locale: context.locale,
-              theme:
-                  isDarkMode
-                      ? AppTheme.darkTheme(context)
-                      : AppTheme.lightTheme(context),
-              themeMode: ThemeMode.system,
-              routerConfig: appRouter,
-              builder: (context, child) {
-                return BlocBuilder<NetworkCubit, NetworkStatus>(
-                  builder: (context, state) {
-                    if (state == NetworkStatus.disconnected) {
-                      return EmptyStateWidget(
-                        title: context.tr(LocaleKeys.network_no_internet),
-                        subtitle: context.tr(
-                          LocaleKeys.network_no_internet_desc,
-                        ),
-                      );
-                    }
-                    return BlocListener<NetworkCubit, NetworkStatus>(
-                      listener: (context, state) {
-                        if (state == NetworkStatus.connected) {
-                          showOnlineSnackBar(context);
-                        }
-                      },
-                      child: child!,
-                    );
-                  },
-                );
-              },
-            ),
           );
         },
       ),

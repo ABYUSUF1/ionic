@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ionic/core/entities/product_item_entity.dart';
 import 'package:ionic/core/models/product_model/product.dart';
 import 'package:ionic/core/widgets/empty_state_widget.dart';
+import 'package:ionic/core/widgets/loading/skeleton_loading.dart';
 import 'package:ionic/core/widgets/products_grid_view/manager/cubit/products_control_state.dart';
 import 'package:ionic/core/widgets/products_grid_view/widgets/products_grid.dart';
 import 'package:ionic/core/widgets/products_grid_view/manager/cubit/products_control_cubit.dart';
@@ -32,16 +33,21 @@ class ProductsGridView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return isLoading
         ? Scaffold(
           appBar: ProductsGridAppBar(
+            showSearchField: false,
             helperText: Text(context.tr(LocaleKeys.common_loading)),
             hintText: '',
           ),
-          body: ProductsGrid(
-            productsItem: productItems,
-            products: null,
+          body: SkeletonLoading(
             isLoading: true,
+            child: ProductsGrid(
+              productsItem: productItems,
+              products: null,
+              isLoading: true,
+            ),
           ),
         )
         : BlocProvider(
@@ -55,9 +61,14 @@ class ProductsGridView extends StatelessWidget {
                 );
               }
               return Scaffold(
+                backgroundColor:
+                    productItems.isEmpty
+                        ? theme.colorScheme.surface
+                        : theme.scaffoldBackgroundColor,
                 appBar: ProductsGridAppBar(
                   helperText: searchHelperText,
                   hintText: searchHintText,
+                  showSearchField: productItems.isNotEmpty,
                 ),
                 body:
                     state.filteredProducts.isEmpty

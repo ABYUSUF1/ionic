@@ -50,7 +50,8 @@ class FormTextField extends StatelessWidget {
           keyboardType: keyboardType,
           style: theme.textTheme.bodyMedium,
           inputFormatters: [
-            if (keyboardType == TextInputType.number)
+            if (keyboardType == TextInputType.number ||
+                keyboardType == TextInputType.phone)
               FilteringTextInputFormatter.digitsOnly,
           ],
           decoration: InputDecoration(

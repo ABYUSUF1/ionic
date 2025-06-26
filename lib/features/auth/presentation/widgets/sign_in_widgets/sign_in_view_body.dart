@@ -5,7 +5,6 @@ import 'package:go_router/go_router.dart';
 import 'package:ionic/core/routing/app_router_name.dart';
 import 'package:ionic/core/widgets/loading/full_screen_loading.dart';
 import 'package:ionic/core/widgets/snackbar/app_snackbar.dart';
-import 'package:ionic/features/auth/presentation/args/email_sent_args.dart';
 import 'package:ionic/features/auth/presentation/manager/auth/auth_cubit.dart';
 import 'package:ionic/features/auth/presentation/manager/sign_in/sign_in_cubit.dart';
 import 'package:ionic/features/auth/presentation/widgets/sign_in_widgets/sign_in_form.dart';
@@ -43,12 +42,13 @@ class SignInViewBody extends StatelessWidget {
               context,
               LocaleKeys.auth_we_sent_you_an_email_to_verify_your_account.tr(),
             );
-            context.push(
+            context.pushNamed(
               AppRouterName.emailSentRoute,
-              extra: EmailSentArgs(
-                isPasswordReset: false,
-                email: context.read<SignInCubit>().emailController.text.trim(),
-              ),
+              extra: {
+                'email':
+                    context.read<SignInCubit>().emailController.text.trim(),
+                'isPasswordReset': false,
+              },
             );
           },
           loading:

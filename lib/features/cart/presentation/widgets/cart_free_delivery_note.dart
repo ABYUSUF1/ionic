@@ -5,8 +5,8 @@ import 'package:ionic/core/widgets/responsive_layout.dart';
 
 import '../../../../generated/locale_keys.g.dart';
 
-class CartCouponCodeDesc extends StatelessWidget {
-  const CartCouponCodeDesc({super.key});
+class CartFreeDeliveryNote extends StatelessWidget {
+  const CartFreeDeliveryNote({super.key});
 
   @override
   Widget build(BuildContext context) {

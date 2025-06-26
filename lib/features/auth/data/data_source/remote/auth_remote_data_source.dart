@@ -230,6 +230,23 @@ class AuthRemoteDataSource {
     }
   }
 
+  Future<void> updateUserEmailVerifiedStatus({
+    required bool isEmailVerified,
+  }) async {
+    try {
+      await _authFirestoreService.updateIsEmailVerified(
+        userId: _firebaseAuthService.currentUser!.uid,
+        isEmailVerified: isEmailVerified,
+      );
+    } on FirebaseException catch (e) {
+      debugPrint('Error updating email verified status: $e');
+      rethrow;
+    } catch (e) {
+      debugPrint('Unexpected error updating email verified status: $e');
+      rethrow;
+    }
+  }
+
   Future<void> deleteUserAndData({required String password}) async {
     try {
       await _authFirestoreService.deleteUserAccountAndData();

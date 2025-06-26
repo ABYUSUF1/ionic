@@ -21,6 +21,7 @@ class CheckoutView extends StatelessWidget {
     final theme = Theme.of(context);
     return RequiredLoginScreen(
       appBarTitle: context.tr(LocaleKeys.checkout_title),
+      description: context.tr(LocaleKeys.checkout_sign_in_required_desc),
       child: MultiBlocProvider(
         providers: [
           BlocProvider(create: (context) => PaymentCubit(getIt())),

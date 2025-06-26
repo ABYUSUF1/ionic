@@ -86,14 +86,14 @@ class OrderSummaryWidget extends StatelessWidget {
                 context.tr(LocaleKeys.cart_total),
                 style:
                     showCouponCode
-                        ? theme.textTheme.headlineLarge
+                        ? theme.textTheme.headlineMedium!.copyWith(fontSize: 26)
                         : theme.textTheme.titleLarge,
               ),
               Text(
                 "EGP ${cartOrderSummary.totalPrice}",
                 style:
                     showCouponCode
-                        ? theme.textTheme.headlineLarge
+                        ? theme.textTheme.headlineMedium!.copyWith(fontSize: 26)
                         : theme.textTheme.titleLarge,
               ),
             ],

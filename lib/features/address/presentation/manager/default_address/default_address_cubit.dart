@@ -60,16 +60,20 @@ class DefaultAddressCubit extends Cubit<DefaultAddressState> {
     final newList = List<AddressEntity>.from(addresses);
     newList.removeWhere((e) => e.id == addressEntity.id);
     newList.add(addressEntity);
+
     newList.sort((a, b) {
-      if (a.isDefault && !b.isDefault) {
-        return -1; // a comes before b
-      } else if (!a.isDefault && b.isDefault) {
-        return 1; // b comes before a
-      } else {
-        return 0; // maintain current order if both are default or both are not default
-      }
+      if (a.isDefault && !b.isDefault) return -1;
+      if (!a.isDefault && b.isDefault) return 1;
+      return 0;
     });
+
     addresses = newList;
+
+    defaultAddress = newList.firstWhere(
+      (e) => e.isDefault,
+      orElse: () => newList.first,
+    );
+
     emit(DefaultAddressState.success(newList));
   }
 

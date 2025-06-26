@@ -9,7 +9,6 @@ import 'package:ionic/features/profile/presentation/views/edit_profile_view.dart
 import 'package:ionic/features/profile/presentation/views/notification_view.dart';
 import 'package:ionic/generated/locale_keys.g.dart';
 
-import '../../../../../core/widgets/empty_state_widget.dart';
 import '../../../../address/presentation/views/default_address_view.dart';
 import 'profile_mobile_view.dart';
 
@@ -18,6 +17,7 @@ class ProfileTabletView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return BlocProvider(
       create: (context) => TabletUiLogic(),
       child: Row(
@@ -28,9 +28,11 @@ class ProfileTabletView extends StatelessWidget {
             child: BlocBuilder<TabletUiLogic, ProfileButtonEnum?>(
               builder: (context, state) {
                 if (state == null) {
-                  return EmptyStateWidget(
-                    title: context.tr(LocaleKeys.profile_select_section),
-                    subtitle: "",
+                  return Center(
+                    child: Text(
+                      context.tr(LocaleKeys.profile_select_section),
+                      style: theme.textTheme.headlineMedium,
+                    ),
                   );
                 }
 

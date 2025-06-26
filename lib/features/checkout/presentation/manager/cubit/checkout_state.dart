@@ -18,20 +18,19 @@ class CheckoutState with _$CheckoutState {
       deliveryInstruction != null;
 }
 
-extension CheckoutStateX on CheckoutState {
-  CheckoutState copyWith({
-    String? address,
-    PaymentMethodEnum? paymentMethod,
-    DeliveryInstructionsEnum? deliveryInstruction,
-    bool? isLoading,
-    String? errorMessage,
-  }) {
-    return CheckoutState(
-      address: address ?? this.address,
-      paymentMethod: paymentMethod ?? this.paymentMethod,
-      deliveryInstruction: deliveryInstruction ?? this.deliveryInstruction,
-      isLoading: isLoading ?? this.isLoading,
-      errorMessage: errorMessage ?? this.errorMessage,
-    );
+extension CheckoutValidation on CheckoutState {
+  String? get canPlaceOrderReason {
+    if (address.trim().isEmpty) {
+      return LocaleKeys.checkout_error_no_address.tr();
+    }
+    if (deliveryInstruction == null) {
+      return LocaleKeys.checkout_error_no_instruction.tr();
+    }
+    if (paymentMethod == null) {
+      return LocaleKeys.checkout_error_no_payment.tr();
+    }
+    return null; // no issue
   }
+
+  bool get canPlaceOrder => canPlaceOrderReason == null && !isLoading;
 }

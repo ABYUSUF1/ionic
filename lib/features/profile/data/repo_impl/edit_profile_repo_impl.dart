@@ -1,6 +1,8 @@
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/services.dart';
+import 'package:ionic/core/services/storage/buckets_name.dart';
+import 'package:ionic/core/services/storage/supabase_storage_service.dart';
 
 import 'package:ionic/core/utils/errors/failure.dart';
 import 'package:ionic/features/auth/data/data_source/remote/auth_remote_data_source.dart';
@@ -12,20 +14,9 @@ import '../../domain/repo/edit_profile_repo.dart';
 
 class EditProfileRepoImpl implements EditProfileRepo {
   final AuthRemoteDataSource _authRemoteDataSource;
+  final SupabaseStorageService _storageService;
 
-  EditProfileRepoImpl(this._authRemoteDataSource);
-
-  @override
-  Future<Either<Failure, void>> deleteAccount() {
-    // TODO: implement deleteAccount
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<Either<Failure, void>> signOut() {
-    // TODO: implement signOut
-    throw UnimplementedError();
-  }
+  EditProfileRepoImpl(this._authRemoteDataSource, this._storageService);
 
   @override
   Future<Either<Failure, void>> updateUser({
@@ -43,6 +34,33 @@ class EditProfileRepoImpl implements EditProfileRepo {
         Failure(
           'An unexpected error occurred during changing full name. Please try again.',
         ),
+      );
+    }
+  }
+
+  @override
+  Future<Either<Failure, String>> uploadProfileImage({
+    required Uint8List imageBytes,
+    required String imageName,
+  }) async {
+    try {
+      ;
+      final String? imageUrl = await _storageService.uploadImage(
+        imageBytes: imageBytes,
+        imageName: imageName,
+        bucketName: BucketsName.profileImages,
+      );
+      if (imageUrl == null) {
+        return const Left(
+          Failure('Failed to upload profile image. Please try again.'),
+        );
+      }
+      return Right(imageUrl);
+    } on PlatformException catch (e) {
+      return Left(PlatformFailure.fromCode(e));
+    } catch (e) {
+      return const Left(
+        Failure('Failed to upload profile image. Please try again.'),
       );
     }
   }

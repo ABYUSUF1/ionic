@@ -30,4 +30,6 @@ abstract class AuthRepo {
   Future<Either<Failure, AuthEntity?>> getCurrentUser();
 
   Future<Either<Failure, void>> deleteUserAndData({required String password});
+
+  Future<Either<Failure, void>> updateUserEmailVerified(bool isVerified);
 }

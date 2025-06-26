@@ -16,13 +16,14 @@ class HomeCategories extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return BlocProvider(
       create: (_) => HomeCategoriesCubit(getIt<HomeRepo>()),
       child: SliverToBoxAdapter(
         child: Container(
           padding: const EdgeInsets.only(bottom: 16),
           decoration: BoxDecoration(
-            color: Theme.of(context).colorScheme.surface,
+            color: theme.colorScheme.surface,
             borderRadius: BorderRadius.circular(8),
           ),
           margin: const EdgeInsets.symmetric(horizontal: 16),
@@ -38,11 +39,11 @@ class HomeCategories extends StatelessWidget {
                   bottom: 8,
                 ),
                 child: Text(
-                  context.tr(LocaleKeys.bottom_navigation_categories),
+                  context.tr(LocaleKeys.home_categories),
                   textAlign: TextAlign.start,
-                  style: Theme.of(
-                    context,
-                  ).textTheme.bodyLarge!.copyWith(fontFamily: appFont(context)),
+                  style: theme.textTheme.bodyLarge!.copyWith(
+                    fontFamily: appFont(context),
+                  ),
                 ),
               ),
               const SizedBox(height: 8),

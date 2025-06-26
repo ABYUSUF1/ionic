@@ -6,13 +6,14 @@ enum NetworkStatus { connected, disconnected }
 class NetworkCubit extends Cubit<NetworkStatus> {
   final Connectivity connectivity;
 
-  NetworkCubit(this.connectivity) : super(NetworkStatus.disconnected) {
-    // Immediately check network status
+  bool wasDisconnected = false;
+
+  NetworkCubit(this.connectivity) : super(NetworkStatus.connected) {
     _checkInitialNetwork();
 
-    // Listen to real-time changes
     connectivity.onConnectivityChanged.listen((status) {
       if (status.contains(ConnectivityResult.none)) {
+        wasDisconnected = true;
         emit(NetworkStatus.disconnected);
       } else {
         emit(NetworkStatus.connected);
@@ -23,9 +24,14 @@ class NetworkCubit extends Cubit<NetworkStatus> {
   Future<void> _checkInitialNetwork() async {
     final status = await connectivity.checkConnectivity();
     if (status.contains(ConnectivityResult.none)) {
+      wasDisconnected = true;
       emit(NetworkStatus.disconnected);
     } else {
       emit(NetworkStatus.connected);
     }
+  }
+
+  void markReconnectionHandled() {
+    wasDisconnected = false;
   }
 }

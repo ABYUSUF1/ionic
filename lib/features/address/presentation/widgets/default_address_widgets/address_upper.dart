@@ -20,6 +20,7 @@ class AddressUpper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final isDarkMode = theme.brightness == Brightness.dark;
     return Padding(
       padding: const EdgeInsetsDirectional.only(start: 12.0),
       child: Row(
@@ -63,12 +64,14 @@ class AddressUpper extends StatelessWidget {
             label: Text(context.tr(LocaleKeys.common_delete)),
             icon: const Icon(IconsaxPlusLinear.trash),
             onPressed: () {
-              //TODO: delete address svg image
               showCustomDialog(
                 context: context,
                 title: context.tr(LocaleKeys.address_delete_address),
                 subTitle: context.tr(LocaleKeys.address_delete_address_desc),
-                svgPic: AppAssets.illustrationsErrorIllustrationDark,
+                svgPic:
+                    isDarkMode
+                        ? AppAssets.illustrationsTrashIllustrationDark
+                        : AppAssets.illustrationsTrashIllustrationLight,
                 buttonText: context.tr(LocaleKeys.common_delete),
                 onTap: () async {
                   context.pop();

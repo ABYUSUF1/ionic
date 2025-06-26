@@ -16,7 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 );
 
 /// @nodoc
-mixin _$RecentlyProductsState {
+mixin _$RecentlyViewedProductsState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
@@ -64,27 +64,31 @@ mixin _$RecentlyProductsState {
 }
 
 /// @nodoc
-abstract class $RecentlyProductsStateCopyWith<$Res> {
-  factory $RecentlyProductsStateCopyWith(
+abstract class $RecentlyViewedProductsStateCopyWith<$Res> {
+  factory $RecentlyViewedProductsStateCopyWith(
     RecentlyViewedProductsState value,
     $Res Function(RecentlyViewedProductsState) then,
-  ) = _$RecentlyProductsStateCopyWithImpl<$Res, RecentlyViewedProductsState>;
+  ) =
+      _$RecentlyViewedProductsStateCopyWithImpl<
+        $Res,
+        RecentlyViewedProductsState
+      >;
 }
 
 /// @nodoc
-class _$RecentlyProductsStateCopyWithImpl<
+class _$RecentlyViewedProductsStateCopyWithImpl<
   $Res,
   $Val extends RecentlyViewedProductsState
 >
-    implements $RecentlyProductsStateCopyWith<$Res> {
-  _$RecentlyProductsStateCopyWithImpl(this._value, this._then);
+    implements $RecentlyViewedProductsStateCopyWith<$Res> {
+  _$RecentlyViewedProductsStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of RecentlyProductsState
+  /// Create a copy of RecentlyViewedProductsState
   /// with the given fields replaced by the non-null parameter values.
 }
 
@@ -98,14 +102,14 @@ abstract class _$$InitialImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$InitialImplCopyWithImpl<$Res>
-    extends _$RecentlyProductsStateCopyWithImpl<$Res, _$InitialImpl>
+    extends _$RecentlyViewedProductsStateCopyWithImpl<$Res, _$InitialImpl>
     implements _$$InitialImplCopyWith<$Res> {
   __$$InitialImplCopyWithImpl(
     _$InitialImpl _value,
     $Res Function(_$InitialImpl) _then,
   ) : super(_value, _then);
 
-  /// Create a copy of RecentlyProductsState
+  /// Create a copy of RecentlyViewedProductsState
   /// with the given fields replaced by the non-null parameter values.
 }
 
@@ -116,7 +120,7 @@ class _$InitialImpl implements _Initial {
 
   @override
   String toString() {
-    return 'RecentlyProductsState.initial()';
+    return 'RecentlyViewedProductsState.initial()';
   }
 
   @override
@@ -217,14 +221,14 @@ abstract class _$$LoadingImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$LoadingImplCopyWithImpl<$Res>
-    extends _$RecentlyProductsStateCopyWithImpl<$Res, _$LoadingImpl>
+    extends _$RecentlyViewedProductsStateCopyWithImpl<$Res, _$LoadingImpl>
     implements _$$LoadingImplCopyWith<$Res> {
   __$$LoadingImplCopyWithImpl(
     _$LoadingImpl _value,
     $Res Function(_$LoadingImpl) _then,
   ) : super(_value, _then);
 
-  /// Create a copy of RecentlyProductsState
+  /// Create a copy of RecentlyViewedProductsState
   /// with the given fields replaced by the non-null parameter values.
 }
 
@@ -235,7 +239,7 @@ class _$LoadingImpl implements _Loading {
 
   @override
   String toString() {
-    return 'RecentlyProductsState.loading()';
+    return 'RecentlyViewedProductsState.loading()';
   }
 
   @override
@@ -338,14 +342,14 @@ abstract class _$$ErrorImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$ErrorImplCopyWithImpl<$Res>
-    extends _$RecentlyProductsStateCopyWithImpl<$Res, _$ErrorImpl>
+    extends _$RecentlyViewedProductsStateCopyWithImpl<$Res, _$ErrorImpl>
     implements _$$ErrorImplCopyWith<$Res> {
   __$$ErrorImplCopyWithImpl(
     _$ErrorImpl _value,
     $Res Function(_$ErrorImpl) _then,
   ) : super(_value, _then);
 
-  /// Create a copy of RecentlyProductsState
+  /// Create a copy of RecentlyViewedProductsState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -371,7 +375,7 @@ class _$ErrorImpl implements _Error {
 
   @override
   String toString() {
-    return 'RecentlyProductsState.error(errMessage: $errMessage)';
+    return 'RecentlyViewedProductsState.error(errMessage: $errMessage)';
   }
 
   @override
@@ -386,7 +390,7 @@ class _$ErrorImpl implements _Error {
   @override
   int get hashCode => Object.hash(runtimeType, errMessage);
 
-  /// Create a copy of RecentlyProductsState
+  /// Create a copy of RecentlyViewedProductsState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
@@ -474,7 +478,7 @@ abstract class _Error implements RecentlyViewedProductsState {
 
   String get errMessage;
 
-  /// Create a copy of RecentlyProductsState
+  /// Create a copy of RecentlyViewedProductsState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ErrorImplCopyWith<_$ErrorImpl> get copyWith =>
@@ -493,14 +497,14 @@ abstract class _$$SuccessImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$SuccessImplCopyWithImpl<$Res>
-    extends _$RecentlyProductsStateCopyWithImpl<$Res, _$SuccessImpl>
+    extends _$RecentlyViewedProductsStateCopyWithImpl<$Res, _$SuccessImpl>
     implements _$$SuccessImplCopyWith<$Res> {
   __$$SuccessImplCopyWithImpl(
     _$SuccessImpl _value,
     $Res Function(_$SuccessImpl) _then,
   ) : super(_value, _then);
 
-  /// Create a copy of RecentlyProductsState
+  /// Create a copy of RecentlyViewedProductsState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -532,7 +536,7 @@ class _$SuccessImpl implements _Success {
 
   @override
   String toString() {
-    return 'RecentlyProductsState.success(productsItem: $productsItem)';
+    return 'RecentlyViewedProductsState.success(productsItem: $productsItem)';
   }
 
   @override
@@ -552,7 +556,7 @@ class _$SuccessImpl implements _Success {
     const DeepCollectionEquality().hash(_productsItem),
   );
 
-  /// Create a copy of RecentlyProductsState
+  /// Create a copy of RecentlyViewedProductsState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
@@ -641,7 +645,7 @@ abstract class _Success implements RecentlyViewedProductsState {
 
   List<ProductItemEntity> get productsItem;
 
-  /// Create a copy of RecentlyProductsState
+  /// Create a copy of RecentlyViewedProductsState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>

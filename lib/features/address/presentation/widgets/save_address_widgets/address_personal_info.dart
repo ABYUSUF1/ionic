@@ -50,6 +50,7 @@ class AddressPersonalInformation extends StatelessWidget {
           ),
           FormTextField(
             title: context.tr(LocaleKeys.auth_phone),
+            keyboardType: TextInputType.phone,
             controller: cubit.phoneNumberController,
             validator:
                 (_) =>

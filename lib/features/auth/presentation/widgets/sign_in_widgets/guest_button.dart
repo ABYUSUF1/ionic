@@ -23,13 +23,13 @@ class GuestButton extends StatelessWidget {
       onPressed: () {
         showCustomDialog(
           context: context,
-          title: "Sign in as guest",
-          subTitle: "You will able to view products only.",
+          title: context.tr(LocaleKeys.auth_as_guest),
+          subTitle: context.tr(LocaleKeys.auth_as_guest_desc),
           svgPic:
               theme.brightness == Brightness.light
                   ? AppAssets.illustrationsLoginIllustrationLight
                   : AppAssets.illustrationsLoginIllustrationDark,
-          buttonText: "Skip for now",
+          buttonText: context.tr(LocaleKeys.auth_skip_for_now),
           onTap: () {
             context.go(AppRouterName.homeRoute);
           },

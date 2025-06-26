@@ -14,7 +14,12 @@ import '../../../home/data/models/category_model/localized_title.dart';
 
 class CategoriesView extends StatelessWidget {
   final LocalizedTitle categoryName;
-  const CategoriesView({super.key, required this.categoryName});
+  final String slugName;
+  const CategoriesView({
+    super.key,
+    required this.categoryName,
+    required this.slugName,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +30,7 @@ class CategoriesView extends StatelessWidget {
           create:
               (context) =>
                   CategoriesCubit(getIt<CategoriesRepo>())
-                    ..getCategories(categoryName: categoryName.toSlug()),
+                    ..getCategories(categoryName: slugName),
         ),
       ],
       child: BlocBuilder<CategoriesCubit, CategoriesState>(
@@ -37,12 +42,14 @@ class CategoriesView extends StatelessWidget {
             },
           );
           return ProductsGridView(
-            emptyTitle: "No products found",
-            emptySubtitle: "Try searching for something else",
+            emptyTitle: context.tr(LocaleKeys.home_categories_no_products),
+            emptySubtitle: context.tr(
+              LocaleKeys.home_categories_no_products_desc,
+            ),
             emptySvgImage:
                 theme.brightness == Brightness.dark
                     ? AppAssets.illustrationsEmptyIllustrationDark
-                    : AppAssets.illustrationsEmptyIllustrationDark,
+                    : AppAssets.illustrationsEmptyIllustrationLight,
             isLoading: state.maybeWhen(
               orElse: () => false,
               loading: (_) => true,

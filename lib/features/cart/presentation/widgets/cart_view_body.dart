@@ -5,7 +5,7 @@ import 'package:ionic/features/cart/domain/entity/cart_entity.dart';
 import 'package:ionic/features/cart/presentation/widgets/cart_bottom_bar.dart';
 import 'package:ionic/features/cart/presentation/widgets/cart_list.dart';
 
-import 'cart_coupon_code_desc.dart';
+import 'cart_free_delivery_note.dart';
 import '../../../../core/widgets/order_summary_widget.dart';
 
 class CartViewBody extends StatelessWidget {
@@ -41,7 +41,7 @@ class CartViewBody extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const SizedBox(height: 16),
-                  const CartCouponCodeDesc(),
+                  const CartFreeDeliveryNote(),
                   OrderSummaryWidget(cartOrderSummary: cartOrderSummary),
                   CartBottomBar(cartOrderSummary: cartOrderSummary),
                 ],
@@ -59,7 +59,7 @@ class CartViewBody extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           CartList(cartEntity: cartEntity),
-          const CartCouponCodeDesc(),
+          const CartFreeDeliveryNote(),
           OrderSummaryWidget(cartOrderSummary: cartOrderSummary),
         ],
       ),

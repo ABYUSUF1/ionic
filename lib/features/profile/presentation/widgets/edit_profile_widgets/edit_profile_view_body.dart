@@ -49,6 +49,7 @@ class EditProfileViewBody extends StatelessWidget {
                           title: LocaleKeys.auth_phone.tr(),
                           controller: editProfileCubit.phoneNumberController,
                           prefixIcon: IconsaxPlusLinear.call,
+                          keyboardType: TextInputType.phone,
                           onChanged: (_) => editProfileCubit.onPhoneChanged(),
                           validator:
                               (_) => Validators.validatePhone(

@@ -9,9 +9,4 @@ class LocalizedTitle {
   }
 
   Map<String, dynamic> toJson() => {'en': en, 'ar': ar};
-
-  String toSlug() {
-    // Remove any space if found and convert it to -
-    return en.replaceAll(' ', '-').toLowerCase();
-  }
 }

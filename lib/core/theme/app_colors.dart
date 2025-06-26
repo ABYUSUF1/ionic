@@ -26,7 +26,7 @@ abstract final class AppColors {
   static const lightHardColor = Colors.black;
   static const lightSoftColor = Color(0xff94A3B8);
   static const darkHardColor = Colors.white;
-  static const darkSoftColor = Color(0xff7D8096);
+  static const darkSoftColor = Color(0xFF86899D);
 
   // Error Color
   static const lightErrorColor = Color(0xFFEA2A33);

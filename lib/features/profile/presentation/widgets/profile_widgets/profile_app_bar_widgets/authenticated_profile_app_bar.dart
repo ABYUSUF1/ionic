@@ -40,11 +40,11 @@ class AuthenticatedProfileAppBar extends StatelessWidget {
                         CircleAvatar(
                           backgroundColor: theme.colorScheme.secondary,
                           backgroundImage:
-                              authEntity.photoUrl == null
-                                  ? null
-                                  : CachedNetworkImageProvider(
+                              authEntity.photoUrl?.isNotEmpty == true
+                                  ? CachedNetworkImageProvider(
                                     authEntity.photoUrl!,
-                                  ),
+                                  )
+                                  : null,
                           child:
                               authEntity.photoUrl == null
                                   ? Icon(

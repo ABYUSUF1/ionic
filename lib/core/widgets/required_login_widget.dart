@@ -14,11 +14,13 @@ import '../../generated/locale_keys.g.dart';
 
 class RequiredLoginScreen extends StatelessWidget {
   final String appBarTitle;
+  final String description;
   final Widget child;
   const RequiredLoginScreen({
     super.key,
     required this.appBarTitle,
     required this.child,
+    required this.description,
   });
 
   @override
@@ -63,12 +65,8 @@ class RequiredLoginScreen extends StatelessWidget {
                                   ? AppAssets.illustrationsLoginIllustrationDark
                                   : AppAssets
                                       .illustrationsLoginIllustrationLight,
-                          title: context.tr(
-                            LocaleKeys.address_sign_in_required,
-                          ),
-                          subtitle: context.tr(
-                            LocaleKeys.address_sign_in_required_desc,
-                          ),
+                          title: context.tr(LocaleKeys.auth_sign_in_required),
+                          subtitle: description,
                         ),
                         CustomOutlineButton(
                           text: context.tr(
@@ -82,7 +80,7 @@ class RequiredLoginScreen extends StatelessWidget {
                           },
                         ),
                         CustomFilledButton(
-                          text: "Sign in / Sign up",
+                          text: context.tr(LocaleKeys.common_sign_in_up),
                           onPressed: () {
                             context.push(AppRouterName.signInRoute);
                           },

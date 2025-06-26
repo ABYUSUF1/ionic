@@ -29,12 +29,29 @@ class ProfileInfoAndSupportBox extends StatelessWidget {
           title: LocaleKeys.profile_share_app.tr(),
           icon: IconsaxPlusLinear.share,
           onTap: () async {
+            // 1. Show loading dialog
+            showDialog(
+              context: context,
+              barrierDismissible: false,
+              builder: (_) => const Center(child: CircularProgressIndicator()),
+            );
+
+            // 2. Optional delay to show loading
+            await Future.delayed(const Duration(milliseconds: 300));
+
+            // 3. Share the app
             await SharePlus.instance.share(
               ShareParams(
-                title: "Ionic App",
-                text: "Check out this amazing Ionic app!",
+                title: "Ionic E-commerce Flutter App",
+                text: "Check out this amazing app!",
+                subject: "Ionic App",
               ),
             );
+
+            // 4. Dismiss loading
+            if (context.mounted) {
+              Navigator.of(context, rootNavigator: true).pop();
+            }
           },
         ),
       ],

@@ -2,7 +2,8 @@ abstract class EndPoints {
   static const String baseUrl = 'https://dummyjson.com/';
   static const String categories = 'c/5a78-bb55-496e-9a7c';
   static const String popularProducts = 'c/6ef7-8b8d-48b4-82f7';
-  static const String allProducts = 'products';
+  static String allProducts(String limit, String skip) =>
+      'https://dummyjson.com/products?limit=$limit&skip=$skip';
   static String categoryProducts(String category) =>
       'products/category/$category';
 
@@ -10,6 +11,4 @@ abstract class EndPoints {
 
   static String searchProducts(String query, int limit, int skip) =>
       'products/search?q=$query&limit=$limit&skip=$skip';
-
-  static const String addProduct = 'products/add';
 }

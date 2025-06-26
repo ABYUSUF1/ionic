@@ -54,8 +54,17 @@ class Validators {
     if (value == null || value.isEmpty) {
       return LocaleKeys.validators_phone_required.tr();
     }
+
     if (value.length < 10) {
       return LocaleKeys.validators_phone_short.tr();
+    }
+
+    if (value.length > 15) {
+      return LocaleKeys.validators_phone_long.tr();
+    }
+
+    if (!RegExp(r'^\+?[0-9]+$').hasMatch(value)) {
+      return LocaleKeys.validators_phone_invalid.tr();
     }
     return null;
   }

@@ -12,55 +12,69 @@ class EditProfileImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final cubit = context.read<EditProfileCubit>();
 
-    final photoUrl = cubit.state.maybeWhen(
-      initial: (_, authEntity) => authEntity?.photoUrl,
-      orElse: () => cubit.photoUrl,
-    );
+    return BlocBuilder<EditProfileCubit, EditProfileState>(
+      builder: (context, state) {
+        final cubit = context.read<EditProfileCubit>();
+        final photoUrl = state.maybeWhen(
+          initial: (_, authEntity) => authEntity?.photoUrl,
+          success: (authEntity) => authEntity.photoUrl,
+          error: (_) => cubit.photoUrl,
+          orElse: () => cubit.photoUrl,
+        );
 
-    final imageFile = cubit.imageFile;
-
-    return Center(
-      child: Stack(
-        children: [
-          CircleAvatar(
-            radius: 60,
-            backgroundColor: theme.colorScheme.secondary,
-            backgroundImage:
-                imageFile != null
-                    ? FileImage(imageFile) as ImageProvider
-                    : photoUrl != null
-                    ? CachedNetworkImageProvider(photoUrl)
-                    : null,
-            child:
-                photoUrl == null && imageFile == null
-                    ? Icon(
-                      IconsaxPlusLinear.user,
-                      color: theme.colorScheme.onSurfaceVariant,
-                    )
-                    : null,
+        return Container(
+          alignment: Alignment.center,
+          padding: const EdgeInsets.all(8),
+          width: double.infinity,
+          height: 150,
+          decoration: BoxDecoration(
+            color: theme.colorScheme.surface,
+            borderRadius: BorderRadius.circular(8),
           ),
-          Positioned(
-            bottom: 0,
-            right: 0,
-            child: IconButton.filled(
-              onPressed: () async {
-                final imageFile = await ImagePickerHelper.showImagePicker(
-                  context: context,
-                );
-                if (imageFile != null) {
-                  cubit.onPhotoChanged(imageFile);
-                }
-              },
-              icon: const Icon(
-                IconsaxPlusBold.gallery_edit,
-                color: Colors.white,
+          child: Stack(
+            children: [
+              CircleAvatar(
+                radius: 60,
+                backgroundColor: theme.colorScheme.secondary,
+                backgroundImage:
+                    cubit.imageFile != null
+                        ? FileImage(cubit.imageFile!)
+                        : (photoUrl != null && photoUrl.startsWith('http'))
+                        ? CachedNetworkImageProvider(photoUrl)
+                        : null,
+                child:
+                    (cubit.imageFile == null &&
+                            (photoUrl == null || !photoUrl.startsWith('http')))
+                        ? Icon(
+                          IconsaxPlusLinear.user,
+                          size: 60,
+                          color: theme.colorScheme.onSurfaceVariant,
+                        )
+                        : null,
               ),
-            ),
+              Positioned(
+                bottom: 0,
+                right: 0,
+                child: IconButton.filled(
+                  onPressed: () async {
+                    final imageFile = await ImagePickerHelper.showImagePicker(
+                      context: context,
+                    );
+                    if (imageFile != null) {
+                      cubit.onPhotoChanged(imageFile);
+                    }
+                  },
+                  icon: const Icon(
+                    IconsaxPlusBold.gallery_edit,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ],
           ),
-        ],
-      ),
+        );
+      },
     );
   }
 }

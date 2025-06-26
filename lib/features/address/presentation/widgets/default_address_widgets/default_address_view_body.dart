@@ -31,13 +31,17 @@ class DefaultAddressViewBody extends StatelessWidget {
                 subtitle: context.tr(LocaleKeys.address_no_addresses_desc),
               ),
           error:
-              (errMessage) => EmptyStateWidget(
+              (errMessage) => EmptyStateWidget.withButton(
                 svgImage:
                     isDark
                         ? AppAssets.illustrationsErrorIllustrationDark
                         : AppAssets.illustrationsErrorIllustrationLight,
                 title: context.tr(LocaleKeys.common_something_went_wrong),
                 subtitle: errMessage,
+                buttonText: context.tr(LocaleKeys.common_try_again),
+                onButtonPressed: () async {
+                  await context.read<DefaultAddressCubit>().fetchAddresses();
+                },
               ),
           orElse: () {
             final isLoading = state.maybeWhen(

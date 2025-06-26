@@ -53,7 +53,7 @@ class ResendButton extends StatelessWidget {
 
         final String buttonText =
             isCooldown
-                ? '${LocaleKeys.auth_you_can_resend_after} ${secondsRemaining}s'
+                ? '${LocaleKeys.auth_you_can_resend_after.tr()} ${secondsRemaining}s'
                 : isLoading
                 ? LocaleKeys.common_sending.tr()
                 : LocaleKeys.common_resend.tr();

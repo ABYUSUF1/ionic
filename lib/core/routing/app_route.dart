@@ -5,7 +5,6 @@ import 'package:ionic/features/address/domain/entity/address_entity.dart';
 import 'package:ionic/features/address/presentation/views/save_address_view.dart';
 import 'package:ionic/features/address/presentation/views/default_address_view.dart';
 import 'package:ionic/features/address/presentation/views/locate_on_map_view.dart';
-import 'package:ionic/features/auth/presentation/args/email_sent_args.dart';
 import 'package:ionic/features/auth/presentation/views/email_sent_view.dart';
 import 'package:ionic/features/auth/presentation/views/forget_password_view.dart';
 import 'package:ionic/features/auth/presentation/views/sign_in_view.dart';
@@ -22,6 +21,7 @@ import 'package:ionic/features/profile/presentation/views/edit_profile_view.dart
 import 'package:ionic/features/profile/presentation/views/notification_view.dart';
 import 'package:ionic/features/profile/presentation/views/profile_view.dart';
 import 'package:ionic/features/profile/presentation/widgets/account_privacy_widgets/delete_account_view.dart';
+import 'package:ionic/features/shop/presentation/views/shop_view.dart';
 import 'package:ionic/main_bottom_nav_bar.dart';
 
 import '../../features/categories/presentation/views/categories_view.dart';
@@ -52,14 +52,17 @@ final GoRouter appRouter = GoRouter(
     /// --------------------- Auth ---------------------
     GoRoute(
       path: AppRouterName.signInRoute,
+      name: AppRouterName.signInRoute,
       builder: (context, state) => const SignInView(),
     ),
     GoRoute(
       path: AppRouterName.signUpRoute,
+      name: AppRouterName.signUpRoute,
       builder: (context, state) => const SignUpView(),
     ),
     GoRoute(
       path: AppRouterName.forgetPasswordRoute,
+      name: AppRouterName.forgetPasswordRoute,
       builder: (context, state) {
         final email = state.extra as String?;
         return ForgetPasswordView(email: email);
@@ -67,9 +70,13 @@ final GoRouter appRouter = GoRouter(
     ),
     GoRoute(
       path: AppRouterName.emailSentRoute,
+      name: AppRouterName.emailSentRoute,
       builder: (context, state) {
-        final data = state.extra as EmailSentArgs;
-        return EmailSentView(emailSentArgs: data);
+        final extra = state.extra as Map<String, dynamic>;
+        return EmailSentView(
+          email: extra['email'] as String,
+          isPasswordReset: extra['isPasswordReset'] as bool,
+        );
       },
     ),
 
@@ -92,8 +99,8 @@ final GoRouter appRouter = GoRouter(
         StatefulShellBranch(
           routes: [
             GoRoute(
-              path: AppRouterName.cartRoute,
-              builder: (context, state) => const CartView(),
+              path: AppRouterName.shopRoute,
+              builder: (context, state) => const ShopView(),
             ),
           ],
         ),
@@ -172,15 +179,14 @@ final GoRouter appRouter = GoRouter(
       path: AppRouterName.categoriesRoute,
       name: AppRouterName.categoriesRoute,
       builder: (context, state) {
-        late final LocalizedTitle categoryName;
+        final String slugName = state.pathParameters['slug'] ?? '';
         final extra = state.extra;
-        if (extra is! LocalizedTitle) {
-          categoryName = LocalizedTitle.fromJson(extra as Map<String, dynamic>);
-        } else {
-          categoryName = extra;
-        }
+        final categoryName =
+            extra is LocalizedTitle
+                ? extra
+                : LocalizedTitle.fromJson(extra as Map<String, dynamic>);
 
-        return CategoriesView(categoryName: categoryName);
+        return CategoriesView(categoryName: categoryName, slugName: slugName);
       },
     ),
 

@@ -21,7 +21,6 @@ class EmptyStateWidget extends StatelessWidget {
     super.key,
   });
 
-  /// Basic constructor without button
   factory EmptyStateWidget({
     String? svgImage,
     required String title,
@@ -36,7 +35,6 @@ class EmptyStateWidget extends StatelessWidget {
     );
   }
 
-  /// Constructor with action button
   factory EmptyStateWidget.withButton({
     String? svgImage,
     required String title,
@@ -59,50 +57,54 @@ class EmptyStateWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final isMobile = ResponsiveLayout.isMobile(context);
-    return Center(
+
+    final double imageHeight = isMobile ? 180 : 200;
+    final double titleFontSize = isMobile ? 22 : 26;
+    final double subtitleFontSize = isMobile ? 16 : 20;
+
+    return FadeInDown(
+      duration: const Duration(milliseconds: 300),
+      from: 50,
+      curve: Curves.ease,
       child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            if (svgImage != null) ...[
-              ZoomIn(
-                curve: Curves.ease,
-                duration: const Duration(milliseconds: 300),
-                child: SvgPicture.asset(
-                  svgImage!,
-                  height: isMobile ? 180 : 220,
+        padding: const EdgeInsets.all(16),
+        child: Center(
+          heightFactor: 1,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              if (svgImage != null) ...[
+                SvgPicture.asset(svgImage!, height: imageHeight),
+                const SizedBox(height: 30),
+              ],
+              Text(
+                title,
+                textAlign: TextAlign.center,
+                style: theme.textTheme.headlineMedium?.copyWith(
+                  fontSize: titleFontSize,
                 ),
               ),
-              const SizedBox(height: 30),
-            ],
-            Text(
-              title,
-              style: theme.textTheme.headlineMedium!.copyWith(
-                fontSize: isMobile ? 22 : 28,
-              ),
-              textAlign: TextAlign.center,
-            ),
-            const SizedBox(height: 8),
-            Text(
-              subtitle,
-              style: theme.textTheme.bodyMedium!.copyWith(
-                color: theme.colorScheme.onSurfaceVariant,
-                fontSize: isMobile ? 16 : 22,
-              ),
-              textAlign: TextAlign.center,
-            ),
-            if (buttonText != null && onButtonPressed != null) ...[
-              const SizedBox(height: 30),
-              ConstrainedBox(
-                constraints: const BoxConstraints(maxWidth: 600),
-                child: CustomFilledButton(
-                  onPressed: onButtonPressed,
-                  text: buttonText!,
+              const SizedBox(height: 8),
+              Text(
+                subtitle,
+                textAlign: TextAlign.center,
+                style: theme.textTheme.bodyMedium?.copyWith(
+                  fontSize: subtitleFontSize,
+                  color: theme.colorScheme.onSurfaceVariant,
                 ),
               ),
+              if (buttonText != null && onButtonPressed != null) ...[
+                const SizedBox(height: 30),
+                ConstrainedBox(
+                  constraints: const BoxConstraints(maxWidth: 600),
+                  child: CustomFilledButton(
+                    onPressed: onButtonPressed,
+                    text: buttonText!,
+                  ),
+                ),
+              ],
             ],
-          ],
+          ),
         ),
       ),
     );

@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:bloc/bloc.dart';
 import 'package:flutter/widgets.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -16,8 +15,7 @@ class EditProfileCubit extends Cubit<EditProfileState> {
 
   File? imageFile;
   String? photoUrl;
-  final TextEditingController emailController =
-      TextEditingController(); // Not editable
+  final TextEditingController emailController = TextEditingController();
   final TextEditingController firstNameController = TextEditingController();
   final TextEditingController lastNameController = TextEditingController();
   final TextEditingController phoneNumberController = TextEditingController();
@@ -26,6 +24,8 @@ class EditProfileCubit extends Cubit<EditProfileState> {
 
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   late AuthEntity originalAuthEntity;
+
+  bool _isUploadingImage = false;
 
   void init(AuthEntity authEntity) {
     photoUrl = authEntity.photoUrl;
@@ -38,93 +38,100 @@ class EditProfileCubit extends Cubit<EditProfileState> {
 
     originalAuthEntity = authEntity;
 
-    emit(EditProfileState.initial(canSubmit: false, authEntity: authEntity));
+    _emitUpdatedState();
   }
 
   void onPhotoChanged(File newImageFile) {
     imageFile = newImageFile;
-    photoUrl = newImageFile.path;
-    emit(
-      EditProfileState.initial(
-        canSubmit: photoUrl != originalAuthEntity.photoUrl,
-        authEntity: originalAuthEntity.copyWith(photoUrl: photoUrl),
-      ),
-    );
+
+    // Assign a temporary placeholder value so `_hasChanges()` returns true
+    photoUrl = 'local_image_${DateTime.now().millisecondsSinceEpoch}';
+
+    _emitUpdatedState();
   }
 
-  void onNameChanged() {
-    emit(
-      EditProfileState.initial(
-        canSubmit:
-            firstNameController.text != originalAuthEntity.firstName ||
-            lastNameController.text != originalAuthEntity.lastName,
+  void onNameChanged() => _emitUpdatedState();
 
-        authEntity: originalAuthEntity.copyWith(
-          firstName: firstNameController.text,
-          lastName: lastNameController.text,
-        ),
-      ),
-    );
-  }
+  void onPhoneChanged() => _emitUpdatedState();
 
-  void onPhoneChanged() {
-    emit(
-      EditProfileState.initial(
-        canSubmit: phoneNumberController.text != originalAuthEntity.phoneNumber,
-        authEntity: originalAuthEntity.copyWith(
-          phoneNumber: phoneNumberController.text,
-        ),
-      ),
-    );
-  }
+  void onBirthDateChanged() => _emitUpdatedState();
 
-  void onBirthDateChanged() {
-    emit(
-      EditProfileState.initial(
-        canSubmit: birthdate != originalAuthEntity.birthDate,
-        authEntity: originalAuthEntity.copyWith(birthDate: birthdate),
-      ),
-    );
-  }
-
-  void onGenderChanged() {
-    emit(
-      EditProfileState.initial(
-        canSubmit: gender != originalAuthEntity.gender,
-        authEntity: originalAuthEntity.copyWith(gender: gender),
-      ),
-    );
-  }
+  void onGenderChanged() => _emitUpdatedState();
 
   Future<void> saveChanges() async {
-    if (formKey.currentState!.validate()) {
-      if (!state.maybeWhen(
-        orElse: () => false,
-        initial: (canSubmit, _) => canSubmit,
-      )) {
-        return;
-      }
+    if (!formKey.currentState!.validate()) return;
 
-      final newAuthEntity = originalAuthEntity.copyWith(
-        photoUrl: photoUrl,
-        firstName: firstNameController.text,
-        lastName: lastNameController.text,
-        phoneNumber: phoneNumberController.text,
-        gender: gender,
-        birthDate: birthdate,
-      );
-
-      emit(const EditProfileState.loading());
-      // Save Changes..
-      final result = await _editProfileRepo.updateUser(
-        authModel: newAuthEntity.toModel(),
-      );
-
-      result.fold(
-        (failure) => emit(EditProfileState.error(failure.errMessage)),
-        (_) => emit(EditProfileState.success(newAuthEntity)),
-      );
+    if (!_hasChanges()) {
+      emit(const EditProfileState.error('No changes to save.'));
+      return;
     }
+
+    emit(const EditProfileState.loading());
+
+    // Upload image first (if any)
+    await _uploadImageIfNeeded();
+
+    final updatedEntity = _buildUpdatedEntity();
+
+    final result = await _editProfileRepo.updateUser(
+      authModel: updatedEntity.toModel(),
+    );
+
+    result.fold(
+      (failure) => emit(EditProfileState.error(failure.errMessage)),
+      (_) => emit(EditProfileState.success(updatedEntity)),
+    );
+  }
+
+  AuthEntity _buildUpdatedEntity() {
+    return originalAuthEntity.copyWith(
+      photoUrl: photoUrl,
+      firstName: firstNameController.text,
+      lastName: lastNameController.text,
+      phoneNumber: phoneNumberController.text,
+      gender: gender,
+      birthDate: birthdate,
+    );
+  }
+
+  bool _hasChanges() {
+    return photoUrl != originalAuthEntity.photoUrl ||
+        firstNameController.text != originalAuthEntity.firstName ||
+        lastNameController.text != originalAuthEntity.lastName ||
+        phoneNumberController.text != originalAuthEntity.phoneNumber ||
+        gender != originalAuthEntity.gender ||
+        birthdate != originalAuthEntity.birthDate;
+  }
+
+  void _emitUpdatedState() {
+    emit(
+      EditProfileState.initial(
+        canSubmit: _hasChanges(),
+        authEntity: _buildUpdatedEntity(),
+      ),
+    );
+  }
+
+  Future<void> _uploadImageIfNeeded() async {
+    if (imageFile == null || _isUploadingImage) return;
+
+    _isUploadingImage = true;
+
+    final bytes = await imageFile!.readAsBytes();
+
+    final result = await _editProfileRepo.uploadProfileImage(
+      imageBytes: bytes,
+      imageName: '${DateTime.now().millisecondsSinceEpoch}.jpg',
+    );
+
+    _isUploadingImage = false;
+
+    result.fold((failure) => emit(EditProfileState.error(failure.errMessage)), (
+      imageUrl,
+    ) {
+      photoUrl = imageUrl;
+      _emitUpdatedState(); // update entity with final photo URL
+    });
   }
 
   @override

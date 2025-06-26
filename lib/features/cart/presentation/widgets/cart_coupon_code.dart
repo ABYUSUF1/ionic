@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ionic/core/widgets/snackbar/app_snackbar.dart';
 import 'package:ionic/generated/locale_keys.g.dart';
-
-import '../../../../core/widgets/buttons/custom_filled_button.dart';
 import '../manager/cubit/cart_cubit.dart';
+import 'coupon_action_button.dart';
+import 'coupon_text_field.dart';
 
 class CartCouponCode extends StatefulWidget {
   const CartCouponCode({super.key});
@@ -16,13 +16,13 @@ class CartCouponCode extends StatefulWidget {
 
 class _CartCouponCodeState extends State<CartCouponCode> {
   late final TextEditingController controller;
+  bool isProcessing = false;
 
   @override
   void initState() {
     controller = TextEditingController(
       text: context.read<CartCubit>().appliedCoupon,
     );
-
     super.initState();
   }
 
@@ -32,72 +32,67 @@ class _CartCouponCodeState extends State<CartCouponCode> {
     super.dispose();
   }
 
+  bool _isValidCode(String code) =>
+      code.isNotEmpty && RegExp(r'^[A-Z0-9]{4}$').hasMatch(code);
+
+  Future<void> _showSnack({required bool success, required String key}) async {
+    final ctx = context;
+    if (success) {
+      AppSnackbar.showSuccessSnackBar(ctx, ctx.tr(key));
+    } else {
+      AppSnackbar.showErrorSnackBar(ctx, ctx.tr(key));
+    }
+  }
+
+  Future<void> _handleCouponAction() async {
+    if (isProcessing) return;
+    setState(() => isProcessing = true);
+
+    final cubit = context.read<CartCubit>();
+    final code = controller.text.trim().toUpperCase();
+    final isApplied = cubit.appliedCoupon != null;
+
+    if (isApplied) {
+      await cubit.removeCoupon();
+      controller.clear();
+      if (!mounted) return;
+      AppSnackbar.showNoteSnackBar(
+        context,
+        context.tr(LocaleKeys.cart_coupon_removed),
+      );
+    } else if (_isValidCode(code)) {
+      final success = await cubit.applyCoupon(code);
+      await _showSnack(
+        success: success,
+        key:
+            success
+                ? LocaleKeys.cart_coupon_applied
+                : LocaleKeys.cart_invalid_coupon,
+      );
+      if (success) FocusManager.instance.primaryFocus?.unfocus();
+    } else {
+      await _showSnack(success: false, key: LocaleKeys.cart_invalid_coupon);
+    }
+
+    setState(() => isProcessing = false);
+  }
+
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final cubit = context.watch<CartCubit>();
-    final isCouponApplied = cubit.appliedCoupon != null;
+    final isApplied = context.watch<CartCubit>().appliedCoupon != null;
 
     return Row(
       children: [
         Expanded(
-          child: SizedBox(
-            height: 55,
-            child: TextField(
-              controller: controller,
-              readOnly: isCouponApplied,
-              onTapOutside:
-                  (event) => FocusManager.instance.primaryFocus?.unfocus(),
-              decoration: InputDecoration(
-                filled: true,
-                fillColor: theme.colorScheme.secondary,
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                labelText: context.tr(LocaleKeys.cart_coupon_code),
-              ),
-            ),
-          ),
+          child: CouponTextField(controller: controller, readOnly: isApplied),
         ),
         const SizedBox(width: 16),
         SizedBox(
           width: 100,
-          child: CustomFilledButton(
-            buttonColor:
-                isCouponApplied
-                    ? theme.colorScheme.error
-                    : theme.colorScheme.primary,
-            text:
-                isCouponApplied
-                    ? context.tr(LocaleKeys.cart_remove_coupon)
-                    : context.tr(LocaleKeys.cart_apply_coupon),
-            onPressed: () {
-              if (isCouponApplied) {
-                // ✅ Remove logic
-                cubit.removeCoupon();
-                controller.clear();
-                AppSnackbar.showNoteSnackBar(
-                  context,
-                  context.tr(LocaleKeys.cart_coupon_removed),
-                );
-              } else {
-                // ✅ Apply logic
-                final code = controller.text.trim();
-                if (code.length == 4) {
-                  cubit.applyCoupon(code);
-                  AppSnackbar.showSuccessSnackBar(
-                    context,
-                    context.tr(LocaleKeys.cart_coupon_applied),
-                  );
-                  FocusManager.instance.primaryFocus?.unfocus();
-                } else {
-                  AppSnackbar.showErrorSnackBar(
-                    context,
-                    context.tr(LocaleKeys.cart_invalid_coupon),
-                  );
-                }
-              }
-            },
+          child: CouponActionButton(
+            isApplied: isApplied,
+            isLoading: isProcessing,
+            onPressed: _handleCouponAction,
           ),
         ),
       ],

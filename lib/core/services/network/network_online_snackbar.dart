@@ -4,24 +4,24 @@ import 'package:flutter/material.dart';
 final GlobalKey<ScaffoldMessengerState> scaffoldMessengerKey =
     GlobalKey<ScaffoldMessengerState>();
 
-void showOfflineBanner(BuildContext context) {
-  scaffoldMessengerKey.currentState!.showSnackBar(
-    SnackBar(
-      duration: const Duration(days: 365),
-      content: const Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            'You are offline',
-            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-          ),
-          Icon(Icons.wifi_off, color: Colors.white),
-        ],
-      ),
-      backgroundColor: Theme.of(context).colorScheme.error,
-    ),
-  );
-}
+// void showOfflineBanner(BuildContext context) {
+//   scaffoldMessengerKey.currentState!.showSnackBar(
+//     SnackBar(
+//       duration: const Duration(days: 365),
+//       content: const Row(
+//         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//         children: [
+//           Text(
+//             'You are offline',
+//             style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+//           ),
+//           Icon(Icons.wifi_off, color: Colors.white),
+//         ],
+//       ),
+//       backgroundColor: Theme.of(context).colorScheme.error,
+//     ),
+//   );
+// }
 
 void showOnlineSnackBar(BuildContext context) {
   scaffoldMessengerKey.currentState!

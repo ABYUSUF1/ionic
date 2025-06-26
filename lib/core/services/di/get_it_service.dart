@@ -7,6 +7,7 @@ import 'package:ionic/core/services/image_picker/cubit/cubit/image_picker_cubit.
 import 'package:ionic/core/services/image_picker/image_picker_service.dart';
 import 'package:ionic/core/services/messaging/firebase_messaging_service.dart';
 import 'package:ionic/core/services/network/network_cubit.dart';
+import 'package:ionic/core/services/storage/supabase_storage_service.dart';
 import 'package:ionic/features/address/data/data_source/address_remote_data_source.dart';
 import 'package:ionic/features/address/domain/repo/address_repo.dart';
 import 'package:ionic/features/address/presentation/manager/locate_on_map/locate_on_map_cubit.dart';
@@ -42,6 +43,9 @@ import 'package:ionic/features/profile/domain/repo/edit_profile_repo.dart';
 import 'package:ionic/features/search/data/repo_impl/search_repo_impl.dart';
 import 'package:ionic/features/search/domain/repo/search_repo.dart';
 import 'package:ionic/features/search/presentation/manager/cubit/search_cubit.dart';
+import 'package:ionic/features/shop/data/repo_impl/shop_repo_impl.dart';
+import 'package:ionic/features/shop/domain/repo/shop_repo.dart';
+import 'package:ionic/features/shop/presentation/manager/cubit/shop_cubit.dart';
 import 'package:location/location.dart';
 
 import '../../../features/address/data/repo_impl/address_repo_impl.dart';
@@ -72,6 +76,9 @@ Future<void> setupGetIt() async {
   getIt.registerLazySingleton(() => ImagePickerService());
   getIt.registerLazySingleton<ApiClient>(() => DioApiClient(Dio()));
   getIt.registerLazySingleton<Location>(() => Location());
+  getIt.registerLazySingleton<SupabaseStorageService>(
+    () => SupabaseStorageService(),
+  );
 
   // Register Data Sources
   getIt.registerLazySingleton(
@@ -91,7 +98,7 @@ Future<void> setupGetIt() async {
   // Register Repositories
   getIt.registerLazySingleton<AuthRepo>(() => AuthRepoImpl(getIt()));
   getIt.registerLazySingleton<EditProfileRepo>(
-    () => EditProfileRepoImpl(getIt()),
+    () => EditProfileRepoImpl(getIt(), getIt()),
   );
   getIt.registerLazySingleton<HomeRepo>(() => HomeRepoImpl(getIt()));
   getIt.registerLazySingleton<CategoriesRepo>(
@@ -110,6 +117,7 @@ Future<void> setupGetIt() async {
     () => PaymentRepoImpl(getIt(), getIt()),
   );
   getIt.registerLazySingleton<OrdersRepo>(() => OrdersRepoImpl());
+  getIt.registerLazySingleton<ShopRepo>(() => ShopRepoImpl(getIt()));
 
   // Register BLoCs/Cubits
   getIt.registerFactory(() => NetworkCubit(getIt()));
@@ -129,4 +137,5 @@ Future<void> setupGetIt() async {
   getIt.registerFactory(() => CartCubit(getIt()));
   getIt.registerFactory(() => PaymentCubit(getIt()));
   getIt.registerFactory(() => OrdersCubit(getIt()));
+  getIt.registerFactory(() => ShopCubit(getIt()));
 }

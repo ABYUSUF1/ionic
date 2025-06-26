@@ -156,19 +156,22 @@ class CartCubit extends Cubit<CartState> {
     );
   }
 
-  void applyCoupon(String code) {
-    if (cartEntity.cartProductsEntity.isEmpty) return;
+  Future<bool> applyCoupon(String code) async {
+    if (cartEntity.cartProductsEntity.isEmpty || code.length != 4) return false;
 
-    if (code.length == 4 && appliedCoupon != code) {
-      appliedCoupon = code;
-      couponDiscount = 25.0;
-      emitSuccess();
-    }
+    // Simulate backend check or rule here
+    final isValid = RegExp(r'^[A-Z0-9]{4}$').hasMatch(code);
+    if (!isValid) return false;
+
+    appliedCoupon = code;
+    couponDiscount = 25.0; // Simulate fetched discount
+    emitSuccess();
+    return true;
   }
 
-  void removeCoupon() {
+  Future<void> removeCoupon() async {
     appliedCoupon = null;
-    couponDiscount = 0;
+    couponDiscount = 0.0;
     emitSuccess();
   }
 

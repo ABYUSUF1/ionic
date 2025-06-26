@@ -35,9 +35,10 @@ class EmailSentViewBody extends StatelessWidget {
                   Brightness.light == theme.brightness
                       ? AppAssets.illustrationsSendingIllustrationLight
                       : AppAssets.illustrationsSendingIllustrationDark,
-                  width: 250,
-                  height: 250,
+                  width: 200,
+                  height: 200,
                 ),
+                const SizedBox(height: 16),
                 Text(
                   isPasswordReset
                       ? LocaleKeys.auth_password_reset.tr()

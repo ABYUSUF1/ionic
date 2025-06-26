@@ -12,7 +12,11 @@ final class AppRouterName {
   static const String homeRoute = '/home'; // initial route
   static const String profileRoute = '/profile';
   static const String cartRoute = '/cart';
-  static const String categoriesRoute = '/categories';
+  static const String shopRoute = '/shop';
+
+  // Inside home routes
+  static const String categoriesRoute = '/categories/:slug';
+  static String categoriesSlugRoute(String slug) => '/categories/$slug';
 
   // inside profile routes
   static const String editProfileRoute = 'edit-profile';

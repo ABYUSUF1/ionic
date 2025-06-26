@@ -1,11 +1,15 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:go_router/go_router.dart';
 import 'package:ionic/core/routing/app_router_name.dart';
+import 'package:ionic/core/widgets/snackbar/app_snackbar.dart';
 import 'package:ionic/features/auth/domain/repo/auth_repo.dart';
+import 'package:ionic/generated/locale_keys.g.dart';
 
 import '../../../../../core/constants/app_assets.dart';
 import '../../../../../core/widgets/dialog/custom_dialog.dart';
@@ -28,8 +32,8 @@ class EmailSentCubit extends Cubit<EmailSentState> {
     emit(
       EmailSentState.inProgress(
         isPasswordReset
-            ? "We sent you an email to reset your password."
-            : "We sent you an email to verify your account.",
+            ? LocaleKeys.auth_we_sent_you_an_email_to_reset_your_password.tr()
+            : LocaleKeys.auth_we_sent_you_an_email_to_verify_your_account.tr(),
       ),
     );
 
@@ -104,22 +108,32 @@ class EmailSentCubit extends Cubit<EmailSentState> {
   ) async {
     /// Check if email has been verified
     final result = await _authRepo.isEmailVerified();
-    result.fold((failure) => context.pop(), (isVerified) {
+    if (!context.mounted) return;
+    result.fold((failure) => context.pop(), (isVerified) async {
       if (isVerified) {
-        context.push(AppRouterName.signInRoute);
+        await _authRepo.updateUserEmailVerified(true);
+
+        if (!context.mounted) return;
+        AppSnackbar.showSuccessSnackBar(
+          context,
+          LocaleKeys.auth_email_verified_successfully.tr(),
+        );
+
+        if (context.mounted) {
+          context.push(AppRouterName.signInRoute);
+        }
       } else {
         showCustomDialog(
           context: context,
-          title: "Email Not Verified",
-          subTitle: "You will not be able to login until you verify your email",
+          title: LocaleKeys.auth_email_not_verified.tr(),
+          subTitle: LocaleKeys.auth_email_not_verified_desc.tr(),
           svgPic:
               theme.brightness == Brightness.light
                   ? AppAssets.illustrationsLoginIllustrationLight
                   : AppAssets.illustrationsLoginIllustrationDark,
-          buttonText: "Back to login",
+          buttonText: LocaleKeys.auth_back_anyway.tr(),
           onTap: () {
-            context.pop();
-            context.pop();
+            context.go(AppRouterName.signInRoute);
           },
         );
       }

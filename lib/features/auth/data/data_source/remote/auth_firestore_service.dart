@@ -123,4 +123,15 @@ class AuthFirestoreService {
         .doc(userId)
         .update({'fcmToken': fcmToken});
   }
+
+  // UPDATE USER IS EMAIL VERIFIED
+  Future<void> updateIsEmailVerified({
+    required String userId,
+    required bool isEmailVerified,
+  }) async {
+    await firestore
+        .collection(FirestoreCollectionNames.users)
+        .doc(userId)
+        .update({'isEmailVerified': isEmailVerified});
+  }
 }

@@ -46,24 +46,24 @@ class FavoriteCubit extends Cubit<FavoriteState> with AuthGuardMixin {
 
   /// Toggle favorite status of a product (add or remove)
   /// UI updates immediately; repo operation runs without await for responsiveness
-  void toggleFavorites(
+  Future<void> toggleFavorites(
     ProductItemEntity productItemEntity,
     BuildContext context,
-  ) {
+  ) async {
     if (_isToggling) return;
     _isToggling = true;
 
-    if (isFavorite(productItemEntity.productId)) {
-      _favoriteRepo.removeFavorite(
-        productItemEntity.productId,
-      ); // Optimistic removal
-      favorites.remove(productItemEntity);
+    final productId = productItemEntity.productId;
+    final isFav = isFavorite(productId);
+
+    // Optimistic update
+    if (isFav) {
+      favorites.removeWhere((item) => item.productId == productId);
       AppSnackbar.showNoteSnackBar(
         context,
         context.tr(LocaleKeys.favorites_removed_from_favorites),
       );
     } else {
-      _favoriteRepo.addFavorite(productItemEntity); // Optimistic addition
       favorites.add(productItemEntity);
       AppSnackbar.showNoteSnackBar(
         context,
@@ -71,9 +71,33 @@ class FavoriteCubit extends Cubit<FavoriteState> with AuthGuardMixin {
       );
     }
 
-    favoriteIds = Set<String>.from(favorites.map((e) => e.productId));
-    emit(FavoriteState.success(List.from(favorites))); // Re-emit updated list
+    favoriteIds = favorites.map((e) => e.productId).toSet();
+    _emitUpdatedFavorites();
+
+    // Await actual operation
+    final result =
+        isFav
+            ? await _favoriteRepo.removeFavorite(productId)
+            : await _favoriteRepo.addFavorite(productItemEntity);
+
+    result.fold((failure) {
+      // Revert optimistic update if failed
+      if (isFav) {
+        favorites.add(productItemEntity);
+      } else {
+        favorites.removeWhere((item) => item.productId == productId);
+      }
+      favoriteIds = favorites.map((e) => e.productId).toSet();
+      _emitUpdatedFavorites();
+      AppSnackbar.showErrorSnackBar(context, failure.errMessage);
+    }, (_) {});
+
     _isToggling = false;
+  }
+
+  void _emitUpdatedFavorites() {
+    final updated = List<ProductItemEntity>.from(favorites);
+    emit(FavoriteState.success(updated));
   }
 
   /// Check if a product is currently favorited

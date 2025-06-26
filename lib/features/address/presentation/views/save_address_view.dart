@@ -17,6 +17,7 @@ class SaveAddressView extends StatelessWidget {
   Widget build(BuildContext context) {
     return RequiredLoginScreen(
       appBarTitle: context.tr(LocaleKeys.address_save_address),
+      description: context.tr(LocaleKeys.address_sign_in_required_desc),
       child: BlocProvider(
         create:
             (context) =>

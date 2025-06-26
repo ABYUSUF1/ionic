@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -15,6 +16,7 @@ import 'package:ionic/features/payment/presentation/manager/cubit/payment_cubit.
 
 import '../../../../../core/utils/enums/delivery_instructions_enum.dart';
 import '../../../../../core/utils/enums/order_status_enum.dart';
+import '../../../../../generated/locale_keys.g.dart';
 import '../../../../orders/domain/entity/orders_entity.dart';
 import '../../../../payment/presentation/views/paymob_payment_view.dart';
 
@@ -74,7 +76,10 @@ class CheckoutCubit extends Cubit<CheckoutState> {
     } else if (state.paymentMethod == PaymentMethodEnum.paymob) {
       await _checkoutWithPaymob(context, amount);
     } else if (state.paymentMethod == PaymentMethodEnum.paypal) {
-      AppSnackbar.showNoteSnackBar(context, "Paypal is not supported yet.");
+      AppSnackbar.showNoteSnackBar(
+        context,
+        LocaleKeys.checkout_paypal_not_supported.tr(),
+      );
     }
   }
 

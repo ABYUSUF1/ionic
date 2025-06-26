@@ -15,9 +15,10 @@ class OrdersView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
+    final theme = Theme.of(context);
+    final isDarkMode = theme.brightness == Brightness.dark;
     final cubit = context.read<OrdersCubit>();
-    cubit.fetchOrders(context);
+    cubit.fetchOrders();
 
     return BlocBuilder<OrdersCubit, OrdersState>(
       builder: (context, state) {
@@ -27,6 +28,10 @@ class OrdersView extends StatelessWidget {
         );
 
         return Scaffold(
+          backgroundColor:
+              state.isSuccess
+                  ? theme.scaffoldBackgroundColor
+                  : theme.colorScheme.surface,
           appBar: const OrdersAppBar(),
           body: state.maybeWhen(
             error:
@@ -34,7 +39,7 @@ class OrdersView extends StatelessWidget {
                   title: context.tr(LocaleKeys.common_something_went_wrong),
                   subtitle: errMessage,
                   buttonText: context.tr(LocaleKeys.common_try_again),
-                  onButtonPressed: () => cubit.fetchOrders(context),
+                  onButtonPressed: () => cubit.fetchOrders(),
                 ),
             empty:
                 (message) => EmptyStateWidget(
@@ -43,7 +48,7 @@ class OrdersView extends StatelessWidget {
                   svgImage:
                       isDarkMode
                           ? AppAssets.illustrationsEmptyIllustrationDark
-                          : AppAssets.illustrationsEmptyIllustrationDark,
+                          : AppAssets.illustrationsEmptyIllustrationLight,
                 ),
             orElse:
                 () => Skeletonizer(

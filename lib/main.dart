@@ -7,6 +7,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
+import 'package:ionic/core/services/data_source/local/object_box_service.dart';
 import 'package:ionic/core/services/di/get_it_service.dart';
 import 'package:ionic/core/services/messaging/firebase_messaging_service.dart';
 import 'package:ionic/firebase_options.dart';
@@ -31,6 +32,8 @@ Future<void> main() async {
   // ✅ Register the top-level background message handler
   FirebaseMessaging.onBackgroundMessage(firebaseBackgroundMessageHandler);
   await FirebaseMessaging.instance.requestPermission();
+
+  await getIt<ObjectBoxService>().deleteAllData();
 
   runApp(
     EasyLocalization(

@@ -230,4 +230,24 @@ class AuthRepoImpl implements AuthRepo {
       );
     }
   }
+
+  @override
+  Future<Either<Failure, void>> updateUserEmailVerified(bool isVerified) async {
+    try {
+      await _remoteDataSource.updateUserEmailVerifiedStatus(
+        isEmailVerified: isVerified,
+      );
+      return const Right(null);
+    } on FirebaseAuthException catch (e) {
+      return Left(AuthFailure.fromFirebaseAuthException(e));
+    } on PlatformException catch (e) {
+      return Left(PlatformFailure.fromCode(e));
+    } catch (e) {
+      return const Left(
+        Failure(
+          'An unexpected error occurred while updating email verification status. Please try again.',
+        ),
+      );
+    }
+  }
 }

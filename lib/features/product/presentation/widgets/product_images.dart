@@ -2,8 +2,8 @@ import 'package:animate_do/animate_do.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ionic/core/widgets/loading/image_loading_widget.dart';
 import 'package:ionic/features/product/presentation/manager/cubit/product_cubit.dart';
-
 import '../../../../core/widgets/responsive_layout.dart';
 
 class ProductImages extends StatefulWidget {
@@ -49,6 +49,8 @@ class _ProductImagesState extends State<ProductImages> {
                     ? const SizedBox.shrink()
                     : CachedNetworkImage(
                       imageUrl: widget.images![selectedIndex],
+                      placeholder: (context, url) => const ImageLoadingWidget(),
+
                       fit: BoxFit.contain,
                     ),
           ),
@@ -88,6 +90,7 @@ class _ProductImagesState extends State<ProductImages> {
                   ),
                   child: CachedNetworkImage(
                     imageUrl: widget.images![index],
+                    placeholder: (context, url) => const ImageLoadingWidget(),
                     fit: BoxFit.contain,
                   ),
                 ),

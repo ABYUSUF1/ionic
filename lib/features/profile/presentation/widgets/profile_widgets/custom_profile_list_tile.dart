@@ -142,7 +142,7 @@ bool _checkAuth(BuildContext context) {
   if (user == null || !user.isEmailVerified) {
     AppSnackbar.showNoteSnackBar(
       context,
-      context.tr(LocaleKeys.address_sign_in_required),
+      context.tr(LocaleKeys.auth_sign_in_required),
     );
     return false; // not authenticated
   }

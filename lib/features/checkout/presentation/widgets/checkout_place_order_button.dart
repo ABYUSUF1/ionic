@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:iconsax_plus/iconsax_plus.dart';
 import 'package:ionic/core/widgets/buttons/custom_filled_button.dart';
 import 'package:ionic/core/widgets/dialog/custom_dialog.dart';
 import 'package:ionic/core/widgets/responsive_layout.dart';
@@ -33,8 +34,6 @@ class CheckoutPlaceOrderButton extends StatelessWidget {
       orElse: () => 0,
     );
 
-    final canPlaceOrder = checkoutState.canPlaceOrder;
-
     return ResponsiveLayout.isMobile(context)
         ? ColoredBox(
           color: theme.colorScheme.surface,
@@ -43,7 +42,7 @@ class CheckoutPlaceOrderButton extends StatelessWidget {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                button(context, canPlaceOrder, theme, totalPrice.toInt()),
+                _buildAction(context, checkoutState, theme, totalPrice.toInt()),
                 const SizedBox(height: 8),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -66,22 +65,48 @@ class CheckoutPlaceOrderButton extends StatelessWidget {
             ),
           ),
         )
-        : button(context, canPlaceOrder, theme, totalPrice.toInt());
+        : _buildAction(context, checkoutState, theme, totalPrice.toInt());
   }
 
-  CustomFilledButton button(
+  Widget _buildAction(
     BuildContext context,
-    bool canPlaceOrder,
+    CheckoutState state,
     ThemeData theme,
     int amount,
   ) {
-    bool isLoading = context.read<CheckoutCubit>().state.isLoading;
+    final isLoading = state.isLoading;
+    final reason = state.canPlaceOrderReason;
+    final canPlaceOrder = state.canPlaceOrder;
+
+    if (!canPlaceOrder && reason != null) {
+      return Container(
+        width: double.infinity,
+        padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 18),
+        decoration: BoxDecoration(
+          color: theme.colorScheme.secondary,
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child: Row(
+          children: [
+            const Icon(IconsaxPlusLinear.info_circle, color: Colors.orange),
+            const SizedBox(width: 12),
+            Expanded(
+              child: Text(
+                reason,
+                style: theme.textTheme.bodyMedium?.copyWith(
+                  color: theme.colorScheme.onSurfaceVariant,
+                ),
+              ),
+            ),
+          ],
+        ),
+      );
+    }
 
     return CustomFilledButton(
       text: context.tr(LocaleKeys.checkout_place_order),
       isLoading: isLoading,
-      buttonColor:
-          canPlaceOrder ? AppColors.primaryColor : theme.colorScheme.secondary,
+      buttonColor: AppColors.primaryColor,
       onPressed: () async {
         final isAuthenticatedWithPhone = context
             .read<AuthCubit>()
@@ -91,30 +116,25 @@ class CheckoutPlaceOrderButton extends StatelessWidget {
               orElse: () => false,
             );
 
-        if (isAuthenticatedWithPhone) {
-          if (canPlaceOrder) {
-            await context.read<CheckoutCubit>().placeOrder(context, amount);
-          }
-        } else {
+        if (!isAuthenticatedWithPhone) {
           showCustomDialog(
             context: context,
-            title: "Phone number required",
-            subTitle: "Please add your phone number to place your order",
+            title: context.tr(LocaleKeys.checkout_error_no_phone_title),
+            subTitle: context.tr(LocaleKeys.checkout_error_no_phone_desc),
             svgPic: AppAssets.illustrationsLoginIllustrationDark,
-            buttonText: "Add phone number",
+            buttonText: context.tr(LocaleKeys.checkout_error_add_phone_button),
             onTap: () {
-              context.pop(); // close dialog
+              context.pop();
               Navigator.push(
                 context,
-                MaterialPageRoute(
-                  builder: (_) {
-                    return const EditProfileView();
-                  },
-                ),
+                MaterialPageRoute(builder: (_) => const EditProfileView()),
               );
             },
           );
+          return;
         }
+
+        await context.read<CheckoutCubit>().placeOrder(context, amount);
       },
     );
   }

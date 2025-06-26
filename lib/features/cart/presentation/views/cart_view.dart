@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:ionic/core/entities/order_summary_entity.dart';
 import 'package:ionic/core/routing/app_router_name.dart';
+import 'package:ionic/core/widgets/responsive_layout.dart';
 import 'package:ionic/features/cart/presentation/manager/cubit/cart_cubit.dart';
 
 import '../../../../core/constants/app_assets.dart';
@@ -21,7 +22,6 @@ class CartView extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final isDark = theme.brightness == Brightness.dark;
-    final width = MediaQuery.sizeOf(context).width;
 
     return BlocBuilder<CartCubit, CartState>(
       builder: (context, state) {
@@ -45,7 +45,7 @@ class CartView extends StatelessWidget {
                   : theme.scaffoldBackgroundColor,
           appBar: CartAppBar(cartEntity: cartEntity),
           bottomNavigationBar:
-              width > 900
+              !ResponsiveLayout.isMobile(context)
                   ? null
                   : CartBottomBar(cartOrderSummary: cartOrderSummary),
           body: state.maybeWhen(
@@ -57,7 +57,7 @@ class CartView extends StatelessWidget {
                           : AppAssets.illustrationsEmptyIllustrationLight,
                   title: context.tr(LocaleKeys.cart_empty_title),
                   subtitle: context.tr(LocaleKeys.cart_empty_desc),
-                  buttonText: context.tr(LocaleKeys.cart_show_now),
+                  buttonText: context.tr(LocaleKeys.cart_shop_now),
                   onButtonPressed:
                       () => context.goNamed(AppRouterName.homeRoute),
                 ),

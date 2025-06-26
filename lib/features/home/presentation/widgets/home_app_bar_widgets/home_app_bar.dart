@@ -5,8 +5,7 @@ import 'package:ionic/core/constants/app_assets.dart';
 import 'package:ionic/core/utils/functions/is_arabic.dart';
 
 import '../../../../../core/routing/app_router_name.dart';
-import 'home_app_bar_address_button.dart';
-import 'home_app_bar_favorite_button.dart';
+import '../../../../../core/widgets/address_button.dart';
 
 class HomeAppBar extends StatelessWidget {
   const HomeAppBar({super.key});
@@ -37,10 +36,15 @@ class HomeAppBar extends StatelessWidget {
               ),
 
               const SizedBox(width: 10),
-              const HomeAppBarFavoriteButton(),
+              IconButton(
+                icon: const Icon(IconsaxPlusLinear.heart),
+                onPressed: () {
+                  context.push(AppRouterName.favoriteRoute);
+                },
+              ),
             ],
           ),
-          const HomeAppBarAddressButton(),
+          const AddressButton(),
         ],
       ),
     );

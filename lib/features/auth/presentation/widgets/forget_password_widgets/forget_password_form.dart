@@ -6,7 +6,6 @@ import 'package:iconsax_plus/iconsax_plus.dart';
 import 'package:ionic/core/utils/validators.dart';
 import 'package:ionic/core/widgets/loading/normal_loading.dart';
 import 'package:ionic/core/widgets/snackbar/app_snackbar.dart';
-import 'package:ionic/features/auth/presentation/args/email_sent_args.dart';
 import 'package:ionic/features/auth/presentation/manager/forget_password/forget_password_cubit.dart';
 import 'package:ionic/generated/locale_keys.g.dart';
 
@@ -36,12 +35,17 @@ class ForgetPasswordForm extends StatelessWidget {
               LocaleKeys.auth_send_password_reset_link.tr(),
             );
 
-            context.push(
+            context.pushNamed(
               AppRouterName.emailSentRoute,
-              extra: EmailSentArgs(
-                isPasswordReset: true,
-                email: emailController.text.trim(),
-              ),
+              extra: {
+                'email':
+                    context
+                        .read<ForgetPasswordCubit>()
+                        .emailController
+                        .text
+                        .trim(),
+                'isPasswordReset': true,
+              },
             );
           },
         );

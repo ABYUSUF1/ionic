@@ -30,7 +30,7 @@ class _OrdersSearchFiledState extends State<OrdersSearchFiled> {
       onTapOutside: (_) => FocusManager.instance.primaryFocus?.unfocus(),
       onChanged: (value) {
         setState(() {});
-        context.read<OrdersCubit>().onSearchChanged(value, context);
+        context.read<OrdersCubit>().search(value);
       },
       decoration: InputDecoration(
         hintText: context.tr(
@@ -49,7 +49,7 @@ class _OrdersSearchFiledState extends State<OrdersSearchFiled> {
                   onPressed: () {
                     controller.clear();
                     setState(() {});
-                    context.read<OrdersCubit>().onSearchChanged('', context);
+                    context.read<OrdersCubit>().search('');
                   },
                 )
                 : null,
