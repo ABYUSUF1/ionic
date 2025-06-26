@@ -35,7 +35,7 @@ class ProductTitleAndBrand extends StatelessWidget {
                       ? null
                       : () {
                         context.push(
-                          AppRouterName.categoriesRoute,
+                          AppRouterName.categoriesSlugRoute(product.category!),
                           extra: LocalizedTitle(
                             en: product.category!,
                             ar: product.category!,
@@ -54,7 +54,7 @@ class ProductTitleAndBrand extends StatelessWidget {
                 child: Text(
                   product.category != null
                       ? "from ${product.category}"
-                      : "Unknown Category",
+                      : context.tr(LocaleKeys.product_brand_unknown),
                   style: theme.textTheme.bodySmall,
                 ),
               ),
