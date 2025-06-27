@@ -23,6 +23,8 @@ class DefaultAddressCubit extends Cubit<DefaultAddressState> {
     final result = await _repo.fetchAddresses();
     result.fold((l) => emit(DefaultAddressState.error(l.errMessage)), (r) {
       if (r.isEmpty) {
+        addresses = <AddressEntity>[];
+        defaultAddress = null;
         emit(const DefaultAddressState.empty());
       } else {
         addresses = r;
@@ -40,6 +42,7 @@ class DefaultAddressCubit extends Cubit<DefaultAddressState> {
       addresses.removeWhere((e) => e.id == addressId);
 
       if (addresses.isEmpty) {
+        defaultAddress = null;
         emit(const DefaultAddressState.empty());
       } else {
         // Reassign default

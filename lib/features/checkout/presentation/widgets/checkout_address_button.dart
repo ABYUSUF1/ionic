@@ -8,6 +8,7 @@ import 'package:ionic/features/checkout/presentation/widgets/checkout_custom_box
 import 'package:ionic/generated/locale_keys.g.dart';
 
 import '../../../../core/routing/app_router_name.dart';
+import '../manager/cubit/checkout_cubit.dart';
 
 class CheckoutAddressButton extends StatelessWidget {
   const CheckoutAddressButton({super.key});
@@ -20,6 +21,8 @@ class CheckoutAddressButton extends StatelessWidget {
       child: BlocBuilder<DefaultAddressCubit, DefaultAddressState>(
         builder: (context, state) {
           final address = context.read<DefaultAddressCubit>().defaultAddress;
+          context.read<CheckoutCubit>().setAddress(address?.address ?? '');
+
           return ClipRRect(
             borderRadius: BorderRadius.circular(8),
             child: Material(
