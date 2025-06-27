@@ -1,7 +1,9 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 
+import '../../../../generated/locale_keys.g.dart';
 import '../manager/cubit/products_control_cubit.dart';
 import 'filter_tab_content.dart';
 import 'sort_tab_content.dart';
@@ -28,9 +30,15 @@ Future<void> productsControlBottomSheet(BuildContext context) async {
                 indicatorColor: theme.colorScheme.primary,
                 labelColor: theme.colorScheme.primary,
                 unselectedLabelColor: theme.colorScheme.onSurfaceVariant,
-                tabs: const [
-                  Tab(text: "Filter", icon: Icon(IconsaxPlusLinear.filter)),
-                  Tab(text: "Sort", icon: Icon(IconsaxPlusLinear.sort)),
+                tabs: [
+                  Tab(
+                    text: context.tr(LocaleKeys.filter_title),
+                    icon: const Icon(IconsaxPlusLinear.filter),
+                  ),
+                  Tab(
+                    text: context.tr(LocaleKeys.sort_title),
+                    icon: const Icon(IconsaxPlusLinear.sort),
+                  ),
                 ],
               ),
               const Divider(height: 1),

@@ -24,10 +24,12 @@ class ProductsControlCubit extends Cubit<ProductsControlState> {
 
   // Must be called whenever source product list changes (e.g., favorites change)
   void updateProducts(List<ProductItemEntity> products) {
+    final uniqueBrands = products.map((e) => e.brand).toSet();
     emit(
       state.copyWith(
         originalProductItems: products,
-        selectedBrands: products.map((e) => e.brand).toSet(),
+        allBrands: uniqueBrands, // <-- key part
+        selectedBrands: uniqueBrands, // if you want all initially active
       ),
     );
     filterProducts();

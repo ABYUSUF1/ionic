@@ -29,6 +29,16 @@ abstract class  LocaleKeys {
   static const common_created_at = 'common_created_at';
   static const common_try_searching_for_something_else = 'common_try_searching_for_something_else';
   static const common_sign_in_up = 'common_sign_in_up';
+  static const filter_title = 'filter_title';
+  static const filter_price_range_title = 'filter_price_range_title';
+  static const filter_rating_title = 'filter_rating_title';
+  static const filter_brands_title = 'filter_brands_title';
+  static const sort_title = 'sort_title';
+  static const sort_by = 'sort_by';
+  static const sort_by_price_low_to_high = 'sort_by_price_low_to_high';
+  static const sort_by_price_high_to_low = 'sort_by_price_high_to_low';
+  static const sort_by_top_rated = 'sort_by_top_rated';
+  static const sort_by_recommended = 'sort_by_recommended';
   static const network_no_internet = 'network_no_internet';
   static const network_no_internet_desc = 'network_no_internet_desc';
   static const validators_required = 'validators_required';

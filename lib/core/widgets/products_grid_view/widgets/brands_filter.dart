@@ -1,7 +1,9 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ionic/core/widgets/products_grid_view/manager/cubit/products_control_cubit.dart';
 import 'package:ionic/core/widgets/products_grid_view/manager/cubit/products_control_state.dart';
+import 'package:ionic/generated/locale_keys.g.dart';
 
 class BrandsFilter extends StatelessWidget {
   const BrandsFilter({super.key});
@@ -17,7 +19,10 @@ class BrandsFilter extends StatelessWidget {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text("Brands", style: Theme.of(context).textTheme.bodyMedium),
+            Text(
+              context.tr(LocaleKeys.filter_brands_title),
+              style: Theme.of(context).textTheme.bodyMedium,
+            ),
             const SizedBox(height: 4),
             Wrap(
               spacing: 8,
@@ -55,6 +60,7 @@ class BrandsFilter extends StatelessWidget {
         ),
       ),
       deleteIconColor: theme.colorScheme.onSurface,
+      checkmarkColor: theme.colorScheme.onSurface,
       selected: isSelected,
       onSelected: (_) => cubit.toggleBrand(brand),
       side: BorderSide(color: theme.colorScheme.outline),
