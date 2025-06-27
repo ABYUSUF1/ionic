@@ -54,38 +54,41 @@ class RequiredLoginScreen extends StatelessWidget {
               body: Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: SingleChildScrollView(
-                  child: ConstrainedBox(
-                    constraints: const BoxConstraints(maxWidth: 600),
-                    child: Column(
-                      spacing: 16,
-                      children: [
-                        EmptyStateWidget(
-                          svgImage:
-                              isDarkMode
-                                  ? AppAssets.illustrationsLoginIllustrationDark
-                                  : AppAssets
-                                      .illustrationsLoginIllustrationLight,
-                          title: context.tr(LocaleKeys.auth_sign_in_required),
-                          subtitle: description,
-                        ),
-                        CustomOutlineButton(
-                          text: context.tr(
-                            LocaleKeys.auth_continue_with_google,
+                  child: Center(
+                    child: ConstrainedBox(
+                      constraints: const BoxConstraints(maxWidth: 600),
+                      child: Column(
+                        spacing: 16,
+                        children: [
+                          EmptyStateWidget(
+                            svgImage:
+                                isDarkMode
+                                    ? AppAssets
+                                        .illustrationsLoginIllustrationDark
+                                    : AppAssets
+                                        .illustrationsLoginIllustrationLight,
+                            title: context.tr(LocaleKeys.auth_sign_in_required),
+                            subtitle: description,
                           ),
-                          svgIcon: AppAssets.iconsGoogle,
-                          onPressed: () async {
-                            await context.read<AuthCubit>().signInWithGoogle(
-                              context,
-                            );
-                          },
-                        ),
-                        CustomFilledButton(
-                          text: context.tr(LocaleKeys.common_sign_in_up),
-                          onPressed: () {
-                            context.push(AppRouterName.signInRoute);
-                          },
-                        ),
-                      ],
+                          CustomOutlineButton(
+                            text: context.tr(
+                              LocaleKeys.auth_continue_with_google,
+                            ),
+                            svgIcon: AppAssets.iconsGoogle,
+                            onPressed: () async {
+                              await context.read<AuthCubit>().signInWithGoogle(
+                                context,
+                              );
+                            },
+                          ),
+                          CustomFilledButton(
+                            text: context.tr(LocaleKeys.common_sign_in_up),
+                            onPressed: () {
+                              context.push(AppRouterName.signInRoute);
+                            },
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
