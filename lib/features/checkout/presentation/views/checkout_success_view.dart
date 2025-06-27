@@ -68,7 +68,10 @@ class CheckoutSuccessView extends StatelessWidget {
                           text: context.tr(
                             LocaleKeys.checkout_continue_shopping,
                           ),
-                          onPressed: () => context.go(AppRouterName.homeRoute),
+                          onPressed: () {
+                            // Navigate to home using pop scope
+                            context.pop();
+                          },
                         ),
                       ],
                     ),
