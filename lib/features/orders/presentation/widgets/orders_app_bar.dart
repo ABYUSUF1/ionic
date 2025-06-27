@@ -1,19 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ionic/core/constants/app_assets.dart';
 import 'package:ionic/core/utils/functions/is_arabic.dart';
 
 import '../../../../core/widgets/buttons/custom_back_button.dart';
-import '../manager/cubit/orders_cubit.dart';
 import 'orders_search_field.dart';
 
 class OrdersAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const OrdersAppBar({super.key});
+  final bool showSearch;
+  const OrdersAppBar({super.key, required this.showSearch});
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final state = context.read<OrdersCubit>().state;
 
     return ColoredBox(
       color: theme.colorScheme.surface,
@@ -39,7 +37,7 @@ class OrdersAppBar extends StatelessWidget implements PreferredSizeWidget {
                   ),
                 ],
               ),
-              if (state.isSuccess) ...[
+              if (showSearch) ...[
                 const SizedBox(height: 12),
                 const OrdersSearchFiled(),
               ] else

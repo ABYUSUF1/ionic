@@ -32,7 +32,7 @@ class OrdersView extends StatelessWidget {
               state.isSuccess
                   ? theme.scaffoldBackgroundColor
                   : theme.colorScheme.surface,
-          appBar: const OrdersAppBar(),
+          appBar: OrdersAppBar(showSearch: state.isSuccess),
           body: state.maybeWhen(
             error:
                 (errMessage) => EmptyStateWidget.withButton(
