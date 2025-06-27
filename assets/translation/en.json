@@ -29,6 +29,19 @@
     "common_created_at": "Created At",
     "common_try_searching_for_something_else": "Try searching for something else",
     "common_sign_in_up" : "Sign In / Sign Up",
+    
+    
+    "filter_title": "Filter",
+    "filter_price_range_title": "Price Range",
+    "filter_rating_title": "Rating",
+    "filter_brands_title": "Brands",
+    "sort_title": "Sort",
+    "sort_by": "Sort by",
+    "sort_by_price_low_to_high": "Price: Low to High",
+    "sort_by_price_high_to_low": "Price: High to Low",
+    "sort_by_top_rated": "Top Rated",
+    "sort_by_recommended": "Recommended",
+
 
     "network_no_internet": "No internet connection",
     "network_no_internet_desc": "Please check your internet connection to continue shopping",

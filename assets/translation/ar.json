@@ -33,6 +33,19 @@
     "common_try_searching_for_something_else": "قم بالبحث عن شيء اخر",
     "common_sign_in_up" : "تسجيل الدخول / إنشاء حساب",
 
+    
+    "filter_title": "تصفية",
+    "filter_price_range_title": "نطاق السعر",
+    "filter_rating_title": "التقييم",
+    "filter_brands_title": "العلامات التجارية",
+    "sort_title": "ترتيب",
+    "sort_by": "ترتيب حسب",
+    "sort_by_price_low_to_high": "السعر: من الأقل إلى الأعلى",
+    "sort_by_price_high_to_low": "السعر: من الأعلى إلى الأقل",
+    "sort_by_top_rated": "الأعلى تقييماً",
+    "sort_by_recommended": "الموصى به",
+
+
     "network_no_internet": "لا يوجد اتصال بالإنترنت",
     "network_no_internet_desc": "يرجى التحقق من اتصالك بالإنترنت للمتابعة في التسوق",
 
