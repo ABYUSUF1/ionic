@@ -28,45 +28,53 @@ class CheckoutSuccessView extends StatelessWidget {
           curve: Curves.ease,
           child: Padding(
             padding: const EdgeInsets.all(16.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                ZoomIn(
-                  curve: Curves.easeOutBack,
-                  child: Icon(
-                    IconsaxPlusBold.tick_circle,
-                    size: 100,
-                    color: theme.colorScheme.primary,
-                  ),
-                ),
-                const SizedBox(height: 30),
-                Text(
-                  context.tr(LocaleKeys.checkout_thank_you_for_ordering),
-                  style: theme.textTheme.headlineMedium,
-                ),
-                const SizedBox(height: 8),
-                Text(
-                  context.tr(LocaleKeys.checkout_order_placed_successfully),
-                  style: theme.textTheme.bodyMedium!.copyWith(
-                    color: theme.colorScheme.onSurfaceVariant,
-                  ),
-                ),
-                const SizedBox(height: 30),
-                Column(
-                  spacing: 16,
+            child: Center(
+              child: ConstrainedBox(
+                constraints: const BoxConstraints(maxWidth: 600),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    CustomOutlineButton(
-                      text: context.tr(LocaleKeys.checkout_view_order),
-                      onPressed:
-                          () => context.pushNamed(AppRouterName.ordersRoute),
+                    ZoomIn(
+                      curve: Curves.easeOutBack,
+                      child: Icon(
+                        IconsaxPlusBold.tick_circle,
+                        size: 100,
+                        color: theme.colorScheme.primary,
+                      ),
                     ),
-                    CustomFilledButton(
-                      text: context.tr(LocaleKeys.checkout_continue_shopping),
-                      onPressed: () => context.go(AppRouterName.homeRoute),
+                    const SizedBox(height: 30),
+                    Text(
+                      context.tr(LocaleKeys.checkout_thank_you_for_ordering),
+                      style: theme.textTheme.headlineMedium,
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      context.tr(LocaleKeys.checkout_order_placed_successfully),
+                      style: theme.textTheme.bodyMedium!.copyWith(
+                        color: theme.colorScheme.onSurfaceVariant,
+                      ),
+                    ),
+                    const SizedBox(height: 30),
+                    Column(
+                      spacing: 16,
+                      children: [
+                        CustomOutlineButton(
+                          text: context.tr(LocaleKeys.checkout_view_order),
+                          onPressed:
+                              () =>
+                                  context.pushNamed(AppRouterName.ordersRoute),
+                        ),
+                        CustomFilledButton(
+                          text: context.tr(
+                            LocaleKeys.checkout_continue_shopping,
+                          ),
+                          onPressed: () => context.go(AppRouterName.homeRoute),
+                        ),
+                      ],
                     ),
                   ],
                 ),
-              ],
+              ),
             ),
           ),
         ),
