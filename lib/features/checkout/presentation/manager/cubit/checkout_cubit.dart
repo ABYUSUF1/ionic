@@ -183,7 +183,11 @@ class CheckoutCubit extends Cubit<CheckoutState> {
     final cartCubit = context.read<CartCubit>();
 
     emit(state.copyWith(isLoading: true));
-    await paymentCubit.payWithStripe(amount: amount);
+    final isSuccess = await paymentCubit.payWithStripe(amount: amount);
+    if (!isSuccess) {
+      emit(state.copyWith(isLoading: false));
+      return;
+    }
     if (context.mounted) {
       await _addToOrders(context);
     }

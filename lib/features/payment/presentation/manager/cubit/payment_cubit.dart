@@ -12,12 +12,18 @@ class PaymentCubit extends Cubit<PaymentState> {
   final PaymentRepo _paymentRepo;
   PaymentCubit(this._paymentRepo) : super(const PaymentState.initial());
 
-  Future<void> payWithStripe({required int amount}) async {
+  Future<bool> payWithStripe({required int amount}) async {
     emit(const PaymentState.loading());
     final result = await _paymentRepo.payWithStripe(amount: amount);
-    result.fold(
-      (l) => emit(PaymentState.error(l.errMessage)),
-      (r) => emit(const PaymentState.success()),
+    return result.fold(
+      (l) {
+        emit(PaymentState.error(l.errMessage));
+        return false;
+      },
+      (r) {
+        emit(const PaymentState.success());
+        return true;
+      },
     );
   }
 
