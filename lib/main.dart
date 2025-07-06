@@ -1,13 +1,11 @@
 import 'dart:async';
 
-import 'package:device_preview/device_preview.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
-import 'package:ionic/core/services/data_source/local/object_box_service.dart';
 import 'package:ionic/core/services/di/get_it_service.dart';
 import 'package:ionic/core/services/messaging/firebase_messaging_service.dart';
 import 'package:ionic/firebase_options.dart';
@@ -33,7 +31,7 @@ Future<void> main() async {
   FirebaseMessaging.onBackgroundMessage(firebaseBackgroundMessageHandler);
   await FirebaseMessaging.instance.requestPermission();
 
-  await getIt<ObjectBoxService>().deleteAllData();
+  // await getIt<ObjectBoxService>().deleteAllData();
 
   runApp(
     EasyLocalization(
@@ -43,7 +41,7 @@ Future<void> main() async {
       useOnlyLangCode: true,
       ignorePluralRules: false,
       assetLoader: const CodegenLoader(),
-      child: DevicePreview(builder: (context) => const IonicApp()),
+      child: const IonicApp(),
     ),
   );
 }
